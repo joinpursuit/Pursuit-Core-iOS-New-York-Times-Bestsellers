@@ -1,6 +1,6 @@
 # Unit 4 Assignment - New York Times Bestsellers
 
-![nyt bestsellers app gif]()
+![nyt bestsellers app gif](https://github.com/joinpursuit/Pursuit-Core-iOS-New-York-Times-Bestsellers/blob/master/Images/nyt-bestsellers-app.gif)
 
 # Github Instructions
 - Fork this repository.
@@ -101,7 +101,7 @@ https://www.googleapis.com/books/v1/volumes?q=+isbn:0385514239
 
 | Bestsellers | Favorites | Settings | Detail View |
 |:-----:|:-------:|:-------:|:-------|
-|![screen 1]() | ![screen 2]() |![screen 2]()|![screen 2]()|
+|![screen 1](https://github.com/joinpursuit/Pursuit-Core-iOS-New-York-Times-Bestsellers/blob/master/Images/screen-shot-1.png) | ![screen 2](https://github.com/joinpursuit/Pursuit-Core-iOS-New-York-Times-Bestsellers/blob/master/Images/screen-shot-2.png) |![screen 3](https://github.com/joinpursuit/Pursuit-Core-iOS-New-York-Times-Bestsellers/blob/master/Images/screen-shot-3.png)|![screen 4](https://github.com/joinpursuit/Pursuit-Core-iOS-New-York-Times-Bestsellers/blob/master/Images/screen-shot-4.png)|
 
 
 # Rubric
