@@ -2,6 +2,14 @@
 
 ![nyt bestsellers app gif]()
 
+# Github Instructions
+- Fork this repository.
+- Clone it to your machine
+- Complete the sections below
+- Add, commit and push your changes
+- Create a pull request from your fork back to the original repo here
+- Paste the link of your fork into Canvas
+
 # Overview
 
 Use the NYTimes Best Sellers Books API to load a list of best selling books in a collection view. Layout should be done 100% using programmatic ui. 
