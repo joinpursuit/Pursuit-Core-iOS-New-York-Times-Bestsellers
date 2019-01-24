@@ -115,11 +115,13 @@ https://www.googleapis.com/books/v1/volumes?q=+isbn:0385514239
 | Collection view cell is correctly configured including the cover image if available| 4 |
 | Selecting a cell from the Best Sellers tab or Favorites tab segues to a detail view controller with more information | 4 |
 | Favoriting a book saves it to the Documents Directory and persists between launches | 4 |
+| Deleting a book removes it from the Documents Directory | 4 |
 | Favorited books load appropriately in the Favorites tab | 4 |
 | Selecting a categoy in the Settings tab saves it using UserDefaults | 4 |
 | Picker views in the Settings tab and Best Sellers tab spin appropriately to the saved category (if available) | 4 |
+| Sort favorite books by recently added date | 4 |
 
-Total Points 40 
+Total Points 48 
 
 # Bonus
 
