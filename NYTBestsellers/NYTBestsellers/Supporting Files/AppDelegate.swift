@@ -12,9 +12,26 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
+    
 
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    
+    
+    
+    let baseViewController = MainViewController()
+    let favoriteVC = FavoritesViewController()
+    let settingVC = SettingsViewController()
+    
+    let tabBar = UITabBarController()
+    
+    tabBar.viewControllers = [baseViewController,favoriteVC,settingVC]
+    window = UIWindow.init(frame: UIScreen.main.bounds)
+    window?.makeKeyAndVisible()
+    window?.rootViewController = tabBar
+    baseViewController.title = "NYT BestSellers"
+    favoriteVC.title = "Favorites"
+    settingVC.title = "Settings"
     // Override point for customization after application launch.
     return true
   }
