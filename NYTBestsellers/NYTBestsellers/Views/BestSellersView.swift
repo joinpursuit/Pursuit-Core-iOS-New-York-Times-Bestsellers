@@ -59,7 +59,6 @@ extension BestSellersView {
         myBestSellerCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         myBestSellerCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         myBestSellerCollectionView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.50).isActive = true
-    
     }
     
     private func setupPickerView () {
@@ -67,8 +66,7 @@ extension BestSellersView {
         myBestSellerPickerView.translatesAutoresizingMaskIntoConstraints = false
         myBestSellerPickerView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 11).isActive = true
         myBestSellerPickerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
-        myBestSellerPickerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -11).isActive = true
-        myBestSellerPickerView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.50).isActive = true
-
+        myBestSellerPickerView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -11).isActive = true
+        myBestSellerPickerView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.45).isActive = true
     }
 }

@@ -23,6 +23,7 @@
 		976D118921FB8A790076D81D /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D118821FB8A790076D81D /* FavoritesView.swift */; };
 		976D118B21FB8A8C0076D81D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D118A21FB8A8C0076D81D /* SettingsView.swift */; };
 		976D118F21FB91AD0076D81D /* BestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D118E21FB91AD0076D81D /* BestCollectionViewCell.swift */; };
+		976D119121FBB1E40076D81D /* FavoritesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D119021FBB1E40076D81D /* FavoritesCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		976D118821FB8A790076D81D /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		976D118A21FB8A8C0076D81D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		976D118E21FB91AD0076D81D /* BestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestCollectionViewCell.swift; sourceTree = "<group>"; };
+		976D119021FBB1E40076D81D /* FavoritesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				976D118E21FB91AD0076D81D /* BestCollectionViewCell.swift */,
+				976D119021FBB1E40076D81D /* FavoritesCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				976D118521FB8A520076D81D /* SettingsViewController.swift in Sources */,
 				5718BFFC21FA763200A8E4B8 /* String+DateExtensions.swift in Sources */,
 				5718C00221FA772600A8E4B8 /* AppError.swift in Sources */,
+				976D119121FBB1E40076D81D /* FavoritesCollectionViewCell.swift in Sources */,
 				5718C00421FA77AA00A8E4B8 /* DataPersistenceManager.swift in Sources */,
 				976D118921FB8A790076D81D /* FavoritesView.swift in Sources */,
 				5718BFE921FA75A800A8E4B8 /* AppDelegate.swift in Sources */,
