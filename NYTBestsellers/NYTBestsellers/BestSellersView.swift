@@ -19,7 +19,7 @@ class BestSellersView: UIView, UICollectionViewDataSource {
    
     lazy var myCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize.init(width: 200, height: 250)
+        layout.itemSize = CGSize.init(width: 225, height: 350)
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
         var collectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
         collectionView.backgroundColor = .yellow
@@ -64,7 +64,7 @@ extension BestSellersView {
         myCollectionView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         myCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         myCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        myCollectionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
+        myCollectionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.6).isActive = true
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

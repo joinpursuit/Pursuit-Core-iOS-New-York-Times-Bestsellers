@@ -25,6 +25,8 @@ class BestSellersCollectionViewCell: UICollectionViewCell {
     lazy var bookDescription: UITextView = {
         var textView = UITextView()
         textView.textColor = .black
+        textView.text = "Hello Hello"
+        textView.backgroundColor = .clear
         return textView
     }()
     override init(frame: CGRect) {
@@ -40,6 +42,7 @@ class BestSellersCollectionViewCell: UICollectionViewCell {
     private func setupViews(){
        setupBookImage()
        setupBookNameLabel()
+       setupBookDescription()
     }
     
     private func setupBookImage(){
@@ -57,5 +60,13 @@ class BestSellersCollectionViewCell: UICollectionViewCell {
         bookNameLabel.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 10).isActive = true
         bookNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11).isActive = true
         bookNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
+    }
+    private func setupBookDescription() {
+        addSubview(bookDescription)
+        bookDescription.translatesAutoresizingMaskIntoConstraints = false
+        bookDescription.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        bookDescription.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        bookDescription.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        bookDescription.topAnchor.constraint(equalTo: bookNameLabel.bottomAnchor, constant: 10).isActive = true
     }
 }
