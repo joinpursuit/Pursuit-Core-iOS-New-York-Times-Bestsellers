@@ -20,7 +20,17 @@
 		D60401ED21FBA58F0002A04C /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60401EC21FBA58F0002A04C /* SettingViewController.swift */; };
 		D60401EF21FBA5A50002A04C /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60401EE21FBA5A50002A04C /* FavoriteViewController.swift */; };
 		D60401F121FBA6240002A04C /* NYTBestSellingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60401F021FBA6240002A04C /* NYTBestSellingController.swift */; };
-		D60401F321FBA6410002A04C /* BestDetailSellingBooksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60401F221FBA6410002A04C /* BestDetailSellingBooksController.swift */; };
+		D60401F321FBA6410002A04C /* NYTDetailBestSellingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60401F221FBA6410002A04C /* NYTDetailBestSellingController.swift */; };
+		D60401F521FBA8E60002A04C /* NYTBestSellingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60401F421FBA8E60002A04C /* NYTBestSellingView.swift */; };
+		D60401F721FBA8FB0002A04C /* NYTDetailBestSellingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60401F621FBA8FB0002A04C /* NYTDetailBestSellingView.swift */; };
+		D60401F921FBA90E0002A04C /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60401F821FBA90E0002A04C /* FavoriteView.swift */; };
+		D60401FB21FBA9230002A04C /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60401FA21FBA9230002A04C /* SettingView.swift */; };
+		D60401FD21FBA9860002A04C /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60401FC21FBA9860002A04C /* BookCell.swift */; };
+		D60401FF21FBA9980002A04C /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60401FE21FBA9980002A04C /* FavoriteCell.swift */; };
+		D604020121FBB2430002A04C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604020021FBB2430002A04C /* Category.swift */; };
+		D604020321FBB2650002A04C /* FavoriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604020221FBB2650002A04C /* FavoriteModel.swift */; };
+		D604020521FBB8920002A04C /* GoogleBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604020421FBB8920002A04C /* GoogleBook.swift */; };
+		D604020721FBB8BC0002A04C /* NYTBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604020621FBB8BC0002A04C /* NYTBook.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +49,17 @@
 		D60401EC21FBA58F0002A04C /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		D60401EE21FBA5A50002A04C /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		D60401F021FBA6240002A04C /* NYTBestSellingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestSellingController.swift; sourceTree = "<group>"; };
-		D60401F221FBA6410002A04C /* BestDetailSellingBooksController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestDetailSellingBooksController.swift; sourceTree = "<group>"; };
+		D60401F221FBA6410002A04C /* NYTDetailBestSellingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTDetailBestSellingController.swift; sourceTree = "<group>"; };
+		D60401F421FBA8E60002A04C /* NYTBestSellingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestSellingView.swift; sourceTree = "<group>"; };
+		D60401F621FBA8FB0002A04C /* NYTDetailBestSellingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTDetailBestSellingView.swift; sourceTree = "<group>"; };
+		D60401F821FBA90E0002A04C /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		D60401FA21FBA9230002A04C /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		D60401FC21FBA9860002A04C /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
+		D60401FE21FBA9980002A04C /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
+		D604020021FBB2430002A04C /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		D604020221FBB2650002A04C /* FavoriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteModel.swift; sourceTree = "<group>"; };
+		D604020421FBB8920002A04C /* GoogleBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBook.swift; sourceTree = "<group>"; };
+		D604020621FBB8BC0002A04C /* NYTBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBook.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +92,7 @@
 		5718BFE721FA75A800A8E4B8 /* NYTBestsellers */ = {
 			isa = PBXGroup;
 			children = (
+				5718BFE821FA75A800A8E4B8 /* AppDelegate.swift */,
 				5718C00121FA772600A8E4B8 /* AppError.swift */,
 				D60401E421FBA0680002A04C /* Alert Helper */,
 				5718C00721FA78E800A8E4B8 /* Network Services */,
@@ -89,7 +110,6 @@
 		5718BFFA21FA75C000A8E4B8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				5718BFE821FA75A800A8E4B8 /* AppDelegate.swift */,
 				5718BFEF21FA75A900A8E4B8 /* Assets.xcassets */,
 				5718BFF121FA75A900A8E4B8 /* LaunchScreen.storyboard */,
 			);
@@ -133,6 +153,12 @@
 		D60401E921FBA5440002A04C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D60401F421FBA8E60002A04C /* NYTBestSellingView.swift */,
+				D60401F621FBA8FB0002A04C /* NYTDetailBestSellingView.swift */,
+				D60401F821FBA90E0002A04C /* FavoriteView.swift */,
+				D60401FA21FBA9230002A04C /* SettingView.swift */,
+				D60401FC21FBA9860002A04C /* BookCell.swift */,
+				D60401FE21FBA9980002A04C /* FavoriteCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -140,6 +166,10 @@
 		D60401EA21FBA54A0002A04C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D604020021FBB2430002A04C /* Category.swift */,
+				D604020621FBB8BC0002A04C /* NYTBook.swift */,
+				D604020421FBB8920002A04C /* GoogleBook.swift */,
+				D604020221FBB2650002A04C /* FavoriteModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -148,7 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				D60401F021FBA6240002A04C /* NYTBestSellingController.swift */,
-				D60401F221FBA6410002A04C /* BestDetailSellingBooksController.swift */,
+				D60401F221FBA6410002A04C /* NYTDetailBestSellingController.swift */,
 				D60401EE21FBA5A50002A04C /* FavoriteViewController.swift */,
 				D60401EC21FBA58F0002A04C /* SettingViewController.swift */,
 			);
@@ -227,15 +257,25 @@
 			files = (
 				5718C00021FA771800A8E4B8 /* NetworkHelper.swift in Sources */,
 				5718BFFC21FA763200A8E4B8 /* String+DateExtensions.swift in Sources */,
+				D604020121FBB2430002A04C /* Category.swift in Sources */,
 				D60401E821FBA1110002A04C /* VC+Extensions.swift in Sources */,
+				D604020721FBB8BC0002A04C /* NYTBook.swift in Sources */,
 				5718C00221FA772600A8E4B8 /* AppError.swift in Sources */,
+				D60401F521FBA8E60002A04C /* NYTBestSellingView.swift in Sources */,
+				D60401FB21FBA9230002A04C /* SettingView.swift in Sources */,
 				D60401EF21FBA5A50002A04C /* FavoriteViewController.swift in Sources */,
 				5718C00421FA77AA00A8E4B8 /* DataPersistenceManager.swift in Sources */,
+				D60401FD21FBA9860002A04C /* BookCell.swift in Sources */,
 				D60401F121FBA6240002A04C /* NYTBestSellingController.swift in Sources */,
+				D604020321FBB2650002A04C /* FavoriteModel.swift in Sources */,
 				D60401ED21FBA58F0002A04C /* SettingViewController.swift in Sources */,
 				5718BFE921FA75A800A8E4B8 /* AppDelegate.swift in Sources */,
+				D60401F721FBA8FB0002A04C /* NYTDetailBestSellingView.swift in Sources */,
+				D604020521FBB8920002A04C /* GoogleBook.swift in Sources */,
 				5718BFFE21FA764E00A8E4B8 /* Date+Extensions.swift in Sources */,
-				D60401F321FBA6410002A04C /* BestDetailSellingBooksController.swift in Sources */,
+				D60401F321FBA6410002A04C /* NYTDetailBestSellingController.swift in Sources */,
+				D60401FF21FBA9980002A04C /* FavoriteCell.swift in Sources */,
+				D60401F921FBA90E0002A04C /* FavoriteView.swift in Sources */,
 				5718C00621FA78BA00A8E4B8 /* ImageHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,13 +415,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 79H8CH9S4F;
 				INFOPLIST_FILE = NYTBestsellers/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.pursuit.NYTBestsellers;
+				PRODUCT_BUNDLE_IDENTIFIER = org.pursuit.NYTBestSelling;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -393,13 +434,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 79H8CH9S4F;
 				INFOPLIST_FILE = NYTBestsellers/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.pursuit.NYTBestsellers;
+				PRODUCT_BUNDLE_IDENTIFIER = org.pursuit.NYTBestSelling;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

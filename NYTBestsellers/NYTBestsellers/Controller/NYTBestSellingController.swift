@@ -1,5 +1,5 @@
 //
-//  NYTBestSellingController: .swift
+//  NYTBestSellingController.swift
 //  NYTBestsellers
 //
 //  Created by Jian Ting Li on 1/25/19.

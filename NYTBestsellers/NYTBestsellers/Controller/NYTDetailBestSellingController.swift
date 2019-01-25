@@ -1,5 +1,5 @@
 //
-//  BestDetailSellingBooksController.swift
+//  NYTDetailBestSellingController.swift
 //  NYTBestsellers
 //
 //  Created by Jian Ting Li on 1/25/19.
