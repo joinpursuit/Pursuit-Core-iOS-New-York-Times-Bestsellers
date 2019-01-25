@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E11498321FB9CE5008E19D2 /* NYTBestSellerControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11498221FB9CE5008E19D2 /* NYTBestSellerControllerViewController.swift */; };
+		1E11498321FB9CE5008E19D2 /* NYTBestSellerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11498221FB9CE5008E19D2 /* NYTBestSellerController.swift */; };
 		1E11498521FB9DD0008E19D2 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11498421FB9DD0008E19D2 /* TabViewController.swift */; };
 		1E11498821FB9E79008E19D2 /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11498721FB9E79008E19D2 /* FavoritesController.swift */; };
 		1E11498A21FB9E8C008E19D2 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11498921FB9E8C008E19D2 /* SettingsController.swift */; };
@@ -30,7 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1E11498221FB9CE5008E19D2 /* NYTBestSellerControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestSellerControllerViewController.swift; sourceTree = "<group>"; };
+		1E11498221FB9CE5008E19D2 /* NYTBestSellerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestSellerController.swift; sourceTree = "<group>"; };
 		1E11498421FB9DD0008E19D2 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		1E11498721FB9E79008E19D2 /* FavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesController.swift; sourceTree = "<group>"; };
 		1E11498921FB9E8C008E19D2 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -69,9 +69,10 @@
 			isa = PBXGroup;
 			children = (
 				1E11498421FB9DD0008E19D2 /* TabViewController.swift */,
+				1E11498221FB9CE5008E19D2 /* NYTBestSellerController.swift */,
+				1E11498B21FB9EB3008E19D2 /* BookDetailsController.swift */,
 				1E11498721FB9E79008E19D2 /* FavoritesController.swift */,
 				1E11498921FB9E8C008E19D2 /* SettingsController.swift */,
-				1E11498B21FB9EB3008E19D2 /* BookDetailsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -142,7 +143,6 @@
 			children = (
 				5718C00121FA772600A8E4B8 /* AppError.swift */,
 				5718C00521FA78BA00A8E4B8 /* ImageHelper.swift */,
-				1E11498221FB9CE5008E19D2 /* NYTBestSellerControllerViewController.swift */,
 				5718BFFF21FA771800A8E4B8 /* NetworkHelper.swift */,
 			);
 			path = "Network Services";
@@ -236,7 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5718C00021FA771800A8E4B8 /* NetworkHelper.swift in Sources */,
-				1E11498321FB9CE5008E19D2 /* NYTBestSellerControllerViewController.swift in Sources */,
+				1E11498321FB9CE5008E19D2 /* NYTBestSellerController.swift in Sources */,
 				1E11498E21FB9EEB008E19D2 /* BestSellerView.swift in Sources */,
 				5718BFFC21FA763200A8E4B8 /* String+DateExtensions.swift in Sources */,
 				1E11499121FB9F0A008E19D2 /* DetailedView.swift in Sources */,

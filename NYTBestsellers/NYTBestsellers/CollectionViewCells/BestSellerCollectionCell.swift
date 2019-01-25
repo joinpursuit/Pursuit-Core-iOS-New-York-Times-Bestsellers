@@ -9,5 +9,27 @@
 import UIKit
 
 class BestSellerCollectionCell: UICollectionViewCell {
+//  lazy var imageCover: UIImageView = {
+//
+//    
+//
+//  }()
+  
+  lazy var weeksLabel: UILabel = {
+    let label = UILabel()
     
+    return label 
+  }()
+  
+  
+  
+  override init(frame: CGRect) {
+    super.init(frame: UIScreen.main.bounds)
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  
 }
