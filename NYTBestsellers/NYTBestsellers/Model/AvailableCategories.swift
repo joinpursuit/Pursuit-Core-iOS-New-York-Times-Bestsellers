@@ -1,5 +1,5 @@
 //
-//  BookList.swift
+//  AvailableCategories.swift
 //  NYTBestsellers
 //
 //  Created by Jane Zhu on 1/25/19.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct BookListData: Codable {
-    let results: [BookList]
+struct AvailableCategories: Codable {
+    let results: [BookCategories]
 }
 
-struct BookList: Codable {
+struct BookCategories: Codable {
     let list_name: String
     let list_name_encoded: String
 }

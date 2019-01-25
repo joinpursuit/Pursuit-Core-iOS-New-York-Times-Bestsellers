@@ -10,33 +10,51 @@ import UIKit
 
 class BestSellersViewController: UIViewController {
     
-    let bestSellersView = BestSellersView()
-    private var bookListPickerViewData = [BookList]() {
+    private let bestSellersView = BestSellersView()
+    private var currentBookCategory = "Animals" {
+        didSet {
+            searchForBooks()
+        }
+    }
+    private var bookCategoryPickerView = [BookCategories]() {
         didSet {
             DispatchQueue.main.async {
                 self.bestSellersView.pickerView.reloadAllComponents()
             }
-            
+        }
+    }
+    private var bookListData = [BookList]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.bestSellersView.collectionView.reloadData()
+            }
         }
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.addSubview(bestSellersView)
-        
-        bestSellersView.collectionView.dataSource = self
-        
-        bestSellersView.pickerView.dataSource = self
-        bestSellersView.pickerView.delegate = self
-
-        NYTAPIClient.getBookList { (appError, bookList) in
+    fileprivate func searchForBooks() {
+        NYTAPIClient.searchForBooks(in: currentBookCategory) { (appError, bookList) in
             if let appError = appError {
                 print("error in getting book list - \(appError)")
             } else if let bookList = bookList {
-                self.bookListPickerViewData = bookList
+                self.bookListData = bookList
             }
         }
-        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.addSubview(bestSellersView)
+        NYTAPIClient.getBookList { (appError, categories) in
+            if let appError = appError {
+                print("error in getting book categories - \(appError)")
+            } else if let categories = categories {
+                self.bookCategoryPickerView = categories
+            }
+        }
+        searchForBooks()
+        bestSellersView.collectionView.dataSource = self
+        bestSellersView.pickerView.dataSource = self
+        bestSellersView.pickerView.delegate = self
     }
     
 
@@ -45,24 +63,27 @@ class BestSellersViewController: UIViewController {
 extension BestSellersViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = bestSellersView.collectionView.dequeueReusableCell(withReuseIdentifier: "BookCollectionViewCell", for: indexPath) as? BookCollectionViewCell else { return UICollectionViewCell() }
-        cell.bookDescriptionTextView.text = "Waiting for data"
-        cell.numberOfWeeksOnList.text = "Waititng for data"
+        let book = bookListData[indexPath.row]
+        cell.bookDescriptionTextView.text = book.book_details.first?.bookDescription
+        cell.numberOfWeeksOnList.text = "\(book.weeks_on_list.description) week on Best Seller"
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return bookListData.count
     }
 }
 
 extension BestSellersViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return bookListPickerViewData[row].list_name
+        return bookCategoryPickerView[row].list_name
     }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return bookListPickerViewData.count
+        return bookCategoryPickerView.count
     }
-
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        currentBookCategory = bookCategoryPickerView[row].list_name_encoded
+    }
 }
