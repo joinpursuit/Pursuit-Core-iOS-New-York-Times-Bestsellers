@@ -16,13 +16,14 @@ import UIKit
  */
 
 class BestSellerView: UIView {
+    let numbers = ["0","1","2","3","4","5","6","7","8","9"]
     lazy var collectionViewObj: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize =  CGSize.init(width: 300, height: 300)
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        backgroundColor = .blue
+        backgroundColor = .white
        collectionView.dataSource = self
        collectionView.delegate = self
         return collectionView
@@ -43,12 +44,10 @@ class BestSellerView: UIView {
         commonInit()
     }
     private func commonInit(){
-        
         addSubview(collectionViewObj)
+        addSubview(pickerViewObj)
         collectionViewObj.register(BestSellerCell.self, forCellWithReuseIdentifier: "BestSellerCell")
-//        addSubview(pickerViewObj)
         setupViews()
-       
     }
    private func setupViews(){
     setupCollectionViewContraints()
@@ -63,14 +62,12 @@ class BestSellerView: UIView {
         
     }
     private func setupPickerContraints(){
+        
         pickerViewObj.translatesAutoresizingMaskIntoConstraints = false
-        /*
-         textViewObj.translatesAutoresizingMaskIntoConstraints = false
-         textViewObj.topAnchor.constraint(equalTo: mylabelObj.bottomAnchor, constant: 11).isActive = true
-         textViewObj.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 11).isActive = true
-         textViewObj.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -11).isActive = true
-         textViewObj.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -11).isActive = true
-         */
+        pickerViewObj.topAnchor.constraint(equalTo: collectionViewObj.bottomAnchor, constant: 11).isActive = true
+        pickerViewObj.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11).isActive = true
+        pickerViewObj.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
+        pickerViewObj.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -11).isActive = true
     }
 }
 
@@ -85,14 +82,16 @@ extension BestSellerView: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     }
 }
 
-//extension BestSellerView: UIPickerViewDataSource, UIPickerViewDelegate {
-//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-//     re
-//    }
-//    
-//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        <#code#>
-//    }
-//    
-//    
-//}
+extension BestSellerView: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+     return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+       return numbers.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return numbers[row]
+    }
+
+}
