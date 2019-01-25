@@ -37,6 +37,7 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
         return button
     }()
     @objc func cellButtonPressed() {
+        print("Clicked")
 //        guard let message = mainTextField.text else {return}
 //        delegate?.enterButtonPressed(message: message)
         

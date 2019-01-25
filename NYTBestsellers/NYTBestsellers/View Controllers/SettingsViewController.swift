@@ -9,22 +9,26 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
+    
+    let settingsView = SettingsView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        navigationItem.title =
+            "Pick Default Category"
+        view.addSubview(settingsView)
+        settingsView.mySettingsPickerView.dataSource = self
+        settingsView.mySettingsPickerView.delegate = self
+    }
+}
+extension SettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 30
     }
-    */
-
+    
+    
 }
