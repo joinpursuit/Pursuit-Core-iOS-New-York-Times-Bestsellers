@@ -9,22 +9,41 @@
 import UIKit
 
 class BestSellersViewController: UIViewController {
-
+    
+    let bestSellerView = BestSellersView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(bestSellerView)
+        bestSellerView.myBestSellerCollectionView.dataSource = self
+        bestSellerView.myBestSellerCollectionView.delegate = self
+        bestSellerView.myBestSellerPickerView.dataSource = self
+        bestSellerView.myBestSellerPickerView.delegate = self
 
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    
+}
+extension BestSellersViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
     }
-    */
-
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestCollectionViewCell", for: indexPath) as? BestCollectionViewCell else { return UICollectionViewCell()}
+        return cell
+    }
+    
+}
+extension BestSellersViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 30//number of book categories
+    }
+    
+    
 }
