@@ -10,6 +10,8 @@
 		4812A79A21FB929100429727 /* NYTimesBestSellerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4812A79921FB929100429727 /* NYTimesBestSellerViewController.swift */; };
 		4812A79C21FB92BD00429727 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4812A79B21FB92BD00429727 /* FavoritesViewController.swift */; };
 		4812A79E21FB92C800429727 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4812A79D21FB92C800429727 /* SettingsViewController.swift */; };
+		4812A7A121FB9A0500429727 /* BestSellerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4812A7A021FB9A0400429727 /* BestSellerView.swift */; };
+		4812A7A921FBB04200429727 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4812A7A821FBB04200429727 /* SettingsView.swift */; };
 		5718BFE921FA75A800A8E4B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718BFE821FA75A800A8E4B8 /* AppDelegate.swift */; };
 		5718BFF021FA75A900A8E4B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5718BFEF21FA75A900A8E4B8 /* Assets.xcassets */; };
 		5718BFF321FA75A900A8E4B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5718BFF121FA75A900A8E4B8 /* LaunchScreen.storyboard */; };
@@ -25,6 +27,8 @@
 		4812A79921FB929100429727 /* NYTimesBestSellerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTimesBestSellerViewController.swift; sourceTree = "<group>"; };
 		4812A79B21FB92BD00429727 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		4812A79D21FB92C800429727 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		4812A7A021FB9A0400429727 /* BestSellerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellerView.swift; sourceTree = "<group>"; };
+		4812A7A821FBB04200429727 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		5718BFE521FA75A800A8E4B8 /* NYTBestsellers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTBestsellers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5718BFE821FA75A800A8E4B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5718BFEF21FA75A900A8E4B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -92,6 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				5718BFE821FA75A800A8E4B8 /* AppDelegate.swift */,
+				4812A7A821FBB04200429727 /* SettingsView.swift */,
+				4812A7A021FB9A0400429727 /* BestSellerView.swift */,
 				5718BFEF21FA75A900A8E4B8 /* Assets.xcassets */,
 				5718BFF121FA75A900A8E4B8 /* LaunchScreen.storyboard */,
 			);
@@ -201,8 +207,10 @@
 				4812A79E21FB92C800429727 /* SettingsViewController.swift in Sources */,
 				5718C00221FA772600A8E4B8 /* AppError.swift in Sources */,
 				5718C00421FA77AA00A8E4B8 /* DataPersistenceManager.swift in Sources */,
+				4812A7A121FB9A0500429727 /* BestSellerView.swift in Sources */,
 				5718BFE921FA75A800A8E4B8 /* AppDelegate.swift in Sources */,
 				4812A79A21FB929100429727 /* NYTimesBestSellerViewController.swift in Sources */,
+				4812A7A921FBB04200429727 /* SettingsView.swift in Sources */,
 				5718BFFE21FA764E00A8E4B8 /* Date+Extensions.swift in Sources */,
 				5718C00621FA78BA00A8E4B8 /* ImageHelper.swift in Sources */,
 			);
