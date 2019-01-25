@@ -12,6 +12,7 @@ class BestSellersViewController: UIViewController {
     let bestSellerVC = BestSellersView()
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Best Sellers"
         view.addSubview(bestSellerVC)
     }
     

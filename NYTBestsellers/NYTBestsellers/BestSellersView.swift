@@ -8,7 +8,9 @@
 
 import UIKit
 
-class BestSellersView: UIView {
+class BestSellersView: UIView, UICollectionViewDataSource {
+
+    
     
     lazy var myPickerView: UIPickerView = {
         var pickerView = UIPickerView()
@@ -17,10 +19,11 @@ class BestSellersView: UIView {
    
     lazy var myCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize.init(width: 100, height: 100)
+        layout.itemSize = CGSize.init(width: 200, height: 250)
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
         var collectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
         collectionView.backgroundColor = .yellow
+        collectionView.dataSource = self
         return collectionView
     }()
     
@@ -39,6 +42,7 @@ class BestSellersView: UIView {
     private func commonInit() {
         backgroundColor = .white
         setupViews()
+        self.myCollectionView.register(BestSellersCollectionViewCell.self, forCellWithReuseIdentifier: "BestSellersCell")
     }
 }
 
@@ -61,5 +65,15 @@ extension BestSellersView {
         myCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         myCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         myCollectionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestSellersCell", for: indexPath) as? BestSellersCollectionViewCell else {return UICollectionViewCell()}
+        return cell
+        
     }
 }

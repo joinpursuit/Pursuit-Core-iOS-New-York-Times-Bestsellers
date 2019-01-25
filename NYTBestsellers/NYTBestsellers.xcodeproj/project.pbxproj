@@ -23,6 +23,7 @@
 		D5BBE8C021FB8B0D00E4F46A /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBE8BF21FB8B0D00E4F46A /* FavoritesView.swift */; };
 		D5BBE8C221FB8B2300E4F46A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBE8C121FB8B2300E4F46A /* SettingsViewController.swift */; };
 		D5BBE8C421FB8B3500E4F46A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBE8C321FB8B3500E4F46A /* SettingsView.swift */; };
+		D5BBE8C621FB961C00E4F46A /* BestSellersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBE8C521FB961C00E4F46A /* BestSellersCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		D5BBE8BF21FB8B0D00E4F46A /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		D5BBE8C121FB8B2300E4F46A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D5BBE8C321FB8B3500E4F46A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		D5BBE8C521FB961C00E4F46A /* BestSellersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellersCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				D5BBE8BB21FB877000E4F46A /* TabBarController.swift */,
+				D5BBE8C521FB961C00E4F46A /* BestSellersCollectionViewCell.swift */,
 				D5BBE8B721FB835200E4F46A /* BestSellersViewController.swift */,
 				D5BBE8B921FB839F00E4F46A /* BestSellersView.swift */,
 				D5BBE8BD21FB8AF100E4F46A /* FavoritesViewController.swift */,
@@ -207,6 +210,7 @@
 				D5BBE8BA21FB839F00E4F46A /* BestSellersView.swift in Sources */,
 				D5BBE8BE21FB8AF100E4F46A /* FavoritesViewController.swift in Sources */,
 				D5BBE8C421FB8B3500E4F46A /* SettingsView.swift in Sources */,
+				D5BBE8C621FB961C00E4F46A /* BestSellersCollectionViewCell.swift in Sources */,
 				5718C00421FA77AA00A8E4B8 /* DataPersistenceManager.swift in Sources */,
 				D5BBE8C021FB8B0D00E4F46A /* FavoritesView.swift in Sources */,
 				5718BFE921FA75A800A8E4B8 /* AppDelegate.swift in Sources */,
