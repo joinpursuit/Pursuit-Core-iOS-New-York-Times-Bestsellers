@@ -15,7 +15,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
+    
+    
+    let tabBarController = UITabBarController()
+    let newYorkBS = NYTimesBestSellerViewController()
+    let favorite = FavoritesViewController()
+    let setting = SettingsViewController()
+     newYorkBS.tabBarItem = UITabBarItem(tabBarSystemItem: .mostViewed, tag: 0)
+     favorite.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
+     setting.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 2)
+    let controllers = [newYorkBS, favorite, setting]
+    tabBarController.viewControllers = controllers
+    window = UIWindow.init(frame: UIScreen.main.bounds)
+    tabBarController.viewControllers = controllers.map { UINavigationController(rootViewController: $0)}
+    window?.rootViewController = tabBarController
+    window?.makeKeyAndVisible()
     return true
   }
 
