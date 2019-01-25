@@ -24,6 +24,11 @@
 		D5BBE8C221FB8B2300E4F46A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBE8C121FB8B2300E4F46A /* SettingsViewController.swift */; };
 		D5BBE8C421FB8B3500E4F46A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBE8C321FB8B3500E4F46A /* SettingsView.swift */; };
 		D5BBE8C621FB961C00E4F46A /* BestSellersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBE8C521FB961C00E4F46A /* BestSellersCollectionViewCell.swift */; };
+		D5BBE8C821FBA5F000E4F46A /* BestSellerBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBE8C721FBA5F000E4F46A /* BestSellerBook.swift */; };
+		D5BBE8CA21FBA70000E4F46A /* BookListName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBE8C921FBA70000E4F46A /* BookListName.swift */; };
+		D5BBE8CC21FBAB3200E4F46A /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBE8CB21FBAB3200E4F46A /* APIClient.swift */; };
+		D5BBE8CE21FBAC3C00E4F46A /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBE8CD21FBAC3C00E4F46A /* SecretKeys.swift */; };
+		D5BBE8D021FBB5BC00E4F46A /* DataPersistenceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBE8CF21FBB5BC00E4F46A /* DataPersistenceModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +51,11 @@
 		D5BBE8C121FB8B2300E4F46A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D5BBE8C321FB8B3500E4F46A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D5BBE8C521FB961C00E4F46A /* BestSellersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellersCollectionViewCell.swift; sourceTree = "<group>"; };
+		D5BBE8C721FBA5F000E4F46A /* BestSellerBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellerBook.swift; sourceTree = "<group>"; };
+		D5BBE8C921FBA70000E4F46A /* BookListName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListName.swift; sourceTree = "<group>"; };
+		D5BBE8CB21FBAB3200E4F46A /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		D5BBE8CD21FBAC3C00E4F46A /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
+		D5BBE8CF21FBB5BC00E4F46A /* DataPersistenceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +92,9 @@
 				D5BBE8C521FB961C00E4F46A /* BestSellersCollectionViewCell.swift */,
 				D5BBE8B721FB835200E4F46A /* BestSellersViewController.swift */,
 				D5BBE8B921FB839F00E4F46A /* BestSellersView.swift */,
+				D5BBE8C721FBA5F000E4F46A /* BestSellerBook.swift */,
+				D5BBE8C921FBA70000E4F46A /* BookListName.swift */,
+				D5BBE8CB21FBAB3200E4F46A /* APIClient.swift */,
 				D5BBE8BD21FB8AF100E4F46A /* FavoritesViewController.swift */,
 				D5BBE8BF21FB8B0D00E4F46A /* FavoritesView.swift */,
 				D5BBE8C121FB8B2300E4F46A /* SettingsViewController.swift */,
@@ -111,6 +124,7 @@
 				5718C00121FA772600A8E4B8 /* AppError.swift */,
 				5718C00521FA78BA00A8E4B8 /* ImageHelper.swift */,
 				5718BFFF21FA771800A8E4B8 /* NetworkHelper.swift */,
+				D5BBE8CD21FBAC3C00E4F46A /* SecretKeys.swift */,
 			);
 			path = "Network Services";
 			sourceTree = "<group>";
@@ -128,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				5718C00321FA77AA00A8E4B8 /* DataPersistenceManager.swift */,
+				D5BBE8CF21FBB5BC00E4F46A /* DataPersistenceModel.swift */,
 			);
 			path = "File Manager Helpers";
 			sourceTree = "<group>";
@@ -210,6 +225,7 @@
 				D5BBE8BA21FB839F00E4F46A /* BestSellersView.swift in Sources */,
 				D5BBE8BE21FB8AF100E4F46A /* FavoritesViewController.swift in Sources */,
 				D5BBE8C421FB8B3500E4F46A /* SettingsView.swift in Sources */,
+				D5BBE8CE21FBAC3C00E4F46A /* SecretKeys.swift in Sources */,
 				D5BBE8C621FB961C00E4F46A /* BestSellersCollectionViewCell.swift in Sources */,
 				5718C00421FA77AA00A8E4B8 /* DataPersistenceManager.swift in Sources */,
 				D5BBE8C021FB8B0D00E4F46A /* FavoritesView.swift in Sources */,
@@ -217,6 +233,10 @@
 				D5BBE8C221FB8B2300E4F46A /* SettingsViewController.swift in Sources */,
 				5718BFFE21FA764E00A8E4B8 /* Date+Extensions.swift in Sources */,
 				5718C00621FA78BA00A8E4B8 /* ImageHelper.swift in Sources */,
+				D5BBE8C821FBA5F000E4F46A /* BestSellerBook.swift in Sources */,
+				D5BBE8D021FBB5BC00E4F46A /* DataPersistenceModel.swift in Sources */,
+				D5BBE8CA21FBA70000E4F46A /* BookListName.swift in Sources */,
+				D5BBE8CC21FBAB3200E4F46A /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

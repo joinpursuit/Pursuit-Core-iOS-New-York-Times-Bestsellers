@@ -8,12 +8,22 @@
 
 import UIKit
 
-class BestSellersView: UIView, UICollectionViewDataSource {
+class BestSellersView: UIView{
 
     
+    var listNames = DataPersistenceModel.getListNames()
+    var bestSellerBooks = [BestSellerBook.ResultsWrapper](){
+        didSet{
+            DispatchQueue.main.async {
+                print(self.bestSellerBooks.count)
+                self.myCollectionView.reloadData()
+            }
+        }
+    }
     
     lazy var myPickerView: UIPickerView = {
         var pickerView = UIPickerView()
+        pickerView.backgroundColor = .blue
         return pickerView
     }()
    
@@ -21,15 +31,17 @@ class BestSellersView: UIView, UICollectionViewDataSource {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize.init(width: 225, height: 350)
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
+        layout.scrollDirection = .horizontal
+//        layout.scrollDirection = .horizontal
         var collectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
         collectionView.backgroundColor = .yellow
-        collectionView.dataSource = self
         return collectionView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
+//        listNames = DataPersistenceModel.getListNames(
         
     }
     
@@ -43,7 +55,16 @@ class BestSellersView: UIView, UICollectionViewDataSource {
         backgroundColor = .white
         setupViews()
         self.myCollectionView.register(BestSellersCollectionViewCell.self, forCellWithReuseIdentifier: "BestSellersCell")
+        APIClient.getBookDetails(listName: "Manga") { (appError, data) in
+            if let appError = appError{
+                print(appError)
+            }
+            if let data = data{
+                self.bestSellerBooks = data
+            }
+        }
     }
+    
 }
 
 extension BestSellersView {
@@ -57,6 +78,7 @@ extension BestSellersView {
         myPickerView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         myPickerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         myPickerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        myPickerView.heightAnchor.constraint(equalToConstant: 250).isActive = true
     }
     private func setUpCollectionView() {
        addSubview(myCollectionView)
@@ -67,13 +89,5 @@ extension BestSellersView {
         myCollectionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.6).isActive = true
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
-    }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestSellersCell", for: indexPath) as? BestSellersCollectionViewCell else {return UICollectionViewCell()}
-        return cell
-        
-    }
 }
