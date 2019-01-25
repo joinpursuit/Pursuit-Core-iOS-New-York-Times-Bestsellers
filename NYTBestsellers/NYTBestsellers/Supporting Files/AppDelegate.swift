@@ -16,6 +16,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
+    
+    let bestVC = BestSellersViewController()
+    bestVC.title = "Best Sellers"
+    let bestNav = UINavigationController.init(rootViewController: bestVC)
+    
+    let favVC = FavoritesViewController()
+    favVC.title = "Favorites"
+    let favNav = UINavigationController.init(rootViewController: favVC)
+
+    let setVC = SettingsViewController()
+    setVC.title = "Settings"
+    let setNav = UINavigationController.init(rootViewController: setVC)
+
+    let tab = UITabBarController()
+    tab.viewControllers = [bestNav,favNav,setNav]
+    
+    window = UIWindow.init(frame: UIScreen.main.bounds)
+    window?.rootViewController = tab
+    window?.makeKeyAndVisible()
+    
+    
     return true
   }
 
