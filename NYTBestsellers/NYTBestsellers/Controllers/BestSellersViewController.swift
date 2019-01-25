@@ -11,22 +11,31 @@ import UIKit
 class BestSellersViewController: UIViewController {
     
     let bestSellersView = BestSellersView()
-    private var bookListPickerViewData = [BookList]()
+    private var bookListPickerViewData = [BookList]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.bestSellersView.pickerView.reloadAllComponents()
+            }
+            
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(bestSellersView)
-        self.bestSellersView.collectionView.register(BookCollectionViewCell.self, forCellWithReuseIdentifier: "BookCollectionViewCell")
+        
+        bestSellersView.collectionView.dataSource = self
+        
+        bestSellersView.pickerView.dataSource = self
+        bestSellersView.pickerView.delegate = self
+
         NYTAPIClient.getBookList { (appError, bookList) in
             if let appError = appError {
                 print("error in getting book list - \(appError)")
             } else if let bookList = bookList {
                 self.bookListPickerViewData = bookList
-                dump(bookList)
             }
         }
-        bestSellersView.collectionView.dataSource = self
-        bestSellersView.pickerView.dataSource = self
         
     }
     
@@ -45,14 +54,15 @@ extension BestSellersViewController: UICollectionViewDataSource {
     }
 }
 
-extension BestSellersViewController: UIPickerViewDataSource {
+extension BestSellersViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return bookListPickerViewData[row].list_name
+    }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return bookListPickerViewData.count
     }
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return bookListPickerViewData[row].list_name
-    }
+
 }

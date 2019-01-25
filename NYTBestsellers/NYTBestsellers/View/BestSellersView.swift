@@ -32,6 +32,7 @@ class BestSellersView: UIView {
         addSubview(collectionView)
         addSubview(pickerView)
         setupContraints()
+        collectionView.register(BookCollectionViewCell.self, forCellWithReuseIdentifier: "BookCollectionViewCell")
     }
     
     required init?(coder aDecoder: NSCoder) {
