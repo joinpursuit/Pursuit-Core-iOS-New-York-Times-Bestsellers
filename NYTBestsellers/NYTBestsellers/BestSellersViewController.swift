@@ -9,10 +9,10 @@
 import UIKit
 
 class BestSellersViewController: UIViewController {
-
+    let bestSellerVC = BestSellersView()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.addSubview(bestSellerVC)
     }
     
 
