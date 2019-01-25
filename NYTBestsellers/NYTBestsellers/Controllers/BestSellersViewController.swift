@@ -12,7 +12,6 @@ class BestSellersViewController: UIViewController {
     let bestSellerView = BestSellerView()
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         view.addSubview(bestSellerView)
         
         // Do any additional setup after loading the view.

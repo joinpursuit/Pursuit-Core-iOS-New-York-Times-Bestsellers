@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     FVC.tabBarItem = UITabBarItem.init(title: "Favorites", image: UIImage(named: "icons8-add_to_favorites"), selectedImage: UIImage(named: "icons8-add_to_favorites_filled"))
     SVC.title = "Settings"
     SVC.tabBarItem = UITabBarItem.init(title: "Settings", image: UIImage(named: "icons8-settings"), selectedImage: UIImage(named: "icons8-settings_filled"))
-    let controllers = [BVC,FVC, SVC]
+    let controllers = [BVC, FVC, SVC]
     tab.viewControllers = controllers.map{UINavigationController(rootViewController: $0)}
     window = UIWindow.init(frame: UIScreen.main.bounds)
     window?.rootViewController = tab

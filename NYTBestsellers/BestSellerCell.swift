@@ -9,8 +9,19 @@
 import UIKit
 
 class BestSellerCell: UICollectionViewCell {
-    lazy var image: UIImage = {
-        let image = UIImage()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = .red
+        
+
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    lazy var image: UIImageView = {
+        let image = UIImageView()
         return image
     }()
     lazy var label: UILabel = {
