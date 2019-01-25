@@ -9,6 +9,11 @@
 import UIKit
 
 class SettingsView: UIView {
+    lazy var image: UIImageView = {
+        let image = UIImageView()
+        
+        return image
+    }()
     let colors = ["red", "blue", "green"]
     lazy var settingsPickerViewObj: UIPickerView = {
         let pickerView = UIPickerView()

@@ -9,11 +9,12 @@
 import UIKit
 
 class NYTimesBestSellerViewController: UIViewController {
-
+    let nyTimesCollection = BestSellerView()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "NYT BestSellers"
         self.view.backgroundColor = .white
+        view.addSubview(nyTimesCollection)
         
     }
     

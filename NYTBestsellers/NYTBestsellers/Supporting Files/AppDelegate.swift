@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let newYorkBS = NYTimesBestSellerViewController()
     let favorite = FavoritesViewController()
     let setting = SettingsViewController()
-     newYorkBS.tabBarItem = UITabBarItem(tabBarSystemItem: .mostViewed, tag: 0)
+        newYorkBS.tabBarItem = UITabBarItem(tabBarSystemItem: .mostViewed, tag: 0)
      favorite.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
      setting.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 2)
     let controllers = [newYorkBS, favorite, setting]
