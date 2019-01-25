@@ -16,6 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
+    let MVC = MainViewController()
+    let FVC = FavoritesViewController()
+    let SVC = SettingsViewController()
+    let DVC = DetailViewController()
+    let TabVC = UITabBarController()
+    let Navi = UINavigationController.init(rootViewController: MVC)
+    MVC.tabBarItem = UITabBarItem(title: "Best Sellers", image: UIImage.init(named: "icons8-best-seller-filled-25"), selectedImage: UIImage.init(named: "icons8-best-seller-filled-25"))
+     FVC.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage.init(named: "icons8-bookmark-filled-25"), selectedImage: UIImage.init(named: "icons8-bookmark-filled-25"))
+       SVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage.init(named: "icons8-settings-filled-25"), selectedImage: UIImage.init(named: "icons8-settings-filled-25"))
+    TabVC.viewControllers = [Navi, FVC, SVC]
+    window = UIWindow.init(frame: UIScreen.main.bounds)
+    window?.rootViewController = TabVC
+    window?.makeKeyAndVisible()
     return true
   }
 
