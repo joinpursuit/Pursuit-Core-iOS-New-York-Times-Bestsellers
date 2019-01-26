@@ -12,7 +12,7 @@ class MainView: UIView {
     
 public lazy var myCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize.init(width: 100, height: 100)
+        layout.itemSize = CGSize.init(width: 180, height: 250)
         layout.sectionInset = UIEdgeInsets.init(top: 22, left: 11, bottom: 22, right: 22)
         
         let cv = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
@@ -25,7 +25,7 @@ public lazy var myCollectionView: UICollectionView = {
 
     public lazy var bestSellerPickerView: UIPickerView = {
         let bestPickerView = UIPickerView()
-        bestPickerView.backgroundColor = .red 
+        bestPickerView.backgroundColor = .red
         return bestPickerView
     }()
     
@@ -33,15 +33,43 @@ public lazy var myCollectionView: UICollectionView = {
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         addSubview(myCollectionView)
-            backgroundColor = .blue
+            backgroundColor = .yellow
         myCollectionView.register(BooksCollectionViewCell.self, forCellWithReuseIdentifier: "BooksCollectionViewCell")
+        setConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
+    private func commonInit() {
+        backgroundColor = .blue
+        //setConstraints()
+    }
     
+    func setConstraints() {
+        self.addSubview(myCollectionView)
+        
+        myCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            myCollectionView.widthAnchor.constraint(equalTo: widthAnchor),
+            myCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            myCollectionView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.4)])
+        
+        self.addSubview(bestSellerPickerView)
+        
+        bestSellerPickerView.translatesAutoresizingMaskIntoConstraints = false
+        bestSellerPickerView.topAnchor.constraint(equalTo: myCollectionView.bottomAnchor, constant: 20).isActive = true
+        bestSellerPickerView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.45).isActive = true
+        bestSellerPickerView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
+         bestSellerPickerView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: -8).isActive = true
+        bestSellerPickerView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        bestSellerPickerView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -12).isActive = true 
+    
+        
+        
+    }
 }
 
 
