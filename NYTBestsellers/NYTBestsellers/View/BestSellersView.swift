@@ -12,14 +12,8 @@ class BestSellersView: UIView{
 
     
     var listNames = DataPersistenceModel.getListNames()
-    var bestSellerBooks = [BestSellerBook.ResultsWrapper](){
-        didSet{
-            DispatchQueue.main.async {
-                print(self.bestSellerBooks.count)
-                self.myCollectionView.reloadData()
-            }
-        }
-    }
+    var imageSelecte = String()
+
     var imageData = [BookImage.ItemsWrapper]()
     
     lazy var myPickerView: UIPickerView = {
@@ -56,14 +50,7 @@ class BestSellersView: UIView{
         backgroundColor = .white
         setupViews()
         self.myCollectionView.register(BestSellersCollectionViewCell.self, forCellWithReuseIdentifier: "BestSellersCell")
-        APIClient.getBookDetails(listName: "Manga") { (appError, data) in
-            if let appError = appError{
-                print(appError)
-            }
-            if let data = data{
-                 self.bestSellerBooks = data
-            }
-        }
+
 
     }
     

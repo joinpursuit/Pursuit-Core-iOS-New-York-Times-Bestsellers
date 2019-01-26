@@ -8,9 +8,18 @@
 
 import UIKit
 
-class BestSellersViewController: UIViewController,UICollectionViewDataSource, UIPickerViewDataSource,UIPickerViewDelegate {
+class BestSellersViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, UIPickerViewDataSource,UIPickerViewDelegate {
     
     let bestSellerVC = BestSellersView()
+    var bestSellerBooks = [BestSellerBook.ResultsWrapper](){
+        didSet{
+            DispatchQueue.main.async {
+                self.bestSellerVC.myCollectionView.reloadData()
+                
+            }
+        }
+    }
+    
 //    lazy var urlString = String()
 ////    var googleData = [BookImage.ItemsWrapper]() {
 ////        didSet{
@@ -26,16 +35,25 @@ class BestSellersViewController: UIViewController,UICollectionViewDataSource, UI
         bestSellerVC.myPickerView.delegate = self
         bestSellerVC.myPickerView.dataSource = self
         bestSellerVC.myCollectionView.dataSource = self
+        bestSellerVC.myCollectionView.delegate = self
+        APIClient.getBookDetails(listName: "Manga") { (appError, data) in
+            if let appError = appError{
+                print(appError)
+            }
+            if let data = data{
+                self.bestSellerBooks = data
+            }
+        }
     }
     
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return bestSellerVC.bestSellerBooks.count
+        return bestSellerBooks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestSellersCell", for: indexPath) as? BestSellersCollectionViewCell else {return UICollectionViewCell()}
-        let bookToSet = bestSellerVC.bestSellerBooks[indexPath.row]
+        let bookToSet = bestSellerBooks[indexPath.row]
         cell.bookNameLabel.text = "\(bookToSet.weeksOnList) weeks on best seller list"
         cell.bookDescription.text = bookToSet.bookDetails[0].description
 //        for i in 0...bestSellerVC.bestSellerBooks[indexPath.row].isbns.count{
@@ -48,9 +66,12 @@ class BestSellersViewController: UIViewController,UICollectionViewDataSource, UI
                 }
             }
             if let data = data{
+                
                 if let image = ImageHelper.fetchImageFromCache(urlString: data[0].volumeInfo.imageLinks.smallThumbnail){
                     DispatchQueue.main.async {
                         cell.bookImage.image = image
+                        
+                        
                     }
                 } else {
                     ImageHelper.fetchImageFromNetwork(urlString: data[0].volumeInfo.imageLinks.smallThumbnail) { (appError, image) in
@@ -58,17 +79,35 @@ class BestSellersViewController: UIViewController,UICollectionViewDataSource, UI
                             print(appError.errorMessage())
                         } else if let image = image{
                             cell.bookImage.image = image
+                            
                         }
                     }
                 }
             }
         }
 //    }
-
+        
         
         return cell
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        APIClient.getGoogleData(isbn: bestSellerBooks[indexPath.row].isbns[0].isbn10) { (appError, data) in
+            DispatchQueue.main.async {
+            var detail = BestSellerDetailViewController.init(photoToSet: "Hey")
+            if let appError = appError{
+                print(appError)
+                detail = BestSellerDetailViewController.init(photoToSet: "bookPlaceholder")
+            }
+            if let data = data{
+                detail = BestSellerDetailViewController.init(photoToSet: data[0].volumeInfo.imageLinks.thumbnail)
+                
+                
+            }
+                self.navigationController?.pushViewController(detail, animated: true)
+            }
+        }
+        
+    }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -87,8 +126,11 @@ class BestSellersViewController: UIViewController,UICollectionViewDataSource, UI
                 print(appError)
             }
             if let data = data{
-                self.bestSellerVC.bestSellerBooks = data
+                self.bestSellerBooks = data
             }
         }
     }
 }
+    
+    
+

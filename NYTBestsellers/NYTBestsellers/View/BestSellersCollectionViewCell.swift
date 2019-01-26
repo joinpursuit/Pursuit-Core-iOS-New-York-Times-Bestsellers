@@ -7,9 +7,12 @@
 //
 
 import UIKit
+protocol MainViewDelegate: AnyObject {
+    func goToDetail()
+}
 
 class BestSellersCollectionViewCell: UICollectionViewCell {
-    
+    var delegate: MainViewDelegate?
     lazy var bookImage: UIImageView = {
         var image = UIImageView()
         image.backgroundColor = .blue
@@ -32,9 +35,13 @@ class BestSellersCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .red
+        self.target(forAction: #selector(segue), withSender: Any?.self)
         setupViews()
     }
     
+    @objc func segue() {
+        delegate?.goToDetail()
+    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
