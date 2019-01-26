@@ -67,7 +67,7 @@ class BestSellerView: UIView {
         BestSellerCollectionView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
         BestSellerCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 11).isActive = true
         BestSellerCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -11).isActive = true
-        BestSellerCollectionView.bottomAnchor.constraint(equalTo: BestSellerPickerView.topAnchor, constant: 20).isActive = true
+        BestSellerCollectionView.bottomAnchor.constraint(equalTo: BestSellerPickerView.topAnchor, constant: 10).isActive = true
         
     }
     
@@ -75,6 +75,7 @@ class BestSellerView: UIView {
         addSubview(BestSellerPickerView)
         BestSellerPickerView.translatesAutoresizingMaskIntoConstraints = false
         BestSellerPickerView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+      BestSellerPickerView.heightAnchor.constraint(equalToConstant: 350).isActive = true
         BestSellerPickerView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
 }
