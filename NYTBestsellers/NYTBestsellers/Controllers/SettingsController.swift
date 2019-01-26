@@ -10,11 +10,12 @@ import UIKit
 
 class SettingsController: UIViewController {
 
+  let settings = SettingsView()
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-      view.backgroundColor = .black
-      
+      self.view.addSubview(settings)
+      view.backgroundColor = .white
       navigationItem.title = "Settings"
       
     }
