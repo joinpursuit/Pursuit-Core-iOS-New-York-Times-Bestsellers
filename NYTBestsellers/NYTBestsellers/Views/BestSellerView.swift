@@ -19,17 +19,23 @@ class BestSellerView: UIView {
     let collectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
     collectionView.backgroundColor = #colorLiteral(red: 0.9257920923, green: 0.9627893281, blue: 0.9841015494, alpha: 1)
     
-    
-  
-    
     return collectionView
     
+  }()
+  
+  
+  lazy var categoryPickerView: UIPickerView = {
+    let pickerView = UIPickerView()
+    pickerView.backgroundColor = #colorLiteral(red: 0.9489085307, green: 0.9425356894, blue: 0.9464035614, alpha: 1)
+    
+    return pickerView
   }()
   
   override init(frame: CGRect) {
     super.init(frame: UIScreen.main.bounds)
     addSubview(bestSellerCollectionView)
-    setConstraints()
+    addSubview(categoryPickerView)
+    setBestSellerView()
     
   }
   
@@ -37,12 +43,30 @@ class BestSellerView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  func setConstraints() {
+}
+
+extension BestSellerView {
+  private func setBestSellerView() {
+    collectionViewConstraints()
+    pickerViewConstraints()
+  }
+  
+  
+  func collectionViewConstraints() {
     bestSellerCollectionView.translatesAutoresizingMaskIntoConstraints = false
     bestSellerCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
     bestSellerCollectionView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.5).isActive = true
     bestSellerCollectionView.widthAnchor.constraint(equalTo: widthAnchor).isActive =  true
     
   }
+
+  private func pickerViewConstraints() {
+    categoryPickerView.translatesAutoresizingMaskIntoConstraints = false
+    categoryPickerView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -40).isActive = true
+    categoryPickerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3).isActive = true
+    categoryPickerView.widthAnchor.constraint(equalTo: widthAnchor).isActive =  true
+
+  }
+  
   
 }

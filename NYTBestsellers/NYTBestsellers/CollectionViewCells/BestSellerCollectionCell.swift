@@ -27,12 +27,9 @@ class BestSellerCollectionCell: UICollectionViewCell {
     tv.text = "text goes here and here and here and here and here and here"
     tv.textAlignment = .justified
     tv.textColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
-    
-    
     return tv
   }()
-  
-  
+
   
   override init(frame: CGRect) {
     super.init(frame: UIScreen.main.bounds)
