@@ -10,6 +10,14 @@ import UIKit
 
 class FavoritesCollectionCell: UICollectionViewCell {
   
-  
+  lazy var moreActions: UIButton = {
+    let button = UIButton()
+    button.backgroundColor = .blue
+    button.setTitle("...", for: .normal)
+    
+    //    button.addTarget(self, action: #selector(seguePressed), for: .touchUpInside)
+    
+    return button
+  }()
   
 }

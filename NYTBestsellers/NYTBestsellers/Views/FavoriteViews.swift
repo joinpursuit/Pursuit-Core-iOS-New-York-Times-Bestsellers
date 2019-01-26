@@ -24,6 +24,27 @@ class FavoriteViews: UIView {
     
   }()
   
+  lazy var actionSheetSetup: UIAlertController = {
+    var actionSheet = UIAlertController(title: "", message: "Pick an option:", preferredStyle: UIAlertController.Style.actionSheet)
+    
+    actionSheet.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: { (delete) in
+      
+    }))
+    
+    actionSheet.addAction(UIAlertAction(title: "See on Amazon", style: UIAlertAction.Style.default, handler: { (linkToAmazon) in
+      
+    }))
+    
+    actionSheet.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: { (cancel) in
+      
+    }))
+    
+    //    self.presentViewController(myActionSheet, animated: true, completion: nil)
+    return actionSheet
+  }()
+  
+
+  
   override init(frame: CGRect) {
     super.init(frame: UIScreen.main.bounds)
     addSubview(favoritesCollectionView)
