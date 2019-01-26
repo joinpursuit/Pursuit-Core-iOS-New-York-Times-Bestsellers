@@ -9,11 +9,13 @@
 import UIKit
 
 class BookDetailsController: UIViewController {
+  
+  var bookInDetail = DetailedView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-      
       view.backgroundColor = .lightGray
+      self.view.addSubview(bookInDetail)
       
     }
     
