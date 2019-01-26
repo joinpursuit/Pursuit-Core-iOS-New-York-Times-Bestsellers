@@ -14,6 +14,20 @@ class BestSellerCell: UICollectionViewCell {
         let imageView = UIImageView.init(image: UIImage.init(named: imageName))
         return imageView
     }()
+    lazy var titleLabelObj: UILabel = {
+        let label = UILabel()
+        label.text = "Best Seller list label"
+        label.textColor = .white
+        label.backgroundColor = .gray
+        return label
+    }()
+    lazy var bestSellerBookDescriptionTxtViewObj: UITextView = {
+        let textview = UITextView()
+        textview.text = "This area will give a little description"
+        textview.textColor = .white
+        textview.backgroundColor = .gray
+        return textview
+    }()
     override init(frame: CGRect) {
         super.init(frame: frame)
          commonInit()
@@ -24,7 +38,7 @@ class BestSellerCell: UICollectionViewCell {
         commonInit()
     }
     private func commonInit(){
-        backgroundColor = .red
+        backgroundColor = .white
         setupViews()
     }
 }
@@ -32,6 +46,8 @@ class BestSellerCell: UICollectionViewCell {
 extension BestSellerCell {
     private func setupViews(){
         setupImageView()
+        setupLabelView()
+        setupTextView()
     }
    private func setupImageView(){
     addSubview(imageObj)
@@ -40,5 +56,22 @@ extension BestSellerCell {
     imageObj.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 100).isActive = true
     imageObj.heightAnchor.constraint(equalToConstant: 100).isActive = true
     imageObj.widthAnchor.constraint(equalToConstant: 100).isActive = true
+    }
+    private func setupLabelView(){
+        addSubview(titleLabelObj)
+        titleLabelObj.translatesAutoresizingMaskIntoConstraints = false
+        //pickerViewObj.topAnchor.constraint(equalTo: collectionViewObj.bottomAnchor, constant: 11).isActive = true
+        titleLabelObj.topAnchor.constraint(equalTo: imageObj.bottomAnchor, constant: 11).isActive = true
+        titleLabelObj.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
+        titleLabelObj.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 11)
+    }
+    private func setupTextView(){
+        addSubview(bestSellerBookDescriptionTxtViewObj)
+    bestSellerBookDescriptionTxtViewObj.translatesAutoresizingMaskIntoConstraints = false
+        bestSellerBookDescriptionTxtViewObj.topAnchor.constraint(equalTo: titleLabelObj.bottomAnchor, constant: 0).isActive = true
+    bestSellerBookDescriptionTxtViewObj.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
+        bestSellerBookDescriptionTxtViewObj.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
+        bestSellerBookDescriptionTxtViewObj.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: 11).isActive = true
+        
     }
 }

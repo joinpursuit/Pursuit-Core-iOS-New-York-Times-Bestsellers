@@ -12,6 +12,7 @@ import UIKit
 class SettingsViewController: UIViewController {
 let settingsView = SettingsView()
     override func viewDidLoad() {
+        self.title = "Settings"
         view.addSubview(settingsView)
     }
 }

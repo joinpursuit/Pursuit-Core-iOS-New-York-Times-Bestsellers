@@ -65,6 +65,15 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		4812A7AE21FBF28900429727 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4812A7A821FBB04200429727 /* SettingsView.swift */,
+				4812A7A021FB9A0400429727 /* BestSellerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		5718BFDC21FA75A800A8E4B8 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +96,7 @@
 				5718C00721FA78E800A8E4B8 /* Network Services */,
 				5718C00921FA791C00A8E4B8 /* File Manager Helpers */,
 				5718C00821FA790000A8E4B8 /* Date Helpers */,
+				4812A7AE21FBF28900429727 /* Views */,
 				4812A79F21FB92D100429727 /* Controllers */,
 				5718BFFA21FA75C000A8E4B8 /* Supporting Files */,
 				5718BFF421FA75A900A8E4B8 /* Info.plist */,
@@ -98,8 +108,6 @@
 			isa = PBXGroup;
 			children = (
 				5718BFE821FA75A800A8E4B8 /* AppDelegate.swift */,
-				4812A7A821FBB04200429727 /* SettingsView.swift */,
-				4812A7A021FB9A0400429727 /* BestSellerView.swift */,
 				4812A7AC21FBC1BF00429727 /* BestSellerCell.swift */,
 				5718BFEF21FA75A900A8E4B8 /* Assets.xcassets */,
 				5718BFF121FA75A900A8E4B8 /* LaunchScreen.storyboard */,
