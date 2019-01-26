@@ -9,9 +9,12 @@
 import UIKit
 
 class BestSellerCell: UICollectionViewCell {
+    let bestSellerView = BestSellerView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .red
+        self.backgroundColor = .white
+        
         
 
     }

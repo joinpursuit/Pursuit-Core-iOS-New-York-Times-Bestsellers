@@ -13,7 +13,7 @@ class BestSellerView: UIView {
     public lazy var colloectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        layout.itemSize = CGSize.init(width: 100, height: 100)
+        layout.itemSize = CGSize.init(width: 100, height: 150)
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
         layout.scrollDirection = .horizontal
         collectionView.backgroundColor = .red
@@ -28,6 +28,8 @@ class BestSellerView: UIView {
     
     override init(frame: CGRect) {
         super .init(frame: UIScreen.main.bounds)
+        
+        colloectionView.dataSource = self
         commonInit()
     }
     
@@ -62,4 +64,17 @@ extension BestSellerView {
         pickerView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.50).isActive = true
     }
    
+}
+extension BestSellerView: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 30
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestSellerCell", for: indexPath) as? BestSellerCell else { return UICollectionViewCell() }
+        return cell
+    }
+    
+    
 }
