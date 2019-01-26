@@ -20,6 +20,7 @@ class BestSellersView: UIView{
             }
         }
     }
+    var imageData = [BookImage.ItemsWrapper]()
     
     lazy var myPickerView: UIPickerView = {
         var pickerView = UIPickerView()
@@ -60,9 +61,10 @@ class BestSellersView: UIView{
                 print(appError)
             }
             if let data = data{
-                self.bestSellerBooks = data
+                 self.bestSellerBooks = data
             }
         }
+
     }
     
 }

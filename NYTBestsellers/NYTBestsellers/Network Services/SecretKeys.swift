@@ -10,5 +10,5 @@ import Foundation
 
 struct SecretKeys {
     static let bestSellersAPIKey = "f071BoY7nwgAPG1HnsrXtb3Xlj5xozgR"
-
+    static let googleAPIKey = "AIzaSyDpsa4F8isjHrR8tcjXTXaOLbees07H5aw"
 }
