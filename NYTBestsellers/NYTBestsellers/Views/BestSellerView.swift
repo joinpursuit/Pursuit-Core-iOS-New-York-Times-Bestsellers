@@ -9,13 +9,18 @@
 import UIKit
 
 class BestSellerView: UIView {
-
+  
   lazy var bestSellerCollectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
-    layout.itemSize = CGSize(width: 100, height: 100)
+    layout.itemSize = CGSize(width: 190, height: 250)
     layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
+    layout.scrollDirection = .horizontal
     
     let collectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
+    collectionView.backgroundColor = #colorLiteral(red: 0.9257920923, green: 0.9627893281, blue: 0.9841015494, alpha: 1)
+    
+    
+  
     
     return collectionView
     
@@ -34,10 +39,9 @@ class BestSellerView: UIView {
   
   func setConstraints() {
     bestSellerCollectionView.translatesAutoresizingMaskIntoConstraints = false
-    bestSellerCollectionView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-    bestSellerCollectionView.topAnchor.constraint(equalTo: topAnchor, constant: 11).isActive = true
-    bestSellerCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11).isActive = true
-    bestSellerCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
+    bestSellerCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
+    bestSellerCollectionView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.5).isActive = true
+    bestSellerCollectionView.widthAnchor.constraint(equalTo: widthAnchor).isActive =  true
     
   }
   

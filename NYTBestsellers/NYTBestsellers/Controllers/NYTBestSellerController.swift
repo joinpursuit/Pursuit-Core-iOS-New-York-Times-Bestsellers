@@ -14,12 +14,15 @@ class NYTBestSellerController: UIViewController {
   
   
   override func viewDidLoad() {
-    super.viewDidLoad()
-    view.backgroundColor = .white
-  
-    self.view.addSubview(bestSellerView)
     
+    super.viewDidLoad()
+    
+    view.backgroundColor = .white
     navigationItem.title = "Best Sellers"
+
+    self.view.addSubview(bestSellerView)
+
+    self.bestSellerView.bestSellerCollectionView.register(BestSellerCollectionCell.self, forCellWithReuseIdentifier: "BestCollectionCell")
 
     bestSellerView.bestSellerCollectionView.dataSource = self
   }
@@ -33,7 +36,9 @@ extension NYTBestSellerController: UICollectionViewDataSource, UICollectionViewD
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    return UICollectionViewCell()
+    guard let cell = bestSellerView.bestSellerCollectionView.dequeueReusableCell(withReuseIdentifier: "BestCollectionCell", for: indexPath) as? BestSellerCollectionCell else {return UICollectionViewCell()}
+    cell.backgroundColor = .white
+    return cell
   }
   
   
