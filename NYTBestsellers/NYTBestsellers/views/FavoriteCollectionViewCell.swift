@@ -15,6 +15,8 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
+        backgroundColor = .blue
+        layer.cornerRadius = 10
     }
     
     required init?(coder aDecoder: NSCoder) {

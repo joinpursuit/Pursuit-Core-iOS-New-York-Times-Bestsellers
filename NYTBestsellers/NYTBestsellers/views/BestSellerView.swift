@@ -10,8 +10,9 @@ import UIKit
 
 
 class BestSellerView: UIView {
+    let colors: [String] = ["yellow","blue","orange","red",]
     
-    let colors:[String] = ["blue","red","yellow"]
+    
     
     lazy var backgroundImage: UIImageView = {
         let background = UIImageView()
@@ -37,6 +38,7 @@ class BestSellerView: UIView {
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
         let myCollectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
         myCollectionView.backgroundColor = .green
+        myCollectionView.layer.cornerRadius = 10
         myCollectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "collectionCell")
         
         return myCollectionView
@@ -64,7 +66,7 @@ class BestSellerView: UIView {
     func collectionviewConstrains() {
         addSubview(BestSellerCollectionView)
         BestSellerCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        BestSellerCollectionView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
+        BestSellerCollectionView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
         BestSellerCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 11).isActive = true
         BestSellerCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -11).isActive = true
         BestSellerCollectionView.bottomAnchor.constraint(equalTo: BestSellerPickerView.topAnchor, constant: 10).isActive = true
