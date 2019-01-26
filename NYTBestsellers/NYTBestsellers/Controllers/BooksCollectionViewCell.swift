@@ -9,9 +9,13 @@
 import UIKit
 
 class BooksCollectionViewCell: UICollectionViewCell {
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .magenta
+        setUpImageView()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -20,19 +24,50 @@ class BooksCollectionViewCell: UICollectionViewCell {
     
     lazy var BestsellerImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .red
+        imageView.image = UIImage.init(named: "placeholder-image-2")
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
-    lazy var NumberOfWeeksLabel: UILabel = {
+    lazy var WeeksLabel: UILabel = {
         let weeksLabel = UILabel()
         weeksLabel.text = "randomText"
+        weeksLabel.textColor = .white
+        weeksLabel.textAlignment = .center
+        weeksLabel.backgroundColor = .magenta
         return weeksLabel
     }()
     
     lazy var TextViewDescription: UITextView = {
         let textDescription = UITextView()
+        textDescription.textColor = .white
+        textDescription.backgroundColor = .magenta
+        textDescription.text = "well hello midnight"
         return textDescription
     }()
+    
+    func setUpImageView() {
+        addSubview(BestsellerImageView)
+        addSubview(WeeksLabel)
+        addSubview(TextViewDescription)
+        
+        BestsellerImageView.translatesAutoresizingMaskIntoConstraints = false
+        WeeksLabel.translatesAutoresizingMaskIntoConstraints = false
+        TextViewDescription.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            BestsellerImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            BestsellerImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7), BestsellerImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35), WeeksLabel.topAnchor.constraint(equalTo: BestsellerImageView.bottomAnchor, constant: 8), BestsellerImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11)] )
+        
+        NSLayoutConstraint.activate([
+            WeeksLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),  WeeksLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),TextViewDescription.topAnchor.constraint(equalTo: WeeksLabel.bottomAnchor, constant: 0)
+            ])
+        NSLayoutConstraint.activate([
+            TextViewDescription.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),  TextViewDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5), TextViewDescription.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0), TextViewDescription.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5),
+            ])
+        
+        
+    }
+    
 }
-
+//BestsellerImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11), BestsellerImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11) ]
