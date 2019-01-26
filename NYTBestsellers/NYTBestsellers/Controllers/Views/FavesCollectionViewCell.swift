@@ -1,34 +1,32 @@
 //
-//  BooksCollectionViewCell.swift
+//  FavesCollectionViewCell.swift
 //  NYTBestsellers
 //
-//  Created by Genesis Mosquera on 1/25/19.
+//  Created by Genesis Mosquera on 1/26/19.
 //  Copyright © 2019 Pursuit. All rights reserved.
 //
 
 import UIKit
 
-class BooksCollectionViewCell: UICollectionViewCell {
-    
+class FavesCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .magenta
         setUpImageView()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    lazy var BestsellerImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage.init(named: "placeholder-image-2")
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
     
+    lazy var FavesImageView: UIImageView = {
+    let imageView = UIImageView ()
+    imageView.image = UIImage.init(named: "placeholder-image-2")
+    imageView.contentMode = .scaleAspectFit
+    return imageView
+}()
     lazy var WeeksLabel: UILabel = {
         let weeksLabel = UILabel()
         weeksLabel.text = "randomText"
@@ -42,22 +40,21 @@ class BooksCollectionViewCell: UICollectionViewCell {
         let textDescription = UITextView()
         textDescription.textColor = .white
         textDescription.backgroundColor = .magenta
-        textDescription.text = "well hello daylightt"
+        textDescription.text = "well hello midnight"
         return textDescription
     }()
-    
     func setUpImageView() {
-        addSubview(BestsellerImageView)
+        addSubview(FavesImageView)
         addSubview(WeeksLabel)
         addSubview(TextViewDescription)
         
-        BestsellerImageView.translatesAutoresizingMaskIntoConstraints = false
+        FavesImageView.translatesAutoresizingMaskIntoConstraints = false
         WeeksLabel.translatesAutoresizingMaskIntoConstraints = false
         TextViewDescription.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            BestsellerImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
-            BestsellerImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7), BestsellerImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35), WeeksLabel.topAnchor.constraint(equalTo: BestsellerImageView.bottomAnchor, constant: 8), BestsellerImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11)] )
+            FavesImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            FavesImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1.0), FavesImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35), WeeksLabel.topAnchor.constraint(equalTo: FavesImageView.bottomAnchor, constant: 8), FavesImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11)] )
         
         NSLayoutConstraint.activate([
             WeeksLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),  WeeksLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),TextViewDescription.topAnchor.constraint(equalTo: WeeksLabel.bottomAnchor, constant: 0)
@@ -68,6 +65,4 @@ class BooksCollectionViewCell: UICollectionViewCell {
         
         
     }
-    
 }
-//BestsellerImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11), BestsellerImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11) ]

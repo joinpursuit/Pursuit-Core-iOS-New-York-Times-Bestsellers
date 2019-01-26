@@ -11,6 +11,7 @@ import UIKit
 class MainViewController: UIViewController {
     
     let mainView = MainView()
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(mainView)
