@@ -18,7 +18,7 @@ class BestSellersView: UIView{
     
     lazy var myPickerView: UIPickerView = {
         var pickerView = UIPickerView()
-        pickerView.backgroundColor = .blue
+        pickerView.backgroundColor = .white
         return pickerView
     }()
    
@@ -29,10 +29,10 @@ class BestSellersView: UIView{
         layout.scrollDirection = .horizontal
 //        layout.scrollDirection = .horizontal
         var collectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
-        collectionView.backgroundColor = .yellow
+        collectionView.backgroundColor = .gray
         return collectionView
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()

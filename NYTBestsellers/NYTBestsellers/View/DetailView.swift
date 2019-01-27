@@ -21,6 +21,8 @@ class DetailView: UIView {
         textView.backgroundColor = .clear
         return textView
     }()
+    
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()

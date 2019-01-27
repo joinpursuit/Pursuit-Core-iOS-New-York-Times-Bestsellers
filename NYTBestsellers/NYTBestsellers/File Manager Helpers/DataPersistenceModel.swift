@@ -10,8 +10,9 @@ import Foundation
 
 struct DataPersistenceModel{
     private static let listFilename = "ListNames.plist"
+    private static let favoriteBooksFilename = "FavoriteBooks.plist"
     private static var listNames = [BookListName.resultsWrapper]()
-    
+    private static var favoriteBooks = [FavoriteBook]()
     
     static func save(data: [BookListName.resultsWrapper]){
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: listFilename)
@@ -21,6 +22,37 @@ struct DataPersistenceModel{
         } catch {
             print("Property list encoding error \(error)")
         }
+    }
+    static func saveBookToFavorites(){
+        let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: favoriteBooksFilename)
+        do {
+            let data = try PropertyListEncoder().encode(favoriteBooks)
+            try data.write(to: path, options: .atomic)
+        } catch {
+            print("Property list encoding error \(error)")
+        }
+    }
+    static func favoriteBook(favoriteBook: FavoriteBook){
+        favoriteBooks.append(favoriteBook)
+        saveBookToFavorites()
+    }
+    static func getFavoriteBooks() -> [FavoriteBook]{
+        let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: favoriteBooksFilename).path
+        if FileManager.default.fileExists(atPath: path){
+            if let data = FileManager.default.contents(atPath: path){
+                do {
+                    favoriteBooks = try PropertyListDecoder().decode([FavoriteBook].self, from: data)
+                    favoriteBooks = favoriteBooks.sorted{$0.date > $1.date}
+                }catch{
+                    print("Property list decoding error: \(error)")
+                }
+            } else {
+                print("getPhotoJournal data is nil")
+            }
+        } else {
+            print("\(favoriteBooksFilename) does not exist")
+        }
+        return favoriteBooks
     }
     static func getListNames() -> [BookListName.resultsWrapper]{
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: listFilename).path
