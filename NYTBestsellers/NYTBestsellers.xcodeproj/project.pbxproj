@@ -34,6 +34,8 @@
 		D5BBE8D921FCE7E000E4F46A /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBE8D821FCE7E000E4F46A /* DetailView.swift */; };
 		D5BBE8DD21FD413300E4F46A /* FavoriteBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBE8DC21FD413300E4F46A /* FavoriteBook.swift */; };
 		D5BBE8DF21FD4DFB00E4F46A /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBE8DE21FD4DFA00E4F46A /* FavoriteCell.swift */; };
+		D5BBE8E321FE481800E4F46A /* AmazonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBE8E221FE481800E4F46A /* AmazonViewController.swift */; };
+		D5BBE8E521FE4B5D00E4F46A /* AmazonWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BBE8E421FE4B5D00E4F46A /* AmazonWebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		D5BBE8D821FCE7E000E4F46A /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		D5BBE8DC21FD413300E4F46A /* FavoriteBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBook.swift; sourceTree = "<group>"; };
 		D5BBE8DE21FD4DFA00E4F46A /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
+		D5BBE8E221FE481800E4F46A /* AmazonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmazonViewController.swift; sourceTree = "<group>"; };
+		D5BBE8E421FE4B5D00E4F46A /* AmazonWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmazonWebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +174,7 @@
 				D5BBE8C521FB961C00E4F46A /* BestSellersCollectionViewCell.swift */,
 				D5BBE8B921FB839F00E4F46A /* BestSellersView.swift */,
 				D5BBE8C321FB8B3500E4F46A /* SettingsView.swift */,
+				D5BBE8E421FE4B5D00E4F46A /* AmazonWebView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 				D5BBE8B721FB835200E4F46A /* BestSellersViewController.swift */,
 				D5BBE8BD21FB8AF100E4F46A /* FavoritesViewController.swift */,
 				D5BBE8C121FB8B2300E4F46A /* SettingsViewController.swift */,
+				D5BBE8E221FE481800E4F46A /* AmazonViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -270,12 +276,14 @@
 				D5BBE8C421FB8B3500E4F46A /* SettingsView.swift in Sources */,
 				D5BBE8CE21FBAC3C00E4F46A /* SecretKeys.swift in Sources */,
 				D5BBE8C621FB961C00E4F46A /* BestSellersCollectionViewCell.swift in Sources */,
+				D5BBE8E321FE481800E4F46A /* AmazonViewController.swift in Sources */,
 				5718C00421FA77AA00A8E4B8 /* DataPersistenceManager.swift in Sources */,
 				D5BBE8C021FB8B0D00E4F46A /* FavoritesView.swift in Sources */,
 				5718BFE921FA75A800A8E4B8 /* AppDelegate.swift in Sources */,
 				D5BBE8C221FB8B2300E4F46A /* SettingsViewController.swift in Sources */,
 				5718BFFE21FA764E00A8E4B8 /* Date+Extensions.swift in Sources */,
 				D5BBE8D921FCE7E000E4F46A /* DetailView.swift in Sources */,
+				D5BBE8E521FE4B5D00E4F46A /* AmazonWebView.swift in Sources */,
 				5718C00621FA78BA00A8E4B8 /* ImageHelper.swift in Sources */,
 				D5BBE8C821FBA5F000E4F46A /* BestSellerBook.swift in Sources */,
 				D5BBE8D021FBB5BC00E4F46A /* DataPersistenceModel.swift in Sources */,

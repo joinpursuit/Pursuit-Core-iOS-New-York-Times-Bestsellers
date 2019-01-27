@@ -12,6 +12,7 @@ class TabBarController: UITabBarController {
     var bestSellersNavVC = UINavigationController.init(rootViewController: BestSellersViewController())
     var favoritesNavVC = UINavigationController.init(rootViewController: FavoritesViewController())
     var settingsNavVC = UINavigationController.init(rootViewController: SettingsViewController())
+    var amazonNavVC = UINavigationController.init(rootViewController: AmazonViewController())
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -57,7 +57,12 @@ class BestSellerDetailViewController: UIViewController, ButtonDelegate {
             }
         }
     }
+
     func amazonButtonPressed() {
+        let amazonVC = AmazonViewController()
+        amazonVC.modalPresentationStyle = .overCurrentContext
+        amazonVC.amazonURL = amazonLink
+        self.present(amazonVC, animated: true, completion: nil)
         
     }
     @objc func favButtonPressed(){
