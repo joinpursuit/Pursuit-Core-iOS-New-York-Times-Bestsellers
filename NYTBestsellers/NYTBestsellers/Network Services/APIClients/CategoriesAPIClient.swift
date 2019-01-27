@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class Categories {
+final class CategoriesAPICLient {
 
   static func getCategoriesData(completionHandler: @escaping (AppError?, [BookCategories]?) -> Void){
     

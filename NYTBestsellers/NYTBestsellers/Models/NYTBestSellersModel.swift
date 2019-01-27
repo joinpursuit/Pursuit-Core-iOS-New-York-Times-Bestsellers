@@ -16,7 +16,7 @@ struct NYTBestSellersModel: Codable {
 
 struct BookGeneralInfo: Codable {
   
-  let weeks_on_list: String
+  let weeks_on_list: Int 
   let amazon_product_url: String //URL
   let book_details: [DetailedBookInfo]
   
