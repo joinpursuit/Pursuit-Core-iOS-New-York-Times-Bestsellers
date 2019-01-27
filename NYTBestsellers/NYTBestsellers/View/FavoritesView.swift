@@ -10,6 +10,9 @@ import UIKit
 
 class FavoritesView: UIView {
 
+    
+    let favoriteCell = FavoriteCell()
+    let index = Int()
     lazy var favoritesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize.init(width: 325, height: 350)
@@ -22,7 +25,6 @@ class FavoritesView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
-
         commonInit()
     }
     
@@ -31,13 +33,12 @@ class FavoritesView: UIView {
         commonInit()
         fatalError("init(coder:) has not been implemented")
     }
-    
+ 
     private func commonInit() {
         backgroundColor = .white
         setupViews()
         self.favoritesCollectionView.register(FavoriteCell.self, forCellWithReuseIdentifier: "FavoriteCell")
     }
-    
     
     private func setupViews() {
         setupCollectionView()
@@ -52,3 +53,8 @@ class FavoritesView: UIView {
         
     }
 }
+//extension FavoritesView: MainDelegate{
+//    func buttonPress() {
+//        print("Hey")
+//    }
+//}

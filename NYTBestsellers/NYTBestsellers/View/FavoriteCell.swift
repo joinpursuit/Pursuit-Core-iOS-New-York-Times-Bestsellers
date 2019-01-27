@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class FavoriteCell: UICollectionViewCell {
 
     lazy var favoriteImage: UIImageView = {
@@ -19,7 +20,7 @@ class FavoriteCell: UICollectionViewCell {
         button.setTitle("...", for: .normal)
         button.titleLabel?.font = UIFont(name: "Futura", size: 50)
         button.setTitleColor(.black, for: .normal)
-        //add action
+//        button.addTarget(self, action: #selector(actionBottonPressed), for: .touchUpInside)
         return button
     }()
     lazy var favoriteDetailsTextView: UITextView = {
@@ -46,6 +47,10 @@ class FavoriteCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+//    @objc func actionBottonPressed(){
+//        delegate?.buttonPress()
+//    }
     func setupViews(){
         setupImage()
         setupButton()
@@ -66,7 +71,7 @@ class FavoriteCell: UICollectionViewCell {
         actionButton.translatesAutoresizingMaskIntoConstraints = false
         actionButton.topAnchor.constraint(equalTo: topAnchor, constant: -10).isActive = true
         actionButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-        actionButton.heightAnchor.constraint(equalToConstant: 10).isActive = true
+        actionButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     func setupLabel(){
         addSubview(favoriteLabel)

@@ -165,10 +165,10 @@
 			isa = PBXGroup;
 			children = (
 				D5BBE8DE21FD4DFA00E4F46A /* FavoriteCell.swift */,
+				D5BBE8BF21FB8B0D00E4F46A /* FavoritesView.swift */,
 				D5BBE8D821FCE7E000E4F46A /* DetailView.swift */,
 				D5BBE8C521FB961C00E4F46A /* BestSellersCollectionViewCell.swift */,
 				D5BBE8B921FB839F00E4F46A /* BestSellersView.swift */,
-				D5BBE8BF21FB8B0D00E4F46A /* FavoritesView.swift */,
 				D5BBE8C321FB8B3500E4F46A /* SettingsView.swift */,
 			);
 			path = View;

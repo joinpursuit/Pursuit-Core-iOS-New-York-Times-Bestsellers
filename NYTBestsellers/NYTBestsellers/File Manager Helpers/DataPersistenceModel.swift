@@ -36,6 +36,11 @@ struct DataPersistenceModel{
         favoriteBooks.append(favoriteBook)
         saveBookToFavorites()
     }
+    
+    static func deleteFavoriteBook(atIndex: Int){
+        favoriteBooks.remove(at: atIndex)
+        saveBookToFavorites()
+    }
     static func getFavoriteBooks() -> [FavoriteBook]{
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: favoriteBooksFilename).path
         if FileManager.default.fileExists(atPath: path){
