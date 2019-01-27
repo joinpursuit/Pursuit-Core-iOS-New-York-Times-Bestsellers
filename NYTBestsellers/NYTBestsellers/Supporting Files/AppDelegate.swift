@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
     
     let bestVC = BestSellersViewController()
-    bestVC.title = "Best Sellers"
+    bestVC.title = "NYT Best Sellers"
     let bestNav = UINavigationController.init(rootViewController: bestVC)
     
     let favVC = FavoritesViewController()

@@ -31,6 +31,12 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestCollectionViewCell", for: indexPath) as? BestCollectionViewCell else { return UICollectionViewCell()}
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //let detailVC = DetailViewController()
+        //let book = books[index.row]
+        //detailVC.book = book
+        //navigationController?.pushViewController(detailVC, animated: true)
+    }
     
 }
 extension BestSellersViewController: UIPickerViewDataSource, UIPickerViewDelegate {

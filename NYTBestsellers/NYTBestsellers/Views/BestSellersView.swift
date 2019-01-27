@@ -17,12 +17,12 @@ class BestSellersView: UIView {
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
         let cv = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: layout)
         cv.register(BestCollectionViewCell.self, forCellWithReuseIdentifier: "BestCollectionViewCell")
-        cv.backgroundColor = .yellow
+        cv.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        
         return cv
     }()
     public lazy var myBestSellerPickerView: UIPickerView = {
         let cv = UIPickerView()
-        cv.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
         return cv
     }()
     

@@ -17,22 +17,22 @@ class BestCollectionViewCell: UICollectionViewCell {
     
     public lazy var cellLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .black
         label.text = "Label"
-        label.textColor = .white
         label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 15)
         return label
     }()
     
     public lazy var cellTextView: UITextView = {
         let tv = UITextView()
         tv.text = "Description..."
+        tv.isEditable = false
         return tv
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .red
+        self.backgroundColor = .white
         commonInit()
     }
     
