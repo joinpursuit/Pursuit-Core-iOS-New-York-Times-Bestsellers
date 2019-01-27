@@ -12,24 +12,34 @@ struct BestSellerBook: Codable {
     struct ResultsWrapper: Codable {
         let rank: Int
         let weeksOnList: Int
-        let isbns: [ISBNWrapper]
+        let amazonProductUrl: URL
+//        let isbns: [ISBNWrapper]?
         let bookDetails: [BookDetailsWrapper]
         
         private enum CodingKeys: String, CodingKey{
             case rank
             case weeksOnList = "weeks_on_list"
-            case isbns
+//            case isbns
+            case amazonProductUrl = "amazon_product_url"
             case bookDetails = "book_details"
         }
     }
     let results: [ResultsWrapper]
 }
-struct ISBNWrapper: Codable{
-    let isbn10: String
-}
+//struct ISBNWrapper: Codable{
+//    let isbn10: String?
+//}
 
 struct BookDetailsWrapper: Codable {
     let title: String
     let description: String
     let author: String
+    let primaryIsbn10: String
+    
+    private enum CodingKeys: String, CodingKey{
+        case title
+        case description
+        case author
+        case primaryIsbn10 = "primary_isbn10"
+    }
 }

@@ -11,7 +11,7 @@ import UIKit
 class BestSellersView: UIView{
 
     
-    var listNames = DataPersistenceModel.getListNames()
+   
     var imageSelecte = String()
 
     var imageData = [BookImage.ItemsWrapper]()

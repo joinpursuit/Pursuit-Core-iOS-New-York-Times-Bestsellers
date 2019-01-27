@@ -12,15 +12,22 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource,UIPickerV
 
     
     var settingView = SettingsView()
-    let listNames = DataPersistenceModel.getListNames()
+    var listNames = DataPersistenceModel.getListNames(){
+        didSet{
+//            if let row = UserDefaults.standard.object(forKey: "Row") as? Int{
+//                settingView.settingsPickerView.selectRow(row, inComponent: 1, animated: true)
+//            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        listNames = DataPersistenceModel.getListNames()
         view.addSubview(settingView)
         settingView.settingsPickerView.dataSource = self
         settingView.settingsPickerView.delegate = self
+
         // Do any additional setup after loading the view.
     }
-    
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -33,6 +40,9 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource,UIPickerV
         return listNames[row].listName
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+
         UserDefaults.standard.set(listNames[row].listName, forKey: "ListNames")
+        UserDefaults.standard.set(row, forKey: "Row")
     }
+    
 }

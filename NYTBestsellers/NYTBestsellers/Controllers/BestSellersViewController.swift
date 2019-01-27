@@ -9,13 +9,12 @@
 import UIKit
 
 class BestSellersViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, UIPickerViewDataSource,UIPickerViewDelegate {
-    
+    var listNames = DataPersistenceModel.getListNames()
     let bestSellerVC = BestSellersView()
     var bestSellerBooks = [BestSellerBook.ResultsWrapper](){
         didSet{
             DispatchQueue.main.async {
                 self.bestSellerVC.myCollectionView.reloadData()
-                
             }
         }
     }
@@ -43,7 +42,15 @@ class BestSellersViewController: UIViewController,UICollectionViewDataSource,UIC
         }
         
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        if let listName = UserDefaults.standard.object(forKey: "ListNames") as? String{
+            getBooks(listName: listName)
+        } else {
+            getBooks(listName: "Manga")
+        }
+        listNames = DataPersistenceModel.getListNames()
+    }
+
     func getBooks(listName: String){
         APIClient.getBookDetails(listName: listName) { (appError, data) in
             if let appError = appError{
@@ -65,41 +72,36 @@ class BestSellersViewController: UIViewController,UICollectionViewDataSource,UIC
         cell.bookDescription.text = bookToSet.bookDetails[0].description
 //        for i in 0...bestSellerVC.bestSellerBooks[indexPath.row].isbns.count{
         
-        APIClient.getGoogleData(isbn: bookToSet.isbns[0].isbn10) { (appError, data) in
+        APIClient.getGoogleData(isbn: bookToSet.bookDetails[0].primaryIsbn10) { (appError, data) in
             if let appError = appError {
                 print(appError)
                 DispatchQueue.main.async {
                     cell.bookImage.image = UIImage(named: "bookPlaceholderSmall")
                 }
+            
             }
             if let data = data{
                 
                 if let image = ImageHelper.fetchImageFromCache(urlString: data[0].volumeInfo.imageLinks.smallThumbnail){
                     DispatchQueue.main.async {
                         cell.bookImage.image = image
-                        
-                        
                     }
                 } else {
                     ImageHelper.fetchImageFromNetwork(urlString: data[0].volumeInfo.imageLinks.smallThumbnail) { (appError, image) in
                         if let appError = appError {
                             print(appError.errorMessage())
                         } else if let image = image{
-                            cell.bookImage.image = image
-                            
+                            cell.bookImage.image = image                 
                         }
                     }
                 }
             }
         }
-//    }
-        
-        
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let bookToSend = bestSellerBooks[indexPath.row]
-        let detail = BestSellerDetailViewController.init(isbn: bookToSend.isbns[0].isbn10, description: bookToSend.bookDetails[0].description, bookName: bookToSend.bookDetails[0].title, bookAuthor: bookToSend.bookDetails[0].author)
+        let detail = BestSellerDetailViewController.init(isbn: bookToSend.bookDetails[0].primaryIsbn10, description: bookToSend.bookDetails[0].description, bookName: bookToSend.bookDetails[0].title, bookAuthor: bookToSend.bookDetails[0].author,amazonLink: bookToSend.amazonProductUrl)
         navigationController?.pushViewController(detail, animated: true)
         
     }
@@ -108,14 +110,15 @@ class BestSellersViewController: UIViewController,UICollectionViewDataSource,UIC
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return bestSellerVC.listNames.count
+        return listNames.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return bestSellerVC.listNames[row].listName
+        
+        return listNames[row].listName
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selectedListName = bestSellerVC.listNames[row].listName
+        let selectedListName = listNames[row].listName
         APIClient.getBookDetails(listName: selectedListName) { (appError, data) in
             if let appError = appError{
                 print(appError)

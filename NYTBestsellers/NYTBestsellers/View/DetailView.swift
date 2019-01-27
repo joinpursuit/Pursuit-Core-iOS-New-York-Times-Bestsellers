@@ -7,9 +7,11 @@
 //
 
 import UIKit
-
+protocol ButtonDelegate: AnyObject{
+    func amazonButtonPressed()
+}
 class DetailView: UIView {
-
+    weak var delegate: ButtonDelegate!
     lazy var detailBookImage: UIImageView = {
         var image = UIImageView()
         return image
@@ -22,12 +24,21 @@ class DetailView: UIView {
         return textView
     }()
     
+    lazy var amazonButton: UIButton = {
+        var button = UIButton()
+        button.setImage(UIImage(named: "amazonLogo"), for: .normal)
+        button.addTarget(self, action: #selector(amazonButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
     }
-    
+    @objc func amazonButtonPressed(){
+        delegate.amazonButtonPressed()
+    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -38,6 +49,7 @@ class DetailView: UIView {
     func setupViews() {
         setImage()
         setTextView()
+        setButton()
     }
     
     func setImage(){
@@ -56,6 +68,12 @@ class DetailView: UIView {
         detailBookTextView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
         detailBookTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         detailBookTextView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4).isActive = true
+    }
+    func setButton(){
+        addSubview(amazonButton)
+        amazonButton.translatesAutoresizingMaskIntoConstraints = false
+        amazonButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        amazonButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
     }
 }
 

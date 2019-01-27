@@ -26,6 +26,8 @@ class BestSellersCollectionViewCell: UICollectionViewCell {
         textView.textColor = .black
         textView.text = "Hello Hello"
         textView.backgroundColor = .clear
+        textView.isEditable = false
+        textView.font = UIFont(name: "Futura", size: 15)
         return textView
     }()
     override init(frame: CGRect) {

@@ -8,12 +8,15 @@
 
 import UIKit
 
-class BestSellerDetailViewController: UIViewController {
+class BestSellerDetailViewController: UIViewController, ButtonDelegate {
+
+    
     
     let detailVC = DetailView()
     var isbn = String()
     var bookDescription = String()
     var bookTitle = String()
+    var amazonLink: URL!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +26,7 @@ class BestSellerDetailViewController: UIViewController {
     }
     
     func updateUI(isbn: String){
+        detailVC.delegate = self
         let favButton = UIBarButtonItem.init(title: "Favorite", style: .plain, target: self, action: #selector(favButtonPressed))
         favButton.tintColor = .red
         self.navigationItem.rightBarButtonItem = favButton
@@ -53,7 +57,9 @@ class BestSellerDetailViewController: UIViewController {
             }
         }
     }
-    
+    func amazonButtonPressed() {
+        
+    }
     @objc func favButtonPressed(){
         
         let timeStamp = Date.getISOTimestamp()
@@ -72,11 +78,12 @@ class BestSellerDetailViewController: UIViewController {
         }
         
     }
-    init(isbn: String, description: String, bookName: String, bookAuthor: String) {
+    init(isbn: String, description: String, bookName: String, bookAuthor: String,amazonLink: URL) {
         super.init(nibName: nil, bundle: nil)
         self.isbn = isbn
         self.bookDescription = description
         self.bookTitle = bookName
+        self.amazonLink = amazonLink
         
         
         
