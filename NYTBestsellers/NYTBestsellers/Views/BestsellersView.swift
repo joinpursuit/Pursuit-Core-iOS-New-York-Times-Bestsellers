@@ -51,14 +51,7 @@ class BestsellersView: UIView {
     private func commonInit() {
     backgroundColor = .blue
     }
-//    func setConstraints() {
-//        bestsellerCollectionView.translatesAutoresizingMaskIntoConstraints = false
-//        bestsellerCollectionView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-//        bestsellerCollectionView.topAnchor.constraint(equalTo: topAnchor, constant: 11).isActive = true
-//        bestsellerCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11).isActive = true
-//        bestsellerCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
-//
-//    }
+
     
      func setupBestCollectionView() {
         addSubview(bestsellerCollectionView)
