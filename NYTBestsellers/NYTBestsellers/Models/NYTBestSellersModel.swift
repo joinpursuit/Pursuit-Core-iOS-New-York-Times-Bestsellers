@@ -18,7 +18,6 @@ struct BookGeneralInfo: Codable {
   
   let weeks_on_list: String
   let amazon_product_url: String //URL
-  let isbn13: String
   let book_details: [DetailedBookInfo]
   
 }
