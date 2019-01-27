@@ -18,6 +18,9 @@
 		1E11499521FB9F36008E19D2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11499421FB9F36008E19D2 /* SettingsView.swift */; };
 		1E11499721FB9F62008E19D2 /* BestSellerCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11499621FB9F62008E19D2 /* BestSellerCollectionCell.swift */; };
 		1E11499921FB9F7C008E19D2 /* FavoritesCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11499821FB9F7C008E19D2 /* FavoritesCollectionCell.swift */; };
+		1E11499C21FE03D8008E19D2 /* NYTBestSellersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11499B21FE03D8008E19D2 /* NYTBestSellersModel.swift */; };
+		1E11499E21FE0406008E19D2 /* ImagesForBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11499D21FE0406008E19D2 /* ImagesForBooks.swift */; };
+		1E1149A121FE059D008E19D2 /* NYTCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1149A021FE059D008E19D2 /* NYTCategories.swift */; };
 		5718BFE921FA75A800A8E4B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718BFE821FA75A800A8E4B8 /* AppDelegate.swift */; };
 		5718BFF021FA75A900A8E4B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5718BFEF21FA75A900A8E4B8 /* Assets.xcassets */; };
 		5718BFF321FA75A900A8E4B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5718BFF121FA75A900A8E4B8 /* LaunchScreen.storyboard */; };
@@ -41,6 +44,9 @@
 		1E11499421FB9F36008E19D2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		1E11499621FB9F62008E19D2 /* BestSellerCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellerCollectionCell.swift; sourceTree = "<group>"; };
 		1E11499821FB9F7C008E19D2 /* FavoritesCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionCell.swift; sourceTree = "<group>"; };
+		1E11499B21FE03D8008E19D2 /* NYTBestSellersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestSellersModel.swift; sourceTree = "<group>"; };
+		1E11499D21FE0406008E19D2 /* ImagesForBooks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesForBooks.swift; sourceTree = "<group>"; };
+		1E1149A021FE059D008E19D2 /* NYTCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTCategories.swift; sourceTree = "<group>"; };
 		5718BFE521FA75A800A8E4B8 /* NYTBestsellers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTBestsellers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5718BFE821FA75A800A8E4B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5718BFEF21FA75A900A8E4B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -97,6 +103,16 @@
 			path = CollectionViewCells;
 			sourceTree = "<group>";
 		};
+		1E11499F21FE0416008E19D2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1E1149A021FE059D008E19D2 /* NYTCategories.swift */,
+				1E11499B21FE03D8008E19D2 /* NYTBestSellersModel.swift */,
+				1E11499D21FE0406008E19D2 /* ImagesForBooks.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		5718BFDC21FA75A800A8E4B8 = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +132,7 @@
 		5718BFE721FA75A800A8E4B8 /* NYTBestsellers */ = {
 			isa = PBXGroup;
 			children = (
+				1E11499F21FE0416008E19D2 /* Models */,
 				1E11499A21FBA012008E19D2 /* CollectionViewCells */,
 				1E11498F21FB9EF5008E19D2 /* Views */,
 				1E11498621FB9E17008E19D2 /* Controllers */,
@@ -244,14 +261,17 @@
 				5718C00421FA77AA00A8E4B8 /* DataPersistenceManager.swift in Sources */,
 				1E11498A21FB9E8C008E19D2 /* SettingsController.swift in Sources */,
 				5718BFE921FA75A800A8E4B8 /* AppDelegate.swift in Sources */,
+				1E11499C21FE03D8008E19D2 /* NYTBestSellersModel.swift in Sources */,
 				1E11499521FB9F36008E19D2 /* SettingsView.swift in Sources */,
 				1E11498C21FB9EB3008E19D2 /* BookDetailsController.swift in Sources */,
+				1E1149A121FE059D008E19D2 /* NYTCategories.swift in Sources */,
 				1E11498521FB9DD0008E19D2 /* TabViewController.swift in Sources */,
 				1E11498821FB9E79008E19D2 /* FavoritesController.swift in Sources */,
 				1E11499921FB9F7C008E19D2 /* FavoritesCollectionCell.swift in Sources */,
 				1E11499721FB9F62008E19D2 /* BestSellerCollectionCell.swift in Sources */,
 				1E11499321FB9F22008E19D2 /* FavoriteViews.swift in Sources */,
 				5718BFFE21FA764E00A8E4B8 /* Date+Extensions.swift in Sources */,
+				1E11499E21FE0406008E19D2 /* ImagesForBooks.swift in Sources */,
 				5718C00621FA78BA00A8E4B8 /* ImageHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
