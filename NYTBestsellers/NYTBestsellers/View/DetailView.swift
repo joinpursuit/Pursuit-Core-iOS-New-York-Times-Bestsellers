@@ -31,7 +31,14 @@ class DetailView: UIView {
         return button
     }()
     
-    
+    lazy var bookLabel: UILabel = {
+        var label = UILabel()
+        label.text = "Label"
+        label.textColor = .black
+        label.textAlignment = .center
+        label.font = UIFont(name: "Futura", size: 20)
+        return label
+    }()
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
@@ -50,6 +57,7 @@ class DetailView: UIView {
         setImage()
         setTextView()
         setButton()
+        setupLabel()
     }
     
     func setImage(){
@@ -74,6 +82,14 @@ class DetailView: UIView {
         amazonButton.translatesAutoresizingMaskIntoConstraints = false
         amazonButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
         amazonButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+    }
+    
+    func setupLabel(){
+        addSubview(bookLabel)
+        bookLabel.translatesAutoresizingMaskIntoConstraints = false
+        bookLabel.topAnchor.constraint(equalTo: detailBookImage.bottomAnchor, constant: 10).isActive = true
+        bookLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        bookLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
     }
 }
 

@@ -17,12 +17,14 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(favoritesView)
+        title = "Favorties (\(favoriteBooks.count))"
         favoritesView.favoritesCollectionView.dataSource = self
         reload()
     }
     
     func reload(){
         favoriteBooks = DataPersistenceModel.getFavoriteBooks()
+        title = "Favorites (\(favoriteBooks.count))"
         favoritesView.favoritesCollectionView.reloadData()
     }
     override func viewWillAppear(_ animated: Bool) {

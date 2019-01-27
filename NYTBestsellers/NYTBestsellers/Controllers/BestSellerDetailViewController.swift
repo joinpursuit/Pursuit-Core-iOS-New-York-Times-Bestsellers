@@ -30,6 +30,7 @@ class BestSellerDetailViewController: UIViewController, ButtonDelegate {
         let favButton = UIBarButtonItem.init(title: "Favorite", style: .plain, target: self, action: #selector(favButtonPressed))
         favButton.tintColor = .red
         self.navigationItem.rightBarButtonItem = favButton
+        detailVC.bookLabel.text = bookTitle
         APIClient.getGoogleData(isbn: isbn) { (appError, data) in
             if let appError = appError {
                 print(appError)
@@ -89,10 +90,6 @@ class BestSellerDetailViewController: UIViewController, ButtonDelegate {
         self.bookDescription = description
         self.bookTitle = bookName
         self.amazonLink = amazonLink
-        
-        
-        
-//        detailView.myLabel.text = message
     }
     
     required init?(coder aDecoder: NSCoder) {

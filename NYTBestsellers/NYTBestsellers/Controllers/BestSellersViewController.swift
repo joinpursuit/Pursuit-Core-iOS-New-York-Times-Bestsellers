@@ -70,18 +70,14 @@ class BestSellersViewController: UIViewController,UICollectionViewDataSource,UIC
         let bookToSet = bestSellerBooks[indexPath.row]
         cell.bookNameLabel.text = "\(bookToSet.weeksOnList) weeks on best seller list"
         cell.bookDescription.text = bookToSet.bookDetails[0].description
-//        for i in 0...bestSellerVC.bestSellerBooks[indexPath.row].isbns.count{
-        
         APIClient.getGoogleData(isbn: bookToSet.bookDetails[0].primaryIsbn10) { (appError, data) in
             if let appError = appError {
                 print(appError)
                 DispatchQueue.main.async {
                     cell.bookImage.image = UIImage(named: "bookPlaceholderSmall")
                 }
-            
             }
             if let data = data{
-                
                 if let image = ImageHelper.fetchImageFromCache(urlString: data[0].volumeInfo.imageLinks.smallThumbnail){
                     DispatchQueue.main.async {
                         cell.bookImage.image = image

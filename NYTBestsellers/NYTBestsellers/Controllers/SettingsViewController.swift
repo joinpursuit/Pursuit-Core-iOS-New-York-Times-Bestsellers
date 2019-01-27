@@ -12,13 +12,7 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource,UIPickerV
 
     
     var settingView = SettingsView()
-    var listNames = DataPersistenceModel.getListNames(){
-        didSet{
-//            if let row = UserDefaults.standard.object(forKey: "Row") as? Int{
-//                settingView.settingsPickerView.selectRow(row, inComponent: 1, animated: true)
-//            }
-        }
-    }
+    var listNames = DataPersistenceModel.getListNames()
     override func viewDidLoad() {
         super.viewDidLoad()
         listNames = DataPersistenceModel.getListNames()
