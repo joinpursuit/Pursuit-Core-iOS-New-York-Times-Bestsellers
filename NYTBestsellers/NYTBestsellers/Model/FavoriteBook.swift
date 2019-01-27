@@ -12,6 +12,7 @@ struct FavoriteBook: Codable {
     let bookName: String
     let favoritedAt: String
     let imageData: Data
+    let description: String
     
     public var date: Date {
         let date = favoritedAt.date()

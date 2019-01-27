@@ -30,8 +30,10 @@ class FavoriteCell: UICollectionViewCell {
     }()
     lazy var favoriteLabel: UILabel = {
         var label = UILabel()
+        label.text = "Label"
         label.textColor = .black
-        label.font = UIFont(name: "Futura", size: 20)
+        label.font = UIFont(name: "Futura", size: 17)
+        label.textAlignment = .center
         return label
     }()
     override init(frame: CGRect) {
@@ -47,6 +49,8 @@ class FavoriteCell: UICollectionViewCell {
     func setupViews(){
         setupImage()
         setupButton()
+        setupLabel()
+        setupTextView()
     }
     func setupImage(){
         addSubview(favoriteImage)
@@ -55,12 +59,29 @@ class FavoriteCell: UICollectionViewCell {
         favoriteImage.heightAnchor.constraint(equalToConstant: 150).isActive = true
         favoriteImage.widthAnchor.constraint(equalToConstant: 100).isActive = true
         favoriteImage.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        
     }
     func setupButton(){
         addSubview(actionButton)
         actionButton.translatesAutoresizingMaskIntoConstraints = false
-        actionButton.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+        actionButton.topAnchor.constraint(equalTo: topAnchor, constant: -10).isActive = true
         actionButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         actionButton.heightAnchor.constraint(equalToConstant: 10).isActive = true
+    }
+    func setupLabel(){
+        addSubview(favoriteLabel)
+        favoriteLabel.translatesAutoresizingMaskIntoConstraints = false
+        favoriteLabel.topAnchor.constraint(equalTo: favoriteImage.bottomAnchor, constant: 10).isActive = true
+        favoriteLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        favoriteLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+        
+    }
+    func setupTextView(){
+        addSubview(favoriteDetailsTextView)
+        favoriteDetailsTextView.translatesAutoresizingMaskIntoConstraints = false
+        favoriteDetailsTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5).isActive = true
+        favoriteDetailsTextView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
+        favoriteDetailsTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5).isActive = true
+        favoriteDetailsTextView.topAnchor.constraint(equalTo: favoriteLabel.bottomAnchor, constant: 10).isActive = true
     }
 }
