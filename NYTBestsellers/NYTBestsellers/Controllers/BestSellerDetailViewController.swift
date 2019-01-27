@@ -71,7 +71,7 @@ class BestSellerDetailViewController: UIViewController, ButtonDelegate {
 //        let favoritedAt = timeStamp.date()
         if let image = detailVC.detailBookImage.image{
             if let imageData = image.jpegData(compressionQuality: 0.5){
-            let favoriteBook = FavoriteBook.init(bookName: bookTitle, favoritedAt: timeStamp, imageData: imageData, description: bookDescription)
+                let favoriteBook = FavoriteBook.init(bookName: bookTitle, favoritedAt: timeStamp, imageData: imageData, description: bookDescription, amazonURL: amazonLink)
             DataPersistenceModel.favoriteBook(favoriteBook: favoriteBook)
             let alert = UIAlertController.init(title: "Book Saved To Favorites", message: nil, preferredStyle: .alert)
             let okay = UIAlertAction.init(title: "Okay", style: .default) { (UIAlertAction) in

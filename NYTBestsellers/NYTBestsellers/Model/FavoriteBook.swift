@@ -13,6 +13,7 @@ struct FavoriteBook: Codable {
     let favoritedAt: String
     let imageData: Data
     let description: String
+    let amazonURL: URL
     
     public var date: Date {
         let date = favoritedAt.date()

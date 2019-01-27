@@ -36,11 +36,20 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource {
             DataPersistenceModel.deleteFavoriteBook(atIndex: index)
             self.reload()
         }
-        
+        let seeOnAmazon = UIAlertAction(title: "See On Amazon", style: .default) { (UIAlertAction) in
+            let amazonURL = self.favoriteBooks[index].amazonURL
+            self.openAmazonWebView(url: amazonURL)
+        }
+        actionSheet.addAction(seeOnAmazon)
         actionSheet.addAction(delete)
         self.present(actionSheet, animated: true, completion: nil)
     }
-    
+    func openAmazonWebView(url: URL){
+        let amazonVC = AmazonViewController()
+        amazonVC.modalPresentationStyle = .overCurrentContext
+        amazonVC.amazonURL = url
+            self.present(amazonVC, animated: true, completion: nil)
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return favoriteBooks.count
     }
