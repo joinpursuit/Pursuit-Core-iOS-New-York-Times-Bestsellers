@@ -67,15 +67,15 @@ extension BestSellersView {
         myPickerView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         myPickerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         myPickerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        myPickerView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        myPickerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
     }
     private func setUpCollectionView() {
        addSubview(myCollectionView)
         myCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        myCollectionView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        myCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
         myCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         myCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        myCollectionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.6).isActive = true
+        myCollectionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
     }
     
     
