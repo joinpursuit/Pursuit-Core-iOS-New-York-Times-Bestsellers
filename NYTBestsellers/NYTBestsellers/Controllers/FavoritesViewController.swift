@@ -24,12 +24,13 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource {
     
     func reload(){
         favoriteBooks = DataPersistenceModel.getFavoriteBooks()
-        title = "Favorites (\(favoriteBooks.count))"
         favoritesView.favoritesCollectionView.reloadData()
+        title = "Favorites (\(favoriteBooks.count))"
     }
     override func viewWillAppear(_ animated: Bool) {
         favoritesView.favoritesCollectionView.reloadData()
         favoriteBooks = DataPersistenceModel.getFavoriteBooks()
+        title = "Favorites (\(favoriteBooks.count))"
     }
     @objc func buttonPressed(sender: UIButton){
         let index = sender.tag
