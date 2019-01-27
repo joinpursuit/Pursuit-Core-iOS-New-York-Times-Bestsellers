@@ -26,6 +26,7 @@ class AmazonViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 0.4410851884)
+        
         setupButton()
         setupView()
         amazonView.load(URLRequest(url: amazonURL))
@@ -38,7 +39,7 @@ class AmazonViewController: UIViewController{
     }
     func setupView(){
         view.addSubview(amazonView)
-        
+        amazonView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
         amazonView.translatesAutoresizingMaskIntoConstraints = false
         amazonView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.8).isActive = true
         amazonView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true

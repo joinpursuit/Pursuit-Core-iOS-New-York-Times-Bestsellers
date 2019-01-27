@@ -12,7 +12,7 @@ class AmazonWebView: WKWebView {
 
     override init(frame: CGRect, configuration: WKWebViewConfiguration) {
         super.init(frame: UIScreen.main.bounds, configuration: configuration)
-        
+
     }
     
     required init?(coder: NSCoder) {

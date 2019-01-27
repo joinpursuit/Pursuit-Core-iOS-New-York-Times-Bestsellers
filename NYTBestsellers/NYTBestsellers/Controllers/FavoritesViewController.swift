@@ -36,6 +36,7 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource {
             DataPersistenceModel.deleteFavoriteBook(atIndex: index)
             self.reload()
         }
+        
         actionSheet.addAction(delete)
         self.present(actionSheet, animated: true, completion: nil)
     }
