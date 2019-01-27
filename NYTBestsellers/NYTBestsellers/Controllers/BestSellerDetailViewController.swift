@@ -11,33 +11,48 @@ import UIKit
 class BestSellerDetailViewController: UIViewController {
     
     let detailVC = DetailView()
-    var url = String()
+    var isbn = String()
+    var bookDescription = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(detailVC)
-        updateUI(urlString: url)
+        updateUI(isbn: isbn)
+        
         // Do any additional setup after loading the view.
     }
     
-    func updateUI(urlString: String){
-        if urlString == "bookPlaceholder"{
-            detailVC.detailBookImage.image = UIImage(named: "bookPlaceholder")
-        } else if let image = ImageHelper.fetchImageFromCache(urlString: urlString){
-            detailVC.detailBookImage.image = image
-        } else {
-            ImageHelper.fetchImageFromNetwork(urlString: urlString) { (appError, image) in
-                if let appError = appError {
-                    print(appError.errorMessage())
+    func updateUI(isbn: String){
+        APIClient.getGoogleData(isbn: isbn) { (appError, data) in
+            if let appError = appError {
+                print(appError)
+                DispatchQueue.main.async {
+                    self.detailVC.detailBookImage.image = UIImage(named: "bookPlaceholder")
+                    self.detailVC.detailBookTextView.text = self.bookDescription
                 }
-                if let image = image{
+            }
+            if let data = data{
+                DispatchQueue.main.async {
+                    self.detailVC.detailBookTextView.text = data[0].volumeInfo.description
+                }
+                if let image = ImageHelper.fetchImageFromCache(urlString: data[0].volumeInfo.imageLinks.thumbnail){
                     self.detailVC.detailBookImage.image = image
+                } else {
+                    ImageHelper.fetchImageFromNetwork(urlString: data[0].volumeInfo.imageLinks.smallThumbnail) { (appError, image) in
+                        if let appError = appError {
+                            print(appError.errorMessage())
+                        } else if let image = image{
+                            self.detailVC.detailBookImage.image = image
+                            
+                        }
+                    }
                 }
             }
         }
     }
-    init(photoToSet: String) {
+    init(isbn: String, description: String) {
         super.init(nibName: nil, bundle: nil)
-        url = photoToSet
+        self.isbn = isbn
+        self.bookDescription = description
         
         
 //        detailView.myLabel.text = message

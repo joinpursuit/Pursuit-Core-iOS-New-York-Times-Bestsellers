@@ -16,6 +16,7 @@ struct BookImage: Codable {
 }
 struct VolumeInfoWrapper: Codable {
     let imageLinks: ImageWrapper
+    let description: String
 }
 struct ImageWrapper: Codable {
     let smallThumbnail: String

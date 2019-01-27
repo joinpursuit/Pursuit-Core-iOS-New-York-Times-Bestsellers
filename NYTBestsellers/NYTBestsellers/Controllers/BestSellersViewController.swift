@@ -91,21 +91,9 @@ class BestSellersViewController: UIViewController,UICollectionViewDataSource,UIC
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        APIClient.getGoogleData(isbn: bestSellerBooks[indexPath.row].isbns[0].isbn10) { (appError, data) in
-            DispatchQueue.main.async {
-            var detail = BestSellerDetailViewController.init(photoToSet: "Hey")
-            if let appError = appError{
-                print(appError)
-                detail = BestSellerDetailViewController.init(photoToSet: "bookPlaceholder")
-            }
-            if let data = data{
-                detail = BestSellerDetailViewController.init(photoToSet: data[0].volumeInfo.imageLinks.thumbnail)
-                
-                
-            }
-                self.navigationController?.pushViewController(detail, animated: true)
-            }
-        }
+        let bookToSend = bestSellerBooks[indexPath.row]
+        let detail = BestSellerDetailViewController.init(isbn: bookToSend.isbns[0].isbn10, description: bookToSend.bookDetails[0].description)
+        navigationController?.pushViewController(detail, animated: true)
         
     }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
