@@ -29,4 +29,10 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource,UIPickerV
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return listNames.count
     }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return listNames[row].listName
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        UserDefaults.standard.set(listNames[row].listName, forKey: "ListNames")
+    }
 }

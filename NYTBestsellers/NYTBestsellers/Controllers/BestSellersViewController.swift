@@ -36,7 +36,16 @@ class BestSellersViewController: UIViewController,UICollectionViewDataSource,UIC
         bestSellerVC.myPickerView.dataSource = self
         bestSellerVC.myCollectionView.dataSource = self
         bestSellerVC.myCollectionView.delegate = self
-        APIClient.getBookDetails(listName: "Manga") { (appError, data) in
+        if let listName = UserDefaults.standard.object(forKey: "ListNames") as? String{
+           getBooks(listName: listName)
+        } else {
+            getBooks(listName: "Manga")
+        }
+        
+    }
+    
+    func getBooks(listName: String){
+        APIClient.getBookDetails(listName: listName) { (appError, data) in
             if let appError = appError{
                 print(appError)
             }
@@ -45,8 +54,6 @@ class BestSellersViewController: UIViewController,UICollectionViewDataSource,UIC
             }
         }
     }
-    
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return bestSellerBooks.count
     }
