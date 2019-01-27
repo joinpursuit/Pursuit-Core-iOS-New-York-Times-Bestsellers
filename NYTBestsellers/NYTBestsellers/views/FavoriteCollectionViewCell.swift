@@ -10,7 +10,12 @@ import UIKit
 
 
 class FavoriteCollectionViewCell: UICollectionViewCell {
-    
+    lazy var favoriteCollectionCellImage: UIImageView = {
+        let background = UIImageView()
+      let bg = UIImage(named: "BookPlaceHolder")
+        background.image = bg
+        return background
+    }()
     
     
     override init(frame: CGRect) {
@@ -24,5 +29,9 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     }
     
     
-    
+    private func cellImageConstrains() {
+        addSubview(favoriteCollectionCellImage)
+        favoriteCollectionCellImage.translatesAutoresizingMaskIntoConstraints = false
+        
+    }
 }
