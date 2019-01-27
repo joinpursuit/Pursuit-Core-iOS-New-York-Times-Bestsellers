@@ -16,9 +16,9 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        bestSellersNavVC.tabBarItem = UITabBarItem(title: "Bestsellers", image: nil, tag: 0)
-        favoritesNavVC.tabBarItem = UITabBarItem(title: "Favorites", image: nil, tag: 1)
-        settingsNavVC.tabBarItem = UITabBarItem(title: "Settings", image: nil, tag: 2)
+        bestSellersNavVC.tabBarItem = UITabBarItem(title: "Bestsellers", image: UIImage(named: "nytimesLogo"), tag: 0)
+        favoritesNavVC.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(named: "favRibbon"), tag: 1)
+        settingsNavVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settingIcon"), tag: 2)
         setViewControllers([bestSellersNavVC,favoritesNavVC,settingsNavVC], animated: true)
     }
     
