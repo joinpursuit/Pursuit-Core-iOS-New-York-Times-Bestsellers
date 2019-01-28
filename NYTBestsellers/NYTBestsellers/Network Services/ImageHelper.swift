@@ -14,7 +14,7 @@ final class ImageHelper {
   private static var cache = NSCache<NSString, UIImage>()
   
   static func fetchImageFromNetwork(urlString: String, completion: @escaping (AppError?, UIImage?) -> Void) {
-    NetworkHelper.shared.performDataTask(endpointURLString: urlString) { (appError, data ) in
+    NetworkHelper.shared.performDataTask(endpointURLString: urlString, httpMethod: "GET", httpBody: nil) { (appError, data,response)  in
       if let appError = appError {
         completion(appError, nil)
       } else if let data = data {

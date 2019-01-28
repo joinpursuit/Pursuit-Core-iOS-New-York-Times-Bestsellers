@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E65331521FEB3AE00D62A52 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E65331421FEB3AE00D62A52 /* NetworkHelper.swift */; };
+		2E65331721FEBB6C00D62A52 /* BooksModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E65331621FEBB6C00D62A52 /* BooksModel.swift */; };
 		2ED3176821FBF5D500F95592 /* BooksApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED3176721FBF5D500F95592 /* BooksApiClient.swift */; };
-		2ED3176A21FBF5DE00F95592 /* BooksModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED3176921FBF5DE00F95592 /* BooksModel.swift */; };
-		2ED3176C21FBF5EA00F95592 /* BookCoverModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED3176B21FBF5EA00F95592 /* BookCoverModel.swift */; };
-		2ED3176F21FBF6BD00F95592 /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED3176E21FBF6BD00F95592 /* SecretKeys.swift */; };
+		2ED3176A21FBF5DE00F95592 /* BooksCoverModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED3176921FBF5DE00F95592 /* BooksCoverModel.swift */; };
+		2ED3176C21FBF5EA00F95592 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED3176B21FBF5EA00F95592 /* CategoryModel.swift */; };
 		2EF7D21321FB9165006DC01A /* BestSellerTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF7D21221FB9165006DC01A /* BestSellerTabBar.swift */; };
 		2EF7D21621FB918E006DC01A /* BestSellerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF7D21521FB918E006DC01A /* BestSellerViewController.swift */; };
 		2EF7D21821FB9198006DC01A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF7D21721FB9198006DC01A /* SettingsViewController.swift */; };
@@ -29,17 +30,17 @@
 		5718BFF321FA75A900A8E4B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5718BFF121FA75A900A8E4B8 /* LaunchScreen.storyboard */; };
 		5718BFFC21FA763200A8E4B8 /* String+DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718BFFB21FA763200A8E4B8 /* String+DateExtensions.swift */; };
 		5718BFFE21FA764E00A8E4B8 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718BFFD21FA764E00A8E4B8 /* Date+Extensions.swift */; };
-		5718C00021FA771800A8E4B8 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718BFFF21FA771800A8E4B8 /* NetworkHelper.swift */; };
 		5718C00221FA772600A8E4B8 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718C00121FA772600A8E4B8 /* AppError.swift */; };
 		5718C00421FA77AA00A8E4B8 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718C00321FA77AA00A8E4B8 /* DataPersistenceManager.swift */; };
 		5718C00621FA78BA00A8E4B8 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718C00521FA78BA00A8E4B8 /* ImageHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E65331421FEB3AE00D62A52 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		2E65331621FEBB6C00D62A52 /* BooksModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksModel.swift; sourceTree = "<group>"; };
 		2ED3176721FBF5D500F95592 /* BooksApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksApiClient.swift; sourceTree = "<group>"; };
-		2ED3176921FBF5DE00F95592 /* BooksModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksModel.swift; sourceTree = "<group>"; };
-		2ED3176B21FBF5EA00F95592 /* BookCoverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCoverModel.swift; sourceTree = "<group>"; };
-		2ED3176E21FBF6BD00F95592 /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
+		2ED3176921FBF5DE00F95592 /* BooksCoverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksCoverModel.swift; sourceTree = "<group>"; };
+		2ED3176B21FBF5EA00F95592 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		2EF7D21221FB9165006DC01A /* BestSellerTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellerTabBar.swift; sourceTree = "<group>"; };
 		2EF7D21521FB918E006DC01A /* BestSellerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellerViewController.swift; sourceTree = "<group>"; };
 		2EF7D21721FB9198006DC01A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -60,7 +61,6 @@
 		5718BFF421FA75A900A8E4B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5718BFFB21FA763200A8E4B8 /* String+DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DateExtensions.swift"; sourceTree = "<group>"; };
 		5718BFFD21FA764E00A8E4B8 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
-		5718BFFF21FA771800A8E4B8 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		5718C00121FA772600A8E4B8 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		5718C00321FA77AA00A8E4B8 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
 		5718C00521FA78BA00A8E4B8 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
@@ -80,8 +80,9 @@
 		2ED3176D21FBF5F100F95592 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2ED3176921FBF5DE00F95592 /* BooksModel.swift */,
-				2ED3176B21FBF5EA00F95592 /* BookCoverModel.swift */,
+				2ED3176921FBF5DE00F95592 /* BooksCoverModel.swift */,
+				2E65331621FEBB6C00D62A52 /* BooksModel.swift */,
+				2ED3176B21FBF5EA00F95592 /* CategoryModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -197,11 +198,10 @@
 		5718C00721FA78E800A8E4B8 /* Network Services */ = {
 			isa = PBXGroup;
 			children = (
+				2E65331421FEB3AE00D62A52 /* NetworkHelper.swift */,
 				5718C00121FA772600A8E4B8 /* AppError.swift */,
 				2ED3176721FBF5D500F95592 /* BooksApiClient.swift */,
-				2ED3176E21FBF6BD00F95592 /* SecretKeys.swift */,
 				5718C00521FA78BA00A8E4B8 /* ImageHelper.swift */,
-				5718BFFF21FA771800A8E4B8 /* NetworkHelper.swift */,
 			);
 			path = "Network Services";
 			sourceTree = "<group>";
@@ -296,20 +296,20 @@
 				2EF7D21A21FB91A9006DC01A /* FavoritesViewController.swift in Sources */,
 				2EF7D22521FB9263006DC01A /* DetailledView.swift in Sources */,
 				2EF7D22721FB928B006DC01A /* CollectionViewsExt.swift in Sources */,
-				5718C00021FA771800A8E4B8 /* NetworkHelper.swift in Sources */,
-				2ED3176A21FBF5DE00F95592 /* BooksModel.swift in Sources */,
-				2ED3176F21FBF6BD00F95592 /* SecretKeys.swift in Sources */,
+				2ED3176A21FBF5DE00F95592 /* BooksCoverModel.swift in Sources */,
 				2EF7D23021FB9334006DC01A /* BestSellerDetailledViewController.swift in Sources */,
 				2EF7D21621FB918E006DC01A /* BestSellerViewController.swift in Sources */,
 				5718BFFC21FA763200A8E4B8 /* String+DateExtensions.swift in Sources */,
 				2EF7D22121FB91FA006DC01A /* FavoritesView.swift in Sources */,
-				2ED3176C21FBF5EA00F95592 /* BookCoverModel.swift in Sources */,
+				2E65331721FEBB6C00D62A52 /* BooksModel.swift in Sources */,
+				2ED3176C21FBF5EA00F95592 /* CategoryModel.swift in Sources */,
 				2EF7D21821FB9198006DC01A /* SettingsViewController.swift in Sources */,
 				2EF7D21321FB9165006DC01A /* BestSellerTabBar.swift in Sources */,
 				2EF7D22921FB9297006DC01A /* PickerViewsExt.swift in Sources */,
 				5718C00221FA772600A8E4B8 /* AppError.swift in Sources */,
 				5718C00421FA77AA00A8E4B8 /* DataPersistenceManager.swift in Sources */,
 				5718BFE921FA75A800A8E4B8 /* AppDelegate.swift in Sources */,
+				2E65331521FEB3AE00D62A52 /* NetworkHelper.swift in Sources */,
 				2EF7D21F21FB91E5006DC01A /* SettingsViews.swift in Sources */,
 				5718BFFE21FA764E00A8E4B8 /* Date+Extensions.swift in Sources */,
 				2EF7D23221FB950A006DC01A /* BestSellerCollectionViewCell.swift in Sources */,

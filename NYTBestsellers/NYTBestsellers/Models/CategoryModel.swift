@@ -7,3 +7,9 @@
 //
 
 import Foundation
+struct Categories:Codable{
+  let results:[CategoryInfo]
+}
+struct CategoryInfo:Codable{
+  let list_name:String
+}

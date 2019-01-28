@@ -9,18 +9,32 @@
 import UIKit
 extension BestSellerViewController:UICollectionViewDataSource{
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 10
+    return books.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     guard let cell = bestSellerView.bestSellersCollectionView.dequeueReusableCell(withReuseIdentifier: "bestSeller", for: indexPath) as? BestSellerCollectionViewCell else {return UICollectionViewCell()}
+    let book = books[indexPath.row]
+    let isbn = book.book_details[indexPath.section].primary_isbn13
+    self.getBookCoverInfo(isbn: isbn)
+        DispatchQueue.main.async {
+       cell.infoLabel.text = book.book_details[indexPath.section].title
+    }
+ 
+
     return cell
   }
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    currentIndex = indexPath.row
 self.navigationController?.pushViewController(BestSellerDetailledViewController(), animated: true)
 }
 }
+
+
+
+
+
+
+
 extension BestSellerViewController:UICollectionViewDelegateFlowLayout{
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize.init(width: 200, height: 248)

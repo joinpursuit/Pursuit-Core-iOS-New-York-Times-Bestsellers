@@ -13,7 +13,21 @@ extension BestSellerViewController:UIPickerViewDataSource{
   }
   
   func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    return 2
+    return categories.count
+  }
+
+}
+extension BestSellerViewController:UIPickerViewDelegate{
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    let category = categories[row].list_name
+    selectedCategory = category
+    getBooks(category: category)
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    let category = categories[row].list_name
+
+    return category
   }
 }
 

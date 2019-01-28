@@ -19,6 +19,7 @@ class BestSellerCollectionViewCell: UICollectionViewCell {
     label.backgroundColor = .white
     label.textColor = .black
     label.text = "Hello my name is Ashli"
+    label.textAlignment = .center
     return label
   }()
   let DescriptiontextView:UITextView = {
