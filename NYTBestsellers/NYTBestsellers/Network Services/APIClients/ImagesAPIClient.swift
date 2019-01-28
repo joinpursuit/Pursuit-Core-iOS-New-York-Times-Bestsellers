@@ -8,11 +8,13 @@
 
 import Foundation
 
-final class BookImages {
+final class ImagesAPIClient {
 
   static func getBookImages(isbn: String, completionHandler: @escaping (AppError?, [GoogleImageInfo]?) -> Void) {
     
-    let imageUrl =  "https://www.googleapis.com/books/v1/volumesq=\(isbn)&key=\(Constants.googleImageKey)"
+    
+    
+    let imageUrl =  "https://www.googleapis.com/books/v1/volumes?q=\(isbn)&key=\(Constants.googleImageKey)"
     
     NetworkHelper.shared.performDataTask(endpointURLString: imageUrl) { (appError, data) in
       if let appError = appError {

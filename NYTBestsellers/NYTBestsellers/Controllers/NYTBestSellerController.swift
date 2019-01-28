@@ -41,6 +41,7 @@ class NYTBestSellerController: UIViewController {
     self.bestSellerView.bestSellerCollectionView.register(BestSellerCollectionCell.self, forCellWithReuseIdentifier: "BestCollectionCell")
     
     bestSellerView.bestSellerCollectionView.dataSource = self
+    bestSellerView.bestSellerCollectionView.delegate = self
     bestSellerView.categoryPickerView.delegate =  self
     bestSellerView.categoryPickerView.dataSource = self
     
@@ -87,10 +88,52 @@ extension NYTBestSellerController: UICollectionViewDataSource, UICollectionViewD
     cell.backgroundColor = .white
     let currentBook = bookInfoForCollectionView[indexPath.row]
     cell.bookDescription.text = currentBook.book_details[0].description
-    cell.weeksLabel.text = "\(currentBook.weeks_on_list)"
+    cell.weeksLabel.text = "\(currentBook.weeks_on_list) weeks on the NYT Best Sellers List"
+    
+    let isbn = currentBook.book_details[0].primary_isbn13
+    
+    ImagesAPIClient.getBookImages(isbn: isbn) { (appError, image) in
+      if let appError = appError {
+        print(appError)
+      }
+      if let data = image {
+        
+        let imageToSet = data[0].volumeInfo.imageLinks.thumbnail
+        
+        DispatchQueue.main.async {
+          if let image = ImageHelper.fetchImageFromCache(urlString: imageToSet){
+            DispatchQueue.main.async {
+              cell.imageCover.image = image
+            }
+          } else{
+            ImageHelper.fetchImageFromNetwork(urlString: imageToSet, completion: { (appError, image) in
+              if let appError = appError {
+                print(appError)
+                cell.imageCover.image = UIImage(named: "book")
+              }
+              if let image = image{
+                cell.imageCover.image = image
+              }
+            })
+          }
+        }
+      }
+    }
+    
     return cell
   }
   
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+    let bookToSegue = bookInfoForCollectionView[indexPath.row]
+    
+    let detailedVC = BookDetailsController()
+    detailedVC.bookInDetail = bookToSegue
+    print("I am here")
+    
+    navigationController?.pushViewController(detailedVC, animated: true)
+    
+  }
   
 }
 
@@ -104,12 +147,12 @@ extension NYTBestSellerController: UIPickerViewDelegate, UIPickerViewDataSource 
   }
   
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-    return categoriesInfo[row].list_name
+    return categoriesInfo[row].listName
   }
   
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     
-    let categoryName = categoriesInfo[row].list_name
+    let categoryName = categoriesInfo[row].listName
     
     getBookInfo(categoryName: categoryName)
   }

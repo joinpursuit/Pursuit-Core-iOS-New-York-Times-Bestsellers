@@ -16,6 +16,10 @@ struct NYTCategories: Codable {
 
 struct BookCategories: Codable {
 
-  let list_name: String
+  let listName: String
+  
+  private enum CodingKeys: String, CodingKey {
+    case listName = "list_name"
+  }
   
 }

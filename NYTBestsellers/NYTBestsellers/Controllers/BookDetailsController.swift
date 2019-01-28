@@ -10,12 +10,15 @@ import UIKit
 
 class BookDetailsController: UIViewController {
   
-  var bookInDetail = DetailedView()
+  var detailedViewInstance = DetailedView()
+  
+  public var bookInDetail: BookGeneralInfo?
+  
 
     override func viewDidLoad() {
         super.viewDidLoad()
       view.backgroundColor = .lightGray
-      self.view.addSubview(bookInDetail)
+      self.view.addSubview(detailedViewInstance)
       
     }
     

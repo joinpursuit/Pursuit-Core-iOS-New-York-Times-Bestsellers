@@ -12,6 +12,8 @@ class SettingsController: UIViewController {
 
   let settings = SettingsView()
   
+  
+  
     override func viewDidLoad() {
         super.viewDidLoad()
       self.view.addSubview(settings)

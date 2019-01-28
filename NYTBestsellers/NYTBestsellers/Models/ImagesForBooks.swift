@@ -16,23 +16,17 @@ struct ImageForBooks: Codable {
 
 struct GoogleImageInfo: Codable {
   
-  let volumeInfo: [BookDetailInfo]
+  let volumeInfo: BookDetailInfo
   
 }
 
 struct BookDetailInfo: Codable {
   
-  let industryIdentifiers: [ISBN]
+ 
   let imageLinks: Images
   
 }
 
-struct ISBN: Codable {
-  
-  let type: String
-  let identifier: String
-  
-}
 
 struct Images: Codable {
   let thumbnail: String //URL
