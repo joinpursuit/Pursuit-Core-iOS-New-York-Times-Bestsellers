@@ -41,7 +41,7 @@ struct BookResults: Codable {
 }
 struct BookDetails: Codable {
     let title: String
-    let description: String
+    let bookDescription: String
     let contributor: String
     let author: String
 //    let price: Double
@@ -51,7 +51,7 @@ struct BookDetails: Codable {
     let primaryIsbn10: String
     private enum CodingKeys: String, CodingKey {
         case title
-        case description
+        case bookDescription = "description"
         case contributor
         case author
         //    case price

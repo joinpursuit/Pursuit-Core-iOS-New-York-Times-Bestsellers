@@ -17,8 +17,6 @@ class FavoritesViewController: UIViewController {
         view.addSubview(favoritesView)
         favoritesView.myFavoritesCollectionView.dataSource = self
         favoritesView.myFavoritesCollectionView.delegate = self
-
-        
     }
 }
 extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -28,8 +26,19 @@ extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesCollectionViewCell", for: indexPath) as? FavoritesCollectionViewCell else { return UICollectionViewCell()}
+        cell.delegate = self
         return cell
     }
-    
-    
+}
+extension FavoritesViewController: FavoritesCollectionViewCellDelegate {
+    func actionSheet() {
+        let optionMenu = UIAlertController(title: nil, message: "Options:", preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive)
+        let editAction = UIAlertAction(title: "See on Amazon", style: .default)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        optionMenu.addAction(deleteAction)
+        optionMenu.addAction(editAction)
+        optionMenu.addAction(cancelAction)
+        self.present(optionMenu, animated: true, completion: nil)
+    }
 }

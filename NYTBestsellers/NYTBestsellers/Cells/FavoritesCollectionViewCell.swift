@@ -7,8 +7,14 @@
 //
 
 import UIKit
+protocol FavoritesCollectionViewCellDelegate: AnyObject {
+    func actionSheet()
+}
 
 class FavoritesCollectionViewCell: UICollectionViewCell {
+    
+    weak var delegate: FavoritesCollectionViewCellDelegate?
+
     
     public lazy var cellImage: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "Placeholder"))
@@ -37,10 +43,7 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
         return button
     }()
     @objc func cellButtonPressed() {
-        print("Clicked")
-//        guard let message = mainTextField.text else {return}
-//        delegate?.enterButtonPressed(message: message)
-        
+        delegate?.actionSheet()        
     }
     
     override init(frame: CGRect) {
