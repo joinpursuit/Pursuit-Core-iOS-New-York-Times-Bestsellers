@@ -15,6 +15,9 @@ class FavoiteBookCell: UICollectionViewCell {
     }()
     lazy var deletebuttonObj: UIButton = {
         let button = UIButton()
+        button.backgroundColor = .brown
+        button.setTitle("Action", for: .normal)
+        button.setTitleColor(.white, for: .normal)
         return button
     }()
     lazy var favoriteBookTitleLabel: UILabel = {
@@ -50,16 +53,27 @@ class FavoiteBookCell: UICollectionViewCell {
     }
     private func setupViews(){
         setupImageView()
+        setupButtonView()
         setupLabelView()
         setupTextView()
     }
    private func setupImageView(){
     addSubview(favoriteImageObj)
     favoriteImageObj.translatesAutoresizingMaskIntoConstraints = false
-    favoriteImageObj.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-    favoriteImageObj.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 100).isActive = true
-    favoriteImageObj.heightAnchor.constraint(equalToConstant: 100).isActive = true
-    favoriteImageObj.widthAnchor.constraint(equalToConstant: 100).isActive = true
+    favoriteImageObj.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 11).isActive = true
+    favoriteImageObj.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 80).isActive = true
+    favoriteImageObj.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -80).isActive = true
+    favoriteImageObj.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -150).isActive = true
+
+    }
+    private func setupButtonView(){
+        addSubview(deletebuttonObj)
+        deletebuttonObj.translatesAutoresizingMaskIntoConstraints = false
+        deletebuttonObj.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        deletebuttonObj.leadingAnchor.constraint(equalTo: favoriteImageObj.trailingAnchor, constant: 11).isActive = true
+        deletebuttonObj.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
+        deletebuttonObj.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        deletebuttonObj.widthAnchor.constraint(equalToConstant: 80).isActive = true
     }
     private func setupLabelView(){
         addSubview(favoriteBookTitleLabel)
