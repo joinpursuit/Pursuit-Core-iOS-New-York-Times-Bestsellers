@@ -35,12 +35,10 @@ class SettingsView: UIView {
     private func commonInit(){
         backgroundColor = .yellow
         addSubview(settingsPickerViewObj)
-//        setupSettingsPickerView()
+
     }
 
-    private func setupSettingsPickerView(){
-        
-    }
+    
     
     
 }

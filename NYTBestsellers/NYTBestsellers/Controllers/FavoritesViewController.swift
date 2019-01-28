@@ -9,11 +9,12 @@
 import UIKit
 
 class FavoritesViewController: UIViewController {
-
+    let favoritesView = FavoriteBookView()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Favorites"
         self.view.backgroundColor = .red
+        view.addSubview(favoritesView)
         // Do any additional setup after loading the view.
     }
     
