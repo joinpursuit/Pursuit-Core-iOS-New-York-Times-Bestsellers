@@ -49,7 +49,6 @@ class FavoriteView: UIView {
         favoriteCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         favoriteCollectionView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
         favoriteCollectionView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        
     }
     
 }

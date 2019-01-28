@@ -18,7 +18,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     }()
     
     
-    lazy var bestSellerCollectionLabel: UILabel = {
+    lazy var favoriteCollectionLabel: UILabel = {
         let mylabel = UILabel()
         mylabel.textAlignment = .center
         mylabel.backgroundColor = .black
@@ -27,7 +27,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
         return mylabel
     }()
     
-    lazy var bestSellerTextView: UITextView = {
+    lazy var favoriteTextView: UITextView = {
         let myTextView = UITextView()
         myTextView.textColor = .white
         myTextView.backgroundColor = .gray
@@ -39,12 +39,26 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     }()
     
     
+    lazy var button: UIButton = {
+        let myButton = UIButton()
+       myButton.setTitle("...", for: .normal)
+      myButton.backgroundColor = .white
+        myButton.setTitleColor(.black, for: .normal)
+        myButton.titleLabel?.font = UIFont(name: "Helvetica", size: 50)
+        return myButton
+    }()
+    
     
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         backgroundColor = .blue
         layer.cornerRadius = 10
+        cellImageConstrains()
+        labelConstrains()
+        favoriteTextViewContrains()
+        favoriteButton()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -55,6 +69,34 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     private func cellImageConstrains() {
         addSubview(favoriteCollectionCellImage)
         favoriteCollectionCellImage.translatesAutoresizingMaskIntoConstraints = false
-        
+        favoriteCollectionCellImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
+        favoriteCollectionCellImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -150).isActive = true
+        favoriteCollectionCellImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 80).isActive = true
+        favoriteCollectionCellImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -80).isActive = true
+    }
+    
+    private func labelConstrains() {
+        addSubview(favoriteCollectionLabel)
+        favoriteCollectionLabel.translatesAutoresizingMaskIntoConstraints = false
+        favoriteCollectionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5).isActive = true
+        favoriteCollectionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5).isActive = true
+        favoriteCollectionLabel.topAnchor.constraint(equalTo: favoriteCollectionCellImage.bottomAnchor, constant: 10).isActive = true
+    }
+    
+    private func favoriteTextViewContrains() {
+        addSubview(favoriteTextView)
+        favoriteTextView.translatesAutoresizingMaskIntoConstraints = false
+        favoriteTextView.leadingAnchor.constraint(equalTo: favoriteCollectionLabel.leadingAnchor).isActive = true
+        favoriteTextView.trailingAnchor.constraint(equalTo: favoriteCollectionLabel.trailingAnchor).isActive = true
+        favoriteTextView.topAnchor.constraint(equalTo: favoriteCollectionLabel.bottomAnchor, constant: 5).isActive = true
+        favoriteTextView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5).isActive = true
+    }
+    
+    private func favoriteButton() {
+        addSubview(button)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
+        button.leadingAnchor.constraint(equalTo: favoriteCollectionCellImage.trailingAnchor, constant: 5).isActive = true
+        button.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5).isActive = true
     }
 }

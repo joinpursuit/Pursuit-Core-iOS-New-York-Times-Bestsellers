@@ -39,7 +39,6 @@ class BestSellerView: UIView {
         let myCollectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
       myCollectionView.backgroundColor = UIColor.clear.withAlphaComponent(0.5)
 myCollectionView.backgroundColor = .green
-
         myCollectionView.layer.cornerRadius = 10
         myCollectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "collectionCell")
         return myCollectionView
@@ -87,11 +86,9 @@ myCollectionView.backgroundColor = .green
     
     func addBlur() {
         let blurrEffect = UIBlurEffect(style: .light)
-    
         let effectView = UIVisualEffectView(effect: blurrEffect)
         effectView.frame = self.bounds
         effectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
         addSubview(effectView)
         
     }
