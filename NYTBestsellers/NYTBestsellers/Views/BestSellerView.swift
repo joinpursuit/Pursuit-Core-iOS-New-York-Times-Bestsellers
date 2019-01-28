@@ -9,14 +9,15 @@
 import UIKit
 
 class BestSellerView: UIView {
-    
+   
+
     public lazy var colloectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         layout.itemSize = CGSize.init(width: 200, height: 250)
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
         layout.scrollDirection = .horizontal
-        collectionView.backgroundColor = .red
+        collectionView.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
         return collectionView
     }()
     
@@ -29,7 +30,7 @@ class BestSellerView: UIView {
     override init(frame: CGRect) {
         super .init(frame: UIScreen.main.bounds)
         
-        colloectionView.dataSource = self
+       
         commonInit()
     }
     
@@ -65,21 +66,5 @@ extension BestSellerView {
     }
     
    
-}
-extension BestSellerView: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestSellerCell", for: indexPath) as? BestSellerCell else { return UICollectionViewCell() }
-        cell.label.text = "Weeks on Best Seller"
-        cell.image.image = UIImage.init(named: "icons8-open_book")
-        cell.textView.text = "Success"
-        return cell
-    }
-    
-    
 }
 

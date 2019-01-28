@@ -24,4 +24,21 @@ final class APIClient {
             }
         }
     }
+    static func getBooks(keyword: String, completionHandler: @escaping (AppError?, [BookResults]?) -> Void) {
+        let urlString = "https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=\(SecretKeys.APIKey)&list=\(keyword)"
+        NetworkHelper.shared.performDataTask(endpointURLString: urlString) { (error, data) in
+            if let error = error {
+                completionHandler(error, nil)
+            } else if let data = data {
+                do {
+                    let books = try JSONDecoder().decode(Books.self, from: data)
+                    completionHandler(nil, books.results)
+                } catch {
+                    completionHandler(AppError.jsonDecodingError(error), nil)
+                }
+            }
+        }
+    }
+
+    
 }
