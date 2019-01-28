@@ -16,6 +16,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
+    let bestSellerVC = BestSellerVC()
+    let bestSellerDetailVC = BestSellerDetailVC()
+    let optionsVC = OptionsVC()
+    let favoriteVC = FavoritesVC()
+    let tab = UITabBarController()
+    let nav = UINavigationController.init(rootViewController: tab)
+    tab.viewControllers = [bestSellerVC, favoriteVC, optionsVC]
+    
+    bestSellerVC.title = "Best Sellers"
+    optionsVC.title = "Options"
+    favoriteVC.title = "Favorites"
+    
+    
+    window = UIWindow.init(frame: UIScreen.main.bounds)
+    window?.rootViewController = nav//this is where the arrow thingy is pointing
+    window?.makeKeyAndVisible()
+    
+    
+    
+    
+
     return true
   }
 
