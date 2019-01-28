@@ -18,6 +18,29 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     }()
     
     
+    lazy var bestSellerCollectionLabel: UILabel = {
+        let mylabel = UILabel()
+        mylabel.textAlignment = .center
+        mylabel.backgroundColor = .black
+        mylabel.text = "Book test"
+        mylabel.textColor = .white
+        return mylabel
+    }()
+    
+    lazy var bestSellerTextView: UITextView = {
+        let myTextView = UITextView()
+        myTextView.textColor = .white
+        myTextView.backgroundColor = .gray
+        myTextView.textAlignment = .center
+        myTextView.text = "Book description test"
+        myTextView.isEditable = false
+        myTextView.isSelectable = false
+        return myTextView
+    }()
+    
+    
+    
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         backgroundColor = .blue

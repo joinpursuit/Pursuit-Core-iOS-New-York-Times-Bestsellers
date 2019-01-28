@@ -18,7 +18,7 @@ class DetailView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
-        
+        backgroundColor = .white
         
     }
     

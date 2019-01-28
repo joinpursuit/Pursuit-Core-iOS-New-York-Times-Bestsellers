@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     settings.tabBarItem = UITabBarItem.init(title: "Settings", image: UIImage(named: "settings"), selectedImage: UIImage(named: "selectedSettings"))
     let detail = DetailViewController()
     detail.title = "Detail"
+    
     let controllers = [mainVC, favs, settings]
     nav.viewControllers = controllers
     let tab = UITabBarController()

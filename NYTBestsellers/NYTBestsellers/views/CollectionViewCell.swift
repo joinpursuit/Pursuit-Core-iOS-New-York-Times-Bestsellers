@@ -32,6 +32,8 @@ class CollectionViewCell: UICollectionViewCell {
         myTextView.backgroundColor = .gray
         myTextView.textAlignment = .center
         myTextView.text = "Book description test"
+        myTextView.isEditable = false
+        myTextView.isSelectable = false
         return myTextView
     }()
     

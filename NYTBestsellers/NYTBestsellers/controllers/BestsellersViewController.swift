@@ -13,15 +13,14 @@ import UIKit
 class BestSellerViewController: UIViewController {
     let bestSeller = BestSellerView()
     
-   
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    self.view.addSubview(bestSeller)
-    bestSeller.BestSellerCollectionView.delegate = self
+        self.view.addSubview(bestSeller)
+        bestSeller.BestSellerCollectionView.delegate = self
         bestSeller.BestSellerCollectionView.dataSource = self
-
     }
 }
 
@@ -37,12 +36,13 @@ extension BestSellerViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as? CollectionViewCell else {return UICollectionViewCell() }
-     
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-     
+       let detailController = DetailViewController()
+        self.navigationController?.pushViewController(detailController, animated: true)
+        
     }
     
     

@@ -10,10 +10,16 @@ import UIKit
 
 
 class DetailViewController: UIViewController {
-    
+    let detailview = DetailView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.addSubview(detailview)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Favorite", style: .plain, target: self, action: #selector(addToFavorite))
+    }
+    
+    @objc private func addToFavorite() {
+        
     }
     
 }
