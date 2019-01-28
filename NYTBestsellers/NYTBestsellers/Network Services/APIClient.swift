@@ -39,6 +39,21 @@ final class APIClient {
             }
         }
     }
+    static func getGoogleImage(keyword: String, completionHandler: @escaping (AppError?, VolumeInfo?) -> Void) {
+        let urlString = "https://www.googleapis.com/books/v1/volumes?q=+isbn:\(keyword)&key\(SecretKeys.GoogleKey)"
+        NetworkHelper.shared.performDataTask(endpointURLString: urlString) { (error, data) in
+            if let error = error {
+                completionHandler(error, nil)
+            } else if let data = data {
+                do {
+                    let books = try JSONDecoder().decode(Google.self, from: data)
+                    completionHandler(nil, books.items?.first?.volumeInfo)
+                } catch {
+                    completionHandler(AppError.jsonDecodingError(error), nil)
+                }
+            }
+        }
+    }
 
     
 }

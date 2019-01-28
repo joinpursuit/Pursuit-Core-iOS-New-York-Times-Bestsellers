@@ -7,12 +7,15 @@
 //
 
 import UIKit
-protocol PickerDelegate: AnyObject {
-    func pickerWheel(genre: String)
-}
+
 class BestSellersViewController: UIViewController {
-    weak var delegate: PickerDelegate?
+    
     let bestSellerView = BestSellerView()
+//    var getAllBestSellerViewAPICall = false {
+//        if getAllBestSellerViewAPICall == true {
+//
+//        }
+//    }
     var genre = [Results](){
         didSet{
             DispatchQueue.main.async {
@@ -22,6 +25,14 @@ class BestSellersViewController: UIViewController {
         
     }
     var books = [BookResults](){
+        didSet{
+            DispatchQueue.main.async {
+                self.bestSellerView.colloectionView.reloadData()
+            }
+        }
+        
+    }
+    var images = [VolumeInfo](){
         didSet{
             DispatchQueue.main.async {
                 self.bestSellerView.colloectionView.reloadData()
@@ -64,6 +75,7 @@ class BestSellersViewController: UIViewController {
 
         }
     }
+   
     
 }
 extension BestSellersViewController: UIPickerViewDataSource, UIPickerViewDelegate{
@@ -81,6 +93,7 @@ extension BestSellersViewController: UIPickerViewDataSource, UIPickerViewDelegat
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         getBooks(keyword: genre[row].listName)
+        
     }
     
 }
@@ -88,14 +101,34 @@ extension BestSellersViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return books.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestSellerCell", for: indexPath) as? BestSellerCell else { return UICollectionViewCell() }
+        cell.label.text = "Weeks on list \(books[indexPath.row].weeks_on_list)"
+       
+        APIClient.getGoogleImage(keyword: (books[indexPath.row].book_details.first?.primary_isbn13)!) { (error, data) in
+            if let error = error {
+                print(error.errorMessage())
+            } else if let data = data {
+              
+                
+                ImageHelper.fetchImageFromNetwork(urlString: data.imageLinks.smallThumbnail){ (error, image) in
+                    if let error = error {
+                        print(error.errorMessage())
+                    }
+                    if let image = image {
+                        cell.image.image = image
+                    }
+                }
+
+            }
+        }
         
-        cell.label.text = books[indexPath.row].weeks_on_list.description
-        cell.image.image = UIImage.init(named: "icons8-open_book")
+
+        
         cell.textView.text = books[indexPath.row].book_details.first?.description
+       
         return cell
     }
     
