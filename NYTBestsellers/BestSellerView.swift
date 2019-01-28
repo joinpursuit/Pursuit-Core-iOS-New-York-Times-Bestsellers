@@ -13,7 +13,7 @@ class BestSellerView: UIView {
     public lazy var colloectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        layout.itemSize = CGSize.init(width: 100, height: 150)
+        layout.itemSize = CGSize.init(width: 200, height: 250)
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
         layout.scrollDirection = .horizontal
         collectionView.backgroundColor = .red
@@ -63,6 +63,7 @@ extension BestSellerView {
         pickerView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         pickerView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.50).isActive = true
     }
+    
    
 }
 extension BestSellerView: UICollectionViewDataSource {
@@ -73,8 +74,12 @@ extension BestSellerView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestSellerCell", for: indexPath) as? BestSellerCell else { return UICollectionViewCell() }
+        cell.label.text = "Weeks on Best Seller"
+        cell.image.image = UIImage.init(named: "icons8-open_book")
+        cell.textView.text = "Success"
         return cell
     }
     
     
 }
+
