@@ -63,15 +63,14 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = bestSellersView.collectionView.dequeueReusableCell(withReuseIdentifier: "BookCollectionViewCell", for: indexPath) as? BookCollectionViewCell else { return UICollectionViewCell() }
         let book = bookListData[indexPath.row]
-        cell.bookDescriptionTextView.text = book.book_details.first?.bookDescription
+        cell.bookDescriptionLabel.text = book.book_details.first?.bookDescription
         cell.numberOfWeeksOnList.text = "\(book.weeks_on_list.description) week on Best Seller"
         if let bookDetailsExists = book.book_details.first {
-            GoogleBooksAPIClient.getGoogleBookImageUrl(bookISBN: bookDetailsExists.primaryISBN13, size: "small") { (appError, imageURL) in
+            GoogleBooksAPIClient.getGoogleBookImageUrl(bookISBN: bookDetailsExists.primaryISBN13) { (appError, imageURL) in
             if let appError = appError {
                 print("GoogleBooksAPIClient - \(appError)")
             } else if let imageURL = imageURL {
                 if let image = ImageHelper.fetchImageFromCache(urlString: imageURL) {
-                    print("image exists in cache")
                     DispatchQueue.main.async {
                                             cell.bookImage.image = image
                     }
@@ -96,14 +95,15 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("cellClicked \(indexPath.row)")
 //        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
 //        guard let vc = storyboard.instantiateViewController(withIdentifier: "BookDetailViewController") as? BookDetailViewController else { return }
 //        vc.modalPresentationStyle = .overCurrentContext
-//        vc.bookDetail = bookListData[indexPath.row]
+//        vc.bookList = bookListData[indexPath.row]
 //        navigationController?.pushViewController(BookDetailViewController(), animated: true)
-        let vc = BookDetailViewController()
-        vc.bookList = bookListData[indexPath.row]
-        present(vc, animated: true, completion: nil)
+//        let vc = BookDetailViewController()
+//        vc.bookList = bookListData[indexPath.row]
+//        present(vc, animated: true, completion: nil)
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

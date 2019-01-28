@@ -21,22 +21,20 @@ class BookCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    public lazy var bookDescriptionTextView: UITextView = {
-        let tv = UITextView()
-        tv.text = "Book description"
-        tv.font = tv.font?.withSize(14)
-        tv.isSelectable = false
-        tv.isEditable = false
-        return tv
+    public lazy var bookDescriptionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Book Description"
+        label.numberOfLines = 0
+        label.font = label.font.withSize(14)
+        return label
     }()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
         self.addSubview(bookImage)
         self.addSubview(numberOfWeeksOnList)
-        self.addSubview(bookDescriptionTextView)
+        self.addSubview(bookDescriptionLabel)
         setConstraints()
     }
     
@@ -45,7 +43,7 @@ class BookCollectionViewCell: UICollectionViewCell {
     }
     
     func setConstraints() {
-        [bookImage, numberOfWeeksOnList, bookDescriptionTextView].forEach{ $0.translatesAutoresizingMaskIntoConstraints = false }
+        [bookImage, numberOfWeeksOnList, bookDescriptionLabel].forEach{ $0.translatesAutoresizingMaskIntoConstraints = false }
         [bookImage.centerXAnchor.constraint(equalTo: centerXAnchor),
          bookImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 5),
          bookImage.heightAnchor.constraint(equalToConstant: 150),
@@ -53,9 +51,8 @@ class BookCollectionViewCell: UICollectionViewCell {
          [numberOfWeeksOnList.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 11),
           numberOfWeeksOnList.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5),
           numberOfWeeksOnList.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 5)].forEach{ $0.isActive = true }
-         [bookDescriptionTextView.topAnchor.constraint(equalTo: numberOfWeeksOnList.bottomAnchor, constant: 0),
-          bookDescriptionTextView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5),
-          bookDescriptionTextView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 5),
-          bookDescriptionTextView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 5)].forEach{ $0.isActive = true }
+         [bookDescriptionLabel.topAnchor.constraint(equalTo: numberOfWeeksOnList.bottomAnchor, constant: 11),
+          bookDescriptionLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5),
+          bookDescriptionLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 5)].forEach{ $0.isActive = true }
     }
 }
