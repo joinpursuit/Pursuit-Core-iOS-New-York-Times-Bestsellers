@@ -26,7 +26,7 @@ struct NYTAPIClient {
         }
     }
     
-    static func searchForBooks(in list: String, completionHandler: @escaping ((AppError?, [BookList]?) -> Void)) {
+    static func searchForBooks(in list: String, completionHandler: @escaping ((AppError?, [NYTBook]?) -> Void)) {
         NetworkHelper.shared.performDataTask(endpointURLString: "https://api.nytimes.com/svc/books/v3/lists.json?api-key=\(SecretKeys.nytAPIKey)&list=\(list)") { (appError, data) in
             if let appError = appError {
                 completionHandler(appError, nil)

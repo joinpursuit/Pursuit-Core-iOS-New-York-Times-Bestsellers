@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol BestSellersViewControllerDelegate: AnyObject {
+    func sendOverBook(bookToSet: NYTBook, detailBookDescription: String)
+}
+
 class BestSellersViewController: UIViewController {
-    
+    weak var delegate: BestSellersViewControllerDelegate?
+    private var detailBookDescription = ""
     private let bestSellersView = BestSellersView()
     private var currentBookCategory = "Animals" {
         didSet {
@@ -23,7 +28,7 @@ class BestSellersViewController: UIViewController {
             }
         }
     }
-    private var bookListData = [BookList]() {
+    private var books = [NYTBook]() {
         didSet {
             DispatchQueue.main.async {
                 self.bestSellersView.collectionView.reloadData()
@@ -32,11 +37,11 @@ class BestSellersViewController: UIViewController {
     }
 
     fileprivate func searchForBooks() {
-        NYTAPIClient.searchForBooks(in: currentBookCategory) { (appError, bookList) in
+        NYTAPIClient.searchForBooks(in: currentBookCategory) { (appError, books) in
             if let appError = appError {
                 print("error in getting book list - \(appError)")
-            } else if let bookList = bookList {
-                self.bookListData = bookList
+            } else if let books = books {
+                self.books = books
             }
         }
     }
@@ -62,7 +67,7 @@ class BestSellersViewController: UIViewController {
 extension BestSellersViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = bestSellersView.collectionView.dequeueReusableCell(withReuseIdentifier: "BookCollectionViewCell", for: indexPath) as? BookCollectionViewCell else { return UICollectionViewCell() }
-        let book = bookListData[indexPath.row]
+        let book = books[indexPath.row]
         cell.bookDescriptionLabel.text = book.book_details.first?.bookDescription
         cell.numberOfWeeksOnList.text = "\(book.weeks_on_list.description) week on Best Seller"
         if let bookDetailsExists = book.book_details.first {
@@ -72,7 +77,7 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
             } else if let imageURL = imageURL {
                 if let image = ImageHelper.fetchImageFromCache(urlString: imageURL) {
                     DispatchQueue.main.async {
-                                            cell.bookImage.image = image
+                        cell.bookImage.image = image
                     }
                 } else {
                     ImageHelper.fetchImageFromNetwork(urlString: imageURL, completion: { (appError, image) in
@@ -85,33 +90,21 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
             }
             }
         }
-        } else {
-            print("book details do not exist")
         }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return bookListData.count
+        return books.count
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("cellClicked \(indexPath.row)")
-//        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-//        guard let vc = storyboard.instantiateViewController(withIdentifier: "BookDetailViewController") as? BookDetailViewController else { return }
-//        vc.modalPresentationStyle = .overCurrentContext
-//        vc.bookList = bookListData[indexPath.row]
-//        navigationController?.pushViewController(BookDetailViewController(), animated: true)
-//        let vc = BookDetailViewController()
-//        vc.bookList = bookListData[indexPath.row]
-//        present(vc, animated: true, completion: nil)
+        let bookToSet = books[indexPath.row]
+        let bookDetail = BookDetailViewController()
+        self.delegate = bookDetail
+        self.delegate?.sendOverBook(bookToSet: bookToSet, detailBookDescription: detailBookDescription)
+       navigationController?.pushViewController(bookDetail, animated: true)
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let destination = segue.destination as! BookDetailViewController
-//        let cell = sender as! UICollectionViewCell
-//        let indexPath = self.bestSellersView.collectionView.indexPath(for: cell)
-//        destination.bookList = bookListData[indexPath!.row]
-//    }
 }
 
 extension BestSellersViewController: UIPickerViewDataSource, UIPickerViewDelegate {
