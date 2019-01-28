@@ -64,21 +64,22 @@ extension DetailedView {
     imageConstraints()
     authorLabelConstraints()
     bookDescriptionConstraints()
+    amazonLaunchConstraints()
     
   }
   
   private func imageConstraints() {
     bookCover.translatesAutoresizingMaskIntoConstraints = false
-    bookCover.topAnchor.constraint(equalTo: topAnchor, constant: 11).isActive = true
+    bookCover.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 11).isActive = true
     bookCover.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.5).isActive = true
-    bookCover.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.5).isActive = true
+    bookCover.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.6).isActive = true
     bookCover.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
   }
   
   
   private func authorLabelConstraints() {
     authorName.translatesAutoresizingMaskIntoConstraints = false
-    authorName.topAnchor.constraint(equalTo: bookCover.bottomAnchor, constant: 8).isActive = true
+    authorName.topAnchor.constraint(equalTo: bookCover.bottomAnchor, constant: 16).isActive = true
     authorName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11).isActive = true
     authorName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
     
@@ -86,14 +87,15 @@ extension DetailedView {
   
   private func bookDescriptionConstraints() {
     bookDescription.translatesAutoresizingMaskIntoConstraints = false
-    bookDescription.topAnchor.constraint(equalTo: authorName.bottomAnchor, constant: 11).isActive = true
+    bookDescription.topAnchor.constraint(equalTo: authorName.bottomAnchor, constant: 16).isActive = true
     bookDescription.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11).isActive = true
     bookDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
-    bookDescription.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.3).isActive = true
+    bookDescription.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.35).isActive = true
   }
   
   private func amazonLaunchConstraints() {
    amazonLaunchButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 11).isActive = true
     amazonLaunchButton.leadingAnchor.constraint(equalTo: bookCover.trailingAnchor, constant: 5).isActive = true
+    amazonLaunchButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 5).isActive = true
   }
 }

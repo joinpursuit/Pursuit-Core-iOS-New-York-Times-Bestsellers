@@ -11,6 +11,7 @@ import UIKit
 class NYTBestSellerController: UIViewController {
   
   let bestSellerView = BestSellerView()
+  public var imageToSegue = UIImage()
   
   var categoriesInfo = [BookCategories]() {
     didSet {
@@ -100,6 +101,7 @@ extension NYTBestSellerController: UICollectionViewDataSource, UICollectionViewD
         
         let imageToSet = data[0].volumeInfo.imageLinks.thumbnail
         
+        
         DispatchQueue.main.async {
           if let image = ImageHelper.fetchImageFromCache(urlString: imageToSet){
             DispatchQueue.main.async {
@@ -113,6 +115,7 @@ extension NYTBestSellerController: UICollectionViewDataSource, UICollectionViewD
               }
               if let image = image{
                 cell.imageCover.image = image
+                self.imageToSegue = image
               }
             })
           }
@@ -130,6 +133,7 @@ extension NYTBestSellerController: UICollectionViewDataSource, UICollectionViewD
     let detailedVC = BookDetailsController()
     detailedVC.bookInDetail = bookToSegue
     print("I am here")
+    detailedVC.imageForDetailed = imageToSegue
     
     navigationController?.pushViewController(detailedVC, animated: true)
     
