@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2E65331521FEB3AE00D62A52 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E65331421FEB3AE00D62A52 /* NetworkHelper.swift */; };
 		2E65331721FEBB6C00D62A52 /* BooksModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E65331621FEBB6C00D62A52 /* BooksModel.swift */; };
+		2E73B39B21FFA0F800E3C5C6 /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E73B39A21FFA0F800E3C5C6 /* SecretKeys.swift */; };
 		2ED3176821FBF5D500F95592 /* BooksApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED3176721FBF5D500F95592 /* BooksApiClient.swift */; };
 		2ED3176A21FBF5DE00F95592 /* BooksCoverModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED3176921FBF5DE00F95592 /* BooksCoverModel.swift */; };
 		2ED3176C21FBF5EA00F95592 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED3176B21FBF5EA00F95592 /* CategoryModel.swift */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		2E65331421FEB3AE00D62A52 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		2E65331621FEBB6C00D62A52 /* BooksModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksModel.swift; sourceTree = "<group>"; };
+		2E73B39A21FFA0F800E3C5C6 /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
 		2ED3176721FBF5D500F95592 /* BooksApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksApiClient.swift; sourceTree = "<group>"; };
 		2ED3176921FBF5DE00F95592 /* BooksCoverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksCoverModel.swift; sourceTree = "<group>"; };
 		2ED3176B21FBF5EA00F95592 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 		5718BFDC21FA75A800A8E4B8 = {
 			isa = PBXGroup;
 			children = (
+				2E73B39A21FFA0F800E3C5C6 /* SecretKeys.swift */,
 				5718BFE721FA75A800A8E4B8 /* NYTBestsellers */,
 				5718BFE621FA75A800A8E4B8 /* Products */,
 			);
@@ -317,6 +320,7 @@
 				2ED3176821FBF5D500F95592 /* BooksApiClient.swift in Sources */,
 				2EF7D23421FB9515006DC01A /* FavoritesCollectionViewCell.swift in Sources */,
 				2EF7D21C21FB91C4006DC01A /* BestSellerView.swift in Sources */,
+				2E73B39B21FFA0F800E3C5C6 /* SecretKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
