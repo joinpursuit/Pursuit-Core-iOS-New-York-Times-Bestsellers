@@ -87,12 +87,19 @@
 			children = (
 				4812A7A821FBB04200429727 /* SettingsView.swift */,
 				4812A7AF21FC017C00429727 /* FavoriteBookView.swift */,
-				4812A7B321FEA94A00429727 /* NewYorkTimesData.swift */,
 				4812A7F921FF9BA100429727 /* DetailBookView.swift */,
-				4812A7B521FF51C400429727 /* BookImageData.swift */,
 				4812A7A021FB9A0400429727 /* BestSellerView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		4812A7FB21FFBB4B00429727 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4812A7B321FEA94A00429727 /* NewYorkTimesData.swift */,
+				4812A7B521FF51C400429727 /* BookImageData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		5718BFDC21FA75A800A8E4B8 = {
@@ -116,6 +123,7 @@
 			children = (
 				5718C00721FA78E800A8E4B8 /* Network Services */,
 				5718C00921FA791C00A8E4B8 /* File Manager Helpers */,
+				4812A7FB21FFBB4B00429727 /* Model */,
 				5718C00821FA790000A8E4B8 /* Date Helpers */,
 				4812A7AE21FBF28900429727 /* Views */,
 				4812A79F21FB92D100429727 /* Controllers */,

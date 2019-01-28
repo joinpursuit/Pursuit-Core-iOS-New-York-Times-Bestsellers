@@ -14,13 +14,11 @@ class SettingsView: UIView {
         
         return image
     }()
-    let colors = ["red", "blue", "green"]
+    
     lazy var settingsPickerViewObj: UIPickerView = {
         let pickerView = UIPickerView()
         pickerView.frame = CGRect(x: 0, y: 350, width: frame.width, height: 200)
         pickerView.backgroundColor = UIColor.white
-        pickerView.dataSource = self
-        pickerView.delegate =  self
         return pickerView
     }()
     
@@ -43,17 +41,4 @@ class SettingsView: UIView {
     
 }
 
-extension SettingsView: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return colors.count
-    }
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return colors[row]
-    }
-    
-    
-}
+

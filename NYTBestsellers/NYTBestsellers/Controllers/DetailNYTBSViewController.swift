@@ -17,7 +17,7 @@ class DetailNYTBSViewController: UIViewController {
         view.addSubview(detailDestination)
         // Do any additional setup after loading the view.
     }
-    
+
     @objc private func addToFavorites(){}
     
 
