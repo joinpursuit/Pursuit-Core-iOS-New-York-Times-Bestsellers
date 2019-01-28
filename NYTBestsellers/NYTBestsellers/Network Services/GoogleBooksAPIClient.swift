@@ -10,20 +10,19 @@ import Foundation
 
 struct GoogleBooksAPIClient {
     private init() { }
-    static func getGoogleBookImageUrl(size: String, completionHandler: @escaping ((AppError?, String?) -> Void)) {
-        NetworkHelper.shared.performDataTask(endpointURLString: "") { (appError, data) in
+    static func getGoogleBookImageUrl(bookISBN: String, size: String, completionHandler: @escaping ((AppError?, String?) -> Void)) {
+        NetworkHelper.shared.performDataTask(endpointURLString: "https://www.googleapis.com/books/v1/volumes?q=isbn:\(bookISBN)&key=\(SecretKeys.googleAPIKeys[0])") { (appError, data) in
             if let appError = appError {
                 completionHandler(appError, nil)
             }
             if let data = data {
                 do {
-                    let bookImageString = try JSONDecoder().decode(GoogleBook.self, from: data)
+                    let bookExists = try JSONDecoder().decode(GoogleBook.self, from: data)
                     if size == "small" {
-                                            completionHandler(nil, bookImageString.items.first?.imageLinks.thumbnail)
+                        completionHandler(nil, bookExists.items?.first?.volumeInfo.imageLinks.smallThumbnail)
                     } else {
-                        completionHandler(nil, bookImageString.items.first?.imageLinks.thumbnail)
+                        completionHandler(nil, bookExists.items?.first?.volumeInfo.imageLinks.thumbnail)
                     }
-
                 } catch {
                     completionHandler(AppError.jsonDecodingError(error), nil)
                 }

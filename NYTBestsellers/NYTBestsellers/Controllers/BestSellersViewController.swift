@@ -65,6 +65,30 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
         let book = bookListData[indexPath.row]
         cell.bookDescriptionTextView.text = book.book_details.first?.bookDescription
         cell.numberOfWeeksOnList.text = "\(book.weeks_on_list.description) week on Best Seller"
+        if let bookDetailsExists = book.book_details.first {
+            GoogleBooksAPIClient.getGoogleBookImageUrl(bookISBN: bookDetailsExists.primaryISBN13, size: "small") { (appError, imageURL) in
+            if let appError = appError {
+                print("GoogleBooksAPIClient - \(appError)")
+            } else if let imageURL = imageURL {
+                if let image = ImageHelper.fetchImageFromCache(urlString: imageURL) {
+                    print("image exists in cache")
+                    DispatchQueue.main.async {
+                                            cell.bookImage.image = image
+                    }
+                } else {
+                    ImageHelper.fetchImageFromNetwork(urlString: imageURL, completion: { (appError, image) in
+                    if let appError = appError {
+                        print("fetchImageNetwork - \(appError)")
+                    } else if let image = image {
+                        cell.bookImage.image = image
+                    }
+                })
+            }
+            }
+        }
+        } else {
+            print("book details do not exist")
+        }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

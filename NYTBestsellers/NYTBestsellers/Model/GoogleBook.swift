@@ -9,10 +9,14 @@
 import Foundation
 
 struct GoogleBook: Codable {
-    let items: [GoogleBookDetails]
+    let items: [GoogleBookDetails]?
 }
 
 struct GoogleBookDetails: Codable {
+    let volumeInfo: VolumeInfo
+}
+
+struct VolumeInfo: Codable {
     let imageLinks: ImageLinks
 }
 
