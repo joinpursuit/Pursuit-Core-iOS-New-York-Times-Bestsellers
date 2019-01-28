@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    let navigation = UINavigationController()
     let tabBarController = UITabBarController()
     let newYorkBS = NYTimesBestSellerViewController()
     let favorite = FavoritesViewController()
@@ -23,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      favorite.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
      setting.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 2)
     let controllers = [newYorkBS, favorite, setting]
+    navigation.viewControllers = controllers
     tabBarController.viewControllers = controllers
     window = UIWindow.init(frame: UIScreen.main.bounds)
     tabBarController.viewControllers = controllers.map { UINavigationController(rootViewController: $0)}

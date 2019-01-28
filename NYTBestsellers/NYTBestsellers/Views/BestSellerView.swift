@@ -16,7 +16,7 @@ import UIKit
  */
 
 class BestSellerView: UIView {
-    let numbers = ["0","1","2","3","4","5","6","7","8","9"]
+   
     lazy var collectionViewCellObj: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize =  CGSize.init(width: 300, height: 300)
@@ -24,16 +24,13 @@ class BestSellerView: UIView {
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         backgroundColor = .white
-       collectionView.dataSource = self
-       collectionView.delegate = self
+      
         return collectionView
     }()
     lazy var pickerViewObj: UIPickerView = {
         let pickerView = UIPickerView()
        
         pickerView.backgroundColor = UIColor.white
-        pickerView.dataSource = self
-        pickerView.delegate =  self
         backgroundColor = .white
         return pickerView
     }()
@@ -76,28 +73,3 @@ class BestSellerView: UIView {
     }
 }
 
-extension BestSellerView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestSellerCell", for: indexPath) as? BestSellerCell else {return UICollectionViewCell()}
-        return cell
-    }
-}
-
-extension BestSellerView: UIPickerViewDataSource, UIPickerViewDelegate {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-     return 1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-       return numbers.count
-    }
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return numbers[row]
-    }
-
-
-}

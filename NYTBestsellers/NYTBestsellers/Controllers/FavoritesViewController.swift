@@ -15,18 +15,20 @@ class FavoritesViewController: UIViewController {
         self.title = "Favorites"
         self.view.backgroundColor = .red
         view.addSubview(favoritesView)
-        // Do any additional setup after loading the view.
+        favoritesView.collectionViewCellObj.dataSource = self
+        favoritesView.collectionViewCellObj.delegate = self
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+extension FavoritesViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 50
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteCell", for: indexPath) as? FavoiteBookCell else {return UICollectionViewCell()}
+        return cell
+    }
+}
+

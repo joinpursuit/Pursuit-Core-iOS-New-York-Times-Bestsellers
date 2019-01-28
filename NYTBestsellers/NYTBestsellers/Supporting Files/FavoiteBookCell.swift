@@ -13,6 +13,10 @@ class FavoiteBookCell: UICollectionViewCell {
         let image = UIImageView.init(image: UIImage.init(named: "placeHolder"))
         return image
     }()
+    lazy var deletebuttonObj: UIButton = {
+        let button = UIButton()
+        return button
+    }()
     lazy var favoriteBookTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Best Seller list label"
@@ -70,6 +74,6 @@ class FavoiteBookCell: UICollectionViewCell {
         favoriteDetailDescriptionObj.topAnchor.constraint(equalTo: favoriteBookTitleLabel.bottomAnchor, constant: 0).isActive = true
         favoriteDetailDescriptionObj.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
         favoriteDetailDescriptionObj.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
-        favoriteDetailDescriptionObj.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: 11).isActive = true
+        favoriteDetailDescriptionObj.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
     }
 }

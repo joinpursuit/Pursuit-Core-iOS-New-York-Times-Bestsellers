@@ -72,7 +72,7 @@ bestSellerBookDescriptionTxtViewObj.translatesAutoresizingMaskIntoConstraints = 
         bestSellerBookDescriptionTxtViewObj.topAnchor.constraint(equalTo: titleLabelObj.bottomAnchor, constant: 0).isActive = true
     bestSellerBookDescriptionTxtViewObj.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
     bestSellerBookDescriptionTxtViewObj.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
-    bestSellerBookDescriptionTxtViewObj.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: 11).isActive = true
+    bestSellerBookDescriptionTxtViewObj.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
         
     }
 }

@@ -16,8 +16,7 @@ class FavoriteBookView: UIView {
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
         backgroundColor = .white
-        collectionView.dataSource = self
-        collectionView.delegate = self
+        
         return collectionView
     }()
     override init(frame: CGRect) {
@@ -53,15 +52,3 @@ class FavoriteBookView: UIView {
 
 }
 
-extension FavoriteBookView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteCell", for: indexPath) as? FavoiteBookCell else {return UICollectionViewCell()}
-        return cell
-    }
-    
-    
-}
