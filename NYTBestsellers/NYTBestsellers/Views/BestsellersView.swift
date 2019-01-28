@@ -12,10 +12,13 @@ class BestsellersView: UIView {
 
     lazy var bestSellerCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize.init(width: 100, height: 100)
+        layout.itemSize = CGSize.init(width: 200, height: 150)
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
+        layout.scrollDirection = .horizontal
         let bscv = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
-        bscv.backgroundColor = .white
+        bscv.register(BestsellersCollectionViewCell.self, forCellWithReuseIdentifier: "BestsellersCell")
+        bscv.backgroundColor = .purple
+        
         return bscv
         
     }()

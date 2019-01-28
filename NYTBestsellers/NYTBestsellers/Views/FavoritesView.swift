@@ -10,12 +10,26 @@ import UIKit
 
 class FavoritesView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    lazy var favoriteCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize.init(width: 300, height: 325)
+        layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
+        let cv = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
+        cv.register(FavoritesCollectionViewCell.self, forCellWithReuseIdentifier: "FavoritesCell")
+        cv.backgroundColor = .white
+        return cv
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: UIScreen.main.bounds)
+        self.addSubview(favoriteCollectionView)
+        self.addSubview(favoriteCollectionView)
     }
-    */
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 
 }
+
