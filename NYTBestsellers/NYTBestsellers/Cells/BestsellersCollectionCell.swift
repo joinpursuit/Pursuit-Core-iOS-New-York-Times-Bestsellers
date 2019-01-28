@@ -33,7 +33,7 @@ class BestsellersCollectionCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .blue
-        //addSubview(bookImageView)
+        addSubview(bookImageView)
         setContraints()
     }
     
@@ -67,7 +67,7 @@ class BestsellersCollectionCell: UICollectionViewCell {
             bestsellersDescriptionTextView.topAnchor.constraint(equalTo: weeksLabel.bottomAnchor, constant: 5),
             bestsellersDescriptionTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11),
             bestsellersDescriptionTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11),
-            bestsellersDescriptionTextView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.3)
+            bestsellersDescriptionTextView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.25)
             
             ])
     }
