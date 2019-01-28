@@ -20,11 +20,27 @@ class SettingsViewController: UIViewController {
         }
     }
 
+    let defaultCategory = "travel"
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title =
             "Pick Default Category"
         view.addSubview(settingsView)
+        setupCategory()
+        
+        settingsView.mySettingsPickerView.dataSource = self
+        settingsView.mySettingsPickerView.delegate = self
+    }
+    func setupCategory() {
+        var category = ""
+        if let categorySelected = UserDefaults.standard.object(forKey: "Category") as? String {
+            category = categorySelected
+        } else {
+            category = defaultCategory
+        }
+        setupSettings()
+    }
+    func setupSettings() {
         NYTBookAPI.getBookCategories { (appError, categories) in
             if let appError = appError {
                 print("book categories error: \(appError)")
@@ -32,8 +48,6 @@ class SettingsViewController: UIViewController {
                 self.settingsCategories = categories
             }
         }
-        settingsView.mySettingsPickerView.dataSource = self
-        settingsView.mySettingsPickerView.delegate = self
     }
 }
 extension SettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -47,6 +61,10 @@ extension SettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return settingsCategories[row].displayName
     }
-    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let category = settingsCategories[row].listNameEncoded
+        UserDefaults.standard.set(category, forKey: "Category")
+        setupSettings()
+    }
     
 }

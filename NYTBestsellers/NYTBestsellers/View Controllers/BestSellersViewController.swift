@@ -27,6 +27,21 @@ class BestSellersViewController: UIViewController {
             }
         }
     }
+//    private var bookInfo = [VolumeInfo]() {
+//        didSet {
+//            DispatchQueue.main.async {
+//                self.bestSellerView.myBestSellerCollectionView.reloadData()
+//            }
+//        }
+//    }
+    
+    private var bookImage = UIImage() {
+        didSet {
+            DispatchQueue.main.async {
+                self.bestSellerView.myBestSellerCollectionView.reloadData()
+            }
+        }
+    }
     var listName = String()
     
     override func viewDidLoad() {
@@ -58,6 +73,21 @@ class BestSellersViewController: UIViewController {
             }
         }
     }
+    private func setupGoogleInfo(bookIsbn: String) {
+//        GoogleBookAPI.getGoogleInfo(bookIsbn: bookIsbn) { (appError, urlString) in
+//            if let appError = appError {
+//                print("error getting pixabay image url string - \(appError)")
+//            } else if let urlString = urlString {
+//                ImageHelper.fetchImageFromNetwork(urlString: urlString, completion: { (appError, image) in
+//                    if let appError = appError {
+//                        print("error trying to get image out of pixabay url - \(appError)")
+//                    } else if let image = image {
+//                        self.bookImage = image
+//                    }
+//                })
+//            }
+//        }
+    }
 }
 extension BestSellersViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -67,16 +97,20 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestCollectionViewCell", for: indexPath) as? BestCollectionViewCell else { return UICollectionViewCell()}
         let book = bestSellerBooks[indexPath.row]
+        if let isbn = book.bookDetails.first?.primaryIsbn13 {
+        }
         cell.cellLabel.text = "\(book.weeksOnList) weeks on Best Sellers"
         cell.cellTextView.text = book.bookDetails.first?.bookDescription
+//        cell.cellImage.image =
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let book = bestSellerBooks[indexPath.row]
         let detailVC = DetailViewController()
-        detailVC.detailView.detailLabel.text = book.listName
-        //let book = books[index.row]
-        //detailVC.book = book
+        detailVC.detailView.detailLabel.text = book.bookDetails.first?.author
+        detailVC.detailView.detailTextView.text = book.bookDetails.first?.bookDescription
+
+        
         navigationController?.pushViewController(detailVC, animated: true)
     }
     
