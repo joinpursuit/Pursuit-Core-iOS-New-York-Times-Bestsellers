@@ -9,6 +9,6 @@
 import Foundation
 
 class SecretKeys {
-    static let APIKey = "Y2Duz9xklc2TKyp2MFPBg1aLB2NszAGK"
+    static let APIKey = "UuicDUmYGGxbD0B48QavhRujWWzcvjuu"
 }
 
