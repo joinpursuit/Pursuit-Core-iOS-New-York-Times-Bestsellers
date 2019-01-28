@@ -15,7 +15,6 @@ struct BookListResult: Codable {
 struct BookList: Codable {
     let weeks_on_list: Int
     let amazon_product_url: String
-//    let isbns: [ISBNArray]
     let book_details: [BookDetail]
 }
 
@@ -36,8 +35,3 @@ struct BookDetail: Codable {
         case primaryISBN10 = "primary_isbn10"
     }
 }
-
-//struct ISBNArray: Codable {
-//    let isbn10: String
-//    let isbn13: String
-//}

@@ -53,14 +53,13 @@ class BestSellersViewController: UIViewController {
         }
         searchForBooks()
         bestSellersView.collectionView.dataSource = self
+        bestSellersView.collectionView.delegate = self
         bestSellersView.pickerView.dataSource = self
         bestSellersView.pickerView.delegate = self
     }
-    
-
 }
 
-extension BestSellersViewController: UICollectionViewDataSource {
+extension BestSellersViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = bestSellersView.collectionView.dequeueReusableCell(withReuseIdentifier: "BookCollectionViewCell", for: indexPath) as? BookCollectionViewCell else { return UICollectionViewCell() }
         let book = bookListData[indexPath.row]
@@ -71,6 +70,24 @@ extension BestSellersViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return bookListData.count
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+//        guard let vc = storyboard.instantiateViewController(withIdentifier: "BookDetailViewController") as? BookDetailViewController else { return }
+//        vc.modalPresentationStyle = .overCurrentContext
+//        vc.bookDetail = bookListData[indexPath.row]
+//        navigationController?.pushViewController(BookDetailViewController(), animated: true)
+        let vc = BookDetailViewController()
+        vc.bookList = bookListData[indexPath.row]
+        present(vc, animated: true, completion: nil)
+    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let destination = segue.destination as! BookDetailViewController
+//        let cell = sender as! UICollectionViewCell
+//        let indexPath = self.bestSellersView.collectionView.indexPath(for: cell)
+//        destination.bookList = bookListData[indexPath!.row]
+//    }
 }
 
 extension BestSellersViewController: UIPickerViewDataSource, UIPickerViewDelegate {

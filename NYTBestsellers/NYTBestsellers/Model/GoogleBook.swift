@@ -13,5 +13,10 @@ struct GoogleBook: Codable {
 }
 
 struct GoogleBookDetails: Codable {
-    let imageLinks: String
+    let imageLinks: ImageLinks
+}
+
+struct ImageLinks: Codable {
+    let smallThumbnail: String
+    let thumbnail: String
 }

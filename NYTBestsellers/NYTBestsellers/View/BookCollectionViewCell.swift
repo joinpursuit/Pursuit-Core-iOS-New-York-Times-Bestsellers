@@ -24,6 +24,9 @@ class BookCollectionViewCell: UICollectionViewCell {
     public lazy var bookDescriptionTextView: UITextView = {
         let tv = UITextView()
         tv.text = "Book description"
+        tv.font = tv.font?.withSize(14)
+        tv.isSelectable = false
+        tv.isEditable = false
         return tv
     }()
     
@@ -46,11 +49,11 @@ class BookCollectionViewCell: UICollectionViewCell {
         [bookImage.centerXAnchor.constraint(equalTo: centerXAnchor),
          bookImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 5),
          bookImage.heightAnchor.constraint(equalToConstant: 150),
-         bookImage.widthAnchor.constraint(equalToConstant: 100)].forEach{ $0.isActive = true }
-         [numberOfWeeksOnList.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 5),
+         bookImage.widthAnchor.constraint(equalToConstant: 125)].forEach{ $0.isActive = true }
+         [numberOfWeeksOnList.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 11),
           numberOfWeeksOnList.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5),
           numberOfWeeksOnList.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 5)].forEach{ $0.isActive = true }
-         [bookDescriptionTextView.topAnchor.constraint(equalTo: numberOfWeeksOnList.bottomAnchor, constant: 5),
+         [bookDescriptionTextView.topAnchor.constraint(equalTo: numberOfWeeksOnList.bottomAnchor, constant: 0),
           bookDescriptionTextView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5),
           bookDescriptionTextView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 5),
           bookDescriptionTextView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 5)].forEach{ $0.isActive = true }

@@ -29,6 +29,7 @@ class BestSellersView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
+        backgroundColor = .white
         addSubview(collectionView)
         addSubview(pickerView)
         setupContraints()
