@@ -10,6 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     //lazy var book
+    //when saving a book, tab bar stuff. 
 
     let detailView = DetailView()
     

@@ -33,6 +33,7 @@
 		976D11A021FE70090076D81D /* NYTBookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D119F21FE70090076D81D /* NYTBookAPI.swift */; };
 		976D11A221FE70180076D81D /* GoogleBookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D11A121FE70180076D81D /* GoogleBookAPI.swift */; };
 		976D11A421FE709A0076D81D /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D11A321FE709A0076D81D /* SecretKeys.swift */; };
+		976D120021FFA64D0076D81D /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D11FF21FFA64D0076D81D /* UserDefaultsKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		976D119F21FE70090076D81D /* NYTBookAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBookAPI.swift; sourceTree = "<group>"; };
 		976D11A121FE70180076D81D /* GoogleBookAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBookAPI.swift; sourceTree = "<group>"; };
 		976D11A321FE709A0076D81D /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
+		976D11FF21FFA64D0076D81D /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				5718C00821FA790000A8E4B8 /* Date Helpers */,
 				5718BFFA21FA75C000A8E4B8 /* Supporting Files */,
 				5718BFF421FA75A900A8E4B8 /* Info.plist */,
+				976D11FF21FFA64D0076D81D /* UserDefaultsKeys.swift */,
 			);
 			path = NYTBestsellers;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				976D118521FB8A520076D81D /* SettingsViewController.swift in Sources */,
 				976D119821FE5EB10076D81D /* CategoryModel.swift in Sources */,
 				976D119E21FE5EF10076D81D /* SavedModel.swift in Sources */,
+				976D120021FFA64D0076D81D /* UserDefaultsKeys.swift in Sources */,
 				5718BFFC21FA763200A8E4B8 /* String+DateExtensions.swift in Sources */,
 				976D119321FE5C830076D81D /* DetailViewController.swift in Sources */,
 				976D119C21FE5ECB0076D81D /* GoogleModel.swift in Sources */,

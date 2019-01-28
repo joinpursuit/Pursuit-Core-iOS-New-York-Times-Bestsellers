@@ -16,6 +16,14 @@ class BestSellersViewController: UIViewController {
             //tableview reload data needs to be on the main thread
             DispatchQueue.main.async {
                 self.bestSellerView.myBestSellerPickerView.reloadAllComponents()
+                if let categorySelected = UserDefaults.standard.value(forKey: UserDefaultsKeys.CategoryKey) as? Int {
+                    print(categorySelected)
+                    self.bestSellerView.myBestSellerPickerView.selectRow(categorySelected, inComponent: 0, animated: true)
+
+                    
+                } else {
+                    print("no category in defaults")
+                }
             }
         }
     }
@@ -54,6 +62,15 @@ class BestSellersViewController: UIViewController {
         bestSellerView.myBestSellerPickerView.dataSource = self
         bestSellerView.myBestSellerPickerView.delegate = self
 
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        if let categorySelected = UserDefaults.standard.value(forKey: UserDefaultsKeys.CategoryKey) as? Int {
+            print(categorySelected)
+            self.bestSellerView.myBestSellerPickerView.selectRow(categorySelected, inComponent: 0, animated: true)
+            
+        } else {
+            print("no category in defaults")
+        }
     }
     private func setupPicker(){
         NYTBookAPI.getBookCategories { (appError, categories) in
@@ -98,6 +115,45 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestCollectionViewCell", for: indexPath) as? BestCollectionViewCell else { return UICollectionViewCell()}
         let book = bestSellerBooks[indexPath.row]
         if let isbn = book.bookDetails.first?.primaryIsbn13 {
+            GoogleBookAPI.getGoogleInfo(bookIsbn: isbn) { (appError, data) in
+                if let appError = appError {
+                    print(appError.errorMessage())
+                }
+                if let data = data {
+                    let description = data[0].volumeInfo.description
+                    DispatchQueue.main.async {
+                        cell.cellTextView.text = description
+                    }
+                    if let image = ImageHelper.fetchImageFromCache(urlString: data[0].volumeInfo.imageLinks.smallThumbnail) {
+                        DispatchQueue.main.async {
+                            cell.cellImage.image = image
+                        }
+                    } else {
+                        ImageHelper.fetchImageFromNetwork(urlString: data[0].volumeInfo.imageLinks.smallThumbnail, completion: { (appError, image) in
+                            if let appError = appError {
+                                print(appError.errorMessage())
+                            } else if let image = image {
+                                cell.cellImage.image = image
+                            }
+                        })
+                    }
+                }
+            }
+            
+//            GoogleBookAPI.getGoogleInfo(bookIsbn: isbn) { (appError, urlString) in
+//                if let appError = appError {
+//                    print("error getting google image url string - \(appError)")
+//                } else if let urlString = urlString {
+//
+//                    ImageHelper.fetchImageFromNetwork(urlString: urlString, completion: { (appError, image) in
+//                        if let appError = appError {
+//                            print("error trying to get image out of google url - \(appError)")
+//                        } else if let image = image {
+//                            self.bookImage = image
+//                        }
+//                    })
+//                }
+//            }
         }
         cell.cellLabel.text = "\(book.weeksOnList) weeks on Best Sellers"
         cell.cellTextView.text = book.bookDetails.first?.bookDescription
@@ -116,6 +172,8 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
     
 }
 extension BestSellersViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    // scroll to to set picker view index
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

@@ -16,6 +16,7 @@ class SettingsViewController: UIViewController {
             //tableview reload data needs to be on the main thread
             DispatchQueue.main.async {
                 self.settingsView.mySettingsPickerView.reloadAllComponents()
+                self.setupCategory()
             }
         }
     }
@@ -26,19 +27,29 @@ class SettingsViewController: UIViewController {
         navigationItem.title =
             "Pick Default Category"
         view.addSubview(settingsView)
-        setupCategory()
         
         settingsView.mySettingsPickerView.dataSource = self
         settingsView.mySettingsPickerView.delegate = self
-    }
-    func setupCategory() {
-        var category = ""
-        if let categorySelected = UserDefaults.standard.object(forKey: "Category") as? String {
-            category = categorySelected
-        } else {
-            category = defaultCategory
-        }
         setupSettings()
+        setupCategory()
+    }
+    
+    func setupCategory() {
+        if let categorySelected = UserDefaults.standard.value(forKey: UserDefaultsKeys.CategoryKey) as? Int {
+            print(categorySelected)
+            settingsView.mySettingsPickerView.selectRow(categorySelected, inComponent: 0, animated: true)
+            
+            
+            
+            
+//            category = categorySelected
+        } else {
+            print("no category in defaults")
+        }
+//        else {
+//            category = defaultCategory
+//        }
+//        setupSettings()
     }
     func setupSettings() {
         NYTBookAPI.getBookCategories { (appError, categories) in
@@ -62,9 +73,9 @@ extension SettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         return settingsCategories[row].displayName
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let category = settingsCategories[row].listNameEncoded
-        UserDefaults.standard.set(category, forKey: "Category")
-        setupSettings()
+        print(settingsCategories[row])
+        let category = row
+        UserDefaults.standard.set(category, forKey: UserDefaultsKeys.CategoryKey)
     }
     
 }

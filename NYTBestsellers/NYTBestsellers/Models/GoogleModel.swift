@@ -18,30 +18,30 @@ struct Items: Codable {
     let id: String
     let etag: String
     let selfLink: String
-    let volumeInfo:  [VolumeInfo]
-    let saleInfo: [SaleInfo]
+    let volumeInfo:  VolumeInfo
+//    let saleInfo: [SaleInfo]
 }
 struct VolumeInfo: Codable {
-    let title: String
-    let authors: [String]
-    let publisher: String
-    let publishedDate: String
+//    let title: String
+//    let authors: [String]
+//    let publisher: String
+//    let publishedDate: String
     let description: String
-    let pageCount: Int
-    let printType: String
-    let maturityRating: String
-    let contentVersion: String
-    let imageLinks: [ImageLinks]
-    let language: String
-    let previewLink: String
-    let infoLink: String
-    let canonicalVolumeLink: String
+//    let pageCount: Int
+//    let printType: String
+//    let maturityRating: String
+//    let contentVersion: String
+    let imageLinks: ImageLinks
+//    let language: String
+//    let previewLink: String
+//    let infoLink: String
+//    let canonicalVolumeLink: String
 }
-struct SaleInfo: Codable {
-    let country: String
-    let saleability: String
-    let isEbook: Bool
-}
+//struct SaleInfo: Codable {
+//    let country: String
+//    let saleability: String
+//    let isEbook: Bool
+//}
 
 struct ImageLinks: Codable {
     let smallThumbnail: String
