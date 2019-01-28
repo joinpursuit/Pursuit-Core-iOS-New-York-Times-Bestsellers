@@ -10,11 +10,23 @@ import UIKit
 
 class NYTBestSellingView: UIView {
     lazy var bestsellersCollectionView: UICollectionView = {
-       let cv = UICollectionView()
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize.init(width: 200, height: 300)
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 20)
+        layout.scrollDirection = .horizontal
+        
+        let cv = UICollectionView(frame: frame, collectionViewLayout: layout)
         cv.dataSource = self
-        cv.delegate = self
         cv.backgroundColor = .yellow
         return cv
+    }()
+    
+    lazy var categoryPickerView: UIPickerView = {
+        let pv = UIPickerView()
+        pv.delegate = self
+        pv.dataSource = self
+        pv.backgroundColor = .blue
+        return pv
     }()
     
     override init(frame: CGRect) {
@@ -28,7 +40,7 @@ class NYTBestSellingView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = .blue
+        backgroundColor = .white
         setupViews()
     }
     
@@ -38,29 +50,55 @@ class NYTBestSellingView: UIView {
 extension NYTBestSellingView {
     private func setupViews() {
         setupBestSellingCollectionView()
-        setupCategoryPicker()
+        setupCategoryPickerView()
     }
     
     private func setupBestSellingCollectionView() {
+        addSubview(bestsellersCollectionView)
+        bestsellersCollectionView.register(BookCell.self, forCellWithReuseIdentifier: "BookCell")
         
+        bestsellersCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        bestsellersCollectionView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        NSLayoutConstraint.init(item: bestsellersCollectionView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 0.6, constant: 0).isActive = true
+        bestsellersCollectionView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        bestsellersCollectionView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.6).isActive = true
     }
     
-    private func setupCategoryPicker() {
+    private func setupCategoryPickerView() {
+        addSubview(categoryPickerView)
+        categoryPickerView.translatesAutoresizingMaskIntoConstraints = false
         
+        categoryPickerView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        categoryPickerView.topAnchor.constraint(equalTo: bestsellersCollectionView.bottomAnchor, constant: 0).isActive = true
+        categoryPickerView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
     }
 }
 
-extension NYTBestSellingView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension NYTBestSellingView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        // custom delegation
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = bestsellersCollectionView.dequeueReusableCell(withReuseIdentifier: "BookCell", for: indexPath) as? BookCell else { return UICollectionViewCell() }
         return cell
     }
+}
+
+extension NYTBestSellingView: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        // custom delegation
+        return 1
+    }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize.init(width: 250/1.5, height: 350/1.5)
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        // custom delegation
+        return 5
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        //custom delegation
+        return "Category"
     }
 }

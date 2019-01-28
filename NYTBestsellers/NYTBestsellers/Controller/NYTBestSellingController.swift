@@ -9,10 +9,12 @@
 import UIKit
 
 class NYTBestSellingController: UIViewController {
-
+    
+    let nYTBestSellingView = NYTBestSellingView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.addSubview(nYTBestSellingView)
     }
     
 

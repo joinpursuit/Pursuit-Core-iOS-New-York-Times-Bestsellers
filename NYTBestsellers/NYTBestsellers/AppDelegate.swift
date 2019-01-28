@@ -28,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 */
     let mainViewController = NYTBestSellingController()
     mainViewController.title = "NYT Bestsellers"
-    mainViewController.view.backgroundColor = .white
     mainViewController.tabBarItem = UITabBarItem.init(title: "Bestsellers", image: UIImage(named: "icons8-best_seller"), selectedImage: UIImage(named: "icons8-best_seller_filled"))
     
     let favoriteVC = FavoriteViewController()
