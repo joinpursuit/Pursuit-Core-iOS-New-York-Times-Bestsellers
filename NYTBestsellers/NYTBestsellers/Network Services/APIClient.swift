@@ -45,8 +45,8 @@ struct APIClient {
     static func getGoogleData(isbn: String, completionHandler: @escaping (AppError?, [BookImage.ItemsWrapper]?) -> Void ) {
         NetworkHelper.shared.performDataTask(endpointURLString: "https://www.googleapis.com/books/v1/volumes?q=+isbn:\(isbn)&key=\(SecretKeys.googleAPIKey)") { (appError, data) in
             
-            if let appError = appError{
-                completionHandler(appError, nil)
+            if appError != nil{
+                completionHandler(AppError.badURL("Bad URL"), nil)
             }
             if let data = data {
                 do{

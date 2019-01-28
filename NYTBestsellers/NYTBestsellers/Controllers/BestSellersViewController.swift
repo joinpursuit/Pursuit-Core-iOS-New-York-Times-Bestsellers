@@ -35,6 +35,9 @@ class BestSellersViewController: UIViewController,UICollectionViewDataSource,UIC
         bestSellerVC.myPickerView.dataSource = self
         bestSellerVC.myCollectionView.dataSource = self
         bestSellerVC.myCollectionView.delegate = self
+        if let row = UserDefaults.standard.object(forKey: "Row") as? Int {
+            bestSellerVC.myPickerView.selectRow(row, inComponent: 0, animated: true)
+        }
         if let listName = UserDefaults.standard.object(forKey: "ListNames") as? String{
            getBooks(listName: listName)
         } else {
@@ -109,9 +112,9 @@ class BestSellersViewController: UIViewController,UICollectionViewDataSource,UIC
         return listNames.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
         return listNames[row].listName
     }
+
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedListName = listNames[row].listName
@@ -123,6 +126,7 @@ class BestSellersViewController: UIViewController,UICollectionViewDataSource,UIC
                 self.bestSellerBooks = data
             }
         }
+       
     }
 }
     

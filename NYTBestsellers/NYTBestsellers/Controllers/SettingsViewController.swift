@@ -16,11 +16,12 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource,UIPickerV
     override func viewDidLoad() {
         title = "Pick Default Category"
         super.viewDidLoad()
-        listNames = DataPersistenceModel.getListNames()
         view.addSubview(settingView)
         settingView.settingsPickerView.dataSource = self
         settingView.settingsPickerView.delegate = self
-
+        if let row = UserDefaults.standard.object(forKey: "Row") as? Int {
+            settingView.settingsPickerView.selectRow(row, inComponent: 0, animated: true)
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -32,10 +33,9 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource,UIPickerV
         return listNames.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return listNames[row].listName
+            return listNames[row].listName
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-
         UserDefaults.standard.set(listNames[row].listName, forKey: "ListNames")
         UserDefaults.standard.set(row, forKey: "Row")
     }
