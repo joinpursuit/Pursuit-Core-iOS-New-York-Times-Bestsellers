@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct GoogleBooks {
+struct GoogleBooks: Codable {
     let items: [BookVolume]
 }
 
@@ -17,6 +17,7 @@ struct BookVolume: Codable {
 }
 
 struct BookInfo: Codable {
+    let description: String
     let imageLinks: BookImages
 }
 

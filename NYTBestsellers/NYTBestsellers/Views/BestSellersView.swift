@@ -18,18 +18,15 @@ class BestSellersView: UIView {
         
         let cv = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
         cv.backgroundColor = .gray
-        cv.dataSource = self
         return cv
     }()
     
     public lazy var genrePickerView: UIPickerView = {
         let picker = UIPickerView.init(frame: self.bounds)
-        picker.backgroundColor = .blue
-        picker.dataSource = self
-        picker.delegate = self
         return picker
     }()
-
+    
+  
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
@@ -41,28 +38,24 @@ class BestSellersView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = .yellow
+        backgroundColor = .white
         self.bestSellerCollectionView.register(BestSellerCollectionViewCell.self, forCellWithReuseIdentifier: "BestSellerCell")
         setupView()
-        setupPickerView()
-        
     }
-    
-    
-    
 }
 
 extension BestSellersView {
     private func setupView() {
-       setupCollectionView()
+        setupCollectionView()
+        setupPickerView()
     }
     
     private func setupCollectionView() {
         addSubview(bestSellerCollectionView)
         bestSellerCollectionView.translatesAutoresizingMaskIntoConstraints = false
         bestSellerCollectionView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        bestSellerCollectionView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        bestSellerCollectionView.heightAnchor.constraint(equalToConstant: 500).isActive = true
+        bestSellerCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
+        bestSellerCollectionView.heightAnchor.constraint(equalToConstant: 380).isActive = true
         bestSellerCollectionView.widthAnchor.constraint(equalToConstant: 400).isActive = true
     }
     
@@ -76,37 +69,4 @@ extension BestSellersView {
     }
 }
 
-extension BestSellersView: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestSellerCell", for: indexPath) as? BestSellerCollectionViewCell else { return UICollectionViewCell() }
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-    }
-    
-    
-}
-extension BestSellersView: UIPickerViewDataSource, UIPickerViewDelegate {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 10
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "hello"
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-    }
-    
-}
+

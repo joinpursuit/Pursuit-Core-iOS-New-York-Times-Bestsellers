@@ -15,6 +15,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(detailView)
+        navigationItem.title = "Details"
 
         
     }
