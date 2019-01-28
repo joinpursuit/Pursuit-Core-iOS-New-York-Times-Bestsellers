@@ -10,11 +10,26 @@ import UIKit
 
 class BestSellersViewController: UIViewController {
     
-    let bestSellerView = BestSellersView()
+    private let bestSellerView = BestSellersView()
+    private var bestSellerCategories = [CategoryResults](){
+        didSet { //use case ex. when searching
+            //tableview reload data needs to be on the main thread
+            DispatchQueue.main.async {
+                self.bestSellerView.myBestSellerPickerView.reloadAllComponents()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(bestSellerView)
+        NYTBookAPI.getBookCategories { (appError, categories) in
+            if let appError = appError {
+                print("book categories error: \(appError)")
+            } else if let categories = categories {
+                self.bestSellerCategories = categories
+            }
+        }
         bestSellerView.myBestSellerCollectionView.dataSource = self
         bestSellerView.myBestSellerCollectionView.delegate = self
         bestSellerView.myBestSellerPickerView.dataSource = self
@@ -45,8 +60,10 @@ extension BestSellersViewController: UIPickerViewDataSource, UIPickerViewDelegat
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 30//number of book categories
+        return bestSellerCategories.count
     }
     
-    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return bestSellerCategories[row].displayName
+    }
 }
