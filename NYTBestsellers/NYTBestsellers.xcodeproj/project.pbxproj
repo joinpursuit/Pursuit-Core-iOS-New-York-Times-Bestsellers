@@ -95,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				5718BFE821FA75A800A8E4B8 /* AppDelegate.swift */,
+				D6048C9721FFBD8200087176 /* SecretKeys.swift */,
 				5718C00121FA772600A8E4B8 /* AppError.swift */,
 				D60401E421FBA0680002A04C /* Alert Helper */,
 				5718C00721FA78E800A8E4B8 /* Network Services */,
@@ -123,7 +124,6 @@
 			children = (
 				5718C00521FA78BA00A8E4B8 /* ImageHelper.swift */,
 				5718BFFF21FA771800A8E4B8 /* NetworkHelper.swift */,
-				D6048C9721FFBD8200087176 /* SecretKeys.swift */,
 			);
 			path = "Network Services";
 			sourceTree = "<group>";
