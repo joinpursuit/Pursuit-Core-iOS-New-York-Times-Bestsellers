@@ -26,6 +26,8 @@ class BestSellerCell: UICollectionViewCell {
         textview.text = "This area will give a little description"
         textview.textColor = .white
         textview.backgroundColor = .gray
+        textview.isSelectable = false
+        textview.isEditable = false
         return textview
     }()
     override init(frame: CGRect) {
@@ -60,18 +62,17 @@ extension BestSellerCell {
     private func setupLabelView(){
         addSubview(titleLabelObj)
         titleLabelObj.translatesAutoresizingMaskIntoConstraints = false
-        //pickerViewObj.topAnchor.constraint(equalTo: collectionViewObj.bottomAnchor, constant: 11).isActive = true
         titleLabelObj.topAnchor.constraint(equalTo: imageObj.bottomAnchor, constant: 11).isActive = true
         titleLabelObj.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
-        titleLabelObj.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 11)
+        titleLabelObj.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true 
     }
     private func setupTextView(){
         addSubview(bestSellerBookDescriptionTxtViewObj)
-    bestSellerBookDescriptionTxtViewObj.translatesAutoresizingMaskIntoConstraints = false
+bestSellerBookDescriptionTxtViewObj.translatesAutoresizingMaskIntoConstraints = false
         bestSellerBookDescriptionTxtViewObj.topAnchor.constraint(equalTo: titleLabelObj.bottomAnchor, constant: 0).isActive = true
     bestSellerBookDescriptionTxtViewObj.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
-        bestSellerBookDescriptionTxtViewObj.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
-        bestSellerBookDescriptionTxtViewObj.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: 11).isActive = true
+    bestSellerBookDescriptionTxtViewObj.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
+    bestSellerBookDescriptionTxtViewObj.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: 11).isActive = true
         
     }
 }

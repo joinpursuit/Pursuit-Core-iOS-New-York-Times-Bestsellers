@@ -11,10 +11,10 @@ import UIKit
 class FavoriteBookView: UIView {
     lazy var collectionViewCellObj: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize =  CGSize.init(width: 300, height: 300)
+        layout.itemSize =  CGSize.init(width: 350, height: 400)
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        layout.scrollDirection = .vertical
+        let collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
         backgroundColor = .white
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -42,10 +42,13 @@ class FavoriteBookView: UIView {
     private func setupFavoriteCollectionViewContraints() {
         collectionViewCellObj.translatesAutoresizingMaskIntoConstraints = false
         
-        collectionViewCellObj.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
-        collectionViewCellObj.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.5).isActive = true
-        collectionViewCellObj.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-        backgroundColor = .blue
+        
+         collectionViewCellObj.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+         collectionViewCellObj.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+         collectionViewCellObj.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
+         collectionViewCellObj.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+ 
+        
     }
 
 }
