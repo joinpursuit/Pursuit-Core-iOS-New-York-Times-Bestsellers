@@ -28,28 +28,32 @@ class BestSellerView: UIView {
         pickerView.delegate = self
         pickerView.dataSource = self
         pickerView.backgroundColor = .clear
-        
         return pickerView
     }()
     
     lazy var BestSellerCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize.init(width: 100, height: 100)
+        layout.itemSize = CGSize.init(width: 200, height: 300)
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
+        layout.scrollDirection = .horizontal
         let myCollectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
-        myCollectionView.backgroundColor = .green
+      myCollectionView.backgroundColor = UIColor.clear.withAlphaComponent(0.5)
+myCollectionView.backgroundColor = .green
+
         myCollectionView.layer.cornerRadius = 10
         myCollectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "collectionCell")
-        
         return myCollectionView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
-        //    setconstrains()
+//         setconstrains()
+//        addBlur()
         backgroundColor = .white
         pickerConstrains()
+        
         collectionviewConstrains()
+       
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -79,6 +83,17 @@ class BestSellerView: UIView {
         BestSellerPickerView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
       BestSellerPickerView.heightAnchor.constraint(equalToConstant: 350).isActive = true
         BestSellerPickerView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+    }
+    
+    func addBlur() {
+        let blurrEffect = UIBlurEffect(style: .light)
+    
+        let effectView = UIVisualEffectView(effect: blurrEffect)
+        effectView.frame = self.bounds
+        effectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        addSubview(effectView)
+        
     }
 }
 

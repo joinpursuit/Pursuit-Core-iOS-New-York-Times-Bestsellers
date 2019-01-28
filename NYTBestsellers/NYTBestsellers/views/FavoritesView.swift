@@ -23,7 +23,6 @@ class FavoriteView: UIView {
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
         let myCollectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
         myCollectionView.backgroundColor = .yellow
-        
         myCollectionView.register(FavoriteCollectionViewCell.self, forCellWithReuseIdentifier: "favoriteCell")
         return myCollectionView
     }()
