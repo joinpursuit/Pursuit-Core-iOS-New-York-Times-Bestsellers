@@ -26,7 +26,14 @@ class CollectionViewCell: UICollectionViewCell {
         return mylabel
     }()
     
-    
+    lazy var bestSellerTextView: UITextView = {
+        let myTextView = UITextView()
+        myTextView.textColor = .white
+        myTextView.backgroundColor = .gray
+        myTextView.textAlignment = .center
+        myTextView.text = "Book description test"
+        return myTextView
+    }()
     
     
     override init(frame: CGRect) {
@@ -35,6 +42,7 @@ class CollectionViewCell: UICollectionViewCell {
         layer.cornerRadius = 5
         cellImageConstrains()
       labelConstrains()
+        textViewConstrains()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -56,6 +64,15 @@ class CollectionViewCell: UICollectionViewCell {
         bestSellerCollectionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5).isActive = true
         bestSellerCollectionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5).isActive = true
         bestSellerCollectionLabel.topAnchor.constraint(equalTo: bestSellerCollectionCellImage.bottomAnchor, constant: 10).isActive = true
+    }
+    
+    private func textViewConstrains() {
+        addSubview(bestSellerTextView)
+        bestSellerTextView.translatesAutoresizingMaskIntoConstraints = false
+        bestSellerTextView.leadingAnchor.constraint(equalTo: bestSellerCollectionLabel.leadingAnchor).isActive = true
+        bestSellerTextView.trailingAnchor.constraint(equalTo: bestSellerCollectionLabel.trailingAnchor).isActive = true
+        bestSellerTextView.topAnchor.constraint(equalTo: bestSellerCollectionLabel.bottomAnchor, constant: 5).isActive = true
+        bestSellerTextView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5).isActive = true
     }
     
 }
