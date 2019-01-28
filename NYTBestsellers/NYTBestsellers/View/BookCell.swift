@@ -14,19 +14,21 @@ class BookCell: UICollectionViewCell {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
         //<a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by rawpixel.com - www.freepik.com</a>
-        //image.image = UIImage(named: "bookImagePlaceHolder")
-        image.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
+        image.image = UIImage(named: "bookImagePlaceHolder")
         return image
     }()
  
     let bookTitleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.text = "Book Title"
         return label
     }()
     
     let bookDescriptionTextview: UITextView = {
         let textview = UITextView()
+        textview.text = "Gibberish..........Gibberish..........Gibberish..........Gibberish..........Gibberish.........."
+        textview.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
         return textview
     }()
     
@@ -77,7 +79,7 @@ extension BookCell {
         bookDescriptionTextview.translatesAutoresizingMaskIntoConstraints = false
         bookDescriptionTextview.topAnchor.constraint(equalTo: bookTitleLabel.bottomAnchor, constant: 10).isActive = true
         bookDescriptionTextview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
-        bookDescriptionTextview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = false
+        bookDescriptionTextview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         bookDescriptionTextview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
     }
 }

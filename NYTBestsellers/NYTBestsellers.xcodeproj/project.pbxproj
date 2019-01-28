@@ -31,6 +31,7 @@
 		D604020321FBB2650002A04C /* FavoriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604020221FBB2650002A04C /* FavoriteModel.swift */; };
 		D604020521FBB8920002A04C /* GoogleBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604020421FBB8920002A04C /* GoogleBook.swift */; };
 		D604020721FBB8BC0002A04C /* NYTBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604020621FBB8BC0002A04C /* NYTBook.swift */; };
+		D6048C9821FFBD8200087176 /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6048C9721FFBD8200087176 /* SecretKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		D604020221FBB2650002A04C /* FavoriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteModel.swift; sourceTree = "<group>"; };
 		D604020421FBB8920002A04C /* GoogleBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBook.swift; sourceTree = "<group>"; };
 		D604020621FBB8BC0002A04C /* NYTBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBook.swift; sourceTree = "<group>"; };
+		D6048C9721FFBD8200087176 /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 			children = (
 				5718C00521FA78BA00A8E4B8 /* ImageHelper.swift */,
 				5718BFFF21FA771800A8E4B8 /* NetworkHelper.swift */,
+				D6048C9721FFBD8200087176 /* SecretKeys.swift */,
 			);
 			path = "Network Services";
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				D604020521FBB8920002A04C /* GoogleBook.swift in Sources */,
 				5718BFFE21FA764E00A8E4B8 /* Date+Extensions.swift in Sources */,
 				D60401F321FBA6410002A04C /* NYTDetailBestSellingController.swift in Sources */,
+				D6048C9821FFBD8200087176 /* SecretKeys.swift in Sources */,
 				D60401FF21FBA9980002A04C /* FavoriteCell.swift in Sources */,
 				D60401F921FBA90E0002A04C /* FavoriteView.swift in Sources */,
 				5718C00621FA78BA00A8E4B8 /* ImageHelper.swift in Sources */,
