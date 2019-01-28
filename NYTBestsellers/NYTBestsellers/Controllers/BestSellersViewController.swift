@@ -97,7 +97,7 @@ class BestSellersViewController: UIViewController,UICollectionViewDataSource,UIC
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let bookToSend = bestSellerBooks[indexPath.row]
-        let detail = BestSellerDetailViewController.init(isbn: bookToSend.bookDetails[0].primaryIsbn10, description: bookToSend.bookDetails[0].description, bookName: bookToSend.bookDetails[0].title, bookAuthor: bookToSend.bookDetails[0].author,amazonLink: bookToSend.amazonProductUrl)
+        let detail = BestSellerDetailViewController.init(isbn: bookToSend.bookDetails[0].primaryIsbn10, description: bookToSend.bookDetails[0].description, bookName: bookToSend.bookDetails[0].title, bookAuthor: bookToSend.bookDetails[0].author,amazonLink: bookToSend.amazonProductUrl,author: bookToSend.bookDetails[0].author)
         navigationController?.pushViewController(detail, animated: true)
         
     }

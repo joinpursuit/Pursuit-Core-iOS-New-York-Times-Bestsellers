@@ -27,6 +27,7 @@ class FavoriteCell: UICollectionViewCell {
         var textView = UITextView()
         textView.textColor = .black
         textView.backgroundColor = .white
+        textView.font = UIFont(name: "Futura", size: 13)
         return textView
     }()
     lazy var favoriteLabel: UILabel = {

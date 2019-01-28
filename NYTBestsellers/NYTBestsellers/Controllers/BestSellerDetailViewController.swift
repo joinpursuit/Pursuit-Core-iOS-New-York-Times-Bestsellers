@@ -17,11 +17,13 @@ class BestSellerDetailViewController: UIViewController, ButtonDelegate {
     var bookDescription = String()
     var bookTitle = String()
     var amazonLink: URL!
+    var author = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(detailVC)
         updateUI(isbn: isbn)
+        title = bookTitle
         // Do any additional setup after loading the view.
     }
     
@@ -30,7 +32,7 @@ class BestSellerDetailViewController: UIViewController, ButtonDelegate {
         let favButton = UIBarButtonItem.init(title: "Favorite", style: .plain, target: self, action: #selector(favButtonPressed))
         favButton.tintColor = .red
         self.navigationItem.rightBarButtonItem = favButton
-        detailVC.bookLabel.text = bookTitle
+        detailVC.bookLabel.text = author
         APIClient.getGoogleData(isbn: isbn) { (appError, data) in
             if let appError = appError {
                 print(appError)
@@ -44,7 +46,9 @@ class BestSellerDetailViewController: UIViewController, ButtonDelegate {
                     self.detailVC.detailBookTextView.text = data[0].volumeInfo.description
                 }
                 if let image = ImageHelper.fetchImageFromCache(urlString: data[0].volumeInfo.imageLinks.thumbnail){
-                    self.detailVC.detailBookImage.image = image
+                    DispatchQueue.main.async {
+                        self.detailVC.detailBookImage.image = image
+                    }
                 } else {
                     ImageHelper.fetchImageFromNetwork(urlString: data[0].volumeInfo.imageLinks.thumbnail) { (appError, image) in
                         if let appError = appError {
@@ -84,12 +88,13 @@ class BestSellerDetailViewController: UIViewController, ButtonDelegate {
         }
         
     }
-    init(isbn: String, description: String, bookName: String, bookAuthor: String,amazonLink: URL) {
+    init(isbn: String, description: String, bookName: String, bookAuthor: String,amazonLink: URL, author: String) {
         super.init(nibName: nil, bundle: nil)
         self.isbn = isbn
         self.bookDescription = description
         self.bookTitle = bookName
         self.amazonLink = amazonLink
+        self.author = author
     }
     
     required init?(coder aDecoder: NSCoder) {

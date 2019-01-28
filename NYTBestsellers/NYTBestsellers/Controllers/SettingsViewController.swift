@@ -14,6 +14,7 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource,UIPickerV
     var settingView = SettingsView()
     var listNames = DataPersistenceModel.getListNames()
     override func viewDidLoad() {
+        title = "Pick Default Category"
         super.viewDidLoad()
         listNames = DataPersistenceModel.getListNames()
         view.addSubview(settingView)

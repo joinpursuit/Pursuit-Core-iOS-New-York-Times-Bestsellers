@@ -21,6 +21,7 @@ class DetailView: UIView {
         var textView = UITextView()
         textView.textColor = .black
         textView.backgroundColor = .clear
+        textView.font = UIFont(name: "Futura", size: 14)
         return textView
     }()
     
