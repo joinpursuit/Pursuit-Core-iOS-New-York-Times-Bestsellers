@@ -9,10 +9,13 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-
+let settingsView = SettingsView()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 self.view.backgroundColor = . orange
+        self.view.addSubview(settingsView)
         // Do any additional setup after loading the view.
     }
     
