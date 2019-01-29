@@ -12,7 +12,11 @@ class SavedBooksViewController: UIViewController {
     
     let savedBooksView = SavedBooks()
     
-    private var savedBooks = [SavedBook]()
+    private var savedBooks = [SavedBook]() {
+        didSet {
+            savedBooksView.collectionView.reloadData()
+        }
+    }
 
     fileprivate func getBooks() {
         savedBooks = SavedBooksModel.getBooks()
@@ -21,8 +25,8 @@ class SavedBooksViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(savedBooksView)
+        title = "Favorited Books"
         savedBooksView.collectionView.dataSource = self
-        
         getBooks()
     }
     
@@ -32,7 +36,6 @@ class SavedBooksViewController: UIViewController {
     
     
     @objc func optionsButtonPressed(_ sender: UIButton) {
-        print("moreoptionsbutton pressed")
         let alert = UIAlertController(title: "What would you like to do?", message: "", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
             SavedBooksModel.deleteBook(atIndex: sender.tag)

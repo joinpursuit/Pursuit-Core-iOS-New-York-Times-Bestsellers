@@ -15,6 +15,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(settingsView)
+        title = "Settings"
         settingsView.pickerView.dataSource = self
         settingsView.pickerView.delegate = self
         checkForUserDefaultsSetting()

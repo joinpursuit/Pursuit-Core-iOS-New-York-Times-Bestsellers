@@ -13,7 +13,7 @@ class BestSellersViewController: UIViewController {
     private var currentBookCategoryToSearch = "humor" {
         didSet {
             saveGoogleDescription.removeAll()
-            saveGoogleBookImage.removeAll()
+            saveGoogleImage.removeAll()
             searchForBooks()
         }
     }
@@ -32,9 +32,8 @@ class BestSellersViewController: UIViewController {
         }
     }
     
-    private var saveGoogleDescription: [String?] = []
-    private var saveGoogleBookImage: [Data?] = []
-
+    private var saveGoogleDescription: [Int:String] = [:]
+    private var saveGoogleImage: [Int:Data] = [:]
     fileprivate func searchForBooks() {
         NYTAPIClient.searchForBooks(in: currentBookCategoryToSearch) { (appError, books) in
             if let appError = appError {
@@ -63,24 +62,23 @@ class BestSellersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(bestSellersView)
+        title = "Best Sellers"
         bestSellersView.collectionView.dataSource = self
         bestSellersView.collectionView.delegate = self
         bestSellersView.pickerView.dataSource = self
         bestSellersView.pickerView.delegate = self
         getBookCategories()
         checkForUserDefaultsSetting()
-        searchForBooks()
     }
     
     private func checkForUserDefaultsSetting() {
         if let rowNumber = UserDefaults.standard.object(forKey: UserDefaultKeys.categoryRowNumber) as? Int, let currentCategory = UserDefaults.standard.object(forKey: UserDefaultKeys.categoryRowNumber) as? String {
-            print(rowNumber)
-            print(currentCategory)
             bestSellersView.pickerView.selectRow(rowNumber, inComponent: 0, animated: true)
             currentBookCategoryToSearch = currentCategory
         } else {
             bestSellersView.pickerView.selectRow(0, inComponent: 0, animated: true)
         }
+        searchForBooks()
     }
 }
 
@@ -89,10 +87,7 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
         guard let cell = bestSellersView.collectionView.dequeueReusableCell(withReuseIdentifier: "BookCollectionViewCell", for: indexPath) as? BookCollectionViewCell else { return UICollectionViewCell() }
         let book = books[indexPath.row]
         cell.configureCell(book: book)
-        
-        configureBookCoverFromGoogle(cell: cell,
-                                     atIndexPath: indexPath,
-                                     book: book)
+        configureBookCoverFromGoogle(cell: cell, atIndexPath: indexPath, book: book)
         return cell
     }
     
@@ -102,24 +97,23 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
                 if let appError = appError {
                     print("GoogleBooksAPIClient - probably reached daily limits - \(appError)")
                 } else if let bookData = bookData {
-                    self.saveGoogleDescription.append(bookData.bookLongDescription)
+                    self.saveGoogleDescription[indexPath.row] = bookData.bookLongDescription
                     if let image = ImageHelper.fetchImageFromCache(urlString: bookData.imageLinks.thumbnail) {
-                        print("image for \(indexPath.row) in cv exists in cache")
                         DispatchQueue.main.async {
                             cell.bookImage.image = image
                             if let imageCanBeSaved = image.jpegData(compressionQuality: 1.0) {
-                                self.saveGoogleBookImage.append(imageCanBeSaved)
+                                self.saveGoogleImage[indexPath.row] = imageCanBeSaved
                             }
                         }
                      } else {
-                        print("image for \(indexPath.row) in cv does NOT exist in cache, fetching for image from network now")
                         ImageHelper.fetchImageFromNetwork(urlString: bookData.imageLinks.thumbnail, completion: { (appError, image) in
                             if let appError = appError {
                                 print("fetchImageNetwork - \(appError)")
+                                self.saveGoogleImage[indexPath.row] = UIImage(named: "placeHolder")!.jpegData(compressionQuality: 1.0)
                             } else if let image = image {
                                 cell.bookImage.image = image
                                 if let imageCanBeSaved = image.jpegData(compressionQuality: 1.0) {
-                                    self.saveGoogleBookImage.append(imageCanBeSaved)
+                                    self.saveGoogleImage[indexPath.row] = imageCanBeSaved
                                 }
                             }
                         })
@@ -137,7 +131,7 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let book = books[indexPath.row]
-        let bookToSave = SavedBook.init(title: book.book_details[0].title, author: book.book_details[0].author, shortDescription: book.book_details[0].bookShortDescription, longDescription: saveGoogleDescription[indexPath.row] ?? "", bookImage: saveGoogleBookImage[indexPath.row] ?? nil, amazonLink: book.amazon_product_url, isbn13: book.book_details[0].primaryISBN13, addedDate: nil)
+        let bookToSave = SavedBook.init(title: book.book_details[0].title, author: book.book_details[0].author, shortDescription: book.book_details[0].bookShortDescription, longDescription: saveGoogleDescription[indexPath.row] ?? "", bookImage: saveGoogleImage[indexPath.row] ?? nil, amazonLink: book.amazon_product_url, isbn13: book.book_details[0].primaryISBN13, addedDate: nil)
         let bookDetail = BookDetailViewController(book: bookToSave)
         navigationController?.pushViewController(bookDetail, animated: true)
     }

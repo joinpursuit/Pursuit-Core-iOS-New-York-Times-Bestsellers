@@ -49,7 +49,6 @@ class BookDetailViewController: UIViewController {
     }
     
     @objc func favoriteButtonPressed() {
-        print("book Favorited")
         if var bookToSet = bookToSet {
             let date = Date()
             let isoDateFormatter = ISO8601DateFormatter()

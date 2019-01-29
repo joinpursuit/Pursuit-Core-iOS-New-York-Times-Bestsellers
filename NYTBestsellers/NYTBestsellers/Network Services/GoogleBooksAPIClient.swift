@@ -19,7 +19,6 @@ struct GoogleBooksAPIClient {
                 do {
                     let bookExists = try JSONDecoder().decode(GoogleBook.self, from: data)
                         completionHandler(nil, bookExists.items?.first?.volumeInfo)
-                        print("getGoogleBookImageUrl - google api call")
                 } catch {
                     completionHandler(AppError.jsonDecodingError(error), nil)
                 }
