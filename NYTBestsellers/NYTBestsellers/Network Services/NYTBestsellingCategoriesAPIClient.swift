@@ -18,8 +18,8 @@ final class NYTBestsellingCategoriesAPIClient {
                 completionHandler(appError, nil)
             } else if let data = data {
                 do {
-                    let categories = try JSONDecoder().decode(Category.CategoryData.self, from: data)
-                    completionHandler(nil, categories.results)
+                    let categoryData = try JSONDecoder().decode(Category.CategoryData.self, from: data)
+                    completionHandler(nil, categoryData.results)
                 } catch {
                     completionHandler(AppError.jsonDecodingError(error), nil)
                 }
