@@ -21,20 +21,12 @@ struct Results: Codable {
 //    let published_date: String
 //    let rank: Int
 //    let amazon_product_url: URL
-//    let isbns: [Isbns]
-//    let book_details: [BookDetails]
+// let isbns: [Isbns]
+   
 }
 
 //struct Isbns: Codable {
-//
+//    let isbn10: String
 //}
 //
-//struct BookDetails: Codable {
-//    let title: String
-//    let description: String
-//    let contributor: String
-//    let author: String
-//    let publisher: String
-//    let primary_isbn13: String
-//    let primary_isbn10: String
-//}
+

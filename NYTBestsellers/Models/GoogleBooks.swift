@@ -15,17 +15,17 @@ struct GoogleBooks: Codable {
 }
 
 struct Items: Codable {
-    let volumeInfo: [VolumeInfo]
+    let volumeInfo: VolumeInfo
 }
 
 struct VolumeInfo: Codable {
-    let industryIdentifiers: [Identifier]
-    let imageLinks: [ImageLink]
+//    let industryIdentifiers: [Identifier]
+    let imageLinks: ImageLink
 }
 
-struct Identifier: Codable {
-    let identifier: String
-}
+//struct Identifier: Codable {
+//    let identifier: String
+//}
 
 struct ImageLink: Codable {
     let smallThumbnail: String

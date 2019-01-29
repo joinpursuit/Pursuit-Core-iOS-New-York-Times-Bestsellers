@@ -43,4 +43,21 @@ final class bookAPIClient {
             }
         }
     }
+    
+    
+    static func getImageURL(identifier: String , completionhandler: @escaping(AppError?, VolumeInfo?) -> Void) {
+        NetworkHelper.shared.performDataTask(endpointURLString: "https://www.googleapis.com/books/v1/volumes?q=\(identifier)&key=\(APIKey.GKey)") { (appError, data) in
+            if let appError = appError {
+                completionhandler(appError,nil)
+            } else if let data = data {
+                do {
+                   let books = try JSONDecoder().decode(GoogleBooks.self, from: data)
+                    completionhandler(nil,books.items.first?.volumeInfo)
+                } catch {
+                    
+                }
+            }
+        }
+    }
 }
+

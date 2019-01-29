@@ -16,6 +16,8 @@ class BestSellerViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 self.bestSeller.bestSellerPickerView.reloadAllComponents()
+                
+               
             }
         }
     }
@@ -24,6 +26,13 @@ class BestSellerViewController: UIViewController {
         DispatchQueue.main.async {
             self.bestSeller.BestSellerCollectionView.reloadData()
         }
+        }
+    }
+    private var allimages = [ImageLink]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.bestSeller.BestSellerCollectionView.reloadData()
+            }
         }
     }
     
@@ -37,6 +46,8 @@ class BestSellerViewController: UIViewController {
         bestSeller.bestSellerPickerView.dataSource = self
         bestSeller.bestSellerPickerView.delegate = self
         getCategories()
+    
+       
     }
     
     private func getCategories() {
@@ -58,6 +69,17 @@ class BestSellerViewController: UIViewController {
             }
         }
     }
+    
+//    private func getImages(indexpath: Int) {
+//        let identifier = categories[indexpath].isbns
+//        bookAPIClient.getImageURL(identifier: identifier.first?.isbn10) { (error, images) in
+//            if let error = error {
+//                print(error.errorMessage())
+//            } else if let images = images {
+//                self.allimages = images
+//            }
+//        }
+//    }
 
 }
 
@@ -76,6 +98,21 @@ extension BestSellerViewController: UICollectionViewDataSource {
      let results = bookResults[indexPath.row]
         cell.bestSellerCollectionLabel.text = results.book_details.first?.title
         cell.bestSellerTextView.text = results.book_details.first?.description
+        bookAPIClient.getImageURL(identifier: (results.book_details.first?.primary_isbn13)!) { (error, data) in
+            if let error = error {
+              print(error.errorMessage())
+            } else if let data = data {
+                ImageHelper.fetchImageFromNetwork(urlString: data.imageLinks.smallThumbnail){ (error, image) in
+                    if let error = error {
+                        print(error.errorMessage())
+                    } else if let image = image {
+                        cell.bestSellerCollectionCellImage.image = image
+                    }
+                }
+            }
+        }
+        
+
         return cell
     }
     
