@@ -32,6 +32,9 @@
 		D604020521FBB8920002A04C /* GoogleBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604020421FBB8920002A04C /* GoogleBook.swift */; };
 		D604020721FBB8BC0002A04C /* NYTBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = D604020621FBB8BC0002A04C /* NYTBook.swift */; };
 		D6048C9821FFBD8200087176 /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6048C9721FFBD8200087176 /* SecretKeys.swift */; };
+		D6048C9A220004C100087176 /* NYTBestsellingCategoriesAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6048C99220004C100087176 /* NYTBestsellingCategoriesAPIClient.swift */; };
+		D6048C9C220004E800087176 /* NYTBestsellingBooksAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6048C9B220004E800087176 /* NYTBestsellingBooksAPIClient.swift */; };
+		D6048C9E2200050400087176 /* GoogleBookSearchAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6048C9D2200050400087176 /* GoogleBookSearchAPIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +65,9 @@
 		D604020421FBB8920002A04C /* GoogleBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBook.swift; sourceTree = "<group>"; };
 		D604020621FBB8BC0002A04C /* NYTBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBook.swift; sourceTree = "<group>"; };
 		D6048C9721FFBD8200087176 /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
+		D6048C99220004C100087176 /* NYTBestsellingCategoriesAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestsellingCategoriesAPIClient.swift; sourceTree = "<group>"; };
+		D6048C9B220004E800087176 /* NYTBestsellingBooksAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestsellingBooksAPIClient.swift; sourceTree = "<group>"; };
+		D6048C9D2200050400087176 /* GoogleBookSearchAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBookSearchAPIClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +130,9 @@
 			children = (
 				5718C00521FA78BA00A8E4B8 /* ImageHelper.swift */,
 				5718BFFF21FA771800A8E4B8 /* NetworkHelper.swift */,
+				D6048C99220004C100087176 /* NYTBestsellingCategoriesAPIClient.swift */,
+				D6048C9B220004E800087176 /* NYTBestsellingBooksAPIClient.swift */,
+				D6048C9D2200050400087176 /* GoogleBookSearchAPIClient.swift */,
 			);
 			path = "Network Services";
 			sourceTree = "<group>";
@@ -258,10 +267,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6048C9A220004C100087176 /* NYTBestsellingCategoriesAPIClient.swift in Sources */,
 				5718C00021FA771800A8E4B8 /* NetworkHelper.swift in Sources */,
 				5718BFFC21FA763200A8E4B8 /* String+DateExtensions.swift in Sources */,
 				D604020121FBB2430002A04C /* Category.swift in Sources */,
 				D60401E821FBA1110002A04C /* VC+Extensions.swift in Sources */,
+				D6048C9C220004E800087176 /* NYTBestsellingBooksAPIClient.swift in Sources */,
 				D604020721FBB8BC0002A04C /* NYTBook.swift in Sources */,
 				5718C00221FA772600A8E4B8 /* AppError.swift in Sources */,
 				D60401F521FBA8E60002A04C /* NYTBestSellingView.swift in Sources */,
@@ -279,6 +290,7 @@
 				D60401F321FBA6410002A04C /* NYTDetailBestSellingController.swift in Sources */,
 				D6048C9821FFBD8200087176 /* SecretKeys.swift in Sources */,
 				D60401FF21FBA9980002A04C /* FavoriteCell.swift in Sources */,
+				D6048C9E2200050400087176 /* GoogleBookSearchAPIClient.swift in Sources */,
 				D60401F921FBA90E0002A04C /* FavoriteView.swift in Sources */,
 				5718C00621FA78BA00A8E4B8 /* ImageHelper.swift in Sources */,
 			);
