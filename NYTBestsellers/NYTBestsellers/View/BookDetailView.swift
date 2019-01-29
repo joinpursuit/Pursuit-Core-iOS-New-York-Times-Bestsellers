@@ -19,6 +19,7 @@ class BookDetailView: UIView {
         let tv = UITextView()
         tv.isEditable = false
         tv.isSelectable = false
+        tv.font = tv.font?.withSize(20)
         return tv
     }()
     

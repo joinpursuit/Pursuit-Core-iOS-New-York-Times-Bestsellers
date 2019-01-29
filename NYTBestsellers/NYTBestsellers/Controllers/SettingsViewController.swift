@@ -15,17 +15,17 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(settingsView)
-        title = "Settings"
+        navigationItem.title = "Settings"
         settingsView.pickerView.dataSource = self
         settingsView.pickerView.delegate = self
         checkForUserDefaultsSetting()
     }
     
     private func checkForUserDefaultsSetting() {
-        if let rowNumber = UserDefaults.standard.object(forKey: "Book Category Index Number") as? Int {
+        if let rowNumber = UserDefaults.standard.object(forKey: UserDefaultKeys.categoryRowNumber) as? Int {
             settingsView.pickerView.selectRow(rowNumber, inComponent: 0, animated: true)
         } else {
-            settingsView.pickerView.selectRow(0, inComponent: 0, animated: true)
+            settingsView.pickerView.selectRow(0, inComponent: 0, animated: false)
         }
     }
 

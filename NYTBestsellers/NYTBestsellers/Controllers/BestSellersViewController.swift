@@ -10,7 +10,7 @@ import UIKit
 
 class BestSellersViewController: UIViewController {
     private let bestSellersView = BestSellersView()
-    private var currentBookCategoryToSearch = "humor" {
+    private var currentBookCategoryToSearch = "picture-books" {
         didSet {
             saveGoogleDescription.removeAll()
             saveGoogleImage.removeAll()
@@ -34,6 +34,7 @@ class BestSellersViewController: UIViewController {
     
     private var saveGoogleDescription: [Int:String] = [:]
     private var saveGoogleImage: [Int:Data] = [:]
+    
     fileprivate func searchForBooks() {
         NYTAPIClient.searchForBooks(in: currentBookCategoryToSearch) { (appError, books) in
             if let appError = appError {
@@ -52,6 +53,8 @@ class BestSellersViewController: UIViewController {
                 } else if let categories = categories {
                     self.bookCategoryPickerViewData = categories
                     SavedBookCategories.bookCategories = categories
+                    self.checkForUserDefaultsSetting()
+
                 }
             }
         } else {
@@ -62,21 +65,26 @@ class BestSellersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(bestSellersView)
-        title = "Best Sellers"
+        navigationItem.title = "Best Sellers"
         bestSellersView.collectionView.dataSource = self
         bestSellersView.collectionView.delegate = self
         bestSellersView.pickerView.dataSource = self
         bestSellersView.pickerView.delegate = self
         getBookCategories()
-        checkForUserDefaultsSetting()
+//        checkForUserDefaultsSetting()
+       // searchForBooks()
     }
     
     private func checkForUserDefaultsSetting() {
-        if let rowNumber = UserDefaults.standard.object(forKey: UserDefaultKeys.categoryRowNumber) as? Int, let currentCategory = UserDefaults.standard.object(forKey: UserDefaultKeys.categoryRowNumber) as? String {
-            bestSellersView.pickerView.selectRow(rowNumber, inComponent: 0, animated: true)
+        if let rowNumber = UserDefaults.standard.object(forKey: UserDefaultKeys.categoryRowNumber) as? Int, let currentCategory = UserDefaults.standard.object(forKey: UserDefaultKeys.categoryName) as? String {
             currentBookCategoryToSearch = currentCategory
+            DispatchQueue.main.async {
+                self.bestSellersView.pickerView.selectRow(rowNumber, inComponent: 0, animated: true)
+
+            }
         } else {
-            bestSellersView.pickerView.selectRow(0, inComponent: 0, animated: true)
+           // bestSellersView.pickerView.selectRow(0, inComponent: 0, animated: true)
+            currentBookCategoryToSearch = bookCategoryPickerViewData[0].list_name_encoded
         }
         searchForBooks()
     }
@@ -92,10 +100,12 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     private func configureBookCoverFromGoogle(cell: BookCollectionViewCell, atIndexPath indexPath: IndexPath, book: NYTBook) {
+        cell.bookImage.image = UIImage(named: "placeHolder")
         if let bookDetailsExists = book.book_details.first {
             GoogleBooksAPIClient.getGoogleBookImageUrl(bookISBN: bookDetailsExists.primaryISBN13) { (appError, bookData) in
                 if let appError = appError {
                     print("GoogleBooksAPIClient - probably reached daily limits - \(appError)")
+                    cell.bookImage.image = UIImage(named: "placeHolder")
                 } else if let bookData = bookData {
                     self.saveGoogleDescription[indexPath.row] = bookData.bookLongDescription
                     if let image = ImageHelper.fetchImageFromCache(urlString: bookData.imageLinks.thumbnail) {
@@ -109,6 +119,7 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
                         ImageHelper.fetchImageFromNetwork(urlString: bookData.imageLinks.thumbnail, completion: { (appError, image) in
                             if let appError = appError {
                                 print("fetchImageNetwork - \(appError)")
+                               // cell.bookImage.image = UIImage(named: "placeHolder")
                                 self.saveGoogleImage[indexPath.row] = UIImage(named: "placeHolder")!.jpegData(compressionQuality: 1.0)
                             } else if let image = image {
                                 cell.bookImage.image = image

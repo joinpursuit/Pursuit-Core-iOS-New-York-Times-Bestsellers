@@ -39,7 +39,7 @@ class BookDetailViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favorite", style: .plain, target: self, action: #selector(favoriteButtonPressed))
         if let bookToSet = bookToSet {
             title = bookToSet.title
-            bookDetailView.bookDetail.text = "\(bookToSet.title) by \(bookToSet.author)\n\n \(bookToSet.longDescription)"
+            bookDetailView.bookDetail.text = "\(bookToSet.title) by \(bookToSet.author) \n\n\(bookToSet.longDescription)"
             if let imageData = bookToSet.bookImage {
                 bookDetailView.bookImage.image = UIImage(data: imageData)
             } else {

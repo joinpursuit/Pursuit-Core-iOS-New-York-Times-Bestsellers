@@ -36,13 +36,12 @@ class SavedBooksCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "Book Description"
         label.numberOfLines = 0
- 
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .yellow
+        backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
         self.addSubview(moreOptionsButton)
         self.addSubview(bookImage)
         self.addSubview(bookTitleAndAuthor)
@@ -72,8 +71,7 @@ class SavedBooksCollectionViewCell: UICollectionViewCell {
          bookDescriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -11),
          
          moreOptionsButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 11),
-         moreOptionsButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11),
-//         moreOptionsButton.leadingAnchor.constraint(equalTo: bookImage.trailingAnchor, constant: 5)
+         moreOptionsButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11)
             ].forEach{ $0.isActive = true }
     }
 }

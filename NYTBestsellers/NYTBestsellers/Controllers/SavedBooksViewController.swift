@@ -25,7 +25,7 @@ class SavedBooksViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(savedBooksView)
-        title = "Favorited Books"
+        navigationItem.title = "Favorited Books"
         savedBooksView.collectionView.dataSource = self
         getBooks()
     }

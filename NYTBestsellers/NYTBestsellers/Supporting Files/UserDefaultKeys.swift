@@ -9,6 +9,6 @@
 import Foundation
 
 struct UserDefaultKeys {
-    static let categoryName = "Categoy Name"
+    static let categoryName = "Category Name"
     static let categoryRowNumber = "Category Row Number"
 }
