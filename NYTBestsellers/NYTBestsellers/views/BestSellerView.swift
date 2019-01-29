@@ -10,7 +10,6 @@ import UIKit
 
 
 class BestSellerView: UIView {
-    let colors: [String] = ["yellow","blue","orange","red",]
     
     
     
@@ -23,10 +22,8 @@ class BestSellerView: UIView {
     }()
     
     
-    lazy var BestSellerPickerView: UIPickerView = {
+    lazy var bestSellerPickerView: UIPickerView = {
         let pickerView = UIPickerView()
-        pickerView.delegate = self
-        pickerView.dataSource = self
         pickerView.backgroundColor = .clear
         return pickerView
     }()
@@ -72,16 +69,16 @@ myCollectionView.backgroundColor = .green
         BestSellerCollectionView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
         BestSellerCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 11).isActive = true
         BestSellerCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -11).isActive = true
-        BestSellerCollectionView.bottomAnchor.constraint(equalTo: BestSellerPickerView.topAnchor, constant: 10).isActive = true
+        BestSellerCollectionView.bottomAnchor.constraint(equalTo: bestSellerPickerView.topAnchor, constant: 10).isActive = true
         
     }
     
     func pickerConstrains() {
-        addSubview(BestSellerPickerView)
-        BestSellerPickerView.translatesAutoresizingMaskIntoConstraints = false
-        BestSellerPickerView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-      BestSellerPickerView.heightAnchor.constraint(equalToConstant: 350).isActive = true
-        BestSellerPickerView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        addSubview(bestSellerPickerView)
+        bestSellerPickerView.translatesAutoresizingMaskIntoConstraints = false
+        bestSellerPickerView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+      bestSellerPickerView.heightAnchor.constraint(equalToConstant: 350).isActive = true
+        bestSellerPickerView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
     
     func addBlur() {
@@ -94,20 +91,6 @@ myCollectionView.backgroundColor = .green
     }
 }
 
-extension BestSellerView: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return colors.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return colors[row]
-    }
-    
-    
-}
+
 
 

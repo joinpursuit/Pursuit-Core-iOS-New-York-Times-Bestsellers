@@ -12,7 +12,20 @@ import UIKit
 
 class BestSellerViewController: UIViewController {
     let bestSeller = BestSellerView()
-    
+  private var categories = [Results](){
+        didSet {
+            DispatchQueue.main.async {
+                self.bestSeller.bestSellerPickerView.reloadAllComponents()
+            }
+        }
+    }
+    private var bookResults = [BookResults]() {
+        didSet {
+        DispatchQueue.main.async {
+            self.bestSeller.BestSellerCollectionView.reloadData()
+        }
+        }
+    }
     
     
     
@@ -21,7 +34,31 @@ class BestSellerViewController: UIViewController {
         self.view.addSubview(bestSeller)
         bestSeller.BestSellerCollectionView.delegate = self
         bestSeller.BestSellerCollectionView.dataSource = self
+        bestSeller.bestSellerPickerView.dataSource = self
+        bestSeller.bestSellerPickerView.delegate = self
+        getCategories()
     }
+    
+    private func getCategories() {
+        bookAPIClient.getBooksCategory{ (appError, categories) in
+            if let appError = appError {
+                print(appError.errorMessage())
+            } else if let categories = categories {
+                self.categories = categories
+            }
+        }
+    }
+    
+    private func getBookResults(category: String) {
+        bookAPIClient.getBookNames(keyword: category.replacingOccurrences(of: " ", with: "-")) { (error, bookResults) in
+            if let error = error {
+               print(error.errorMessage())
+            } else if let bookResults = bookResults {
+                self.bookResults = bookResults
+            }
+        }
+    }
+
 }
 
 extension BestSellerViewController: UICollectionViewDelegateFlowLayout {
@@ -31,11 +68,14 @@ extension BestSellerViewController: UICollectionViewDelegateFlowLayout {
 
 extension BestSellerViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return bookResults.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as? CollectionViewCell else {return UICollectionViewCell() }
+     let results = bookResults[indexPath.row]
+        cell.bestSellerCollectionLabel.text = results.book_details.first?.title
+        cell.bestSellerTextView.text = results.book_details.first?.description
         return cell
     }
     
@@ -44,6 +84,23 @@ extension BestSellerViewController: UICollectionViewDataSource {
         self.navigationController?.pushViewController(detailController, animated: true)
         
     }
+}
+
+extension BestSellerViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
     
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categories.count
+    }
     
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return categories[row].list_name
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let keyword = categories[row].list_name
+       getBookResults(category: keyword)
+    }
+
 }
