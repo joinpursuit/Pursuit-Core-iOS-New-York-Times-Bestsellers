@@ -16,3 +16,7 @@ struct BookCategories: Codable {
     let list_name: String
     let list_name_encoded: String
 }
+
+struct SavedBookCategories {
+    static var bookCategories: [BookCategories] = []
+}

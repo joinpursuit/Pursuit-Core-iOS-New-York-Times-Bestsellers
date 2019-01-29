@@ -17,11 +17,11 @@ struct GoogleBookDetails: Codable {
 }
 
 struct VolumeInfo: Codable {
-    let bookDescription: String
+    let bookLongDescription: String
     let imageLinks: ImageLinks
     
     enum CodingKeys: String, CodingKey {
-        case bookDescription = "description"
+        case bookLongDescription = "description"
         case imageLinks
     }
 }

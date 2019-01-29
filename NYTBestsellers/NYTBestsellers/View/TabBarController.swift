@@ -14,7 +14,7 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         let bestSellerViewController = BestSellersViewController()
         bestSellerViewController.tabBarItem = UITabBarItem(title: "Best Sellers", image: UIImage(named: "books"), tag: 0)
-        let favoritesViewController = FavoritesViewController()
+        let favoritesViewController = SavedBooksViewController()
         favoritesViewController.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(named: "favorites"), tag: 1)
         let settingsViewController = SettingsViewController()
         settingsViewController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings"), tag: 2)

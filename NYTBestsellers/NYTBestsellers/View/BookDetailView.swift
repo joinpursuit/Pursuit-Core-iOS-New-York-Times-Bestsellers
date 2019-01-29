@@ -18,7 +18,7 @@ class BookDetailView: UIView {
     public lazy var bookDetailTextView: UITextView = {
         let tv = UITextView()
         tv.isEditable = false
-        tv.font = tv.font?.withSize(14)
+        tv.font = tv.font?.withSize(16)
         tv.isEditable = false
         tv.isSelectable = false
         return tv
@@ -38,17 +38,17 @@ class BookDetailView: UIView {
     
     func setupConstraints() {
         [bookImage, bookDetailTextView].forEach{ $0.translatesAutoresizingMaskIntoConstraints = false }
+        
         [bookImage.centerXAnchor.constraint(equalTo: centerXAnchor),
          bookImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
          bookImage.heightAnchor.constraint(equalToConstant: 300),
-         bookImage.widthAnchor.constraint(equalToConstant: 250),].forEach{ $0.isActive = true }
-        [bookDetailTextView.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 22),
+         bookImage.widthAnchor.constraint(equalToConstant: 250),
+         
+         bookDetailTextView.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 22),
          bookDetailTextView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 22),
          bookDetailTextView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 22),
-         bookDetailTextView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 22)].forEach{ $0.isActive = true }
-//        [navigationBar.topAnchor.constraint(equalToSystemSpacingBelow: safeAreaLayoutGuide.topAnchor, multiplier: 0),
-//         navigationBar.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 0),
-//         navigationBar.trailingAnchor.constraint(equalToSystemSpacingAfter: trailingAnchor, multiplier: 0)].forEach{ $0.isActive = true }
+         bookDetailTextView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 22)
+            ].forEach{ $0.isActive = true }
     }
 
 }

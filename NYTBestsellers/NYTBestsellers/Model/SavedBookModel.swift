@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct SavedBookInfoModel {
+struct SavedBooksModel {
     private static let filename = "BookInfo.plist"
     private static var savedBooks = [SavedBook]()
     

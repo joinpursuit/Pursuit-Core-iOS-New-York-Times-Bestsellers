@@ -32,7 +32,8 @@ class SettingsView: UIView {
         [pickerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
          pickerView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0),
          pickerView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 0),
-         pickerView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0)].forEach{ $0.isActive = true }
+         pickerView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0)
+            ].forEach{ $0.isActive = true }
     }
 
 }

@@ -11,16 +11,19 @@ import Foundation
 struct SavedBook: Codable {
     let title: String
     let author: String
+    let shortDescription: String
     let longDescription: String
-    let bookImage: Data
+    let bookImage: Data?
     let amazonLink: String
     let isbn13: String
-    let addedDate: String
+    let addedDate: String?
     public var date: Date {
         let isoDateFormatter = ISO8601DateFormatter()
         var formattedDate = Date()
-        if let date = isoDateFormatter.date(from: addedDate) {
-            formattedDate = date
+        if let dateExists = addedDate {
+            if let date = isoDateFormatter.date(from: dateExists) {
+                formattedDate = date
+            }
         }
         return formattedDate
     }

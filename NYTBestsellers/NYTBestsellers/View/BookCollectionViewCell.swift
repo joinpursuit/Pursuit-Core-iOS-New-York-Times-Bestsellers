@@ -47,12 +47,15 @@ class BookCollectionViewCell: UICollectionViewCell {
         [bookImage.centerXAnchor.constraint(equalTo: centerXAnchor),
          bookImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 5),
          bookImage.heightAnchor.constraint(equalToConstant: 150),
-         bookImage.widthAnchor.constraint(equalToConstant: 125)].forEach{ $0.isActive = true }
-         [numberOfWeeksOnList.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 11),
-          numberOfWeeksOnList.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5),
-          numberOfWeeksOnList.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 5)].forEach{ $0.isActive = true }
-         [bookDescriptionLabel.topAnchor.constraint(equalTo: numberOfWeeksOnList.bottomAnchor, constant: 11),
-          bookDescriptionLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5),
-          bookDescriptionLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 5)].forEach{ $0.isActive = true }
+         bookImage.widthAnchor.constraint(equalToConstant: 125),
+         
+         numberOfWeeksOnList.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 11),
+         numberOfWeeksOnList.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5),
+         numberOfWeeksOnList.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 5),
+         
+         bookDescriptionLabel.topAnchor.constraint(equalTo: numberOfWeeksOnList.bottomAnchor, constant: 11),
+         bookDescriptionLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5),
+         bookDescriptionLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 5)
+            ].forEach{ $0.isActive = true }
     }
 }

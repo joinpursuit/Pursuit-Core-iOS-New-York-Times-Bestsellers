@@ -20,11 +20,11 @@
 		A514E16621FB822700BB4B25 /* NYTAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E16521FB822700BB4B25 /* NYTAPIClient.swift */; };
 		A514E16821FB827900BB4B25 /* AvailableCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E16721FB827900BB4B25 /* AvailableCategories.swift */; };
 		A514E16B21FB85E300BB4B25 /* BestSellersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E16A21FB85E300BB4B25 /* BestSellersView.swift */; };
-		A514E16D21FB85EE00BB4B25 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E16C21FB85EE00BB4B25 /* FavoritesView.swift */; };
+		A514E16D21FB85EE00BB4B25 /* SavedBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E16C21FB85EE00BB4B25 /* SavedBooks.swift */; };
 		A514E16F21FB85F800BB4B25 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E16E21FB85F800BB4B25 /* SettingsView.swift */; };
 		A514E17221FB862000BB4B25 /* BestSellersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E17121FB862000BB4B25 /* BestSellersViewController.swift */; };
 		A514E17521FB863600BB4B25 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E17421FB863600BB4B25 /* SettingsViewController.swift */; };
-		A514E17721FB863B00BB4B25 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E17621FB863B00BB4B25 /* FavoritesViewController.swift */; };
+		A514E17721FB863B00BB4B25 /* SavedBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E17621FB863B00BB4B25 /* SavedBooksViewController.swift */; };
 		A514E17B21FB890000BB4B25 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E17A21FB890000BB4B25 /* TabBarController.swift */; };
 		A514E17D21FB904900BB4B25 /* BookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E17C21FB904900BB4B25 /* BookCollectionViewCell.swift */; };
 		A514E17F21FBA5B700BB4B25 /* GoogleBooksAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E17E21FBA5B700BB4B25 /* GoogleBooksAPIClient.swift */; };
@@ -34,6 +34,7 @@
 		A514E18721FBD44200BB4B25 /* GoogleBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E18621FBD44200BB4B25 /* GoogleBook.swift */; };
 		A514E18921FBF60900BB4B25 /* SavedBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E18821FBF60900BB4B25 /* SavedBook.swift */; };
 		A514E18B21FBF60F00BB4B25 /* SavedBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E18A21FBF60F00BB4B25 /* SavedBookModel.swift */; };
+		A514E1CB21FFC76E00BB4B25 /* SavedBooksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E1CA21FFC76E00BB4B25 /* SavedBooksCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,11 +53,11 @@
 		A514E16521FB822700BB4B25 /* NYTAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTAPIClient.swift; sourceTree = "<group>"; };
 		A514E16721FB827900BB4B25 /* AvailableCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableCategories.swift; sourceTree = "<group>"; };
 		A514E16A21FB85E300BB4B25 /* BestSellersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellersView.swift; sourceTree = "<group>"; };
-		A514E16C21FB85EE00BB4B25 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		A514E16C21FB85EE00BB4B25 /* SavedBooks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedBooks.swift; sourceTree = "<group>"; };
 		A514E16E21FB85F800BB4B25 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A514E17121FB862000BB4B25 /* BestSellersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellersViewController.swift; sourceTree = "<group>"; };
 		A514E17421FB863600BB4B25 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		A514E17621FB863B00BB4B25 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		A514E17621FB863B00BB4B25 /* SavedBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedBooksViewController.swift; sourceTree = "<group>"; };
 		A514E17A21FB890000BB4B25 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A514E17C21FB904900BB4B25 /* BookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionViewCell.swift; sourceTree = "<group>"; };
 		A514E17E21FBA5B700BB4B25 /* GoogleBooksAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBooksAPIClient.swift; sourceTree = "<group>"; };
@@ -66,6 +67,7 @@
 		A514E18621FBD44200BB4B25 /* GoogleBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBook.swift; sourceTree = "<group>"; };
 		A514E18821FBF60900BB4B25 /* SavedBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedBook.swift; sourceTree = "<group>"; };
 		A514E18A21FBF60F00BB4B25 /* SavedBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedBookModel.swift; sourceTree = "<group>"; };
+		A514E1CA21FFC76E00BB4B25 /* SavedBooksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedBooksCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,7 +171,8 @@
 				A514E16A21FB85E300BB4B25 /* BestSellersView.swift */,
 				A514E17C21FB904900BB4B25 /* BookCollectionViewCell.swift */,
 				A514E18221FBC1D400BB4B25 /* BookDetailView.swift */,
-				A514E16C21FB85EE00BB4B25 /* FavoritesView.swift */,
+				A514E16C21FB85EE00BB4B25 /* SavedBooks.swift */,
+				A514E1CA21FFC76E00BB4B25 /* SavedBooksCollectionViewCell.swift */,
 				A514E16E21FB85F800BB4B25 /* SettingsView.swift */,
 			);
 			path = View;
@@ -180,7 +183,7 @@
 			children = (
 				A514E17121FB862000BB4B25 /* BestSellersViewController.swift */,
 				A514E18421FBC1DD00BB4B25 /* BookDetailViewController.swift */,
-				A514E17621FB863B00BB4B25 /* FavoritesViewController.swift */,
+				A514E17621FB863B00BB4B25 /* SavedBooksViewController.swift */,
 				A514E17421FB863600BB4B25 /* SettingsViewController.swift */,
 			);
 			path = Controllers;
@@ -273,12 +276,13 @@
 				A514E16421FB7A7100BB4B25 /* SecretKeys.swift in Sources */,
 				A514E18121FBB0E700BB4B25 /* BookListResult.swift in Sources */,
 				A514E18321FBC1D400BB4B25 /* BookDetailView.swift in Sources */,
-				A514E17721FB863B00BB4B25 /* FavoritesViewController.swift in Sources */,
+				A514E17721FB863B00BB4B25 /* SavedBooksViewController.swift in Sources */,
 				A514E17F21FBA5B700BB4B25 /* GoogleBooksAPIClient.swift in Sources */,
-				A514E16D21FB85EE00BB4B25 /* FavoritesView.swift in Sources */,
+				A514E16D21FB85EE00BB4B25 /* SavedBooks.swift in Sources */,
 				A514E16621FB822700BB4B25 /* NYTAPIClient.swift in Sources */,
 				5718BFFE21FA764E00A8E4B8 /* Date+Extensions.swift in Sources */,
 				A514E18921FBF60900BB4B25 /* SavedBook.swift in Sources */,
+				A514E1CB21FFC76E00BB4B25 /* SavedBooksCollectionViewCell.swift in Sources */,
 				5718C00621FA78BA00A8E4B8 /* ImageHelper.swift in Sources */,
 				A514E16F21FB85F800BB4B25 /* SettingsView.swift in Sources */,
 			);
