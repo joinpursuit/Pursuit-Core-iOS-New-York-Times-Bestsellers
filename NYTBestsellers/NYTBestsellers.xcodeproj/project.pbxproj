@@ -34,6 +34,9 @@
 		93892D7721FF9D1300B1A0E5 /* NYTAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93892D7621FF9D1300B1A0E5 /* NYTAPIClient.swift */; };
 		93892D7921FF9F7100B1A0E5 /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93892D7821FF9F7100B1A0E5 /* SecretKeys.swift */; };
 		93892D7B2200CAA400B1A0E5 /* FavoriteBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93892D7A2200CAA400B1A0E5 /* FavoriteBooks.swift */; };
+		93892D7D2200E77C00B1A0E5 /* FavoriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93892D7C2200E77C00B1A0E5 /* FavoriteModel.swift */; };
+		93892D7F2201091E00B1A0E5 /* AmazonWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93892D7E2201091E00B1A0E5 /* AmazonWebViewController.swift */; };
+		93892D812201093200B1A0E5 /* AmazonWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93892D802201093200B1A0E5 /* AmazonWebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +69,9 @@
 		93892D7621FF9D1300B1A0E5 /* NYTAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTAPIClient.swift; sourceTree = "<group>"; };
 		93892D7821FF9F7100B1A0E5 /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
 		93892D7A2200CAA400B1A0E5 /* FavoriteBooks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBooks.swift; sourceTree = "<group>"; };
+		93892D7C2200E77C00B1A0E5 /* FavoriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteModel.swift; sourceTree = "<group>"; };
+		93892D7E2201091E00B1A0E5 /* AmazonWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmazonWebViewController.swift; sourceTree = "<group>"; };
+		93892D802201093200B1A0E5 /* AmazonWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmazonWebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,8 +161,9 @@
 			children = (
 				93892D1721FB844F00B1A0E5 /* BestSellerViewController.swift */,
 				93892D1921FB845700B1A0E5 /* FavoriteViewController.swift */,
-				93892D1B21FB846200B1A0E5 /* SettingsViewController.swift */,
 				93892D1D21FB846D00B1A0E5 /* DetailViewController.swift */,
+				93892D1B21FB846200B1A0E5 /* SettingsViewController.swift */,
+				93892D7E2201091E00B1A0E5 /* AmazonWebViewController.swift */,
 				93892D2821FB86C100B1A0E5 /* SubClass */,
 				93892D2721FB84EF00B1A0E5 /* Views */,
 			);
@@ -170,6 +177,7 @@
 				93892D2121FB848700B1A0E5 /* FavoriteView.swift */,
 				93892D2321FB848F00B1A0E5 /* SettingsView.swift */,
 				93892D2521FB849900B1A0E5 /* DetailView.swift */,
+				93892D802201093200B1A0E5 /* AmazonWebView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -189,6 +197,7 @@
 			children = (
 				93892D2E21FBB02B00B1A0E5 /* GenreModel.swift */,
 				93892D3021FBB03900B1A0E5 /* BooksModel.swift */,
+				93892D7C2200E77C00B1A0E5 /* FavoriteModel.swift */,
 				93892D3221FBB04500B1A0E5 /* ImageModel.swift */,
 			);
 			path = Models;
@@ -269,6 +278,7 @@
 				93892D1E21FB846D00B1A0E5 /* DetailViewController.swift in Sources */,
 				93892D3121FBB03900B1A0E5 /* BooksModel.swift in Sources */,
 				5718C00021FA771800A8E4B8 /* NetworkHelper.swift in Sources */,
+				93892D812201093200B1A0E5 /* AmazonWebView.swift in Sources */,
 				93892D7921FF9F7100B1A0E5 /* SecretKeys.swift in Sources */,
 				93892D3521FBC25900B1A0E5 /* FavoriteCollectionViewCell.swift in Sources */,
 				93892D2F21FBB02B00B1A0E5 /* GenreModel.swift in Sources */,
@@ -277,6 +287,7 @@
 				5718C00221FA772600A8E4B8 /* AppError.swift in Sources */,
 				93892D1C21FB846200B1A0E5 /* SettingsViewController.swift in Sources */,
 				5718C00421FA77AA00A8E4B8 /* DataPersistenceManager.swift in Sources */,
+				93892D7F2201091E00B1A0E5 /* AmazonWebViewController.swift in Sources */,
 				93892D1A21FB845700B1A0E5 /* FavoriteViewController.swift in Sources */,
 				93892D2421FB848F00B1A0E5 /* SettingsView.swift in Sources */,
 				93892D3321FBB04500B1A0E5 /* ImageModel.swift in Sources */,
@@ -287,6 +298,7 @@
 				93892D2C21FB9B4A00B1A0E5 /* BestSellerCollectionViewCell.swift in Sources */,
 				93892D7721FF9D1300B1A0E5 /* NYTAPIClient.swift in Sources */,
 				5718C00621FA78BA00A8E4B8 /* ImageHelper.swift in Sources */,
+				93892D7D2200E77C00B1A0E5 /* FavoriteModel.swift in Sources */,
 				93892D2621FB849900B1A0E5 /* DetailView.swift in Sources */,
 				93892D2021FB847F00B1A0E5 /* BestSellerView.swift in Sources */,
 			);

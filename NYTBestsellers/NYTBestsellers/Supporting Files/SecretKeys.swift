@@ -12,3 +12,7 @@ struct SecretKeys {
     static let GoogleAPI = "AIzaSyBWNE9-brA0peKmk0AFqJ1kjMyZtDYguAc"
     static let NYTAPIKey = "8sGgJGPLPqUSMbtv5fsqZNoi7d3AQNt0"
 }
+struct DefaultGenre {
+    static var defaultGenre = "Default Genre"
+    static var pickerRow = "Picker Row"
+}

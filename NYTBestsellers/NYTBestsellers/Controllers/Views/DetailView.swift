@@ -35,7 +35,6 @@ class DetailView: UIView {
     lazy var favoriteButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "favorite"), for: .normal)
-        button.addTarget(self, action: #selector(favoriteFunc), for: .touchUpInside)
         return button
     }()
     override init(frame: CGRect) {

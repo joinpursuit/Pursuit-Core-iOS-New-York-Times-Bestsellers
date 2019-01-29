@@ -9,7 +9,7 @@
 import Foundation
 final class FavoriteBookModel {
     private static let filename = "FavoriteBooks.plist"
-    static var favoriteBooks = [Book]()
+    static var favoriteBooks = [FavoriteBook]()
     
     private init() {}
     
@@ -22,16 +22,16 @@ final class FavoriteBookModel {
             print("Property list encoding error \(error)")
         }
     }
-    static func addBook(book: Book) {
+    static func addBook(book: FavoriteBook) {
         favoriteBooks.append(book)
         saveBook()
     }
-    static func getBooks() -> [Book] {
+    static func getBooks() -> [FavoriteBook] {
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename).path
         if FileManager.default.fileExists(atPath: path) {
             if let data = FileManager.default.contents(atPath: path) {
                 do {
-                    favoriteBooks = try PropertyListDecoder().decode([Book].self, from: data)
+                    favoriteBooks = try PropertyListDecoder().decode([FavoriteBook].self, from: data).sorted(by: {$0.createdAt > $1.createdAt})
                 } catch {
                     print("Property list decode error: \(error)")
                 }
@@ -42,5 +42,9 @@ final class FavoriteBookModel {
             print("\(filename) does not exist...")
         }
         return favoriteBooks
+    }
+    static func deleteFavoriteBook(index: Int) {
+        favoriteBooks.remove(at: index)
+        saveBook()
     }
 }

@@ -22,7 +22,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     }()
     lazy var bookText: UITextView = {
         let textView = UITextView()
-        textView.backgroundColor = .black
+        textView.backgroundColor = .white
         return textView
     }()
     lazy var menuButton: UIButton = {

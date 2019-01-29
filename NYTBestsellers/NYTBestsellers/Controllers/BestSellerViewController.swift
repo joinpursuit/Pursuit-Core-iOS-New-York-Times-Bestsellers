@@ -35,7 +35,7 @@ class BestSellerViewController: UIViewController {
         view.addSubview(bestSellerView)
         navigationItem.title = "Best Sellers"
         getGenre()
-        checkDefaultSearchSettings()
+        let _ = FavoriteBookModel.getBooks()
     }
     override func viewWillAppear(_ animated: Bool) {
         checkDefaultSearchSettings()
@@ -47,6 +47,7 @@ class BestSellerViewController: UIViewController {
                 print("Error on BSVC:getGenre \(error)")
             } else if let data = data {
                 self.genreList = data
+                self.checkDefaultSearchSettings()
             }
         }
     }
@@ -60,8 +61,13 @@ class BestSellerViewController: UIViewController {
         }
     }
     func checkDefaultSearchSettings() {
-        if let defaultKeyword = UserDefaults.standard.object(forKey: "Default Genre") as? String {
+        if let defaultKeyword: String = UserDefaults.standard.object(forKey: DefaultGenre.defaultGenre) as? String {
             getBooks(keyword: defaultKeyword.replacingOccurrences(of: " ", with: "-"))
+            if let pickerRow = (UserDefaults.standard.object(forKey: DefaultGenre.pickerRow) as? String) {
+                DispatchQueue.main.async {
+                    self.bestSellerView.pickerView.selectRow(Int(pickerRow)!, inComponent: 0, animated: true)
+                }
+            }
         }
     }
 }
@@ -81,13 +87,14 @@ extension BestSellerViewController: UICollectionViewDataSource, UICollectionView
                 DispatchQueue.main.async {
                     cell.bookImage.image = UIImage(named: "book")
                 }
-            } else if let image = image {
-                ImageHelper.fetchImageFromNetwork(urlString: image[0].volumeInfo.imageLinks.smallThumbnail.absoluteString, completion: { (error, smallImage) in
+            } else if let data = image {
+                ImageHelper.fetchImageFromNetwork(urlString: data[0].volumeInfo.imageLinks.smallThumbnail.absoluteString, completion: { (error, smallImage) in
                     if let error = error {
                         print("Small Image error \(error)")
                     } else if let smallImage = smallImage {
                         DispatchQueue.main.async {
                             cell.bookImage.image = smallImage
+                            cell.bookText.text = data[0].volumeInfo.description
                         }
                     }
                 })

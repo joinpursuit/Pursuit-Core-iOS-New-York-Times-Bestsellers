@@ -33,6 +33,11 @@ class SettingsViewController: UIViewController {
                 print("SettingsVC Error: \(error)")
             } else if let data = data {
                 self.genres = data
+                if let pickerRow = (UserDefaults.standard.object(forKey: DefaultGenre.pickerRow) as? String) {
+                    DispatchQueue.main.async {
+                        self.settingsView.pickerView.selectRow(Int(pickerRow)!, inComponent: 0, animated: true)
+                    }
+                }
             }
         }
     }
@@ -50,15 +55,14 @@ extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let alert = UIAlertController(title: "Save?", message: "Save \(genres[row].list_name) to default search settings?", preferredStyle: .alert)
-        
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
-            UserDefaults.standard.set(self.genres[row].list_name, forKey: "Default Genre")
+            UserDefaults.standard.set(self.genres[row].list_name, forKey: DefaultGenre.defaultGenre)
+            UserDefaults.standard.set(String(row), forKey: DefaultGenre.pickerRow)
             let alert2 = UIAlertController(title: "Saved!", message: "\(self.genres[row].list_name) has been saved to \"Default Genre\"", preferredStyle: .alert)
             alert2.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert2, animated: true)
         }))
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-        
         self.present(alert, animated: true)
     }
 }
