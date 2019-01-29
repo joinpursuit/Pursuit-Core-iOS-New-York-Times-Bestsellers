@@ -8,10 +8,10 @@
 
 import Foundation
 
-final class FinalManagerHelper {
+final class FavoritesDataManager {
   
   static let filename = "FavoriteBookList.plist"
-  private static var bookItems = [FavoriteBooks]()
+  private static var bookItems = [FavoriteBook]()
   
   private init() {}
   
@@ -27,14 +27,14 @@ final class FinalManagerHelper {
     }
   }
   
-  static func getFavoriteBooksInfo() -> [FavoriteBooks] {
+  static func getFavoriteBooksInfo() -> [FavoriteBook] {
     
     let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename).path
     
     if FileManager.default.fileExists(atPath: path) {
       if let data = FileManager.default.contents(atPath: path) {
         do {
-          bookItems = try PropertyListDecoder().decode([FavoriteBooks].self, from: data)
+          bookItems = try PropertyListDecoder().decode([FavoriteBook].self, from: data)
         } catch {
           print("property list decoding error: \(error)")
         }
@@ -44,11 +44,11 @@ final class FinalManagerHelper {
     } else {
       print("\(filename) does not exist")
     }
-    bookItems = bookItems.sorted {$0.date > $1.date}
+    bookItems = bookItems.sorted {$0.createdAt.date() > $1.createdAt.date()}
     return bookItems
   }
   
-  static func addEntry(book: FavoriteBooks) {
+  static func addEntry(book: FavoriteBook) {
     bookItems.append(book)
     saveFavoriteBooks()
   }

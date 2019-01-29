@@ -49,9 +49,14 @@ class NYTBestSellerController: UIViewController {
     bestSellerView.categoryPickerView.delegate =  self
     bestSellerView.categoryPickerView.dataSource = self
     
+    
+//    let fetchedCategories = CategoriesDataManager.fetchCategories()
+//    if fetchedCategories.count == 0 {
+//      getCategories()
+//    }
     getCategories()
     //TODO I'll wrap this up TO CALL user defaults
-    getBookInfo(categoryName: "Humor")
+    getBookInfo(categoryName:"")
     
   }
   
@@ -62,7 +67,8 @@ class NYTBestSellerController: UIViewController {
       }
       if let arrayOfCategoryName = categories {
         self.categoriesInfo = arrayOfCategoryName
-        dump(self.categoriesInfo)
+//        dump(self.categoriesInfo)
+        //save into FileMa
       }
     }
   }

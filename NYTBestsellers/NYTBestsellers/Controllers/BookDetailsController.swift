@@ -34,7 +34,18 @@ class BookDetailsController: UIViewController {
   
   
   @objc func favoriteButtonTapped(_ sender: UIBarButtonItem!) {
-   print("favorite button is being pressed")
+   
+    let weeksOnBestSeller = bookInDetail?.weeks_on_list.description ?? "no weeks on best seller"
+    let bookDesription = descriptionFromGoodle ?? "no book description"
+    
+    let favoriteBook = FavoriteBook.init(imageData: imageForDetailed?.jpegData(compressionQuality: 0.5),
+                                         weeksOnBestSellerList: weeksOnBestSeller,
+                                         bookDescription: bookDesription,
+                                         createdAt: Date.getISOTimestamp())
+    
+    
+    FavoritesDataManager.addEntry(book: favoriteBook)
+    
   }
   
   func setupUI() {
