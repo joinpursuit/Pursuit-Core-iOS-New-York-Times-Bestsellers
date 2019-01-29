@@ -11,7 +11,6 @@ import UIKit
 
 class DetailViewController: UIViewController {
     let detailview = DetailView()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(detailview)

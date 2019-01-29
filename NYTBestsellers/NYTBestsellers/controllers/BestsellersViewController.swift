@@ -12,20 +12,18 @@ import UIKit
 
 class BestSellerViewController: UIViewController {
     let bestSeller = BestSellerView()
-  private var categories = [Results](){
+    private var categories = [Results](){
         didSet {
             DispatchQueue.main.async {
                 self.bestSeller.bestSellerPickerView.reloadAllComponents()
-                
-               
             }
         }
     }
     private var bookResults = [BookResults]() {
         didSet {
-        DispatchQueue.main.async {
-            self.bestSeller.BestSellerCollectionView.reloadData()
-        }
+            DispatchQueue.main.async {
+                self.bestSeller.BestSellerCollectionView.reloadData()
+            }
         }
     }
     private var allimages = [ImageLink]() {
@@ -46,8 +44,6 @@ class BestSellerViewController: UIViewController {
         bestSeller.bestSellerPickerView.dataSource = self
         bestSeller.bestSellerPickerView.delegate = self
         getCategories()
-    
-       
     }
     
     private func getCategories() {
@@ -63,24 +59,12 @@ class BestSellerViewController: UIViewController {
     private func getBookResults(category: String) {
         bookAPIClient.getBookNames(keyword: category.replacingOccurrences(of: " ", with: "-")) { (error, bookResults) in
             if let error = error {
-               print(error.errorMessage())
+                print(error.errorMessage())
             } else if let bookResults = bookResults {
                 self.bookResults = bookResults
             }
         }
     }
-    
-//    private func getImages(indexpath: Int) {
-//        let identifier = categories[indexpath].isbns
-//        bookAPIClient.getImageURL(identifier: identifier.first?.isbn10) { (error, images) in
-//            if let error = error {
-//                print(error.errorMessage())
-//            } else if let images = images {
-//                self.allimages = images
-//            }
-//        }
-//    }
-
 }
 
 extension BestSellerViewController: UICollectionViewDelegateFlowLayout {
@@ -95,12 +79,12 @@ extension BestSellerViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as? CollectionViewCell else {return UICollectionViewCell() }
-     let results = bookResults[indexPath.row]
+        let results = bookResults[indexPath.row]
         cell.bestSellerCollectionLabel.text = results.book_details.first?.title
         cell.bestSellerTextView.text = results.book_details.first?.description
         bookAPIClient.getImageURL(identifier: (results.book_details.first?.primary_isbn13)!) { (error, data) in
             if let error = error {
-              print(error.errorMessage())
+                print(error.errorMessage())
             } else if let data = data {
                 ImageHelper.fetchImageFromNetwork(urlString: data.imageLinks.smallThumbnail){ (error, image) in
                     if let error = error {
@@ -111,13 +95,20 @@ extension BestSellerViewController: UICollectionViewDataSource {
                 }
             }
         }
-        
-
         return cell
     }
     
+    
+
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       let detailController = DetailViewController()
+        let detailController = DetailViewController()
+            guard let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell else { return }
+        detailController.detailview.detailImage.image = cell.bestSellerCollectionCellImage.image
+        detailController.detailview.detailLabel.text = cell.bestSellerCollectionLabel.text
+        detailController.detailview.detailTextView.text = cell.bestSellerTextView.text
         self.navigationController?.pushViewController(detailController, animated: true)
         
     }
@@ -137,7 +128,7 @@ extension BestSellerViewController: UIPickerViewDelegate, UIPickerViewDataSource
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let keyword = categories[row].list_name
-       getBookResults(category: keyword)
+        getBookResults(category: keyword)
     }
-
+    
 }
