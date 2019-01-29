@@ -26,7 +26,7 @@ class DetailView: UIView {
     lazy var favoriteView: UIView = {
        var view = UITextView()
         view.backgroundColor = .yellow
-        
+        view.addSubview(favoriteImage)
   
         return view
 
@@ -115,7 +115,7 @@ class DetailView: UIView {
         favoriteView.widthAnchor.constraint(equalToConstant: 50).isActive = true
     }
     func setupFavImage(){
-        addSubview(favoriteImage)
+//        addSubview(favoriteImage)
         favoriteImage.translatesAutoresizingMaskIntoConstraints = false
         favoriteImage.centerXAnchor.constraint(equalTo: favoriteView.centerXAnchor).isActive = true
         favoriteImage.centerYAnchor.constraint(equalTo: favoriteView.centerYAnchor).isActive = true
