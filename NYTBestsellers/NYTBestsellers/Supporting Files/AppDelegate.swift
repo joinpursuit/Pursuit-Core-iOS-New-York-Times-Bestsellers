@@ -25,10 +25,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        // let DVC = DetailViewController()
         let TabVC = UITabBarController()
         let Nav = UINavigationController.init(rootViewController: BSVC)
+        
         BSVC.title = "Best Sellers"
         FVC.title = "Favorites"
         SVC.title = "Settings"
         TabVC.viewControllers = [Nav,FVC,SVC]
+        TabVC.tabBar.items?[0].image = UIImage(named: "bestsellers")
+        TabVC.tabBar.items?[1].image = UIImage(named: "favorites")
+        TabVC.tabBar.items?[2].image = UIImage(named: "settings")
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = TabVC
             window?.makeKeyAndVisible()

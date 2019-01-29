@@ -9,52 +9,15 @@
 import Foundation
 
 
-struct NYTBestseller: Codable {
-    let results: [Books]
+struct Genre: Codable {
+    let results: [BestsellerGenre]
 }
-
-struct Books: Codable {
+struct BestsellerGenre: Codable {
     let displayName: String
+    let listName: String
     enum CodingKeys: String, CodingKey {
         case displayName = "display_name"
-        
+        case listName = "list_name"
     }
+    
 }
-
-
-struct NYTBestSellersDetail: Codable {
-    let items: [BookInfo]
-}
-
-struct BookInfo: Codable {
-    let title: String
-    let description: String
-}
-
-struct NYTBestsellerCollection: Codable {
-    let results: [BookData]
-}
-
-struct BookData: Codable {
-    let isbns: [ISBNS]
-    let bookDetails: [Collection]
-    let weeksOnList: Int
-    let amazonProductUrl: String
-    enum CodingKeys: String, CodingKey {
-        case isbns
-        case bookDetails = "book_details"
-        case weeksOnList = "weeks_on_list"
-        case amazonProductUrl = "amazon_product_url"
-    }
-}
-
-struct ISBNS: Codable {
-    let isbn13: String
-}
-
-struct Collection: Codable {
-    let title: String
-    let description: String
-}
-
-
