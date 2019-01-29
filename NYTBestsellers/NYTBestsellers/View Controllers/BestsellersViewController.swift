@@ -9,7 +9,7 @@
 import UIKit
 
 class BestsellersViewController: UIViewController {
-
+    
     let bestsellersView = BestsellersView()
     private var bookGenres = [BestsellerGenre]() {
         didSet {
@@ -20,26 +20,25 @@ class BestsellersViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-self.view.backgroundColor = .white
+        self.view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         self.view.addSubview(bestsellersView)
         dump(bookGenres)
-        
         bestsellersView.bestsellerCollectionView.dataSource = self
         bestsellersView.bestsellerCollectionView.delegate = self
         bestsellersView.bestsellersPickerView.delegate = self
         bestsellersView.bestsellersPickerView.dataSource = self
-        APIClient.getGenres { (error, data) in
-            if let error = error {
-                print(error.errorMessage())
+        APIClient.getGenres { (appError, data) in
+            if let appError = appError {
+                print(appError.errorMessage())
             } else if let data = data {
                 self.bookGenres = data
             }
         }
     }
     
-
     
-
+    
+    
 }
 extension BestsellersViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

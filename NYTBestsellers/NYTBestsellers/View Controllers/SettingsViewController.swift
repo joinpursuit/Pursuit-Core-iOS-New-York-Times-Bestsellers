@@ -12,6 +12,14 @@ class SettingsViewController: UIViewController {
     
     let settingsView = SettingsView()
     
+    private var bookGenres = [BestsellerGenre]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.settingsView.settingsPickerView.reloadAllComponents()
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -19,6 +27,14 @@ class SettingsViewController: UIViewController {
         
         settingsView.settingsPickerView.dataSource = self
         settingsView.settingsPickerView.delegate = self
+        
+        APIClient.getGenres { (appError, data) in
+            if let appError = appError {
+                print(appError.errorMessage())
+            } else if let data = data {
+                self.bookGenres = data
+            }
+        }
     }
     
 }
@@ -29,7 +45,11 @@ extension SettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 12
+        return bookGenres.count
     }
 
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return bookGenres[row].listName
+    }
+    
 }
