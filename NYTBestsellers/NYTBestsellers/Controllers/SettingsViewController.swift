@@ -11,25 +11,33 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 let settingsView = SettingsView()
-    let bestSellerCategory = [BookDataResultsArray]()
+    var bestSellerCategory = [SettingsCategoryNamesArray](){
+        didSet{
+            DispatchQueue.main.async {
+                self.settingsView.settingsPickerViewObj.reloadAllComponents()
+            }
+        }
+    }
+    var categories = [String]()
     var listName = ""
     override func viewDidLoad() {
         self.title = "Settings"
         view.addSubview(settingsView)
         settingsView.settingsPickerViewObj.dataSource = self
         settingsView.settingsPickerViewObj.delegate =  self
-        //gatherNYTimesBestSellerData(listOfTypes: listName)
+        setupPickerUI()
     }
-//    func gatherNYTimesBestSellerData(listOfTypes: String){
-//        NewYorkBestSellerApiClient.getBestSellerByCategory(category: listOfTypes) { (appError, onlineCategories) in
-//            if let appError = appError {
-//                print(appError.errorMessage())
-//            }
-//            if let onlineCategories = onlineCategories{
-//
-//            }
-//        }
-//    }
+    func setupPickerUI(){
+        NewYorkBestSellerApiClient.searchForBestSellingBooks { (appError, onlineBooks) in
+            if let appError = appError {
+                print(appError.errorMessage())
+            }
+            if let onlineBooks = onlineBooks {
+                self.bestSellerCategory = onlineBooks
+                dump(self.bestSellerCategory)
+            }
+        }
+    }
 }
 
 extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
