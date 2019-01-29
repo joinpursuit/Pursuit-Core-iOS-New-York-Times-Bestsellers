@@ -30,6 +30,7 @@
 		93EB9C0F21FF984A00E5A356 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB9C0E21FF984A00E5A356 /* APIClient.swift */; };
 		93EB9C1121FFA20A00E5A356 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB9C1021FFA20A00E5A356 /* FavoritesCell.swift */; };
 		93EB9C1621FFBB1800E5A356 /* GoogleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB9C1521FFBB1800E5A356 /* GoogleModel.swift */; };
+		93EB9C1821FFD61000E5A356 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB9C1721FFD61000E5A356 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		93EB9C0E21FF984A00E5A356 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		93EB9C1021FFA20A00E5A356 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 		93EB9C1521FFBB1800E5A356 /* GoogleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleModel.swift; sourceTree = "<group>"; };
+		93EB9C1721FFD61000E5A356 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				935E831521FBA06800B0C9E6 /* BestSellersViewController.swift */,
+				93EB9C1721FFD61000E5A356 /* DetailViewController.swift */,
 				935E831721FBA07700B0C9E6 /* FavoritesViewController.swift */,
 				935E831921FBA08200B0C9E6 /* SettingsViewController.swift */,
 			);
@@ -263,6 +266,7 @@
 				935E832721FBB1D900B0C9E6 /* BestSellerCell.swift in Sources */,
 				93EB9BCB21FE443600E5A356 /* NYTModel.swift in Sources */,
 				935E831A21FBA08200B0C9E6 /* SettingsViewController.swift in Sources */,
+				93EB9C1821FFD61000E5A356 /* DetailViewController.swift in Sources */,
 				5718BFFC21FA763200A8E4B8 /* String+DateExtensions.swift in Sources */,
 				5718C00221FA772600A8E4B8 /* AppError.swift in Sources */,
 				935E831F21FBA58300B0C9E6 /* BestSellerView.swift in Sources */,

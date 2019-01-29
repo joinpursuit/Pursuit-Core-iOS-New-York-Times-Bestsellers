@@ -11,11 +11,6 @@ import UIKit
 class BestSellersViewController: UIViewController {
     
     let bestSellerView = BestSellerView()
-//    var getAllBestSellerViewAPICall = false {
-//        if getAllBestSellerViewAPICall == true {
-//
-//        }
-//    }
     var genre = [Results](){
         didSet{
             DispatchQueue.main.async {
@@ -50,6 +45,7 @@ class BestSellersViewController: UIViewController {
         bestSellerView.pickerView.dataSource = self
         bestSellerView.pickerView.delegate = self
         bestSellerView.colloectionView.dataSource = self
+        bestSellerView.colloectionView.delegate = self
         getGenres()
         
         
@@ -133,6 +129,11 @@ extension BestSellersViewController: UICollectionViewDataSource {
     }
     
     
+}
+extension BestSellersViewController: UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        navigationController?.pushViewController(DetailViewController(), animated: true)
+    }
 }
 
 
