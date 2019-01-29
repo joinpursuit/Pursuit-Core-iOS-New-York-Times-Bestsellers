@@ -71,9 +71,13 @@ class BestSellerDetailViewController: UIViewController, ButtonDelegate {
         
     }
     @objc func favButtonPressed(){
-        UIView.animate(withDuration: 2, delay: 0, options: [], animations: {
-            self.detailVC.detailBookImage.frame.origin.y += self.view.bounds.height
-        
+        UIView.animate(withDuration: 3, delay: 0, options: [], animations: {
+            self.detailVC.favoriteView.isHidden = false
+            
+            if let image = self.detailVC.detailBookImage.image{
+            self.detailVC.favoriteImage.image = image
+            self.detailVC.favoriteView.frame.origin.y += self.view.bounds.height
+            }
         }) { (Done) in
             let timeStamp = Date.getISOTimestamp()
             //        let favoritedAt = timeStamp.date()

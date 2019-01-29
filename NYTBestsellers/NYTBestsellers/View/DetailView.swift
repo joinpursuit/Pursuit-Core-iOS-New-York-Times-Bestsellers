@@ -27,7 +27,7 @@ class DetailView: UIView {
        var view = UITextView()
         view.backgroundColor = .yellow
         view.addSubview(favoriteImage)
-  
+        view.isHidden = true
         return view
 
     }()
