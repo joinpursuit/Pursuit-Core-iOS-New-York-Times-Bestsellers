@@ -8,7 +8,7 @@
 
 import UIKit
 protocol FavoritesCollectionViewCellDelegate: AnyObject {
-    func actionSheet()
+    func actionSheet(tag: Int)
 }
 
 class FavoritesCollectionViewCell: UICollectionViewCell {
@@ -23,7 +23,6 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     
     public lazy var cellLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .black
         label.text = "Label"
         label.textColor = .white
         label.textAlignment = .center
@@ -39,16 +38,18 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     lazy var cellButton: UIButton = {
         let button = UIButton()
         button.setTitle("...", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 50)
         button.addTarget(self, action: #selector(cellButtonPressed), for: .touchUpInside)
         return button
     }()
-    @objc func cellButtonPressed() {
-        delegate?.actionSheet()        
+    @objc func cellButtonPressed(_ sender: UIButton) {
+        delegate?.actionSheet(tag: sender.tag)
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .red
+        self.backgroundColor = .white
         commonInit()
     }
     
@@ -73,8 +74,8 @@ extension FavoritesCollectionViewCell {
         addSubview(cellImage)
         cellImage.translatesAutoresizingMaskIntoConstraints = false
         cellImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 11).isActive = true
-        cellImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 90).isActive = true
-        cellImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -90).isActive = true
+        cellImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 100).isActive = true
+        cellImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -100).isActive = true
         cellImage.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.50).isActive = true
     }
     
@@ -98,6 +99,6 @@ extension FavoritesCollectionViewCell {
         addSubview(cellButton)
         cellButton.translatesAutoresizingMaskIntoConstraints = false
         cellButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
-        cellButton.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        cellButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5).isActive = true
     }
 }

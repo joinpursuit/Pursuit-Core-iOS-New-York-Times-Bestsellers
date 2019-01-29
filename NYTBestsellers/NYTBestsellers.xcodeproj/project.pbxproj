@@ -29,11 +29,12 @@
 		976D119821FE5EB10076D81D /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D119721FE5EB10076D81D /* CategoryModel.swift */; };
 		976D119A21FE5EBA0076D81D /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D119921FE5EBA0076D81D /* BookModel.swift */; };
 		976D119C21FE5ECB0076D81D /* GoogleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D119B21FE5ECB0076D81D /* GoogleModel.swift */; };
-		976D119E21FE5EF10076D81D /* SavedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D119D21FE5EF00076D81D /* SavedModel.swift */; };
+		976D119E21FE5EF10076D81D /* FavoriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D119D21FE5EF00076D81D /* FavoriteModel.swift */; };
 		976D11A021FE70090076D81D /* NYTBookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D119F21FE70090076D81D /* NYTBookAPI.swift */; };
 		976D11A221FE70180076D81D /* GoogleBookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D11A121FE70180076D81D /* GoogleBookAPI.swift */; };
 		976D11A421FE709A0076D81D /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D11A321FE709A0076D81D /* SecretKeys.swift */; };
 		976D120021FFA64D0076D81D /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D11FF21FFA64D0076D81D /* UserDefaultsKeys.swift */; };
+		976D120221FFB4340076D81D /* FavoriteBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D120121FFB4340076D81D /* FavoriteBook.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,11 +62,12 @@
 		976D119721FE5EB10076D81D /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		976D119921FE5EBA0076D81D /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 		976D119B21FE5ECB0076D81D /* GoogleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleModel.swift; sourceTree = "<group>"; };
-		976D119D21FE5EF00076D81D /* SavedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedModel.swift; sourceTree = "<group>"; };
+		976D119D21FE5EF00076D81D /* FavoriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteModel.swift; sourceTree = "<group>"; };
 		976D119F21FE70090076D81D /* NYTBookAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBookAPI.swift; sourceTree = "<group>"; };
 		976D11A121FE70180076D81D /* GoogleBookAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBookAPI.swift; sourceTree = "<group>"; };
 		976D11A321FE709A0076D81D /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
 		976D11FF21FFA64D0076D81D /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
+		976D120121FFB4340076D81D /* FavoriteBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBook.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,7 +191,8 @@
 				976D119721FE5EB10076D81D /* CategoryModel.swift */,
 				976D119921FE5EBA0076D81D /* BookModel.swift */,
 				976D119B21FE5ECB0076D81D /* GoogleModel.swift */,
-				976D119D21FE5EF00076D81D /* SavedModel.swift */,
+				976D119D21FE5EF00076D81D /* FavoriteModel.swift */,
+				976D120121FFB4340076D81D /* FavoriteBook.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -275,7 +278,7 @@
 				976D118F21FB91AD0076D81D /* BestCollectionViewCell.swift in Sources */,
 				976D118521FB8A520076D81D /* SettingsViewController.swift in Sources */,
 				976D119821FE5EB10076D81D /* CategoryModel.swift in Sources */,
-				976D119E21FE5EF10076D81D /* SavedModel.swift in Sources */,
+				976D119E21FE5EF10076D81D /* FavoriteModel.swift in Sources */,
 				976D120021FFA64D0076D81D /* UserDefaultsKeys.swift in Sources */,
 				5718BFFC21FA763200A8E4B8 /* String+DateExtensions.swift in Sources */,
 				976D119321FE5C830076D81D /* DetailViewController.swift in Sources */,
@@ -289,6 +292,7 @@
 				5718C00621FA78BA00A8E4B8 /* ImageHelper.swift in Sources */,
 				976D118B21FB8A8C0076D81D /* SettingsView.swift in Sources */,
 				976D11A221FE70180076D81D /* GoogleBookAPI.swift in Sources */,
+				976D120221FFB4340076D81D /* FavoriteBook.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

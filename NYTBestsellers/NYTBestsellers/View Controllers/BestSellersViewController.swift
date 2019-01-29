@@ -51,6 +51,8 @@ class BestSellersViewController: UIViewController {
         }
     }
     var listName = String()
+    var imageURL = UIImage()
+    var googleDescription = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,12 +63,14 @@ class BestSellersViewController: UIViewController {
         bestSellerView.myBestSellerCollectionView.delegate = self
         bestSellerView.myBestSellerPickerView.dataSource = self
         bestSellerView.myBestSellerPickerView.delegate = self
-
+        print(DataPersistenceManager.documentsDirectory())
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         if let categorySelected = UserDefaults.standard.value(forKey: UserDefaultsKeys.CategoryKey) as? Int {
             print(categorySelected)
             self.bestSellerView.myBestSellerPickerView.selectRow(categorySelected, inComponent: 0, animated: true)
+            //code here to setupBooks but I need a string and I have an Int
             
         } else {
             print("no category in defaults")
@@ -80,6 +84,7 @@ class BestSellersViewController: UIViewController {
                 self.bestSellerCategories = categories
             }
         }
+        //code here
     }
     private func setupBooks(listName: String) {
         NYTBookAPI.bookResults(listName: listName) { (appError, books) in
@@ -123,10 +128,13 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
                     let description = data[0].volumeInfo.description
                     DispatchQueue.main.async {
                         cell.cellTextView.text = description
+                        self.googleDescription = description
                     }
                     if let image = ImageHelper.fetchImageFromCache(urlString: data[0].volumeInfo.imageLinks.smallThumbnail) {
                         DispatchQueue.main.async {
                             cell.cellImage.image = image
+                            self.imageURL = image
+
                         }
                     } else {
                         ImageHelper.fetchImageFromNetwork(urlString: data[0].volumeInfo.imageLinks.smallThumbnail, completion: { (appError, image) in
@@ -134,6 +142,7 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
                                 print(appError.errorMessage())
                             } else if let image = image {
                                 cell.cellImage.image = image
+                                self.imageURL = image
                             }
                         })
                     }
@@ -157,14 +166,17 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
         }
         cell.cellLabel.text = "\(book.weeksOnList) weeks on Best Sellers"
         cell.cellTextView.text = book.bookDetails.first?.bookDescription
-//        cell.cellImage.image =
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let book = bestSellerBooks[indexPath.row]
         let detailVC = DetailViewController()
         detailVC.detailView.detailLabel.text = book.bookDetails.first?.author
-        detailVC.detailView.detailTextView.text = book.bookDetails.first?.bookDescription
+        detailVC.detailView.detailImage.image = imageURL
+        detailVC.detailView.detailTextView.text = googleDescription
+        detailVC.detailView.detailFavoritesImage.image = imageURL
+        
+//        detailVC.detailView.detailTextView.text = book.bookDetails.first?.bookDescription
 
         
         navigationController?.pushViewController(detailVC, animated: true)

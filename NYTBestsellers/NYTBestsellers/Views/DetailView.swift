@@ -7,11 +7,29 @@
 //
 
 import UIKit
-
+protocol DetailViewDelegate: AnyObject {
+    func favoritePressed()
+}
 class DetailView: UIView {
+    
+    weak var delegate: DetailViewDelegate?
+    
+    public lazy var favoriteButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "Favorite", style: UIBarButtonItem.Style.plain, target: self, action: #selector(favoritePressed))
+        return button
+    }()
+    @objc func favoritePressed() {
+        delegate?.favoritePressed()
+
+    }
     
     public lazy var detailImage: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "Placeholder"))
+        return iv
+    }()
+    public lazy var detailFavoritesImage: UIImageView = {
+        let iv = UIImageView(image: UIImage(named: "Placeholder"))
+        iv.isHidden = true
         return iv
     }()
     
@@ -19,13 +37,14 @@ class DetailView: UIView {
         let label = UILabel()
         label.text = "Label"
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
     
     public lazy var detailTextView: UITextView = {
         let tv = UITextView()
         tv.text = "Description..."
+        tv.font = UIFont.systemFont(ofSize: 13)
         tv.isEditable = false
         return tv
     }()
@@ -51,14 +70,15 @@ extension DetailView {
         setupDetailImageView()
         setupDetailLabel()
         setupDetailTextView()
+        setupDetailFavoriteImage()
     }
     
     private func setupDetailImageView () {
         addSubview(detailImage)
         detailImage.translatesAutoresizingMaskIntoConstraints = false
-        detailImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 11).isActive = true
-        detailImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50).isActive = true
-        detailImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50).isActive = true
+        detailImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 25).isActive = true
+        detailImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 85).isActive = true
+        detailImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -85).isActive = true
         detailImage.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.50).isActive = true
     }
     
@@ -73,10 +93,21 @@ extension DetailView {
     private func setupDetailTextView () {
         addSubview(detailTextView)
         detailTextView.translatesAutoresizingMaskIntoConstraints = false
-        detailTextView.topAnchor.constraint(equalTo: detailLabel.bottomAnchor, constant: 11).isActive = true
-        detailTextView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -11).isActive = true
-        detailTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11).isActive = true
-        detailTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
+        detailTextView.topAnchor.constraint(equalTo: detailLabel.bottomAnchor, constant: 55).isActive = true
+        detailTextView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -70).isActive = true
+        detailTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
+        detailTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+    }
+    private func setupDetailFavoriteImage () {
+        addSubview(detailFavoritesImage)
+        detailFavoritesImage.translatesAutoresizingMaskIntoConstraints = false
+        detailFavoritesImage.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant:  -11).isActive = true
+//        detailFavoritesImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50).isActive = true
+//        detailFavoritesImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50).isActive = true
+        detailFavoritesImage.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.07).isActive = true
+        detailFavoritesImage.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.10).isActive = true
+        detailFavoritesImage.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+
     }
 }
 

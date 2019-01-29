@@ -12,6 +12,7 @@ struct GoogleModel: Codable {
     let kind: String
     let totalItems: Int
     let items: [Items]
+    //Items might need to be optional if the isbn number doesn't return any results
 }
 struct Items: Codable {
     let kind: String

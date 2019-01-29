@@ -17,7 +17,7 @@ class FavoritesView: UIView {
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
         let cv = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: layout)
         cv.register(FavoritesCollectionViewCell.self, forCellWithReuseIdentifier: "FavoritesCollectionViewCell")
-        cv.backgroundColor = .yellow
+        cv.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         return cv
     }()
 
