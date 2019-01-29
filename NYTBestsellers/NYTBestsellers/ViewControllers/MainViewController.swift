@@ -92,13 +92,14 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
                         cell.imageView.image = data
                     }
                 })
-                
+
             }
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.navigationController?.pushViewController(DetailViewController(), animated: true)
     }
 
 }
