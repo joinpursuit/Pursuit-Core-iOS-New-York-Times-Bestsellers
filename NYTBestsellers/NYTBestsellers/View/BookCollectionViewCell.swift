@@ -49,6 +49,7 @@ class BookCollectionViewCell: UICollectionViewCell {
     
     private func setConstraints() {
         [bookImage, numberOfWeeksOnList, bookDescriptionLabel].forEach{ $0.translatesAutoresizingMaskIntoConstraints = false }
+        
         [bookImage.centerXAnchor.constraint(equalTo: centerXAnchor),
          bookImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 5),
          bookImage.heightAnchor.constraint(equalToConstant: 150),
@@ -60,9 +61,8 @@ class BookCollectionViewCell: UICollectionViewCell {
          
          bookDescriptionLabel.topAnchor.constraint(equalTo: numberOfWeeksOnList.bottomAnchor, constant: 11),
          bookDescriptionLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5),
-         bookDescriptionLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -5),
-         bookDescriptionLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -5)
-            ].forEach{ $0.isActive = true }
+         bookDescriptionLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -5)
+         ].forEach{ $0.isActive = true }
     }
     
     public func configureCell(book: NYTBook) {

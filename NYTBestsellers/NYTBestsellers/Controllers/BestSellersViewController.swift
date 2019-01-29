@@ -71,8 +71,6 @@ class BestSellersViewController: UIViewController {
         bestSellersView.pickerView.dataSource = self
         bestSellersView.pickerView.delegate = self
         getBookCategories()
-//        checkForUserDefaultsSetting()
-       // searchForBooks()
     }
     
     private func checkForUserDefaultsSetting() {

@@ -27,6 +27,7 @@ class SavedBooksViewController: UIViewController {
         self.view.addSubview(savedBooksView)
         navigationItem.title = "Favorited Books"
         savedBooksView.collectionView.dataSource = self
+        savedBooksView.collectionView.delegate = self
         getBooks()
     }
     
@@ -47,7 +48,7 @@ class SavedBooksViewController: UIViewController {
 
 }
 
-extension SavedBooksViewController: UICollectionViewDataSource {
+extension SavedBooksViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return savedBooks.count
     }
@@ -65,5 +66,8 @@ extension SavedBooksViewController: UICollectionViewDataSource {
         return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let bookDetail = BookDetailViewController(book: savedBooks[indexPath.row])
+        navigationController?.pushViewController(bookDetail, animated: true)
+    }
 }
