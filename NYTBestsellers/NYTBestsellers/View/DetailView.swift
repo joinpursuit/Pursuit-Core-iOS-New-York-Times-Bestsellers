@@ -110,9 +110,9 @@ class DetailView: UIView {
         addSubview(favoriteView)
         favoriteView.translatesAutoresizingMaskIntoConstraints = false
         favoriteView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
-        favoriteView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-        favoriteView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        favoriteView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        favoriteView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        favoriteView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        favoriteView.widthAnchor.constraint(equalToConstant: 100).isActive = true
     }
     func setupFavImage(){
 //        addSubview(favoriteImage)

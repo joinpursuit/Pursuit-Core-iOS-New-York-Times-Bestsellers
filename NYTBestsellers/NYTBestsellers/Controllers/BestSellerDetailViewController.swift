@@ -71,7 +71,7 @@ class BestSellerDetailViewController: UIViewController, ButtonDelegate {
         
     }
     @objc func favButtonPressed(){
-        UIView.animate(withDuration: 3, delay: 0, options: [], animations: {
+        UIView.animate(withDuration: 3 , delay: 0, options: [], animations: {
             self.detailVC.favoriteView.isHidden = false
             
             if let image = self.detailVC.detailBookImage.image{
@@ -85,12 +85,12 @@ class BestSellerDetailViewController: UIViewController, ButtonDelegate {
                 if let imageData = image.jpegData(compressionQuality: 0.5){
                     let favoriteBook = FavoriteBook.init(bookName: self.bookTitle, favoritedAt: timeStamp, imageData: imageData, description: self.bookDescription, amazonURL: self.amazonLink)
                     DataPersistenceModel.favoriteBook(favoriteBook: favoriteBook)
-//                    let alert = UIAlertController.init(title: "Book Saved To Favorites", message: nil, preferredStyle: .alert)
-//                    let okay = UIAlertAction.init(title: "Okay", style: .default) { (UIAlertAction) in
-//                        self.dismiss(animated: true, completion: nil)
-//                    }
-//                    alert.addAction(okay)
-//                    self.present(alert, animated: true, completion: nil)
+                    let alert = UIAlertController.init(title: "Book Saved To Favorites", message: nil, preferredStyle: .alert)
+                    let okay = UIAlertAction.init(title: "Okay", style: .default) { (UIAlertAction) in
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    alert.addAction(okay)
+                    self.present(alert, animated: true, completion: nil)
                 }
         }
 

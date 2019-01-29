@@ -12,8 +12,8 @@ struct APIClient {
     
     static func getListNames(completionHandler: @escaping (AppError?, [BookListName.resultsWrapper]?) -> Void ) {
         NetworkHelper.shared.performDataTask(endpointURLString: "https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=\(SecretKeys.bestSellersAPIKey)") { (appError, data) in
-            if let appError = appError {
-                completionHandler(appError, nil)
+            if appError != nil {
+                completionHandler(AppError.badURL("Bad URL"), nil)
             }
             if let data = data {
                 do{
