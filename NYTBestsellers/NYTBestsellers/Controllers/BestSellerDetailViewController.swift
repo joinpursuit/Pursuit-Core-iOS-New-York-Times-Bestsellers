@@ -71,20 +71,25 @@ class BestSellerDetailViewController: UIViewController, ButtonDelegate {
         
     }
     @objc func favButtonPressed(){
+        UIView.animate(withDuration: 2, delay: 0, options: [], animations: {
+            self.detailVC.detailBookImage.frame.origin.y += self.view.bounds.height
         
-        let timeStamp = Date.getISOTimestamp()
-//        let favoritedAt = timeStamp.date()
-        if let image = detailVC.detailBookImage.image{
-            if let imageData = image.jpegData(compressionQuality: 0.5){
-                let favoriteBook = FavoriteBook.init(bookName: bookTitle, favoritedAt: timeStamp, imageData: imageData, description: bookDescription, amazonURL: amazonLink)
-            DataPersistenceModel.favoriteBook(favoriteBook: favoriteBook)
-            let alert = UIAlertController.init(title: "Book Saved To Favorites", message: nil, preferredStyle: .alert)
-            let okay = UIAlertAction.init(title: "Okay", style: .default) { (UIAlertAction) in
-                    self.dismiss(animated: true, completion: nil)
+        }) { (Done) in
+            let timeStamp = Date.getISOTimestamp()
+            //        let favoritedAt = timeStamp.date()
+            if let image = self.detailVC.detailBookImage.image{
+                if let imageData = image.jpegData(compressionQuality: 0.5){
+                    let favoriteBook = FavoriteBook.init(bookName: self.bookTitle, favoritedAt: timeStamp, imageData: imageData, description: self.bookDescription, amazonURL: self.amazonLink)
+                    DataPersistenceModel.favoriteBook(favoriteBook: favoriteBook)
+//                    let alert = UIAlertController.init(title: "Book Saved To Favorites", message: nil, preferredStyle: .alert)
+//                    let okay = UIAlertAction.init(title: "Okay", style: .default) { (UIAlertAction) in
+//                        self.dismiss(animated: true, completion: nil)
+//                    }
+//                    alert.addAction(okay)
+//                    self.present(alert, animated: true, completion: nil)
                 }
-            alert.addAction(okay)
-            present(alert, animated: true, completion: nil)
-            }
+        }
+
         }
         
     }

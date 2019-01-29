@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class SettingsViewController: UIViewController, UIPickerViewDataSource,UIPickerViewDelegate {
 
     
@@ -36,7 +37,7 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource,UIPickerV
             return listNames[row].listName
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        UserDefaults.standard.set(listNames[row].listName, forKey: "ListNames")
+        UserDefaults.standard.set(listNames[row].listName, forKey: UserdefaultKeys.listNames)
         UserDefaults.standard.set(row, forKey: "Row")
     }
     

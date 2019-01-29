@@ -16,7 +16,6 @@ class DetailView: UIView {
         var image = UIImageView()
         return image
     }()
-    
     lazy var detailBookTextView: UITextView = {
         var textView = UITextView()
         textView.textColor = .black
@@ -24,7 +23,19 @@ class DetailView: UIView {
         textView.font = UIFont(name: "Futura", size: 14)
         return textView
     }()
-    
+    lazy var favoriteView: UIView = {
+       var view = UITextView()
+        view.backgroundColor = .yellow
+        
+  
+        return view
+
+    }()
+    lazy var favoriteImage: UIImageView = {
+        var image = UIImageView()
+        image.backgroundColor = .black
+        return image
+    }()
     lazy var amazonButton: UIButton = {
         var button = UIButton()
         button.setImage(UIImage(named: "amazonLogo"), for: .normal)
@@ -59,6 +70,9 @@ class DetailView: UIView {
         setTextView()
         setButton()
         setupLabel()
+        setupFavView()
+        setupFavImage()
+        
     }
     
     func setImage(){
@@ -91,6 +105,22 @@ class DetailView: UIView {
         bookLabel.topAnchor.constraint(equalTo: detailBookImage.bottomAnchor, constant: 10).isActive = true
         bookLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         bookLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+    }
+    func setupFavView(){
+        addSubview(favoriteView)
+        favoriteView.translatesAutoresizingMaskIntoConstraints = false
+        favoriteView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
+        favoriteView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+        favoriteView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        favoriteView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+    }
+    func setupFavImage(){
+        addSubview(favoriteImage)
+        favoriteImage.translatesAutoresizingMaskIntoConstraints = false
+        favoriteImage.centerXAnchor.constraint(equalTo: favoriteView.centerXAnchor).isActive = true
+        favoriteImage.centerYAnchor.constraint(equalTo: favoriteView.centerYAnchor).isActive = true
+        favoriteImage.heightAnchor.constraint(equalTo: favoriteView.heightAnchor, multiplier: 0.9).isActive = true
+        favoriteImage.widthAnchor.constraint(equalTo: favoriteView.widthAnchor, multiplier: 0.9).isActive = true
     }
 }
 

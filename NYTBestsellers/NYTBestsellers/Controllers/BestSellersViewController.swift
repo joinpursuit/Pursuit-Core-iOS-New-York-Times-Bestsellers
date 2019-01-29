@@ -38,7 +38,7 @@ class BestSellersViewController: UIViewController,UICollectionViewDataSource,UIC
         if let row = UserDefaults.standard.object(forKey: "Row") as? Int {
             bestSellerVC.myPickerView.selectRow(row, inComponent: 0, animated: true)
         }
-        if let listName = UserDefaults.standard.object(forKey: "ListNames") as? String{
+        if let listName = UserDefaults.standard.object(forKey: UserdefaultKeys.listNames) as? String{
            getBooks(listName: listName)
         } else {
             getBooks(listName: "Manga")
@@ -46,14 +46,19 @@ class BestSellersViewController: UIViewController,UICollectionViewDataSource,UIC
         
     }
     override func viewDidAppear(_ animated: Bool) {
-        if let listName = UserDefaults.standard.object(forKey: "ListNames") as? String{
+
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        if let row = UserDefaults.standard.object(forKey: "Row") as? Int {
+            bestSellerVC.myPickerView.selectRow(row, inComponent: 0, animated: true)
+        }
+        if let listName = UserDefaults.standard.object(forKey: UserdefaultKeys.listNames) as? String{
             getBooks(listName: listName)
         } else {
             getBooks(listName: "Manga")
         }
         listNames = DataPersistenceModel.getListNames()
     }
-
     func getBooks(listName: String){
         APIClient.getBookDetails(listName: listName) { (appError, data) in
             if let appError = appError{
@@ -126,7 +131,7 @@ class BestSellersViewController: UIViewController,UICollectionViewDataSource,UIC
                 self.bestSellerBooks = data
             }
         }
-       
+       UserDefaults.standard.set(row, forKey: "Row")
     }
 }
     

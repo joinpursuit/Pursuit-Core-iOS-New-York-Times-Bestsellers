@@ -36,8 +36,13 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource {
         let index = sender.tag
         let actionSheet = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
         let delete = UIAlertAction(title: "Delete", style: .destructive) { (UIAlertAction) in
-            DataPersistenceModel.deleteFavoriteBook(atIndex: index)
-            self.reload()
+            UIView.animate(withDuration: 10.0, delay: 0, options: [.curveEaseIn], animations: {
+                self.favoritesView.favoriteCell.favoriteImage.alpha = 0
+            }, completion: { (done) in
+                DataPersistenceModel.deleteFavoriteBook(atIndex: index)
+                self.reload()
+            })
+
         }
         let seeOnAmazon = UIAlertAction(title: "See On Amazon", style: .default) { (UIAlertAction) in
             let amazonURL = self.favoriteBooks[index].amazonURL

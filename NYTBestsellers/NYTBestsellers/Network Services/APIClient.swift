@@ -18,7 +18,6 @@ struct APIClient {
             if let data = data {
                 do{
                     let bookData = try JSONDecoder().decode(BookListName.self, from: data)
-                    
                     completionHandler(appError, bookData.results)
                 }catch{
                     completionHandler(appError, nil)

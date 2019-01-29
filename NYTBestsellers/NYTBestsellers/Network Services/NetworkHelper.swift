@@ -10,7 +10,10 @@ import Foundation
 
 final class NetworkHelper {
   private init() {}
+    
   static let shared = NetworkHelper()
+
+    
   func performDataTask(endpointURLString: String, handler: @escaping (AppError?, Data?) -> Void) {
     guard let url = URL(string: endpointURLString) else {
       handler(AppError.badURL(endpointURLString), nil)
