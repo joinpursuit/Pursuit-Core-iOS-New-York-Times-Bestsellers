@@ -18,15 +18,34 @@ class BestsellersViewController: UIViewController {
             }
         }
     }
+    private var books = [Books]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.bestsellersView.bestsellerCollectionView.reloadData()
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         self.view.addSubview(bestsellersView)
         dump(bookGenres)
+        dump(books)
+        loadGenres()
+       // loadBooks(genre:  )
         bestsellersView.bestsellerCollectionView.dataSource = self
         bestsellersView.bestsellerCollectionView.delegate = self
         bestsellersView.bestsellersPickerView.delegate = self
         bestsellersView.bestsellersPickerView.dataSource = self
+        
+        
+    }
+    
+    // get api for NYT bestsellers working
+    
+    //todo: func for catagories then call in viewDidLoad
+    // func for NYT Bestsellers then call in viewDidLoad
+    func loadGenres() {
         APIClient.getGenres { (appError, data) in
             if let appError = appError {
                 print(appError.errorMessage())
@@ -36,8 +55,17 @@ class BestsellersViewController: UIViewController {
         }
     }
     
-    
-    
+    func loadBooks(genre: String) {
+        APIClient.getBooks(genre: genre ) { (appError, data ) in
+            if let appError = appError {
+                print(appError.errorMessage())
+            } else if let data = data {
+                self.books = data
+                dump(self.books)
+            }
+        }
+        
+    }
     
 }
 extension BestsellersViewController: UICollectionViewDataSource {
@@ -47,6 +75,7 @@ extension BestsellersViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = bestsellersView.bestsellerCollectionView.dequeueReusableCell(withReuseIdentifier: "BestsellersCell", for: indexPath) as? BestsellersCollectionCell else { return UICollectionViewCell() }
+         //cell.weeksLabel.text =
         return cell
         
     }

@@ -20,6 +20,12 @@ struct Books: Codable {
     let weeks_on_list: Int
     let amazon_product_url: String
     let book_details: [BookDetail]
+//    enum CodingKeys: String, CodingKeys {
+//        case displayName = "display_name"
+//        case listName = "list_name"
+//        case rank
+//        let
+    //}
 }
 
 struct BookDetail: Codable {

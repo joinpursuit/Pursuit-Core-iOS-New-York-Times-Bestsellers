@@ -29,6 +29,14 @@ class FavoritesCollectionCell: UICollectionViewCell {
         return textView
         
     }()
+    
+    lazy var saveButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage.init(named: "threeDots"), for: .normal)
+        return button
+    }()
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .green
@@ -45,10 +53,13 @@ class FavoritesCollectionCell: UICollectionViewCell {
         addSubview(coverImageView)
         addSubview(weeksLabel)
         addSubview(favoritesDescriptionTextView)
+        addSubview(saveButton)
         
         coverImageView.translatesAutoresizingMaskIntoConstraints = false
         weeksLabel.translatesAutoresizingMaskIntoConstraints = false
         favoritesDescriptionTextView.translatesAutoresizingMaskIntoConstraints = false
+        
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             coverImageView.topAnchor.constraint(equalToSystemSpacingBelow: safeAreaLayoutGuide.topAnchor, multiplier: 0.5),
@@ -70,5 +81,8 @@ class FavoritesCollectionCell: UICollectionViewCell {
             favoritesDescriptionTextView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.25)
             
             ])
+        
+        NSLayoutConstraint.activate([saveButton.topAnchor.constraint(equalTo: self.topAnchor),
+                                     saveButton.trailingAnchor.constraint(equalTo: self.trailingAnchor)])
     }
 }

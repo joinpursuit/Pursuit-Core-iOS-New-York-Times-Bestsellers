@@ -10,7 +10,7 @@ import Foundation
 
 final class APIClient {
     static func getGenres(completionHandler: @escaping(AppError?, [BestsellerGenre]?) -> Void) {
-        let url = "https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=wlkeW3pD0pUSGetw4xoQJPqE96hcoGOx"
+        let url = "https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=\(SecrectKeys.nytAPIKey)"
         NetworkHelper.shared.performDataTask(endpointURLString: url) { (appError, data) in
             if let appError = appError {
                 completionHandler(appError, nil)
@@ -28,5 +28,22 @@ final class APIClient {
         }
         
     }
+   static func getBooks(genre: String, completionHandler: @escaping (AppError?,[Books]?) -> Void) {
+        let genreNameFormatted = genre.replacingOccurrences(of: " ", with: "-")
+        let url = "https://api.nytimes.com/svc/books/v3/lists.json?api-key=\(SecrectKeys.nytAPIKey)&list=\(genreNameFormatted)"
+        NetworkHelper.shared.performDataTask(endpointURLString: url) { (appError, data) in
+            if let appError = appError {
+                completionHandler(appError, nil)
+            }
+            if let data = data {
+                do {
+                    let bookData = try JSONDecoder().decode(BestsellersBookModel.self, from: data)
+                    completionHandler(nil, bookData.results)
+                } catch {
+                    completionHandler(AppError.jsonDecodingError(error), nil)
+                }
+        }
+    }
     
+ }
 }

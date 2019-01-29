@@ -34,8 +34,8 @@ class BestsellersView: UIView {
         // set yourself up like any UIView
         super.init(frame: UIScreen.main.bounds)
         //our custom set up
-        addSubview(bestsellersPickerView)
-        addSubview(bestsellerCollectionView)
+        //addSubview(bestsellersPickerView)
+       // addSubview(bestsellerCollectionView)
         
         bestsellerCollectionView.register(BestsellersCollectionCell.self, forCellWithReuseIdentifier: "BestsellersCell")
         
