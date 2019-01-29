@@ -32,8 +32,8 @@ class SettingsViewController: UIViewController {
 
 extension SettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        UserDefaults.standard.set(row, forKey: "Book Category Index Number")
-        UserDefaults.standard.set(SavedBookCategories.bookCategories[row].list_name_encoded, forKey: "Book Category Name")
+        UserDefaults.standard.set(row, forKey: UserDefaultKeys.categoryRowNumber)
+        UserDefaults.standard.set(SavedBookCategories.bookCategories[row].list_name_encoded, forKey: UserDefaultKeys.categoryName)
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return SavedBookCategories.bookCategories[row].list_name

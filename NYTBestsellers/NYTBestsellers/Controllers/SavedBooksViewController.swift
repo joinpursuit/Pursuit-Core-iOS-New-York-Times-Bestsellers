@@ -22,24 +22,25 @@ class SavedBooksViewController: UIViewController {
         super.viewDidLoad()
         self.view.addSubview(savedBooksView)
         savedBooksView.collectionView.dataSource = self
+        
         getBooks()
     }
     
-//    private func optionsButtonPressed(_ sender: UIButton) {
-//    let alert = UIAlertController(title: "", message: "What would you like to do with this journal entry?", preferredStyle: .actionSheet)
-//    alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
-//    self.deleteJournal(atIndex: sender.tag)
-//    self.getPhotoJournals()
-//    }))
-//    alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: { (action) in
-//    self.editJournal(atIndex: sender.tag)
-//    }))
-//    alert.addAction(UIAlertAction(title: "Share", style: .default, handler: { (action) in
-//    self.shareJournal(atIndex: sender.tag)
-//    }))
-//    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-//    present(alert, animated: true, completion: nil)
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        getBooks()
+    }
+    
+    
+    @objc func optionsButtonPressed(_ sender: UIButton) {
+        print("moreoptionsbutton pressed")
+        let alert = UIAlertController(title: "What would you like to do?", message: "", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+            SavedBooksModel.deleteBook(atIndex: sender.tag)
+            self.getBooks()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
 
 }
 
@@ -52,10 +53,12 @@ extension SavedBooksViewController: UICollectionViewDataSource {
         guard let cell = savedBooksView.collectionView.dequeueReusableCell(withReuseIdentifier: "SavedBooksCollectionViewCell", for: indexPath) as? SavedBooksCollectionViewCell else { return UICollectionViewCell() }
         let book = savedBooks[indexPath.row]
         cell.bookTitleAndAuthor.text = "\(book.title) by \(book.author)"
-        cell.bookDescriptionLabel.text = book.longDescription
+        cell.bookDescriptionLabel.text = book.shortDescription
         if let imageExists = book.bookImage {
             cell.bookImage.image = UIImage(data: imageExists)
         }
+        cell.moreOptionsButton.tag = indexPath.row
+        cell.moreOptionsButton.addTarget(self, action: #selector(optionsButtonPressed), for: .touchUpInside)
         return cell
     }
     

@@ -15,9 +15,10 @@ class BookDetailView: UIView {
         return iv
     }()
     
-    public lazy var bookDetail: UILabel = {
-        let tv = UILabel()
-        tv.numberOfLines = 0 
+    public lazy var bookDetail: UITextView = {
+        let tv = UITextView()
+        tv.isEditable = false
+        tv.isSelectable = false
         return tv
     }()
     
@@ -43,8 +44,8 @@ class BookDetailView: UIView {
          
          bookDetail.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 22),
          bookDetail.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 22),
-         bookDetail.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 22),
-         bookDetail.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 22)
+         bookDetail.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -22),
+         bookDetail.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -22)
             ].forEach{ $0.isActive = true }
     }
 

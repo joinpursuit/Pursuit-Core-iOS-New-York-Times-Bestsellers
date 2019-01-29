@@ -17,7 +17,7 @@ struct GoogleBookDetails: Codable {
 }
 
 struct VolumeInfo: Codable {
-    let bookLongDescription: String
+    let bookLongDescription: String?
     let imageLinks: ImageLinks
     
     enum CodingKeys: String, CodingKey {

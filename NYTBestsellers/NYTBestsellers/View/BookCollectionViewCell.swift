@@ -31,6 +31,10 @@ class BookCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        commonInit()
+    }
+    
+    private func commonInit() {
         backgroundColor = .white
         self.addSubview(bookImage)
         self.addSubview(numberOfWeeksOnList)
@@ -39,10 +43,11 @@ class BookCollectionViewCell: UICollectionViewCell {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        commonInit()
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         [bookImage, numberOfWeeksOnList, bookDescriptionLabel].forEach{ $0.translatesAutoresizingMaskIntoConstraints = false }
         [bookImage.centerXAnchor.constraint(equalTo: centerXAnchor),
          bookImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 5),
@@ -57,5 +62,10 @@ class BookCollectionViewCell: UICollectionViewCell {
          bookDescriptionLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5),
          bookDescriptionLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 5)
             ].forEach{ $0.isActive = true }
+    }
+    
+    public func configureCell(book: NYTBook) {
+        bookDescriptionLabel.text = book.book_details.first?.bookShortDescription
+        numberOfWeeksOnList.text = "\(book.weeks_on_list.description) week on Best Seller"
     }
 }

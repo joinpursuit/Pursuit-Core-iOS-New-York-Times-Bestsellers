@@ -11,8 +11,7 @@ import Foundation
 struct GoogleBooksAPIClient {
     private init() { }
     static func getGoogleBookImageUrl(bookISBN: String, completionHandler: @escaping ((AppError?, VolumeInfo?) -> Void)) {
-        if let randomAPI = SecretKeys.googleAPIKeys.randomElement() {
-        NetworkHelper.shared.performDataTask(endpointURLString: "https://www.googleapis.com/books/v1/volumes?q=isbn:\(bookISBN)&key=\(randomAPI)") { (appError, data) in
+        NetworkHelper.shared.performDataTask(endpointURLString: "https://www.googleapis.com/books/v1/volumes?q=isbn:\(bookISBN)&key=\(SecretKeys.googleAPIKeys[0])") { (appError, data) in
             if let appError = appError {
                 completionHandler(appError, nil)
             }
@@ -20,11 +19,11 @@ struct GoogleBooksAPIClient {
                 do {
                     let bookExists = try JSONDecoder().decode(GoogleBook.self, from: data)
                         completionHandler(nil, bookExists.items?.first?.volumeInfo)
+                        print("getGoogleBookImageUrl - google api call")
                 } catch {
                     completionHandler(AppError.jsonDecodingError(error), nil)
                 }
             }
         }
-    }
     }
 }

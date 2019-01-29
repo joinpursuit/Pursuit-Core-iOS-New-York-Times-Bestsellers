@@ -12,11 +12,11 @@ class SavedBooks: UIView {
     
     public lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 400, height: 400)
+        layout.itemSize = CGSize(width: 375, height: 425)
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 22, left: 11, bottom: 11, right: 22)
-        
+        layout.sectionInset = UIEdgeInsets(top: 11, left: 11, bottom: 11, right: 11)
         let cv = UICollectionView.init(frame: frame, collectionViewLayout: layout)
+        cv.clipsToBounds = true
         cv.backgroundColor = .white
         return cv
     }()

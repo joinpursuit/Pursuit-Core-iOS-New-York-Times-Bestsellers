@@ -16,7 +16,7 @@ struct SavedBook: Codable {
     let bookImage: Data?
     let amazonLink: String
     let isbn13: String
-    let addedDate: String?
+    var addedDate: String?
     public var date: Date {
         let isoDateFormatter = ISO8601DateFormatter()
         var formattedDate = Date()

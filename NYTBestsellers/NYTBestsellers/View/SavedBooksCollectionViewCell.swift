@@ -12,8 +12,11 @@ class SavedBooksCollectionViewCell: UICollectionViewCell {
     public lazy var moreOptionsButton: UIButton = {
         let button = UIButton()
         button.setTitle("•••", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold)
+        button.setTitleColor(.black, for: .normal)
         return button
     }()
+    
     
     public lazy var bookImage: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "placeHolder"))
@@ -23,6 +26,7 @@ class SavedBooksCollectionViewCell: UICollectionViewCell {
     public lazy var bookTitleAndAuthor: UILabel = {
         let label = UILabel()
         label.text = "\"Title\" by Author Names"
+        label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.bold)
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
@@ -32,13 +36,13 @@ class SavedBooksCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "Book Description"
         label.numberOfLines = 0
-        label.font = label.font.withSize(14)
+ 
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
+        backgroundColor = .yellow
         self.addSubview(moreOptionsButton)
         self.addSubview(bookImage)
         self.addSubview(bookTitleAndAuthor)
@@ -55,20 +59,21 @@ class SavedBooksCollectionViewCell: UICollectionViewCell {
         
         [bookImage.centerXAnchor.constraint(equalTo: centerXAnchor),
          bookImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 5),
-         bookImage.heightAnchor.constraint(equalToConstant: 200),
-         bookImage.widthAnchor.constraint(equalToConstant: 250),
+         bookImage.heightAnchor.constraint(equalToConstant: 300),
+         bookImage.widthAnchor.constraint(equalToConstant: 200),
          
          bookTitleAndAuthor.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 11),
-         bookTitleAndAuthor.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5),
-         bookTitleAndAuthor.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.85),
+//         bookTitleAndAuthor.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5),
+         bookTitleAndAuthor.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
          
          bookDescriptionLabel.topAnchor.constraint(equalTo: bookTitleAndAuthor.bottomAnchor, constant: 11),
-         bookDescriptionLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5),
-         bookDescriptionLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 5),
+         bookDescriptionLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 11),
+         bookDescriptionLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11),
+         bookDescriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -11),
          
-         moreOptionsButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 5),
-         moreOptionsButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 5),
-         moreOptionsButton.leadingAnchor.constraint(equalTo: bookTitleAndAuthor.trailingAnchor, constant: 5)
+         moreOptionsButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 11),
+         moreOptionsButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11),
+//         moreOptionsButton.leadingAnchor.constraint(equalTo: bookImage.trailingAnchor, constant: 5)
             ].forEach{ $0.isActive = true }
     }
 }

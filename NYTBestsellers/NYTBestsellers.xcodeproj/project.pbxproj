@@ -35,6 +35,7 @@
 		A514E18921FBF60900BB4B25 /* SavedBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E18821FBF60900BB4B25 /* SavedBook.swift */; };
 		A514E18B21FBF60F00BB4B25 /* SavedBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E18A21FBF60F00BB4B25 /* SavedBookModel.swift */; };
 		A514E1CB21FFC76E00BB4B25 /* SavedBooksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E1CA21FFC76E00BB4B25 /* SavedBooksCollectionViewCell.swift */; };
+		A514E1CF2200A95900BB4B25 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E1CE2200A95900BB4B25 /* UserDefaultKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		A514E18821FBF60900BB4B25 /* SavedBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedBook.swift; sourceTree = "<group>"; };
 		A514E18A21FBF60F00BB4B25 /* SavedBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedBookModel.swift; sourceTree = "<group>"; };
 		A514E1CA21FFC76E00BB4B25 /* SavedBooksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedBooksCollectionViewCell.swift; sourceTree = "<group>"; };
+		A514E1CE2200A95900BB4B25 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +102,6 @@
 		5718BFE721FA75A800A8E4B8 /* NYTBestsellers */ = {
 			isa = PBXGroup;
 			children = (
-				A514E16321FB7A7100BB4B25 /* SecretKeys.swift */,
 				5718C00721FA78E800A8E4B8 /* Network Services */,
 				A514E16921FB827E00BB4B25 /* Model */,
 				A514E17021FB860500BB4B25 /* View */,
@@ -116,6 +117,8 @@
 		5718BFFA21FA75C000A8E4B8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A514E16321FB7A7100BB4B25 /* SecretKeys.swift */,
+				A514E1CE2200A95900BB4B25 /* UserDefaultKeys.swift */,
 				5718BFE821FA75A800A8E4B8 /* AppDelegate.swift */,
 				5718BFEF21FA75A900A8E4B8 /* Assets.xcassets */,
 				5718BFF121FA75A900A8E4B8 /* LaunchScreen.storyboard */,
@@ -267,6 +270,7 @@
 				A514E18521FBC1DD00BB4B25 /* BookDetailViewController.swift in Sources */,
 				A514E16B21FB85E300BB4B25 /* BestSellersView.swift in Sources */,
 				A514E16821FB827900BB4B25 /* AvailableCategories.swift in Sources */,
+				A514E1CF2200A95900BB4B25 /* UserDefaultKeys.swift in Sources */,
 				5718C00221FA772600A8E4B8 /* AppError.swift in Sources */,
 				A514E17221FB862000BB4B25 /* BestSellersViewController.swift in Sources */,
 				5718C00421FA77AA00A8E4B8 /* DataPersistenceManager.swift in Sources */,

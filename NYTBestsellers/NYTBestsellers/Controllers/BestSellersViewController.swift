@@ -8,16 +8,12 @@
 
 import UIKit
 
-protocol BestSellersViewControllerDelegate: AnyObject {
-    func sendOverBook(bookToSet: NYTBook)
-}
-
 class BestSellersViewController: UIViewController {
-    weak var delegate: BestSellersViewControllerDelegate?
-    private var detailBookDescription = ""
     private let bestSellersView = BestSellersView()
-    private var currentBookCategoryToSearch = "Humor" {
+    private var currentBookCategoryToSearch = "humor" {
         didSet {
+            saveGoogleDescription.removeAll()
+            saveGoogleBookImage.removeAll()
             searchForBooks()
         }
     }
@@ -35,6 +31,9 @@ class BestSellersViewController: UIViewController {
             }
         }
     }
+    
+    private var saveGoogleDescription: [String?] = []
+    private var saveGoogleBookImage: [Data?] = []
 
     fileprivate func searchForBooks() {
         NYTAPIClient.searchForBooks(in: currentBookCategoryToSearch) { (appError, books) in
@@ -64,17 +63,19 @@ class BestSellersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(bestSellersView)
-        getBookCategories()
-        checkForUserDefaultsSetting()
-        searchForBooks()
         bestSellersView.collectionView.dataSource = self
         bestSellersView.collectionView.delegate = self
         bestSellersView.pickerView.dataSource = self
         bestSellersView.pickerView.delegate = self
+        getBookCategories()
+        checkForUserDefaultsSetting()
+        searchForBooks()
     }
     
     private func checkForUserDefaultsSetting() {
-        if let rowNumber = UserDefaults.standard.object(forKey: "Book Category Index Number") as? Int, let currentCategory = UserDefaults.standard.object(forKey: "Book Category Name") as? String {
+        if let rowNumber = UserDefaults.standard.object(forKey: UserDefaultKeys.categoryRowNumber) as? Int, let currentCategory = UserDefaults.standard.object(forKey: UserDefaultKeys.categoryRowNumber) as? String {
+            print(rowNumber)
+            print(currentCategory)
             bestSellersView.pickerView.selectRow(rowNumber, inComponent: 0, animated: true)
             currentBookCategoryToSearch = currentCategory
         } else {
@@ -87,32 +88,47 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = bestSellersView.collectionView.dequeueReusableCell(withReuseIdentifier: "BookCollectionViewCell", for: indexPath) as? BookCollectionViewCell else { return UICollectionViewCell() }
         let book = books[indexPath.row]
-        cell.bookDescriptionLabel.text = book.book_details.first?.bookShortDescription
-        cell.numberOfWeeksOnList.text = "\(book.weeks_on_list.description) week on Best Seller"
+        cell.configureCell(book: book)
+        
+        configureBookCoverFromGoogle(cell: cell,
+                                     atIndexPath: indexPath,
+                                     book: book)
+        return cell
+    }
+    
+    private func configureBookCoverFromGoogle(cell: BookCollectionViewCell, atIndexPath indexPath: IndexPath, book: NYTBook) {
         if let bookDetailsExists = book.book_details.first {
             GoogleBooksAPIClient.getGoogleBookImageUrl(bookISBN: bookDetailsExists.primaryISBN13) { (appError, bookData) in
-            if let appError = appError {
-                print("GoogleBooksAPIClient - \(appError)")
-            } else if let bookData = bookData {
-                self.books[indexPath.row].bookLongDescription = bookData.bookLongDescription
-                if let image = ImageHelper.fetchImageFromCache(urlString: bookData.imageLinks.thumbnail) {
-                    DispatchQueue.main.async {
-                        cell.bookImage.image = image
+                if let appError = appError {
+                    print("GoogleBooksAPIClient - probably reached daily limits - \(appError)")
+                } else if let bookData = bookData {
+                    self.saveGoogleDescription.append(bookData.bookLongDescription)
+                    if let image = ImageHelper.fetchImageFromCache(urlString: bookData.imageLinks.thumbnail) {
+                        print("image for \(indexPath.row) in cv exists in cache")
+                        DispatchQueue.main.async {
+                            cell.bookImage.image = image
+                            if let imageCanBeSaved = image.jpegData(compressionQuality: 1.0) {
+                                self.saveGoogleBookImage.append(imageCanBeSaved)
+                            }
+                        }
+                     } else {
+                        print("image for \(indexPath.row) in cv does NOT exist in cache, fetching for image from network now")
+                        ImageHelper.fetchImageFromNetwork(urlString: bookData.imageLinks.thumbnail, completion: { (appError, image) in
+                            if let appError = appError {
+                                print("fetchImageNetwork - \(appError)")
+                            } else if let image = image {
+                                cell.bookImage.image = image
+                                if let imageCanBeSaved = image.jpegData(compressionQuality: 1.0) {
+                                    self.saveGoogleBookImage.append(imageCanBeSaved)
+                                }
+                            }
+                        })
                     }
-                    self.books[indexPath.row].bookGoogleImage = image.jpegData(compressionQuality: 1)
-                } else {
-                    ImageHelper.fetchImageFromNetwork(urlString: bookData.imageLinks.thumbnail, completion: { (appError, image) in
-                    if let appError = appError {
-                        print("fetchImageNetwork - \(appError)")
-                    } else if let image = image {
-                        cell.bookImage.image = image
-                    }
-                })
                 }
             }
-            }
+        } else {
+            print("no book detail available")
         }
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -120,9 +136,9 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let bookDetail = BookDetailViewController()
-        self.delegate = bookDetail
-        self.delegate?.sendOverBook(bookToSet: books[indexPath.row])
+        let book = books[indexPath.row]
+        let bookToSave = SavedBook.init(title: book.book_details[0].title, author: book.book_details[0].author, shortDescription: book.book_details[0].bookShortDescription, longDescription: saveGoogleDescription[indexPath.row] ?? "", bookImage: saveGoogleBookImage[indexPath.row] ?? nil, amazonLink: book.amazon_product_url, isbn13: book.book_details[0].primaryISBN13, addedDate: nil)
+        let bookDetail = BookDetailViewController(book: bookToSave)
         navigationController?.pushViewController(bookDetail, animated: true)
     }
     
