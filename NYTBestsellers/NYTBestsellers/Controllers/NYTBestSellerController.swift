@@ -11,7 +11,9 @@ import UIKit
 class NYTBestSellerController: UIViewController {
   
   let bestSellerView = BestSellerView()
+  
   public var imageToSegue = UIImage()
+  
   public var descriptionFromGoogle = String()
   
   var categoriesInfo = [BookCategories]() {
@@ -49,7 +51,7 @@ class NYTBestSellerController: UIViewController {
     
     getCategories()
     //TODO I'll wrap this up TO CALL user defaults
-    getBookInfo(categoryName: "Manga")
+    getBookInfo(categoryName: "Humor")
     
   }
   
@@ -95,6 +97,7 @@ extension NYTBestSellerController: UICollectionViewDataSource, UICollectionViewD
     
     
     let isbn = currentBook.book_details[0].primary_isbn13
+    
     ImagesAPIClient.getBookImages(isbn: isbn) { (appError, image) in
       if let appError = appError {
         print(appError)
@@ -110,7 +113,6 @@ extension NYTBestSellerController: UICollectionViewDataSource, UICollectionViewD
           if let image = ImageHelper.fetchImageFromCache(urlString: imageToSet){
             DispatchQueue.main.async {
               cell.imageCover.image = image
-              self.imageToSegue = image
             }
           } else{
             ImageHelper.fetchImageFromNetwork(urlString: imageToSet, completion: { (appError, image) in
@@ -134,12 +136,15 @@ extension NYTBestSellerController: UICollectionViewDataSource, UICollectionViewD
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
     let bookToSegue = bookInfoForCollectionView[indexPath.row]
-    
+    guard let cell = collectionView.cellForItem(at: indexPath) as? BestSellerCollectionCell else {
+      print("didSelectItemAt cell nil")
+      return
+    }
     let detailedVC = BookDetailsController()
     detailedVC.bookInDetail = bookToSegue
     print("I am here")
-    detailedVC.imageForDetailed = imageToSegue
-   detailedVC.descriptionFromGoodle = descriptionFromGoogle
+    detailedVC.imageForDetailed = cell.imageCover.image
+    detailedVC.descriptionFromGoodle = descriptionFromGoogle
     navigationController?.pushViewController(detailedVC, animated: true)
     
   }
