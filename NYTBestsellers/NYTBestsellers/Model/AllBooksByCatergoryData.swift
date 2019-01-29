@@ -20,10 +20,12 @@ struct ResultsOfBestSellerBooks: Codable {
     let categoryName: String
     let amazonLink: String
     let moreBookInformation: [AllBookDetailInfo]
+    let NumberOfWeeksOnTheBestSellerList: Int
     enum CodingKeys: String, CodingKey{
         case categoryName = "list_name"
         case amazonLink = "amazon_product_url"
         case moreBookInformation = "book_details"
+        case NumberOfWeeksOnTheBestSellerList = "weeks_on_list"
     }
 }
 
