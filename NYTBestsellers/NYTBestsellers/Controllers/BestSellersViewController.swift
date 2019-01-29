@@ -39,8 +39,10 @@ class BestSellersViewController: UIViewController {
         bestSellers.genrePickerView.dataSource = self
         bestSellers.genrePickerView.delegate = self
         getBookGenres()
-        getBookInfo(keyword: keyword)
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        checkForDefault()
     }
     
     func getBookGenres() {
@@ -49,6 +51,7 @@ class BestSellersViewController: UIViewController {
                 print(error.errorMessage())
             } else if let data = data {
                 self.genre = data
+                self.checkForDefault()
             }
         }
     }
@@ -59,6 +62,17 @@ class BestSellersViewController: UIViewController {
                 print(error.errorMessage())
             } else if let data = data {
                 self.bestSellingBooks = data
+            }
+        }
+    }
+    
+    func checkForDefault() {
+        if let genreDefault = UserDefaults.standard.object(forKey: DefaultKeys.genre){
+            getBookInfo(keyword: genreDefault as! String)
+        }
+        if let pickedRow = (UserDefaults.standard.object(forKey: DefaultKeys.pickerRow)) as? String {
+            DispatchQueue.main.async {
+                self.bestSellers.genrePickerView.selectRow(Int(pickedRow)!, inComponent: 0, animated: true)
             }
         }
     }
@@ -99,7 +113,12 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(DetailViewController(), animated: true)
+        let detail = DetailViewController.init(isbn: bestSellingBooks[indexPath.row].book_details[0].primary_isbn13,
+                                               author: bestSellingBooks[indexPath.row].book_details[0].author,
+                                               description: bestSellingBooks[indexPath.row].book_details[0].description,
+                                               weeks: bestSellingBooks[indexPath.row].weeks_on_list,
+                                               amazonLink: bestSellingBooks[indexPath.row].amazon_product_url)
+        self.navigationController?.pushViewController(detail, animated: true)
     }
     
     
@@ -118,7 +137,13 @@ extension BestSellersViewController: UIPickerViewDataSource, UIPickerViewDelegat
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        return keyword = genre[row].list_name.replacingOccurrences(of: " ", with: "-")
+        NYTimesAPIClient.getBooks(keyword: genre[row].list_name.replacingOccurrences(of: " ", with: "-")) { (error, book) in
+            if let error = error {
+                print(error.errorMessage())
+            } else if let book = book {
+                self.bestSellingBooks = book
+            }
+        }
     }
     
 }

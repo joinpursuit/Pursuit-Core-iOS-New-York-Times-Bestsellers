@@ -17,7 +17,7 @@ class BestSellersView: UIView {
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
         
         let cv = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
-        cv.backgroundColor = .gray
+        cv.backgroundColor = .white
         return cv
     }()
     

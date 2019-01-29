@@ -10,11 +10,8 @@ import UIKit
 
 class SettingsView: UIView {
     
-    private lazy var settingsPicker: UIPickerView = {
+    public lazy var settingsPicker: UIPickerView = {
         let picker = UIPickerView.init(frame: self.bounds)
-        picker.backgroundColor = .blue
-        picker.dataSource = self
-        picker.delegate = self
         return picker
     }()
 
@@ -50,20 +47,4 @@ extension SettingsView {
     }
 }
 
-extension SettingsView: UIPickerViewDataSource, UIPickerViewDelegate {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 10
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "hello"
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-    }
-}
+

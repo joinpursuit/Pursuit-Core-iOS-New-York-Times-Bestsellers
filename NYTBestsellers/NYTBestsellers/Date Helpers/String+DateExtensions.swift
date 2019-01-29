@@ -17,7 +17,7 @@ extension String {
     let isoDateFormatter = ISO8601DateFormatter()
     if let date = isoDateFormatter.date(from: self) {
       let dateFormatter = DateFormatter()
-      dateFormatter.dateFormat = dateFormat
+      dateFormatter.dateFormat = "MMMM d, yyyy"
       formatDate = dateFormatter.string(from: date)
     }
     return formatDate

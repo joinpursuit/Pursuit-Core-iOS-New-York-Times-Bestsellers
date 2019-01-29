@@ -19,6 +19,7 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     lazy var bookLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .purple
+        label.textAlignment = .center
         return label
     }()
     

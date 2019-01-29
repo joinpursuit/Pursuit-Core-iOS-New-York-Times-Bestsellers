@@ -10,7 +10,7 @@ import UIKit
 
 class FavoritesView: UIView {
     
-    private lazy var favCollectionView: UICollectionView = {
+    public lazy var favCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize.init(width: 300, height: 400)
@@ -18,7 +18,6 @@ class FavoritesView: UIView {
         
         let cv = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
         cv.backgroundColor = .gray
-        cv.dataSource = self
         return cv
     }()
     
@@ -57,15 +56,4 @@ extension FavoritesView {
     }
 }
 
-extension FavoritesView: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesCell", for: indexPath) as? FavoritesCollectionViewCell else { return UICollectionViewCell() }
-        return cell
-    }
-    
-    
-}
+

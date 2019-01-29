@@ -12,3 +12,8 @@ struct APIKeys {
     static let nytKey = "jm0Q9BBTWU4W9PVxUPxohGlDTufXelAN"
     static let googleKey = "AIzaSyCtFTDYnMiqENncvsMlELC0rgb0MMJxINU"
 }
+
+struct DefaultKeys {
+    static var genre = "genre"
+    static var pickerRow = "row"
+}

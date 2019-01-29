@@ -12,26 +12,31 @@ class DetailView: UIView {
 
     lazy var bookImage: UIImageView = {
         let image = UIImageView()
-        image.backgroundColor = .black
         return image
     }()
     
     lazy var bookLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .purple
+        label.textAlignment = .center
         return label
     }()
     
     lazy var bookTextView: UITextView = {
         let textView = UITextView()
         textView.isEditable = false
-        textView.backgroundColor = .green
+        textView.font = .systemFont(ofSize: 20)
         return textView
+    }()
+    
+    lazy var amazonButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "amazon"), for: .normal)
+        return button
     }()
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
-        self.backgroundColor = .red
+        self.backgroundColor = .white
         commonInit()
     }
     
@@ -42,6 +47,7 @@ class DetailView: UIView {
     
     private func commonInit() {
         setupView()
+        
     }
     
 }
@@ -50,6 +56,7 @@ extension DetailView {
         setupImageView()
         setupLabel()
         setupTextField()
+        setupButton()
     }
     
     private func setupImageView() {
@@ -77,6 +84,15 @@ extension DetailView {
         bookTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11).isActive = true
         bookTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
         bookTextView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
+    }
+    
+    private func setupButton() {
+        addSubview(amazonButton)
+        amazonButton.translatesAutoresizingMaskIntoConstraints = false
+        amazonButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        amazonButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
+        amazonButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        amazonButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
     }
 }
 
