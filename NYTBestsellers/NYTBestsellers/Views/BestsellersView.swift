@@ -13,7 +13,7 @@ class BestsellersView: UIView {
     lazy var bestSellerCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize.init(width: 200, height: 150)
-        layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
+        layout.sectionInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
         layout.scrollDirection = .horizontal
         let bscv = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
         bscv.register(BestsellersCollectionViewCell.self, forCellWithReuseIdentifier: "BestsellersCell")
@@ -40,7 +40,7 @@ class BestsellersView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = .green
+        backgroundColor = .red
         setConstraints()
     }
     

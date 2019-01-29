@@ -9,12 +9,13 @@
 import Foundation
 
 struct NYTBestseller: Codable {
-    let results: [Books]
+    let results: [BookCategories]
 }
 
-struct Books: Codable {
-    let displayName: String
+struct BookCategories: Codable {
+    let categoryName: String
     enum CodingKeys: String, CodingKey {
-        case displayName = "display_name"
+        case categoryName = "list_name"
+    
     }
 }
