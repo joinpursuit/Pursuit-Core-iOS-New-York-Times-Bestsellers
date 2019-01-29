@@ -8,8 +8,12 @@
 
 import UIKit
 
+protocol GetBookDetail: AnyObject {
+    func bookDetail()
+}
 class BestSellerView: UIView {
     
+    weak var delegate: GetBookDetail?
     lazy var collectionView: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
@@ -20,14 +24,11 @@ class BestSellerView: UIView {
         var cv = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
 
         cv.backgroundColor = .gray
-        cv.dataSource = self
         return cv
     }()
     lazy var pickerView: UIPickerView = {
         let picker = UIPickerView.init(frame: self.bounds)
         picker.backgroundColor = .blue
-        picker.dataSource = self
-        picker.delegate = self
         return picker
     }()
     override init(frame: CGRect) {
@@ -44,32 +45,6 @@ class BestSellerView: UIView {
         backgroundColor = .yellow
         setUpConstraints()
     }
-}
-
-extension BestSellerView: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestSellerCell", for: indexPath) as? BestSellerCollectionViewCell else {return UICollectionViewCell()}
-        return cell
-    }
-}
-extension BestSellerView: UIPickerViewDataSource, UIPickerViewDelegate {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 100
-    }
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(row)
-    }
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-    }
-    
 }
 
 extension BestSellerView {

@@ -17,6 +17,7 @@ struct Info: Codable {
 }
 
 struct ImageLink: Codable {
+    let description: String
     let imageLinks: Links
 }
 

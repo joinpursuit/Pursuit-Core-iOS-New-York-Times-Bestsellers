@@ -1,5 +1,5 @@
 //
-//  BestSellerCollectionViewCell.swift
+//  FavoriteCollectionViewCell.swift
 //  NYTBestsellers
 //
 //  Created by Biron Su on 1/25/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BestSellerCollectionViewCell: UICollectionViewCell {
+class FavoriteCollectionViewCell: UICollectionViewCell {
     
     lazy var bookImage: UIImageView = {
         let image = UIImageView()
@@ -18,14 +18,18 @@ class BestSellerCollectionViewCell: UICollectionViewCell {
     lazy var bookLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .gray
-        label.font = UIFont.systemFont(ofSize: 15.0)
         return label
     }()
     lazy var bookText: UITextView = {
         let textView = UITextView()
-        textView.backgroundColor = .yellow
-        textView.isEditable = false
+        textView.backgroundColor = .black
         return textView
+    }()
+    lazy var menuButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("•••", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        return button
     }()
     
     override init(frame: CGRect) {
@@ -43,11 +47,12 @@ class BestSellerCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension BestSellerCollectionViewCell {
+extension FavoriteCollectionViewCell {
     private func setupCells() {
         setupImageView()
         setupLabel()
         setupTextView()
+        setupButton()
     }
     private func setupImageView() {
         addSubview(bookImage)
@@ -74,6 +79,13 @@ extension BestSellerCollectionViewCell {
         bookText.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5).isActive = true
         bookText.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5).isActive = true
         bookText.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
-        
+    }
+    private func setupButton(){
+        addSubview(menuButton)
+        menuButton.translatesAutoresizingMaskIntoConstraints = false
+        menuButton.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+        menuButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+        menuButton.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        menuButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
     }
 }
