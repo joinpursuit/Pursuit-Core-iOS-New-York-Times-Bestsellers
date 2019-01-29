@@ -17,18 +17,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     
-    
+   
     
     let baseViewController = MainViewController()
     let favoriteVC = FavoritesViewController()
     let settingVC = SettingsViewController()
-    
+    baseViewController.tabBarItem = UITabBarItem.init(title: "NYT Bestsellers", image: UIImage(named: "icons8-best_seller"), selectedImage: UIImage(named: "icons8-best_seller"))
+    favoriteVC.tabBarItem = UITabBarItem.init(title: "Favorite Books", image: UIImage(named: "icons8-add_to_favorites_filled"), selectedImage: UIImage(named: "icons8-add_to_favorites_filled"))
+settingVC.tabBarItem = UITabBarItem.init(title: "Settings", image: UIImage(named: "icons8-settings"), selectedImage: UIImage(named: "icons8-settings"))
     let tabBar = UITabBarController()
     
-    tabBar.viewControllers = [baseViewController,favoriteVC,settingVC]
+     let navigationViewController = UINavigationController.init(rootViewController:baseViewController)
+    
+    
+   tabBar.viewControllers = [navigationViewController,favoriteVC,settingVC]
     window = UIWindow.init(frame: UIScreen.main.bounds)
     window?.makeKeyAndVisible()
     window?.rootViewController = tabBar
+    
     baseViewController.title = "NYT BestSellers"
     favoriteVC.title = "Favorites"
     settingVC.title = "Settings"

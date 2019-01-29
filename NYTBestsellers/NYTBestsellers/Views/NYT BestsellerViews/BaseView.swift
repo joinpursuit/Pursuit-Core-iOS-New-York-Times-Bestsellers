@@ -9,32 +9,20 @@
 import UIKit
 
 class BaseView: UIView {
-    
-    let numbers = ["January","Febraury","March","April","May","June","July"]
-
     public lazy var collectionView: UICollectionView = {
-        
         let cellLayout = UICollectionViewFlowLayout()
             cellLayout.scrollDirection = .horizontal
             cellLayout.sectionInset =  UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
             cellLayout.itemSize = CGSize.init(width: 300, height: 300)
-        
         let bestSellerCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: cellLayout)
-        bestSellerCollectionView.backgroundColor = .green
-        bestSellerCollectionView.dataSource = self
-        bestSellerCollectionView.delegate = self
-        
-    
-        
+        bestSellerCollectionView.backgroundColor = UIColor.init(red: 250, green: 250, blue: 250, alpha: 1)
         return bestSellerCollectionView
     }()
     
     
     public lazy var pickerView: UIPickerView = {
         let pickerView = UIPickerView()
-        pickerView.backgroundColor = .red
-        pickerView.delegate = self
-        pickerView.dataSource = self
+        pickerView.backgroundColor = .white
         return pickerView
     }()
     
@@ -44,6 +32,7 @@ class BaseView: UIView {
         addSubview(pickerView)
         setCollectionViewsConstrains()
         setPickerViewConstrains()
+
         self.collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "CVCell")
         
     }
@@ -67,40 +56,7 @@ class BaseView: UIView {
         pickerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         pickerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         pickerView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-      
-        
     }
- 
+
 
 }
-
-extension BaseView: UICollectionViewDataSource, UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CVCell", for: indexPath) as? CollectionViewCell else {return UICollectionViewCell()}
-        return cell
-    }
-    
-   
-}
-
-extension BaseView: UIPickerViewDataSource,UIPickerViewDelegate {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return numbers.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return numbers[row]
-    }
-    
-    
-}
-
-
