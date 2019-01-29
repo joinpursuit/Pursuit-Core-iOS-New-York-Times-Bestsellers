@@ -8,7 +8,15 @@
 
 import UIKit
 
+protocol NYTBestSellingViewDelegate: AnyObject {
+    func numberOfCategories() -> Int
+    func setTitleOfPickerView(rowNum: Int) -> String
+}
+
 class NYTBestSellingView: UIView {
+    
+    weak var delegate: NYTBestSellingViewDelegate?
+    
     lazy var bestsellersCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize.init(width: 200, height: 300)
@@ -88,17 +96,14 @@ extension NYTBestSellingView: UICollectionViewDataSource {
 
 extension NYTBestSellingView: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        // custom delegation
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        // custom delegation
-        return 5
+        return delegate?.numberOfCategories() ?? 0
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        //custom delegation
-        return "Category"
+        return delegate?.setTitleOfPickerView(rowNum: row) ?? "Unknown"
     }
 }
