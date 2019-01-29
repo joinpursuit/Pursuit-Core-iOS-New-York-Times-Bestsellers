@@ -9,7 +9,7 @@
 import UIKit
 
 class DetailedView: UIView {
-
+  
   lazy var bookCover: UIImageView = {
     let image = UIImageView(image: UIImage(named: "book"))
     return image
@@ -22,13 +22,13 @@ class DetailedView: UIView {
     label.textAlignment = .center
     return label
   }()
-
+  
   lazy var bookDescription: UITextView = {
     let tv = UITextView()
     tv.text = "text goes here and here and here and here and here and here"
     tv.textAlignment = .justified
     tv.textColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
-    tv.isEditable = false 
+    tv.isEditable = false
     return tv
   }()
   
@@ -37,8 +37,8 @@ class DetailedView: UIView {
     button.imageView?.image = UIImage(named: "amazonLogo")
     button.backgroundColor = .blue
     //    button.setTitle("Segue", for: .normal)
-
-//    button.addTarget(self, action: #selector(seguePressed), for: .touchUpInside)
+    
+    //    button.addTarget(self, action: #selector(seguePressed), for: .touchUpInside)
     
     return button
   }()
@@ -60,7 +60,7 @@ class DetailedView: UIView {
 }
 
 extension DetailedView {
-
+  
   private func setupDetailedViewConstraints() {
     imageConstraints()
     authorLabelConstraints()
@@ -95,7 +95,7 @@ extension DetailedView {
   }
   
   private func amazonLaunchConstraints() {
-   amazonLaunchButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 11).isActive = true
+    amazonLaunchButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 11).isActive = true
     amazonLaunchButton.leadingAnchor.constraint(equalTo: bookCover.trailingAnchor, constant: 5).isActive = true
     amazonLaunchButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 5).isActive = true
   }

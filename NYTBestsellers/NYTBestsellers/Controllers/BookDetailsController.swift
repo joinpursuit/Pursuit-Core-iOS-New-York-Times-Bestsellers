@@ -13,7 +13,9 @@ class BookDetailsController: UIViewController {
   var detailedViewInstance = DetailedView()
   
   public var bookInDetail: BookGeneralInfo?
+  
   public var imageForDetailed: UIImage?
+  
   public var descriptionFromGoodle: String?
   
   
@@ -23,11 +25,17 @@ class BookDetailsController: UIViewController {
     view.backgroundColor = .white
     self.view.addSubview(detailedViewInstance)
     
+    let favoriteButton = UIBarButtonItem(title: "Favorite", style: UIBarButtonItem.Style.plain, target: self, action: #selector (BookDetailsController.favoriteButtonTapped(_:)))
+    self.navigationItem.rightBarButtonItem = favoriteButton
+    
     setupUI()
     
   }
   
-
+  
+  @objc func favoriteButtonTapped(_ sender: UIBarButtonItem!) {
+   print("favorite button is being pressed")
+  }
   
   func setupUI() {
     if let author = bookInDetail?.book_details[0].author {

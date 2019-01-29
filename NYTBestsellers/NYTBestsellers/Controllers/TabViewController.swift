@@ -10,20 +10,6 @@ import UIKit
 
 class TabViewController: UITabBarController {
   
-  
-  
-  //
-  //  bestSellerCon.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
-  //
-  //  let secondViewController = secondVC()
-  //
-  //  secondViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
-  //
-  //  let tabBarList = [firstViewController, secondViewController]
-  //
-  //  viewControllers = tabBarList
-  
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupTabBar()
@@ -33,6 +19,8 @@ class TabViewController: UITabBarController {
     
     
     let bestSellerControllerTab = NYTBestSellerController()
+    
+    
     bestSellerControllerTab.tabBarItem = UITabBarItem(title: "Best Sellers", image: UIImage(named: "bestSeller"), tag: 0)
     
     bestSellerControllerTab.title = "NYT Best Sellers"

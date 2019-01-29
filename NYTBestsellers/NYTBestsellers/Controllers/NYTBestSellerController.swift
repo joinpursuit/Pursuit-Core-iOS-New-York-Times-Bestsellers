@@ -122,7 +122,6 @@ extension NYTBestSellerController: UICollectionViewDataSource, UICollectionViewD
               }
               if let image = image{
                 cell.imageCover.image = image
-                self.imageToSegue = image
               }
             })
           }
@@ -136,13 +135,13 @@ extension NYTBestSellerController: UICollectionViewDataSource, UICollectionViewD
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
     let bookToSegue = bookInfoForCollectionView[indexPath.row]
+    
     guard let cell = collectionView.cellForItem(at: indexPath) as? BestSellerCollectionCell else {
       print("didSelectItemAt cell nil")
       return
     }
     let detailedVC = BookDetailsController()
     detailedVC.bookInDetail = bookToSegue
-    print("I am here")
     detailedVC.imageForDetailed = cell.imageCover.image
     detailedVC.descriptionFromGoodle = descriptionFromGoogle
     navigationController?.pushViewController(detailedVC, animated: true)
