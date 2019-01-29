@@ -21,11 +21,6 @@ import UIKit
         }()
         
         
-        public lazy var pickerView: UIPickerView = {
-            let pickerView = UIPickerView()
-            return pickerView
-        }()
-        
         override init(frame: CGRect) {
             super .init(frame: UIScreen.main.bounds)
             

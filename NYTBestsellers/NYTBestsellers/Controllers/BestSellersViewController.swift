@@ -132,7 +132,13 @@ extension BestSellersViewController: UICollectionViewDataSource {
 }
 extension BestSellersViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        navigationController?.pushViewController(DetailViewController(), animated: true)
+        let book = books[indexPath.row]
+        
+        
+        let detailVC = DetailViewController()
+        detailVC.theBooks = book
+        navigationController?.pushViewController(detailVC, animated: true)
+        
     }
 }
 

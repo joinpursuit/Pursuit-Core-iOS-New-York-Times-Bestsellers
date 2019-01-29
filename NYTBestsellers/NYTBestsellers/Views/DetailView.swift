@@ -16,14 +16,19 @@ class DetailView: UIView {
     }()
     lazy var label: UILabel = {
         let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont(name: "Helvetica", size: 30.0)
         return label
     }()
     lazy var textView: UITextView = {
         let textView = UITextView()
+        textView.backgroundColor = #colorLiteral(red: 0, green: 0.5663738847, blue: 0.6211090088, alpha: 1)
+        textView.font = UIFont(name:"Helvetica" , size:20.0);
         return textView
     }()
     override init(frame: CGRect) {
-        super.init(frame: frame)
+        super.init(frame: UIScreen.main.bounds)
+        
        commonInit()
     }
     
@@ -33,7 +38,7 @@ class DetailView: UIView {
         
     }
     private func commonInit(){
-        self.backgroundColor = .white
+        self.backgroundColor = #colorLiteral(red: 0.03800095245, green: 0.6825240254, blue: 0.8906955719, alpha: 1)
         setUp()
     }
     private func setUp(){
@@ -44,7 +49,7 @@ class DetailView: UIView {
     private func imageConstraints(){
         addSubview(image)
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.topAnchor.constraint(equalTo: topAnchor, constant: 11).isActive = true
+        image.topAnchor.constraint(equalTo: topAnchor, constant: 100).isActive = true
         image.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.5).isActive = true
         image.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.5).isActive = true
         image.centerXAnchor.constraint(equalTo:safeAreaLayoutGuide.centerXAnchor).isActive = true
@@ -53,14 +58,14 @@ class DetailView: UIView {
         addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 8).isActive = true
-        label.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, constant: 10).isActive = true
+        label.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, constant: 30).isActive = true
         
     }
     
     private func textViewConstraint(){
         addSubview(textView)
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 8).isActive = true
+        textView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10).isActive = true
         textView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.3).isActive = true
         textView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 1).isActive = true
         textView.centerXAnchor.constraint(equalTo:safeAreaLayoutGuide.centerXAnchor).isActive = true
