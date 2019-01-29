@@ -14,6 +14,8 @@ class BookDetailsController: UIViewController {
   
   public var bookInDetail: BookGeneralInfo?
   public var imageForDetailed: UIImage?
+  public var descriptionFromGoodle: String?
+  
   
   
   override func viewDidLoad() {
@@ -25,9 +27,16 @@ class BookDetailsController: UIViewController {
     
   }
   
+
+  
   func setupUI() {
-    detailedViewInstance.authorName.text = bookInDetail?.book_details[0].author
-    detailedViewInstance.bookDescription.text = bookInDetail?.book_details[0].description
+    if let author = bookInDetail?.book_details[0].author {
+      detailedViewInstance.authorName.text = "Author: \(author)"
+    }
+    
+    if let extendedBookDescription = descriptionFromGoodle {
+     detailedViewInstance.bookDescription.text = extendedBookDescription
+    }
     detailedViewInstance.amazonLaunchButton.setImage(UIImage(named: "amazonLogo"), for: .normal)
     if let image = imageForDetailed{
     detailedViewInstance.bookCover.image = image

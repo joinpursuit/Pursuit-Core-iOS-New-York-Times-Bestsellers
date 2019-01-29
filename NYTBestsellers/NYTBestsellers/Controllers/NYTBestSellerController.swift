@@ -12,6 +12,7 @@ class NYTBestSellerController: UIViewController {
   
   let bestSellerView = BestSellerView()
   public var imageToSegue = UIImage()
+  public var descriptionFromGoogle = String()
   
   var categoriesInfo = [BookCategories]() {
     didSet {
@@ -86,13 +87,14 @@ extension NYTBestSellerController: UICollectionViewDataSource, UICollectionViewD
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     guard let cell = bestSellerView.bestSellerCollectionView.dequeueReusableCell(withReuseIdentifier: "BestCollectionCell", for: indexPath) as? BestSellerCollectionCell else {return UICollectionViewCell()}
+    
     cell.backgroundColor = .white
     let currentBook = bookInfoForCollectionView[indexPath.row]
     cell.bookDescription.text = currentBook.book_details[0].description
     cell.weeksLabel.text = "\(currentBook.weeks_on_list) weeks on the NYT Best Sellers List"
     
-    let isbn = currentBook.book_details[0].primary_isbn13
     
+    let isbn = currentBook.book_details[0].primary_isbn13
     ImagesAPIClient.getBookImages(isbn: isbn) { (appError, image) in
       if let appError = appError {
         print(appError)
@@ -100,12 +102,15 @@ extension NYTBestSellerController: UICollectionViewDataSource, UICollectionViewD
       if let data = image {
         
         let imageToSet = data[0].volumeInfo.imageLinks.thumbnail
-        
+      
+        //Taking advatange of this call to get the long description for the detailed view.
+        self.descriptionFromGoogle = data[0].volumeInfo.description
         
         DispatchQueue.main.async {
           if let image = ImageHelper.fetchImageFromCache(urlString: imageToSet){
             DispatchQueue.main.async {
               cell.imageCover.image = image
+              self.imageToSegue = image
             }
           } else{
             ImageHelper.fetchImageFromNetwork(urlString: imageToSet, completion: { (appError, image) in
@@ -134,7 +139,7 @@ extension NYTBestSellerController: UICollectionViewDataSource, UICollectionViewD
     detailedVC.bookInDetail = bookToSegue
     print("I am here")
     detailedVC.imageForDetailed = imageToSegue
-    
+   detailedVC.descriptionFromGoodle = descriptionFromGoogle
     navigationController?.pushViewController(detailedVC, animated: true)
     
   }

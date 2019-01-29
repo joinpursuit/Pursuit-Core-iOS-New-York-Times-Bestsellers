@@ -10,11 +10,11 @@ import Foundation
 
 struct ImageForBooks: Codable {
   
-  let items: [GoogleImageInfo]
+  let items: [GoogleAPIGeneralInfo]
   
 }
 
-struct GoogleImageInfo: Codable {
+struct GoogleAPIGeneralInfo: Codable {
   
   let volumeInfo: BookDetailInfo
   
@@ -24,6 +24,7 @@ struct BookDetailInfo: Codable {
   
  
   let imageLinks: Images
+  let description: String
   
 }
 

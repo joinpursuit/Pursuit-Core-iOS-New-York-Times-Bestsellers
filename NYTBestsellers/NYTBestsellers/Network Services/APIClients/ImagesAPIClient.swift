@@ -10,7 +10,7 @@ import Foundation
 
 final class ImagesAPIClient {
 
-  static func getBookImages(isbn: String, completionHandler: @escaping (AppError?, [GoogleImageInfo]?) -> Void) {
+  static func getBookImages(isbn: String, completionHandler: @escaping (AppError?, [GoogleAPIGeneralInfo]?) -> Void) {
     
     
     
