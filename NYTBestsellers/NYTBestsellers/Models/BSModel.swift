@@ -17,6 +17,7 @@ struct BookResults: Codable {
     let book_details: [BookDetails]
 }
 struct BookDetails: Codable {
+    let author: String
     let title: String
     let description: String
     let primary_isbn13: String

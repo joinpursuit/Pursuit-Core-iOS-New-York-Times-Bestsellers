@@ -9,7 +9,8 @@
 import UIKit
 
 class DetailView: UIView {
-
+    
+    
     lazy var image: UIImageView = {
         let image = UIImageView()
         return image
@@ -42,6 +43,7 @@ class DetailView: UIView {
         setUp()
     }
     private func setUp(){
+        
         imageConstraints()
         labelConstraint()
         textViewConstraint()

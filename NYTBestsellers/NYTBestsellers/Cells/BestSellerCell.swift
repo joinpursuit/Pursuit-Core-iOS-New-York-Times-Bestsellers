@@ -18,6 +18,7 @@ class BestSellerCell: UICollectionViewCell {
     lazy var label: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.font = UIFont(name: "Helvetica", size: 15.0)
         return label
     }()
     lazy var textView: UITextView = {

@@ -101,7 +101,7 @@ extension BestSellersViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestSellerCell", for: indexPath) as? BestSellerCell else { return UICollectionViewCell() }
-        cell.label.text = "Weeks on list \(books[indexPath.row].weeks_on_list)"
+        cell.label.text = "\(books[indexPath.row].weeks_on_list) weeks on best sellers list"
        
         APIClient.getGoogleImage(keyword: (books[indexPath.row].book_details.first?.primary_isbn13)!) { (error, data) in
             if let error = error {

@@ -31,6 +31,8 @@
 		93EB9C1121FFA20A00E5A356 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB9C1021FFA20A00E5A356 /* FavoritesCell.swift */; };
 		93EB9C1621FFBB1800E5A356 /* GoogleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB9C1521FFBB1800E5A356 /* GoogleModel.swift */; };
 		93EB9C1821FFD61000E5A356 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB9C1721FFD61000E5A356 /* DetailViewController.swift */; };
+		93EB9C1A2201019100E5A356 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB9C192201019100E5A356 /* Book.swift */; };
+		93EB9C1C2201028C00E5A356 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB9C1B2201028C00E5A356 /* BookModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		93EB9C1021FFA20A00E5A356 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 		93EB9C1521FFBB1800E5A356 /* GoogleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleModel.swift; sourceTree = "<group>"; };
 		93EB9C1721FFD61000E5A356 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		93EB9C192201019100E5A356 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		93EB9C1B2201028C00E5A356 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +185,8 @@
 				93EB9BCA21FE443600E5A356 /* NYTModel.swift */,
 				93EB9BCE21FE48DE00E5A356 /* BSModel.swift */,
 				93EB9C1521FFBB1800E5A356 /* GoogleModel.swift */,
+				93EB9C192201019100E5A356 /* Book.swift */,
+				93EB9C1B2201028C00E5A356 /* BookModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -261,8 +267,10 @@
 				935E831621FBA06800B0C9E6 /* BestSellersViewController.swift in Sources */,
 				935E832521FBA62000B0C9E6 /* DetailView.swift in Sources */,
 				93EB9C0D21FF97AA00E5A356 /* SecretKeys.swift in Sources */,
+				93EB9C1C2201028C00E5A356 /* BookModel.swift in Sources */,
 				93EB9C1621FFBB1800E5A356 /* GoogleModel.swift in Sources */,
 				93EB9C0F21FF984A00E5A356 /* APIClient.swift in Sources */,
+				93EB9C1A2201019100E5A356 /* Book.swift in Sources */,
 				935E832721FBB1D900B0C9E6 /* BestSellerCell.swift in Sources */,
 				93EB9BCB21FE443600E5A356 /* NYTModel.swift in Sources */,
 				935E831A21FBA08200B0C9E6 /* SettingsViewController.swift in Sources */,

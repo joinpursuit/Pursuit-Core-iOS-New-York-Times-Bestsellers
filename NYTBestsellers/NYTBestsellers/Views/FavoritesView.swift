@@ -24,7 +24,7 @@ import UIKit
         override init(frame: CGRect) {
             super .init(frame: UIScreen.main.bounds)
             
-            colloectionView.dataSource = self
+           
             commonInit()
         }
         
@@ -55,21 +55,6 @@ import UIKit
         
         
     }
-    extension FavoritesView: UICollectionViewDataSource {
-        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return 30
-        }
-        
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Favorites", for: indexPath) as? FavoritesCell else { return UICollectionViewCell() }
-            cell.label.text = "Weeks on Best Seller"
-            cell.image.image = UIImage.init(named: "icons8-open_book")
-            cell.textView.text = "Success"
-            return cell
-        }
-        
-        
-    }
+ 
 
 
