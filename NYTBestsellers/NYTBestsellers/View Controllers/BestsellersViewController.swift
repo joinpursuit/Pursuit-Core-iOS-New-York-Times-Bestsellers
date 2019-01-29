@@ -11,14 +11,30 @@ import UIKit
 class BestsellersViewController: UIViewController {
 
     let bestsellersView = BestsellersView()
-    
+    private var bookGenres = [BestsellerGenre]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.bestsellersView.bestsellersPickerView.reloadAllComponents()
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 self.view.backgroundColor = .white
         self.view.addSubview(bestsellersView)
+        dump(bookGenres)
+        
         bestsellersView.bestsellerCollectionView.dataSource = self
         bestsellersView.bestsellerCollectionView.delegate = self
-        // Do any additional setup after loading the view.
+        bestsellersView.bestsellersPickerView.delegate = self
+        bestsellersView.bestsellersPickerView.dataSource = self
+        APIClient.getGenres { (error, data) in
+            if let error = error {
+                print(error.errorMessage())
+            } else if let data = data {
+                self.bookGenres = data
+            }
+        }
     }
     
 
@@ -42,4 +58,21 @@ extension BestsellersViewController: UICollectionViewDelegate {
     
 }
 
+extension BestsellersViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return bookGenres.count
+    }
+    
+    
+}
+extension BestsellersViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return bookGenres[row].listName
+        
+    }
+}
 

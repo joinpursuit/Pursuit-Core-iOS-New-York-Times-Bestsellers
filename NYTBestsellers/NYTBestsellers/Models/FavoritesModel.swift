@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+
+// maybe needed
+//struct Favorites: Codable {
+//    let
+//}

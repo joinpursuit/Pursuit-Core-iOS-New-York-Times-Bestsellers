@@ -14,7 +14,9 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         self.view.addSubview(settingsView)
+        
         settingsView.settingsPickerView.dataSource = self
         settingsView.settingsPickerView.delegate = self
     }
