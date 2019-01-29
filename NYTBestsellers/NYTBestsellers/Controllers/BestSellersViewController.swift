@@ -16,7 +16,7 @@ class BestSellersViewController: UIViewController {
     weak var delegate: BestSellersViewControllerDelegate?
     private var detailBookDescription = ""
     private let bestSellersView = BestSellersView()
-    private var currentBookCategory = "Animals" {
+    private var currentBookCategoryToSearch = "Humor" {
         didSet {
             searchForBooks()
         }
@@ -37,7 +37,7 @@ class BestSellersViewController: UIViewController {
     }
 
     fileprivate func searchForBooks() {
-        NYTAPIClient.searchForBooks(in: currentBookCategory) { (appError, books) in
+        NYTAPIClient.searchForBooks(in: currentBookCategoryToSearch) { (appError, books) in
             if let appError = appError {
                 print("error in getting book list - \(appError)")
             } else if let books = books {
@@ -65,19 +65,20 @@ class BestSellersViewController: UIViewController {
         super.viewDidLoad()
         self.view.addSubview(bestSellersView)
         getBookCategories()
+        checkForUserDefaultsSetting()
         searchForBooks()
         bestSellersView.collectionView.dataSource = self
         bestSellersView.collectionView.delegate = self
         bestSellersView.pickerView.dataSource = self
         bestSellersView.pickerView.delegate = self
-        checkForUserDefaultsSetting()
     }
     
     private func checkForUserDefaultsSetting() {
-        if let rowNumber = UserDefaults.standard.object(forKey: "Book Category Index Number") as? Int {
+        if let rowNumber = UserDefaults.standard.object(forKey: "Book Category Index Number") as? Int, let currentCategory = UserDefaults.standard.object(forKey: "Book Category Name") as? String {
             bestSellersView.pickerView.selectRow(rowNumber, inComponent: 0, animated: true)
+            currentBookCategoryToSearch = currentCategory
         } else {
-            bestSellersView.pickerView.selectRow(Int.random(in: 0..<bookCategoryPickerViewData.count), inComponent: 0, animated: true)
+            bestSellersView.pickerView.selectRow(0, inComponent: 0, animated: true)
         }
     }
 }
@@ -141,6 +142,6 @@ extension BestSellersViewController: UIPickerViewDataSource, UIPickerViewDelegat
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        currentBookCategory = bookCategoryPickerViewData[row].list_name_encoded
+        currentBookCategoryToSearch = bookCategoryPickerViewData[row].list_name_encoded
     }
 }

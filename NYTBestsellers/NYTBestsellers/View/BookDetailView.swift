@@ -15,12 +15,9 @@ class BookDetailView: UIView {
         return iv
     }()
     
-    public lazy var bookDetailTextView: UITextView = {
-        let tv = UITextView()
-        tv.isEditable = false
-        tv.font = tv.font?.withSize(16)
-        tv.isEditable = false
-        tv.isSelectable = false
+    public lazy var bookDetail: UILabel = {
+        let tv = UILabel()
+        tv.numberOfLines = 0 
         return tv
     }()
     
@@ -28,7 +25,7 @@ class BookDetailView: UIView {
         super.init(frame: UIScreen.main.bounds)
         backgroundColor = .white
         addSubview(bookImage)
-        addSubview(bookDetailTextView)
+        addSubview(bookDetail)
         setupConstraints()
     }
     
@@ -37,17 +34,17 @@ class BookDetailView: UIView {
     }
     
     func setupConstraints() {
-        [bookImage, bookDetailTextView].forEach{ $0.translatesAutoresizingMaskIntoConstraints = false }
+        [bookImage, bookDetail].forEach{ $0.translatesAutoresizingMaskIntoConstraints = false }
         
         [bookImage.centerXAnchor.constraint(equalTo: centerXAnchor),
          bookImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
          bookImage.heightAnchor.constraint(equalToConstant: 300),
          bookImage.widthAnchor.constraint(equalToConstant: 250),
          
-         bookDetailTextView.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 22),
-         bookDetailTextView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 22),
-         bookDetailTextView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 22),
-         bookDetailTextView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 22)
+         bookDetail.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 22),
+         bookDetail.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 22),
+         bookDetail.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 22),
+         bookDetail.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 22)
             ].forEach{ $0.isActive = true }
     }
 

@@ -20,13 +20,12 @@ class BookDetailViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(bookDetailView)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favorite", style: .plain, target: self, action: #selector(favoriteButtonPressed))
-        if let bookToSet = bookToSet {
-            if let bookInfoExists = bookToSet.book_details.first, let imageData = bookToSet.bookGoogleImage {
+ //       print(bookToSet?.amazon_product_url)
+        if let bookInfoExists = bookToSet!.book_details.first, let imageData = bookToSet!.bookGoogleImage {
                 title = bookInfoExists.title
-                bookDetailView.bookDetailTextView.text = bookToSet.bookLongDescription
+                bookDetailView.bookDetail.text = bookToSet!.bookLongDescription!
                 bookDetailView.bookImage.image = UIImage(data: imageData)
             }
-        }
     }
     
     @objc func favoriteButtonPressed() {
