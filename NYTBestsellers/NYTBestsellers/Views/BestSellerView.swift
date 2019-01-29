@@ -7,13 +7,6 @@
 //
 
 import UIKit
-/*
- let layout = UICollectionViewFlowLayout()
- layout.itemSize = CGSize.init(width: 100, height: 100)
- layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
- cv.dataSource = self
- cv.delegate = self
- */
 
 class BestSellerView: UIView {
    
@@ -23,7 +16,7 @@ class BestSellerView: UIView {
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        backgroundColor = .white
+        collectionView.backgroundColor = .white
       
         return collectionView
     }()

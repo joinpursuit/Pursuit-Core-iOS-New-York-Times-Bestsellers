@@ -9,8 +9,21 @@
 import UIKit
 
 class NYTimesBestSellerViewController: UIViewController {
-     let numbers = ["0","1","2","3","4","5","6","7","8","9"]
     let nyTimesCollection = BestSellerView()
+    var onlineBooks = [ResultsOfBestSellerBooks](){
+        didSet{
+            DispatchQueue.main.async {
+                self.nyTimesCollection.collectionViewCellObj.reloadData()
+            }
+        }
+    }
+    var nYBSCategories = [Category](){
+        didSet{
+            DispatchQueue.main.async {
+                self.nyTimesCollection.pickerViewObj.reloadAllComponents()
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "NYT BestSellers"
@@ -20,8 +33,11 @@ class NYTimesBestSellerViewController: UIViewController {
         nyTimesCollection.collectionViewCellObj.delegate = self
         nyTimesCollection.pickerViewObj.dataSource = self
         nyTimesCollection.pickerViewObj.delegate =  self
+       fetchNYBSCategory()
     }
-
+    func fetchNYBSCategory(){
+        nYBSCategories = CategoryDataManager.fetchCategoriesFromDocumentsDirectory()
+    }
 }
 
 extension NYTimesBestSellerViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
@@ -45,10 +61,10 @@ extension NYTimesBestSellerViewController: UIPickerViewDataSource, UIPickerViewD
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return numbers.count
+        return nYBSCategories.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return numbers[row]
+        return nYBSCategories[row].listName
     }
     
     

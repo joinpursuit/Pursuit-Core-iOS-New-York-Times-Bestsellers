@@ -8,33 +8,48 @@
 
 import UIKit
 
+struct CategoryList: Codable {
+    let listName: Category
+}
 
 class SettingsViewController: UIViewController {
-let settingsView = SettingsView()
-    var bestSellerCategory = [SettingsCategoryNamesArray](){
+//    private let fileName = "BestSellersCategories.plist"
+    let settingsView = SettingsView()
+    var categories = [Category]() {
         didSet{
             DispatchQueue.main.async {
                 self.settingsView.settingsPickerViewObj.reloadAllComponents()
             }
         }
     }
-    var categories = [String]()
-    var listName = ""
+    
     override func viewDidLoad() {
         self.title = "Settings"
         view.addSubview(settingsView)
         settingsView.settingsPickerViewObj.dataSource = self
         settingsView.settingsPickerViewObj.delegate =  self
-        setupPickerUI()
+        
+        let fetchedCategories = CategoryDataManager.fetchCategoriesFromDocumentsDirectory()
+        if fetchedCategories.count == 0 {
+            fetchCategoriesFromDocumentsDirectory()
+        }
+        categories = fetchedCategories
     }
-    func setupPickerUI(){
+    
+    func captureCategoryList(){
+        
+        
+    }
+    
+    func fetchCategoriesFromDocumentsDirectory(){
         NewYorkBestSellerApiClient.searchForBestSellingBooks { (appError, onlineBooks) in
             if let appError = appError {
                 print(appError.errorMessage())
             }
             if let onlineBooks = onlineBooks {
-                self.bestSellerCategory = onlineBooks
-                dump(self.bestSellerCategory)
+                self.categories = onlineBooks
+                CategoryDataManager.saveCategoriesToDocumentsDirectory(categories: onlineBooks)
+                dump(self.categories)
             }
         }
     }
@@ -46,10 +61,10 @@ extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return bestSellerCategory.count
+        return categories.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return bestSellerCategory[row].listName
+        return categories[row].listName
     }
     
     

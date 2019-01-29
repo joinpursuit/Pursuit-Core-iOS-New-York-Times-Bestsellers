@@ -9,7 +9,7 @@
 import Foundation
 final class NewYorkBestSellerApiClient {
     private init(){}
-    static func searchForBestSellingBooks(callBack: @escaping(AppError?, [SettingsCategoryNamesArray]?) -> Void){
+    static func searchForBestSellingBooks(callBack: @escaping(AppError?, [Category]?) -> Void){
         NetworkHelper.shared.performDataTask(endpointURLString: "https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=\(SecretInfo.nybsSecretKey)") { (appError, data) in
             if let appError = appError {
                 print(appError.errorMessage())
@@ -27,7 +27,7 @@ final class NewYorkBestSellerApiClient {
         }
     }
     
-    static func getBestSellerByCategory(category: String, callBack: @escaping(AppError?, [SettingsCategoryNamesArray]?) -> Void){
+    static func getBestSellerByCategory(category: String, callBack: @escaping(AppError?, AllBooksByCatergoryData?) -> Void){
         let formattedStr = category.replacingOccurrences(of: " ", with: "+")
         NetworkHelper.shared.performDataTask(endpointURLString: "https://api.nytimes.com/svc/books/v3/lists.json?api-key=\(SecretInfo.nybsSecretKey)&list=\(formattedStr)") { (appError, data) in
             if let appError = appError {
@@ -36,9 +36,9 @@ final class NewYorkBestSellerApiClient {
             }
             if let data = data {
                 do {
-                    let categoryTypeData =  try JSONDecoder().decode(NewYorkTimesData.self, from: data)
-                    callBack(nil, categoryTypeData.results)
-                    print("Number of results in this category are \(categoryTypeData.numResults)")
+                    let onlineBooksByCategory =  try JSONDecoder().decode(AllBooksByCatergoryData.self, from: data)
+                    callBack(nil, onlineBooksByCategory)
+                    print("Number of results in this category are \(onlineBooksByCategory.numberOfBookResults)")
                 } catch {
                     callBack(AppError.jsonDecodingError(error), nil)
                 }

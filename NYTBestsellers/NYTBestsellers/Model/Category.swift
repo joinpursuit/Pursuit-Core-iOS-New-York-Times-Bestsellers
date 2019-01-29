@@ -11,14 +11,14 @@ import Foundation
 
 struct NewYorkTimesData: Codable {
     let numResults: Int
-    let results: [SettingsCategoryNamesArray]
+    let results: [Category]
     enum CodingKeys: String, CodingKey{
         case numResults = "num_results"
         case results
     }
 }
 
-struct SettingsCategoryNamesArray: Codable {
+struct Category: Codable {
     let listName: String
     enum CodingKeys: String, CodingKey{
         case listName = "list_name"
