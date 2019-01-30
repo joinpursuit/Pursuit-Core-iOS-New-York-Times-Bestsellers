@@ -49,20 +49,6 @@ struct NYTBook: Codable {
     }
     let bookDetails: [BookDetail]
     
-    struct BookReview: Codable {
-        let bookReviewLink: URL
-        let firstChapterLink: URL
-        let sundayReviewLink: URL
-        let articleChapterLink: URL
-        private enum CodingKeys: String, CodingKey {
-            case bookReviewLink = "book_review_link"
-            case firstChapterLink = "first_chapter_link"
-            case sundayReviewLink = "sunday_review_link"
-            case articleChapterLink = "article_chapter_link"
-        }
-    }
-    let reviews: [BookReview]
-    
     private enum CodingKeys: String, CodingKey {
         case listName = "list_name"
         case displayName = "display_name"
@@ -71,6 +57,5 @@ struct NYTBook: Codable {
         case rank
         case amazonProductUrl = "amazon_product_url"
         case bookDetails = "book_details"
-        case reviews
     }
 }

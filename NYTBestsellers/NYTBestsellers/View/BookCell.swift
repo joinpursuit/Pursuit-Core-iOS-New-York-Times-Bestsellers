@@ -47,6 +47,36 @@ class BookCell: UICollectionViewCell {
         self.backgroundColor = .red
         setupCell()
     }
+    
+    public func configureCell(nYTBook: NYTBook) {
+        let bookDetails = nYTBook.bookDetails[0]
+        bookTitleLabel.text = bookDetails.title
+        bookDescriptionTextview.text = bookDetails.description
+        setCellImage(isbn: bookDetails.primaryIsbn13)
+    }
+    
+    private func setCellImage(isbn: String) {
+        var bookImageUrlString = "" {
+            didSet {
+                ImageHelper.fetchImageFromNetwork(urlString: bookImageUrlString) { (appError, bookImage) in
+                    if let appError = appError {
+                        print(appError.errorMessage())
+                    } else if let bookImage = bookImage {
+                        self.bookImageView.image = bookImage
+                    }
+                }
+            }
+        }
+        GoogleBookSearchAPIClient.getGoogleBooksFromISBN(isbn: isbn) { (appError, googleBook) in
+            if let appError = appError {
+                print(appError.errorMessage())
+            } else if let googleBook = googleBook {
+                let imageUrl = googleBook.volumeInfo.imageLinks.thumbnail
+                bookImageUrlString = imageUrl.absoluteString
+            }
+        }
+    }
+    
 }
 
 extension BookCell {

@@ -9,8 +9,10 @@
 import UIKit
 
 protocol NYTBestSellingViewDelegate: AnyObject {
-    func numberOfCategories() -> Int
     func setTitleOfPickerView(rowNum: Int) -> String
+    func numberOfNYTBooks() -> Int
+    func numberOfCategories() -> Int
+    func configureUICollectionCell(indexPath: IndexPath) -> UICollectionViewCell
 }
 
 class NYTBestSellingView: UIView {
@@ -84,12 +86,11 @@ extension NYTBestSellingView {
 
 extension NYTBestSellingView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // custom delegation
-        return 3
+        return delegate?.numberOfNYTBooks() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = bestsellersCollectionView.dequeueReusableCell(withReuseIdentifier: "BookCell", for: indexPath) as? BookCell else { return UICollectionViewCell() }
+        guard let cell = delegate?.configureUICollectionCell(indexPath: indexPath) else { return UICollectionViewCell() }
         return cell
     }
 }

@@ -11,10 +11,19 @@ import UIKit
 class NYTBestSellingController: UIViewController {
     
     let nYTBestSellingView = NYTBestSellingView()
+    
     var allBookCategories = [Category]() {
         didSet {
             DispatchQueue.main.async {
                 self.nYTBestSellingView.categoryPickerView.reloadAllComponents()
+            }
+        }
+    }
+    
+    var nYTBestSellers = [NYTBook]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.nYTBestSellingView.bestsellersCollectionView.reloadData()
             }
         }
     }
@@ -23,7 +32,12 @@ class NYTBestSellingController: UIViewController {
         super.viewDidLoad()
         self.view.addSubview(nYTBestSellingView)
         nYTBestSellingView.delegate = self
+        initialSetup()
+    }
+    
+    private func initialSetup() {
         getAllCategories()
+        searchNYTBestSellersByCategory(category: "animals")
     }
     
     private func getAllCategories() {
@@ -37,9 +51,31 @@ class NYTBestSellingController: UIViewController {
         }
     }
     
+    private func searchNYTBestSellersByCategory(category: String) {
+        NYTBestsellingBooksAPIClient.getAllBooks(category: category) { (appError, nYTBooks) in
+            if let appError = appError {
+                print(appError.errorMessage())
+                self.showAlert(title: "\(appError)", message: "\(appError.errorMessage())")
+            } else if let nYTBooks = nYTBooks {
+                self.nYTBestSellers = nYTBooks
+            }
+        }
+    }
+    
 }
 
 extension NYTBestSellingController: NYTBestSellingViewDelegate {
+    func configureUICollectionCell(indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = nYTBestSellingView.bestsellersCollectionView.dequeueReusableCell(withReuseIdentifier: "BookCell", for: indexPath) as? BookCell else { return UICollectionViewCell() }
+        
+        let currentBook = nYTBestSellers[indexPath.row]
+        cell.configureCell(nYTBook: currentBook)
+        return cell
+    }
+    
+    func numberOfNYTBooks() -> Int {
+        return nYTBestSellers.count
+    }
     
     func numberOfCategories() -> Int {
         return allBookCategories.count
