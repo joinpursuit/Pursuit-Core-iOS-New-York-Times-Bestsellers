@@ -25,15 +25,23 @@ class FavoritesCell: UICollectionViewCell {
             textView.backgroundColor = .lightGray
             return textView
         }()
+    lazy var button: UIButton = {
+        let button = UIButton()
+        button.setTitle("Edit", for: .normal)
+        button.backgroundColor =  #colorLiteral(red: 0.8934412003, green: 0.6393497586, blue: 0.9272561669, alpha: 1)
+        return button
+    }()
         override init(frame: CGRect) {
-            super.init(frame: frame)
+            super.init(frame: UIScreen.main.bounds)
             self.backgroundColor = .white
             addSubview(image)
             addSubview(label)
             addSubview(textView)
+            addSubview(button)
             imageConstraints()
             labelConstraint()
             textViewConstraint()
+            buttonConstriants()
         }
         
         required init?(coder aDecoder: NSCoder) {
@@ -64,7 +72,15 @@ class FavoritesCell: UICollectionViewCell {
             textView.centerXAnchor.constraint(equalTo:safeAreaLayoutGuide.centerXAnchor).isActive = true
             
         }
-        
+        private func buttonConstriants(){
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+            button.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 11).isActive = true
+            button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
+            button.heightAnchor.constraint(equalToConstant: 60).isActive = true
+            button.widthAnchor.constraint(equalToConstant: 80).isActive = true
+
     }
+}
 
 
