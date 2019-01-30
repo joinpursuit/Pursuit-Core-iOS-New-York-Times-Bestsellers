@@ -8,17 +8,22 @@
 
 import UIKit
 
-class FavoritesViewController: UIViewController, UICollectionViewDataSource {
+class FavoritesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
 
     
     
     var favoritesView = FavoritesView()
-    var favoriteBooks = DataPersistenceModel.getFavoriteBooks()
+    var favoriteBooks = DataPersistenceModel.getFavoriteBooks() {
+        didSet{
+            print("DidSet work")
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(favoritesView)
         title = "Favorties (\(favoriteBooks.count))"
         favoritesView.favoritesCollectionView.dataSource = self
+        favoritesView.favoritesCollectionView.delegate = self
         reload()
     }
     
@@ -27,7 +32,7 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource {
         favoritesView.favoritesCollectionView.reloadData()
         title = "Favorites (\(favoriteBooks.count))"
     }
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         favoritesView.favoritesCollectionView.reloadData()
         favoriteBooks = DataPersistenceModel.getFavoriteBooks()
         title = "Favorites (\(favoriteBooks.count))"

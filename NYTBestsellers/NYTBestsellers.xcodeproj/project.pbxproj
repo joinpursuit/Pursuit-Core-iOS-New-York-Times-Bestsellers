@@ -119,6 +119,7 @@
 		5718BFFA21FA75C000A8E4B8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D50C26482200A94E00933351 /* UserdefaultKeys.swift */,
 				5718BFE821FA75A800A8E4B8 /* AppDelegate.swift */,
 				5718BFEF21FA75A900A8E4B8 /* Assets.xcassets */,
 				5718BFF121FA75A900A8E4B8 /* LaunchScreen.storyboard */,
@@ -159,7 +160,6 @@
 		D5BBE8D321FBE37700E4F46A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D50C26482200A94E00933351 /* UserdefaultKeys.swift */,
 				D5BBE8C721FBA5F000E4F46A /* BestSellerBook.swift */,
 				D5BBE8C921FBA70000E4F46A /* BookListName.swift */,
 				D5BBE8D121FBE32500E4F46A /* BookImage.swift */,

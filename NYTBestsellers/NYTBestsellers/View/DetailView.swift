@@ -25,7 +25,7 @@ class DetailView: UIView {
     }()
     lazy var favoriteView: UIView = {
        var view = UITextView()
-        view.backgroundColor = .yellow
+        view.backgroundColor = .white
         view.addSubview(favoriteImage)
         view.isHidden = true
         return view

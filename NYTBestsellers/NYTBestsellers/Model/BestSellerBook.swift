@@ -13,22 +13,17 @@ struct BestSellerBook: Codable {
         let rank: Int
         let weeksOnList: Int
         let amazonProductUrl: URL
-//        let isbns: [ISBNWrapper]?
         let bookDetails: [BookDetailsWrapper]
         
         private enum CodingKeys: String, CodingKey{
             case rank
             case weeksOnList = "weeks_on_list"
-//            case isbns
             case amazonProductUrl = "amazon_product_url"
             case bookDetails = "book_details"
         }
     }
     let results: [ResultsWrapper]
 }
-//struct ISBNWrapper: Codable{
-//    let isbn10: String?
-//}
 
 struct BookDetailsWrapper: Codable {
     let title: String
