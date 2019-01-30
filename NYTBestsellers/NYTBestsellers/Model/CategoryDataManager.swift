@@ -9,9 +9,9 @@
 import Foundation
 
 final class CategoryDataManager {
-    private static let filename = "Categories.plist"
+    private static let fileName = "Categories.plist"
     public static func fetchCategoriesFromDocumentsDirectory() -> [Category] {
-        let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename).path
+        let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: fileName).path
         var categories = [Category]()
         if FileManager.default.fileExists(atPath: path) {
             if let data = FileManager.default.contents(atPath: path) {
@@ -24,13 +24,13 @@ final class CategoryDataManager {
                 print("data is nil at \(path)")
             }
         } else {
-            print("\(filename) does not exist")
+            print("\(fileName) does not exist")
         }
         return categories
     }
     
     public static func saveCategoriesToDocumentsDirectory(categories: [Category]) {
-        let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename)
+        let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: fileName)
         do {
             let data = try PropertyListEncoder().encode(categories)
             try data.write(to: path, options: Data.WritingOptions.atomic)

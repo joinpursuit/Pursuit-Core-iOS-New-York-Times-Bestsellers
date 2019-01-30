@@ -11,18 +11,18 @@ import Foundation
 
 struct BookImageData {
     let totalItems: Int
-    let items: [ItemsDataArray]
+    let items: [ItemsData]
 }
-struct ItemsDataArray {
-    let volumeInfo: VolumeInfoDictionaryData
+struct ItemsData {
+    let volumeInfo: VolumeInfoData
 }
 
-struct VolumeInfoDictionaryData {
+struct VolumeInfoData {
     let description: String
-    let imageLinks: ImageLinksDictionaryData
+    let imageLinks: ImageLinksData
 }
 
-struct ImageLinksDictionaryData {
+struct ImageLinksData {
     let smallThumbnail: String
     let thumbnail: String
 }

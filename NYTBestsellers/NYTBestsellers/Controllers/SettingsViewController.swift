@@ -28,7 +28,6 @@ class SettingsViewController: UIViewController {
         view.addSubview(settingsView)
         settingsView.settingsPickerViewObj.dataSource = self
         settingsView.settingsPickerViewObj.delegate =  self
-        
         let fetchedCategories = CategoryDataManager.fetchCategoriesFromDocumentsDirectory()
         if fetchedCategories.count == 0 {
             fetchCategoriesFromDocumentsDirectory()
@@ -36,10 +35,6 @@ class SettingsViewController: UIViewController {
         categories = fetchedCategories
     }
     
-    func captureCategoryList(){
-        
-        
-    }
     
     func fetchCategoriesFromDocumentsDirectory(){
         NewYorkBestSellerApiClient.searchForBestSellingBooks { (appError, onlineBooks) in
@@ -48,8 +43,7 @@ class SettingsViewController: UIViewController {
             }
             if let onlineBooks = onlineBooks {
                 self.categories = onlineBooks
-                CategoryDataManager.saveCategoriesToDocumentsDirectory(categories: onlineBooks)
-                dump(self.categories)
+        CategoryDataManager.saveCategoriesToDocumentsDirectory(categories: onlineBooks)
             }
         }
     }
@@ -66,6 +60,9 @@ extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return categories[row].listName
     }
-    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+       let savedSelection = categories[row].listName
+        UserDefaults.standard.set(savedSelection, forKey: DefaultKeys.key)
+    }
     
 }

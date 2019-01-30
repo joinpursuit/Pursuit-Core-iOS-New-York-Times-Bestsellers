@@ -17,7 +17,16 @@ class DetailNYTBSViewController: UIViewController {
         view.addSubview(detailDestination)
     }
 
-    @objc private func addToFavorites(){}
+    @objc private func addToFavorites(){
+         let alert = UIAlertController(title: "Saved To Favorties", message: "😁😁😁 Great! You Have Just Saved This Book To Your Favorites.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction.init(title: "Favorites", style: .default, handler: { (done) in
+            let destinationVC = FavoritesViewController()
+            self.navigationController?.pushViewController(destinationVC, animated: true)
+        }))
+        
+        alert.addAction(UIAlertAction.init(title: "Cancel", style: .destructive))
+        self.present(alert, animated: true)
+    }
     
 
 }

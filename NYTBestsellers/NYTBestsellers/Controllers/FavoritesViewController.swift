@@ -10,6 +10,7 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
     let favoritesView = FavoriteBookView()
+    let cellItem = FavoiteBookCell()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Favorites"
@@ -17,7 +18,21 @@ class FavoritesViewController: UIViewController {
         view.addSubview(favoritesView)
         favoritesView.collectionViewCellObj.dataSource = self
         favoritesView.collectionViewCellObj.delegate = self
-        
+        favoritesBttonPressed()
+    }
+    func favoritesBttonPressed(){
+        view.addSubview(cellItem)
+        cellItem.deletebuttonObj.addTarget(self, action: #selector(deletBttnPressed), for: .touchDown)
+    }
+    @objc func deletBttnPressed(){
+        let alert = UIAlertController(title: "OPTIONS", message: "Please Select One Of The Following", preferredStyle: .alert)
+        alert.addAction(UIAlertAction.init(title: "Delete", style: .destructive, handler: { (Success) in
+            print("This will Delete an Item from favorites")
+        }))
+        alert.addAction(UIAlertAction.init(title: "See on Amazon", style: .default, handler: { (Succees) in
+            print("This will take you to Amazon")
+        }))
+       self.present(alert, animated: true)
     }
     
 }

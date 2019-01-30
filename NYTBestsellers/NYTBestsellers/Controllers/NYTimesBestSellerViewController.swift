@@ -10,7 +10,11 @@ import UIKit
 
 class NYTimesBestSellerViewController: UIViewController {
     let nyTimesCollection = BestSellerView()
-    var userSelection = "Hardcover Advice"
+   public var userSelection = "" {
+        didSet{
+            fetchBooks()
+        }
+    }
     var onlineBooks = [ResultsOfBestSellerBooks](){
         didSet{
             DispatchQueue.main.async {
@@ -29,6 +33,7 @@ class NYTimesBestSellerViewController: UIViewController {
         super.viewDidLoad()
         self.title = "NYT BestSellers"
         self.view.backgroundColor = .white
+        
         view.addSubview(nyTimesCollection)
         nyTimesCollection.collectionViewCellObj.dataSource = self
         nyTimesCollection.collectionViewCellObj.delegate = self
@@ -36,6 +41,11 @@ class NYTimesBestSellerViewController: UIViewController {
         nyTimesCollection.pickerViewObj.delegate =  self
        fetchNYBSCategory()
         fetchBooks()
+        if let selection = UserDefaults.standard.object(forKey: DefaultKeys.key) as? String {
+            userSelection = selection
+        } else {
+           print("has not been save")
+        }
     }
     func fetchNYBSCategory(){
         nYBSCategories = CategoryDataManager.fetchCategoriesFromDocumentsDirectory()
@@ -47,18 +57,14 @@ class NYTimesBestSellerViewController: UIViewController {
             }
             if let onlineCategories = onlineCategories {
                 self.onlineBooks = onlineCategories.resultsForCategory
-                dump(self.onlineBooks)
-                
             }
         }
     }
 }
-
 extension NYTimesBestSellerViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return onlineBooks.count
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestSellerCell", for: indexPath) as? BestSellerCell else {return UICollectionViewCell()}
         let settingBookCells = onlineBooks[indexPath.row]
@@ -71,14 +77,14 @@ extension NYTimesBestSellerViewController: UICollectionViewDelegateFlowLayout, U
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let destination = DetailNYTBSViewController()
         self.navigationController?.pushViewController(destination, animated: true)
+        
     }
+    
 }
-
 extension NYTimesBestSellerViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return nYBSCategories.count
     }
@@ -88,6 +94,4 @@ extension NYTimesBestSellerViewController: UIPickerViewDataSource, UIPickerViewD
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         userSelection = nYBSCategories[row].listName
     }
-    
-    
 }

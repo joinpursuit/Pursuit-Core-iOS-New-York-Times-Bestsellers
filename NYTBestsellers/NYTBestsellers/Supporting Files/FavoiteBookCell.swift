@@ -18,6 +18,7 @@ class FavoiteBookCell: UICollectionViewCell {
         button.backgroundColor = .brown
         button.setTitle("Action", for: .normal)
         button.setTitleColor(.white, for: .normal)
+        button.isEnabled = true
         return button
     }()
     lazy var favoriteBookTitleLabel: UILabel = {

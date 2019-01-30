@@ -15,7 +15,7 @@ class FavoriteBookView: UIView {
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
-        backgroundColor = .white
+        collectionView.backgroundColor = .white
         
         return collectionView
     }()
