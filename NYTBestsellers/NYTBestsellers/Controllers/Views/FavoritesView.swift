@@ -26,10 +26,7 @@ class FavoritesView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
-        addSubview(favesCollectionView)
-       // backgroundColor = .red
-        // does background color go here? for a second time?
-        
+        addSubview(favesCollectionView)        
         favesCollectionView.register(FavesCollectionViewCell.self, forCellWithReuseIdentifier: "FavesCollectionViewCell")
     }
     

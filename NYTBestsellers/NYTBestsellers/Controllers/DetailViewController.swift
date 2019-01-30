@@ -10,21 +10,17 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    let detailView = DetailView()
+    
+    var googleInfo = [BookInfo]()
+    
+    var bookDetails = [BookData]() 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.view.addSubview(detailView)
+        // do I declare the images and labels here?
+        
+      
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

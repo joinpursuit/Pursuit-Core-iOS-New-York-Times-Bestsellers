@@ -16,27 +16,26 @@ class MainView: UIView {
         layout.sectionInset = UIEdgeInsets.init(top: 22, left: 11, bottom: 22, right: 22)
         
         let cv = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
-        cv.dataSource = self
-        cv.delegate = self
         layout.scrollDirection = .horizontal
-        cv.backgroundColor = .blue
+        cv.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         return cv
     }()
-    
+
     public lazy var bestSellerPickerView: UIPickerView = {
         let bestPickerView = UIPickerView()
-        bestPickerView.backgroundColor = .red
+        bestPickerView.backgroundColor = .white
         return bestPickerView
     }()
-    
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         addSubview(myCollectionView)
-        backgroundColor = .yellow
+       // getBooks()
+        backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         myCollectionView.register(BooksCollectionViewCell.self, forCellWithReuseIdentifier: "BooksCollectionViewCell")
         commonInit()
     }
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -44,9 +43,10 @@ class MainView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = .blue
+        backgroundColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
         setConstraints()
     }
+
     
     func setConstraints() {
         self.addSubview(myCollectionView)
@@ -58,19 +58,9 @@ class MainView: UIView {
             myCollectionView.widthAnchor.constraint(equalTo: widthAnchor),
             myCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             myCollectionView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.4)])
-        NSLayoutConstraint.activate([bestSellerPickerView.topAnchor.constraint(equalTo: myCollectionView.bottomAnchor, constant: 20), bestSellerPickerView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), bestSellerPickerView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: -8), bestSellerPickerView.centerXAnchor.constraint(equalTo: self.centerXAnchor), bestSellerPickerView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -12)])
+        NSLayoutConstraint.activate([bestSellerPickerView.topAnchor.constraint(equalTo: myCollectionView.bottomAnchor, constant: 20), bestSellerPickerView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8), bestSellerPickerView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8), bestSellerPickerView.centerXAnchor.constraint(equalTo: self.centerXAnchor), bestSellerPickerView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -12)])
         
     }
 }
 
 
-extension MainView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BooksCollectionViewCell", for: indexPath) as? BooksCollectionViewCell else { return UICollectionViewCell() }
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
-    }
-}
