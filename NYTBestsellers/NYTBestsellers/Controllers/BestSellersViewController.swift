@@ -9,7 +9,7 @@
 import UIKit
 
 class BestSellersViewController: UIViewController {
-    
+     public var defaulGenre = ""
     let bestSellerView = BestSellerView()
     var genre = [Results](){
         didSet{
@@ -46,7 +46,12 @@ class BestSellersViewController: UIViewController {
         bestSellerView.pickerView.delegate = self
         bestSellerView.colloectionView.dataSource = self
         bestSellerView.colloectionView.delegate = self
+        
         getGenres()
+        if let searchCategory = UserDefaults.standard.object(forKey: UserDefaultKeys.category) as? String {
+            defaulGenre = searchCategory
+            getBooks(keyword: defaulGenre)
+        }
         
         
     }
@@ -88,7 +93,8 @@ extension BestSellersViewController: UIPickerViewDataSource, UIPickerViewDelegat
         return genre[row].listName
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        getBooks(keyword: genre[row].listName)
+        self.defaulGenre = genre[row].listName
+        getBooks(keyword: defaulGenre)
         
     }
     

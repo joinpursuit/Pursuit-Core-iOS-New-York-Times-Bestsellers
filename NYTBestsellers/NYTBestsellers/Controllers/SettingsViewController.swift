@@ -9,7 +9,7 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-    
+
     let settingsView = SettingsView()
     var genre = [Results](){
         didSet{
@@ -25,11 +25,9 @@ class SettingsViewController: UIViewController {
         view.addSubview(settingsView)
         settingsView.pickerView.dataSource = self
         settingsView.pickerView.delegate = self
-   
         getGenres()
-        
-        
     }
+    
     private func getGenres(){
         APIClient.getGenres { (error, data) in
             if let error = error {
@@ -58,7 +56,8 @@ extension SettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate{
         return genre[row].listName
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
+        let defaultSearch = genre[row].listName
+        UserDefaults.standard.set(defaultSearch, forKey: UserDefaultKeys.category)
     }
     
 }

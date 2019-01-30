@@ -43,6 +43,12 @@ class DetailViewController: UIViewController {
         }
         
     }
+    private func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default) { alert in }
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
     @objc private func favorite(){
         let date = Date()
         let isoDateFormatter = ISO8601DateFormatter()
@@ -57,6 +63,7 @@ class DetailViewController: UIViewController {
                 let bookFavorites = Book.init(weeks_on_list: theBooks!.weeks_on_list, author: (theBooks.book_details.first?.author)!, imageData: imageData, description: text, createdAt: timestamp)
                 if book == nil {
                     BookModel.addBook(book: bookFavorites)
+                    showAlert(title: "Succesfully Favorited Book", message: "")
                 } else {
                     BookModel.updateItem(updatedItem: bookFavorites, atIndex: bookIndex!)
                 }

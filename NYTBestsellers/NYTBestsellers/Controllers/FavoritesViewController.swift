@@ -34,7 +34,8 @@ class FavoritesViewController: UIViewController {
     @objc private func updateAlert(){
         let alert = UIAlertController(title: "NYTimes", message: "Edit Mode", preferredStyle: .actionSheet)
         let deleteButton = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
-            BookModel.delete(atIndex: 0)
+            let test = FavoritesCell()
+            BookModel.delete(atIndex: test.button.tag)
             self.books = BookModel.getBook()
         })
         
@@ -59,9 +60,7 @@ extension FavoritesViewController: UICollectionViewDataSource {
         cell.label.text = book.author
         cell.image.image = UIImage(data: book.imageData)
         cell.textView.text = book.description
-        
         cell.button.addTarget(self, action: #selector(updateAlert), for: .touchUpInside)
-        cell.button.tag = indexPath.row
         return cell
     }
     
