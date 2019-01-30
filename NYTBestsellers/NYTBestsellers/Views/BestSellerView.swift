@@ -17,7 +17,7 @@ class BestSellerView: UIView {
         layout.itemSize = CGSize.init(width: 200, height: 250)
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
         layout.scrollDirection = .horizontal
-        collectionView.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+        collectionView.backgroundColor = #colorLiteral(red: 0.9397123456, green: 0.7953640819, blue: 0.7539283037, alpha: 1)
         return collectionView
     }()
     
