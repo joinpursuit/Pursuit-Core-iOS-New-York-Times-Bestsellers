@@ -12,7 +12,7 @@ class DetailView: UIView {
 
     public lazy var imageView: UIImageView = {
         let bookImageView = UIImageView()
-        bookImageView.backgroundColor = .red
+       
         
         return bookImageView
      
@@ -20,10 +20,11 @@ class DetailView: UIView {
     
     public lazy var label: UILabel = {
         let authorName = UILabel()
-        authorName.textColor = .black
+        authorName.textColor = .white
         authorName.font = UIFont.boldSystemFont(ofSize: 30)
         authorName.textAlignment = .center
-        authorName.backgroundColor = .yellow
+        authorName.text = "no author name"
+        authorName.numberOfLines = 0
         return authorName
     }()
     
@@ -31,29 +32,17 @@ class DetailView: UIView {
         let bookDescription = UITextView()
         bookDescription.textColor = .black
         bookDescription.textAlignment = .left
-        bookDescription.font = UIFont.italicSystemFont(ofSize: 14)
-        bookDescription.backgroundColor = .blue
+        bookDescription.font = UIFont.italicSystemFont(ofSize: 16)
+   
         return bookDescription
     }()
     
     
-    public var item: UIBarButtonItem = {
-        let item = UIBarButtonItem()
-        item.title = "Favorite"
-        return item
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
-        addSubview(imageView)
-        addSubview(label)
-        addSubview(textView)
-        
         setImageviewConstrains()
         setLabelConstrains()
         setTextViewConstrains()
-        
-    
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -62,29 +51,29 @@ class DetailView: UIView {
     
     
     func setImageviewConstrains(){
+        addSubview(imageView)
     imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
-        imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4).isActive = true
+        imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3).isActive = true
         imageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
      imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 100).isActive = true
     }
     
     func setLabelConstrains(){
+        addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5).isActive = true
         label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11).isActive = true
         label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
-        
-        
     }
     
     func setTextViewConstrains(){
+        addSubview(textView)
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 20).isActive = true
+        textView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 5).isActive = true
         textView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
         textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11).isActive = true
         textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
-        
     }
 
 }

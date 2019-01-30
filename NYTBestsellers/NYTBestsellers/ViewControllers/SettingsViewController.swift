@@ -34,6 +34,12 @@ class SettingsViewController: UIViewController {
         settings.pickerView.dataSource = self
         settings.pickerView.delegate = self
         getCategoriesData()
+        
+        let fetchedCategories = CategoryDataManager.fetchCategoriesFromDocumentsDirectory()
+        if fetchedCategories.count == 0 {
+            getCategoriesData()
+        }
+        bookCategories = fetchedCategories
 
     }
     
@@ -43,6 +49,8 @@ class SettingsViewController: UIViewController {
                 print("Error: \(error)")
             } else if let bookCategoris = bookCategory {
                 self.bookCategories = bookCategoris
+                CategoryDataManager.saveToCategoriesToDocumentsDirectory(categories: bookCategoris)
+                
             }
         }
     }

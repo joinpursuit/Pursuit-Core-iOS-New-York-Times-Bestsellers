@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0400888721FFB473000FE85A /* BookImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0400888621FFB473000FE85A /* BookImage.swift */; };
+		040088892201044D000FE85A /* CategoryDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040088882201044D000FE85A /* CategoryDataManager.swift */; };
+		0400888B22011289000FE85A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0400888A22011289000FE85A /* Assets.xcassets */; };
 		042229D021FB98A2001004A5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042229CF21FB98A2001004A5 /* MainViewController.swift */; };
 		042229D421FB99B5001004A5 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042229D321FB99B5001004A5 /* FavoritesViewController.swift */; };
 		042229D621FB99C1001004A5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042229D521FB99C1001004A5 /* SettingsViewController.swift */; };
@@ -25,7 +27,6 @@
 		042229F721FEA287001004A5 /* FavoritedBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042229F621FEA287001004A5 /* FavoritedBook.swift */; };
 		042229F921FEA332001004A5 /* FavoritedBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042229F821FEA332001004A5 /* FavoritedBookModel.swift */; };
 		5718BFE921FA75A800A8E4B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718BFE821FA75A800A8E4B8 /* AppDelegate.swift */; };
-		5718BFF021FA75A900A8E4B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5718BFEF21FA75A900A8E4B8 /* Assets.xcassets */; };
 		5718BFF321FA75A900A8E4B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5718BFF121FA75A900A8E4B8 /* LaunchScreen.storyboard */; };
 		5718BFFC21FA763200A8E4B8 /* String+DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718BFFB21FA763200A8E4B8 /* String+DateExtensions.swift */; };
 		5718BFFE21FA764E00A8E4B8 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718BFFD21FA764E00A8E4B8 /* Date+Extensions.swift */; };
@@ -37,6 +38,8 @@
 
 /* Begin PBXFileReference section */
 		0400888621FFB473000FE85A /* BookImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookImage.swift; sourceTree = "<group>"; };
+		040088882201044D000FE85A /* CategoryDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDataManager.swift; sourceTree = "<group>"; };
+		0400888A22011289000FE85A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
 		042229CF21FB98A2001004A5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		042229D321FB99B5001004A5 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		042229D521FB99C1001004A5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -55,7 +58,6 @@
 		042229F821FEA332001004A5 /* FavoritedBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritedBookModel.swift; sourceTree = "<group>"; };
 		5718BFE521FA75A800A8E4B8 /* NYTBestsellers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTBestsellers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5718BFE821FA75A800A8E4B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5718BFEF21FA75A900A8E4B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5718BFF221FA75A900A8E4B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5718BFF421FA75A900A8E4B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5718BFFB21FA763200A8E4B8 /* String+DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DateExtensions.swift"; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				042229DA21FB9FAF001004A5 /* Cells */,
 				042229CF21FB98A2001004A5 /* MainViewController.swift */,
 				042229F621FEA287001004A5 /* FavoritedBook.swift */,
+				040088882201044D000FE85A /* CategoryDataManager.swift */,
 				042229F821FEA332001004A5 /* FavoritedBookModel.swift */,
 				042229EC21FD7544001004A5 /* DetailViewController.swift */,
 				042229D321FB99B5001004A5 /* FavoritesViewController.swift */,
@@ -172,7 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				5718BFE821FA75A800A8E4B8 /* AppDelegate.swift */,
-				5718BFEF21FA75A900A8E4B8 /* Assets.xcassets */,
+				0400888A22011289000FE85A /* Assets.xcassets */,
 				5718BFF121FA75A900A8E4B8 /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
@@ -265,8 +268,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0400888B22011289000FE85A /* Assets.xcassets in Resources */,
 				5718BFF321FA75A900A8E4B8 /* LaunchScreen.storyboard in Resources */,
-				5718BFF021FA75A900A8E4B8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +286,7 @@
 				5718C00021FA771800A8E4B8 /* NetworkHelper.swift in Sources */,
 				042229EB21FD737F001004A5 /* DetailView.swift in Sources */,
 				042229E321FCF1BD001004A5 /* Book.swift in Sources */,
+				040088892201044D000FE85A /* CategoryDataManager.swift in Sources */,
 				042229F321FD83B2001004A5 /* FavoriteCollectionViewCell.swift in Sources */,
 				042229D421FB99B5001004A5 /* FavoritesViewController.swift in Sources */,
 				042229DC21FBA01F001004A5 /* CollectionViewCell.swift in Sources */,

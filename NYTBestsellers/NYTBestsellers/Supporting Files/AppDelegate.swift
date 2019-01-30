@@ -23,8 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let favoriteVC = FavoritesViewController()
     let settingVC = SettingsViewController()
     baseViewController.tabBarItem = UITabBarItem.init(title: "NYT Bestsellers", image: UIImage(named: "icons8-best_seller"), selectedImage: UIImage(named: "icons8-best_seller"))
-    favoriteVC.tabBarItem = UITabBarItem.init(title: "Favorite Books", image: UIImage(named: "icons8-add_to_favorites_filled"), selectedImage: UIImage(named: "icons8-add_to_favorites_filled"))
-settingVC.tabBarItem = UITabBarItem.init(title: "Settings", image: UIImage(named: "icons8-settings"), selectedImage: UIImage(named: "icons8-settings"))
+    favoriteVC.tabBarItem = UITabBarItem.init(title: "Favorite Books", image: UIImage(named: "icons8-add_to_favorites"), selectedImage: UIImage(named: "icons8-add_to_favorites"))
+settingVC.tabBarItem = UITabBarItem.init(title: "Settings", image: UIImage(named: "icons8-settings_filled"), selectedImage: UIImage(named: "icons8-settings_filled"))
     let tabBar = UITabBarController()
     
      let navigationViewController = UINavigationController.init(rootViewController:baseViewController)

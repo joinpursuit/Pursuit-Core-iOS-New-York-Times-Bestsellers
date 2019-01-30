@@ -23,7 +23,6 @@ final class FavoritedBookModel {
         }
     }
     
-    
     static func getFavoritedBooks() -> [FavoriteBook]{
         
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename).path

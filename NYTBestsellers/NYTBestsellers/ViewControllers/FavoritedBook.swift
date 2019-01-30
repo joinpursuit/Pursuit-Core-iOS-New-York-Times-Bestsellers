@@ -9,8 +9,8 @@
 import Foundation
 
 struct FavoriteBook: Codable {
-    let numberOfWeeksSpent: String
-    let Image: String
+    let numberOfWeeksSpent: Int
+    let Image: Data
     let description: String
 }
 

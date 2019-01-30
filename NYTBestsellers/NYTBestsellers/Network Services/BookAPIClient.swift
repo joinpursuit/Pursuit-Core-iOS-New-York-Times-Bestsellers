@@ -26,8 +26,6 @@ final class BookAPIClient {
                 }
             }
         }
-      
-        
     }
         
 static func BookCoverImage(Isbn: String, completionHandler: @escaping(Error?, VolumeInformations?)-> Void) {
@@ -46,14 +44,7 @@ NetworkHelper.shared.performDataTask(endpointURLString: endpoint) { (error, imag
     }
     
         }
-        
-    
-        
-    
-    
-    
-    
-    
+  
     static func BookDetail(categoryName: String, completionHandler: @escaping(Error?,BookDetails?) -> Void) {
     
         let endpoint = "https://api.nytimes.com/svc/books/v3/lists.json?api-key=\(SecretKeys.BookKey)&list=\(categoryName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)"

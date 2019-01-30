@@ -16,9 +16,6 @@ class MainViewController: UIViewController {
         }
     }
     
-    var bookIsbn = ""
-    
-    
     var bookCategories = [BookCategories]() {
         didSet{
             DispatchQueue.main.async {
@@ -47,13 +44,7 @@ class MainViewController: UIViewController {
     }
     
     func getCategoriesData(){
-        BookAPIClient.BookCategories { (error, bookCategory) in
-            if let error = error {
-                print("Error: \(error)")
-            } else if let bookCategoris = bookCategory {
-                self.bookCategories = bookCategoris
-            }
-        }
+        bookCategories = CategoryDataManager.fetchCategoriesFromDocumentsDirectory()
     }
     
     
@@ -79,9 +70,16 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CVCell", for: indexPath) as? CollectionViewCell else {return UICollectionViewCell()}
         let book = booksInCategory[indexPath.row]
-        cell.label.text = "\(book.weeks_on_list) weeks on best sellers"
-        cell.TextView.text = book.book_details.first!.description
-    BookAPIClient.BookCoverImage(Isbn: book.isbns.first!.isbn13) { (error, imageData) in
+        
+        cell.label.text = "\(book.weeks_on_list) weeks on best sellers list"
+        
+        if let description = book.book_details.first?.description {
+            cell.TextView.text = description
+        }
+        
+        if let bookISBN = book.isbns.first?.isbn13{
+            
+    BookAPIClient.BookCoverImage(Isbn:bookISBN) { (error, imageData) in
             if let error = error {
                 print("Error: \(error)")
             } else if let data = imageData {
@@ -92,14 +90,23 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
                         cell.imageView.image = data
                     }
                 })
-
             }
+        }
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(DetailViewController(), animated: true)
+        let book = booksInCategory[indexPath.row]
+        let detailedVC = DetailViewController(book:book)
+        if let details = book.book_details.first?.author {
+            detailedVC.detailView.label.text = details
+        }
+        if let description = book.book_details.first?.description {
+            detailedVC.detailView.textView.text = description
+        }
+        
+    self.navigationController?.pushViewController(detailedVC, animated: true)
     }
 
 }
@@ -108,7 +115,6 @@ extension MainViewController: UIPickerViewDataSource,UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return bookCategories.count
     }
@@ -116,7 +122,6 @@ extension MainViewController: UIPickerViewDataSource,UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return bookCategories[row].list_name
     }
-    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedBookCategory = bookCategories[row].list_name
     }

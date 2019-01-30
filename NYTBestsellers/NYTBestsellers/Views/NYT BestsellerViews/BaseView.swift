@@ -15,7 +15,7 @@ class BaseView: UIView {
             cellLayout.sectionInset =  UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
             cellLayout.itemSize = CGSize.init(width: 300, height: 300)
         let bestSellerCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: cellLayout)
-        bestSellerCollectionView.backgroundColor = UIColor.init(red: 250, green: 250, blue: 250, alpha: 1)
+      
         return bestSellerCollectionView
     }()
     

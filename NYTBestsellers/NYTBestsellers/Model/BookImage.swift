@@ -9,13 +9,15 @@
 import Foundation
 
 struct BookInfo: Codable {
-    let items:[ItemDetails]
+    let items: [ItemDetails]
 }
 struct ItemDetails: Codable {
     let volumeInfo: VolumeInformations
 }
 struct VolumeInformations: Codable {
     let imageLinks: ImageLink
+    let description: String
+    
 
 }
 struct ImageLink:Codable {
