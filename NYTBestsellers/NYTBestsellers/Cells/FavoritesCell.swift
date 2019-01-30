@@ -28,6 +28,7 @@ class FavoritesCell: UICollectionViewCell {
     lazy var button: UIButton = {
         let button = UIButton()
         button.setTitle("Edit", for: .normal)
+     
         button.backgroundColor =  #colorLiteral(red: 0.8934412003, green: 0.6393497586, blue: 0.9272561669, alpha: 1)
         return button
     }()
