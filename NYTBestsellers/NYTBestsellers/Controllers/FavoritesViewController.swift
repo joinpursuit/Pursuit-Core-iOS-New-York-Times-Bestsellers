@@ -21,7 +21,7 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource, UIC
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(favoritesView)
-        title = "Favorties (\(favoriteBooks.count))"
+        title = "Favorites (\(favoriteBooks.count))"
         favoritesView.favoritesCollectionView.dataSource = self
         favoritesView.favoritesCollectionView.delegate = self
         reload()
@@ -31,6 +31,7 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource, UIC
         favoriteBooks = DataPersistenceModel.getFavoriteBooks()
         favoritesView.favoritesCollectionView.reloadData()
         title = "Favorites (\(favoriteBooks.count))"
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         favoritesView.favoritesCollectionView.reloadData()
@@ -41,11 +42,18 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource, UIC
         let index = sender.tag
         let actionSheet = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
         let delete = UIAlertAction(title: "Delete", style: .destructive) { (UIAlertAction) in
-            UIView.animate(withDuration: 10.0, delay: 0, options: [.curveEaseIn], animations: {
-                self.favoritesView.favoriteCell.favoriteImage.alpha = 0
+            DataPersistenceModel.deleteFavoriteBook(atIndex: index)
+            UIView.animate(withDuration: 2.0, delay: 0, options: [.curveEaseIn], animations: {
+                
+                let indexPath = IndexPath.init(row: index, section: 0)
+                self.favoritesView.favoritesCollectionView.reloadItems(at: [indexPath])
+                guard let cell = self.favoritesView.favoritesCollectionView.cellForItem(at: indexPath) as? FavoriteCell else {return}
+//                cell.transform = CGAffineTransform.init(scaleX: -10, y: -10)
+                cell.alpha = 0
+                
             }, completion: { (done) in
-                DataPersistenceModel.deleteFavoriteBook(atIndex: index)
-                self.reload()
+                self.favoriteBooks = DataPersistenceModel.getFavoriteBooks()
+                self.favoritesView.favoritesCollectionView.reloadData()
             })
 
         }
