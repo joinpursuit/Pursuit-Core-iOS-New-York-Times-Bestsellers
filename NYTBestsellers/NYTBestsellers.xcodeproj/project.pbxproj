@@ -33,6 +33,7 @@
 		93EB9C1821FFD61000E5A356 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB9C1721FFD61000E5A356 /* DetailViewController.swift */; };
 		93EB9C1A2201019100E5A356 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB9C192201019100E5A356 /* Book.swift */; };
 		93EB9C1C2201028C00E5A356 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB9C1B2201028C00E5A356 /* BookModel.swift */; };
+		93EB9C662202316000E5A356 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB9C652202316000E5A356 /* UserDefault.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		93EB9C1721FFD61000E5A356 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		93EB9C192201019100E5A356 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		93EB9C1B2201028C00E5A356 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
+		93EB9C652202316000E5A356 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 				5718C00121FA772600A8E4B8 /* AppError.swift */,
 				5718C00521FA78BA00A8E4B8 /* ImageHelper.swift */,
 				5718BFFF21FA771800A8E4B8 /* NetworkHelper.swift */,
+				93EB9C652202316000E5A356 /* UserDefault.swift */,
 			);
 			path = "Network Services";
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				5718BFFC21FA763200A8E4B8 /* String+DateExtensions.swift in Sources */,
 				5718C00221FA772600A8E4B8 /* AppError.swift in Sources */,
 				935E831F21FBA58300B0C9E6 /* BestSellerView.swift in Sources */,
+				93EB9C662202316000E5A356 /* UserDefault.swift in Sources */,
 				93EB9C1121FFA20A00E5A356 /* FavoritesCell.swift in Sources */,
 				5718C00421FA77AA00A8E4B8 /* DataPersistenceManager.swift in Sources */,
 				935E832121FBA5C300B0C9E6 /* FavoritesView.swift in Sources */,

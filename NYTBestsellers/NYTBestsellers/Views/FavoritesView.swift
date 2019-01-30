@@ -51,9 +51,6 @@ import UIKit
             colloectionView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 1).isActive = true
         }
         
-       
-        
-        
     }
  
 

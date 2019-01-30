@@ -21,9 +21,9 @@ class BestSellerView: UIView {
         return collectionView
     }()
     
-    
     public lazy var pickerView: UIPickerView = {
         let pickerView = UIPickerView()
+        pickerView.backgroundColor = #colorLiteral(red: 0.9397123456, green: 0.7953640819, blue: 0.7539283037, alpha: 1)
         return pickerView
     }()
     
