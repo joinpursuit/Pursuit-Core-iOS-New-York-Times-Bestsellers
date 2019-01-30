@@ -12,6 +12,7 @@ import UIKit
 
 class BestSellerViewController: UIViewController {
     let bestSeller = BestSellerView()
+    public var keyword = ""
     private var categories = [Results](){
         didSet {
             DispatchQueue.main.async {
@@ -20,13 +21,6 @@ class BestSellerViewController: UIViewController {
         }
     }
     private var bookResults = [BookResults]() {
-        didSet {
-            DispatchQueue.main.async {
-                self.bestSeller.BestSellerCollectionView.reloadData()
-            }
-        }
-    }
-    private var allimages = [ImageLink]() {
         didSet {
             DispatchQueue.main.async {
                 self.bestSeller.BestSellerCollectionView.reloadData()
@@ -44,6 +38,12 @@ class BestSellerViewController: UIViewController {
         bestSeller.bestSellerPickerView.dataSource = self
         bestSeller.bestSellerPickerView.delegate = self
         getCategories()
+        if let searchCategory = UserDefaults.standard.object(forKey: UserdDefaultKey.pickerviewkey) as? String {
+            keyword = searchCategory
+            getBookResults(category: keyword)
+        }
+        
+        
     }
     
     private func getCategories() {
@@ -127,8 +127,9 @@ extension BestSellerViewController: UIPickerViewDelegate, UIPickerViewDataSource
         return categories[row].list_name
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let keyword = categories[row].list_name
+        self.keyword = categories[row].list_name
         getBookResults(category: keyword)
     }
+    
     
 }

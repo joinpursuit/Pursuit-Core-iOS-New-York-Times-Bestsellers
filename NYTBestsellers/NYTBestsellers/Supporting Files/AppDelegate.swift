@@ -12,8 +12,6 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-
-
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
      let nav = UINavigationController()
     let mainVC = BestSellerViewController()
@@ -27,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     settings.tabBarItem = UITabBarItem.init(title: "Settings", image: UIImage(named: "settings"), selectedImage: UIImage(named: "selectedSettings"))
     let detail = DetailViewController()
     detail.title = "Detail"
-    
     let controllers = [mainVC, favs, settings]
     nav.viewControllers = controllers
     let tab = UITabBarController()

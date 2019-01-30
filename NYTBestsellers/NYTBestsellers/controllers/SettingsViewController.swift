@@ -51,4 +51,9 @@ extension SettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         return categories[row].list_name
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+       let defaultSearch = categories[row].list_name
+        UserDefaults.standard.set(defaultSearch, forKey: UserdDefaultKey.pickerviewkey)
+    }
+    
 }
