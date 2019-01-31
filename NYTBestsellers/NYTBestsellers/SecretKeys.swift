@@ -10,4 +10,5 @@ import Foundation
 
 struct SecretKeys {
     static var APIKey = "QFUVfqN40imXWTLn24hbpbFH9tRcPt6V"
+    static var googleAPIKey = "AIzaSyAbKvfSX-tm684-m8xSQWcExRlUR_ySa8A"
 }

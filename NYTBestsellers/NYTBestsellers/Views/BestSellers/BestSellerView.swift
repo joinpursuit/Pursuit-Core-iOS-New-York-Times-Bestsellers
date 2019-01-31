@@ -14,10 +14,10 @@ class BestSellerView: UIView {
     
     lazy var pickerView: UIPickerView = {
         let pv = UIPickerView()
-        pv.backgroundColor = .orange
+        pv.backgroundColor = .white
+        
         return pv
     }()
-//
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
@@ -31,7 +31,6 @@ class BestSellerView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = .white
         setupCollectionView()
         setupPickerView()
     }
@@ -39,7 +38,6 @@ class BestSellerView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-
         collectionview.register(BestSellerCell.self, forCellWithReuseIdentifier: cellId)
     }
     
@@ -50,16 +48,14 @@ class BestSellerView: UIView {
 extension BestSellerView {
 
     private func setupCollectionView(){
-        
-        //layout
+
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 20 ,left: 10, bottom: 20, right: 10)
-        layout.itemSize = CGSize(width: 150, height: 300)
+        layout.sectionInset = UIEdgeInsets(top: 25 ,left: 10, bottom: 0, right: 10)
+        layout.itemSize = CGSize(width: 200, height: 300)
         
         collectionview = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
         collectionview.showsHorizontalScrollIndicator = false
-        collectionview.backgroundColor = .black
     }
     
 
@@ -72,7 +68,6 @@ extension BestSellerView {
 
     private func collectionViewConstraints(){
         collectionview.translatesAutoresizingMaskIntoConstraints = false
-
         collectionview.topAnchor.constraint(equalTo:topAnchor).isActive = true
         collectionview.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         collectionview.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
@@ -81,12 +76,9 @@ extension BestSellerView {
 
     private func pickerViewConstraints(){
         pickerView.translatesAutoresizingMaskIntoConstraints = false
-
         pickerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
         pickerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         pickerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         pickerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5) .isActive = true
     }
-
-
 }

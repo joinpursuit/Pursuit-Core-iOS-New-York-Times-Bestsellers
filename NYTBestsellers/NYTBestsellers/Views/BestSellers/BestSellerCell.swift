@@ -10,20 +10,27 @@ import UIKit
 
 class BestSellerCell: UICollectionViewCell {
     
-    let profileImageButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .black
-        button.layer.cornerRadius = 18
-        button.clipsToBounds = true
-        return button
+    public lazy var bookPhoto: UIImageView = {
+        let image = UIImageView(image: UIImage(named: "imageHolder"))
+        return image
     }()
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 20)
         label.textColor = .black
         label.text = "Joshua Viera"
         return label
+    }()
+    
+    lazy var descriptionTextView: UITextView = {
+        let textView = UITextView()
+        textView.text = "Description"
+        textView.font = UIFont.systemFont(ofSize: 17)
+        textView.backgroundColor = .white
+        textView.textColor = .black
+        textView.isEditable = false
+        return textView
     }()
     
     override init(frame: CGRect) {
@@ -31,10 +38,11 @@ class BestSellerCell: UICollectionViewCell {
         backgroundColor = .white
         addViews()
     }
-
+    
     
     func addViews(){
-        addSubview(profileImageButton)
+        addSubview(descriptionTextView)
+        addSubview(bookPhoto)
         addSubview(nameLabel)
         setConstraints()
     }
@@ -42,19 +50,30 @@ class BestSellerCell: UICollectionViewCell {
     func setConstraints(){
         photoImageConstraints()
         nameLabelConstraints()
+        descriptionTextViewConstraints()
     }
     
     func photoImageConstraints(){
-        profileImageButton.translatesAutoresizingMaskIntoConstraints = false
-        profileImageButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 5).isActive = true
-        profileImageButton.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        profileImageButton.heightAnchor.constraint(equalToConstant: 36).isActive = true
-        profileImageButton.widthAnchor.constraint(equalToConstant: 36).isActive = true
+        bookPhoto.translatesAutoresizingMaskIntoConstraints = false
+        bookPhoto.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        bookPhoto.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        bookPhoto.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        bookPhoto.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
     }
+    
     func nameLabelConstraints(){
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.leftAnchor.constraint(equalTo: profileImageButton.rightAnchor, constant: 5).isActive = true
-        nameLabel.centerYAnchor.constraint(equalTo: profileImageButton.centerYAnchor, constant: -8).isActive = true
+
+        nameLabel.topAnchor.constraint(equalTo: bookPhoto.bottomAnchor).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+    }
+    func descriptionTextViewConstraints(){
+        descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
+        descriptionTextView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
+        descriptionTextView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        descriptionTextView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        descriptionTextView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

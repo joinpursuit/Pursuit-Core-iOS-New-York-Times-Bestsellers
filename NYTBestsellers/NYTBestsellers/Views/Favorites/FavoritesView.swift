@@ -9,9 +9,18 @@
 import UIKit
 
 class FavoritesView: UIView {
-
     
-    var myCollectionView: UICollectionView!
+    
+    lazy var myCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.itemSize = CGSize(width: 320, height: 200)
+        var cv = UICollectionView(frame:  self.bounds, collectionViewLayout: layout)
+        cv.showsVerticalScrollIndicator = false
+        cv.backgroundColor = .black
+        return cv
+    }()
+    
     var favCellId = "Fav"
     
     override init(frame: CGRect) {
@@ -24,40 +33,24 @@ class FavoritesView: UIView {
         commonInit()
         fatalError("init(coder:) failed to implement")
     }
+    
     private func commonInit() {
-        backgroundColor = .gray
         setupViews()
-    }
-    
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        myCollectionView.delegate = self
-        myCollectionView.dataSource = self
-        addSubview(myCollectionView)
         myCollectionView.register(FavoriteCell.self, forCellWithReuseIdentifier: favCellId)
+        backgroundColor = .white
     }
-
-
-}
-extension FavoritesView : UICollectionViewDelegate, UICollectionViewDataSource {
     
     private func setupViews(){
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: self.frame.width, height: 200)
-        
-        myCollectionView = UICollectionView(frame: self.frame, collectionViewLayout: layout)
-        myCollectionView.showsVerticalScrollIndicator = false
-        myCollectionView.backgroundColor = .black
+        setConstraints()
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = myCollectionView.dequeueReusableCell(withReuseIdentifier: favCellId, for: indexPath) as! FavoriteCell
-        return cell
+    private func setConstraints(){
+        addSubview(myCollectionView)
+        myCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        myCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
+        myCollectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
+        myCollectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
+       myCollectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
     }
 }
+

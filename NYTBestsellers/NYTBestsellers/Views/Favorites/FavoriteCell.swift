@@ -10,21 +10,38 @@ import UIKit
 
 class FavoriteCell: UICollectionViewCell {
     
-    let myButton: UIButton = {
+    let optionsButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 18
+        button.setTitle("...", for: .normal)
         button.clipsToBounds = true
         return button
     }()
     
-    let myLabel: UILabel = {
+    let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
         label.textColor = .black
-        label.text = "Joshua Viera"
+        label.backgroundColor = .white
+        label.text = ""
+        label.textAlignment = .center
         return label
     }()
+    
+    public lazy var favoriteBookPhoto: UIImageView = {
+        let image = UIImageView(image: UIImage(named: "imageHolder"))
+        return image
+    }()
+    
+    lazy var descriptionTextView: UITextView = {
+        let textView = UITextView()
+        textView.text = "Description"
+        textView.font = UIFont.systemFont(ofSize: 17)
+        textView.backgroundColor = .white
+        textView.textColor = .black
+        textView.isEditable = false
+        return textView
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,27 +51,48 @@ class FavoriteCell: UICollectionViewCell {
     
     func addViews(){
         backgroundColor = .darkGray
-        addSubview(myButton)
-        addSubview(myLabel)
-        setConstraints()
-    }
-    
-    func setConstraints(){
-        photoImageConstraints()
+        buttonConstraints()
         nameLabelConstraints()
+        favoriteBookPhotoConstraints()
+        textFieldConstraints()
     }
     
-    func photoImageConstraints(){
-        myButton.translatesAutoresizingMaskIntoConstraints = false
-        myButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 5).isActive = true
-        myButton.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        myButton.heightAnchor.constraint(equalToConstant: 36).isActive = true
-        myButton.widthAnchor.constraint(equalToConstant: 36).isActive = true
+ 
+    
+    func favoriteBookPhotoConstraints(){
+        addSubview(favoriteBookPhoto)
+        favoriteBookPhoto.translatesAutoresizingMaskIntoConstraints = false
+        favoriteBookPhoto.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        favoriteBookPhoto.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4).isActive = true
+        favoriteBookPhoto.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 25).isActive = true
+        favoriteBookPhoto.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25).isActive = true
     }
+    
+    func buttonConstraints(){
+        addSubview(optionsButton)
+        optionsButton.translatesAutoresizingMaskIntoConstraints = false
+        optionsButton.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
+        optionsButton.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+
+    }
+    
     func nameLabelConstraints(){
-        myLabel.translatesAutoresizingMaskIntoConstraints = false
-        myLabel.leftAnchor.constraint(equalTo: myButton.rightAnchor, constant: 5).isActive = true
-        myLabel.centerYAnchor.constraint(equalTo: myButton.centerYAnchor, constant: -8).isActive = true
+        addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.topAnchor.constraint(equalTo: optionsButton.bottomAnchor, constant: 20).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+    }
+    
+    func textFieldConstraints(){
+        addSubview(descriptionTextView)
+        descriptionTextView.translatesAutoresizingMaskIntoConstraints = false
+        descriptionTextView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
+        descriptionTextView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        descriptionTextView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        descriptionTextView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        descriptionTextView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4).isActive = true
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
