@@ -13,19 +13,23 @@ struct BestsellersBookModel: Codable {
 }
 
 struct Books: Codable {
-    let list_name: String
-    let display_name: String
+    let listName: String
+    let displayName: String
     let rank: Int
-    let rank_last_week: Int
-    let weeks_on_list: Int
-    let amazon_product_url: String
-    let book_details: [BookDetail]
-//    enum CodingKeys: String, CodingKeys {
-//        case displayName = "display_name"
-//        case listName = "list_name"
-//        case rank
-//        let
-    //}
+    let rankLastWeek: Int
+    let weeksOnList: Int
+    let amazonProductUrl: String
+    let bookDetails: [BookDetail]
+     private enum CodingKeys: String, CodingKey {
+        case displayName = "display_name"
+        case listName = "list_name"
+        case rank
+        case rankLastWeek = "rank_last_week"
+        case weeksOnList = "weeks_on_list"
+        case amazonProductUrl = "amazon_product_url"
+        case bookDetails = "book_details"
+        
+    }
 }
 
 struct BookDetail: Codable {
@@ -33,10 +37,19 @@ struct BookDetail: Codable {
     let description: String
     let contributor: String
     let author: String
-    let contributor_note: String
+    let contributorNote: String
     let price: Double
     let publisher: String
-    let primary_isbn13: String
-    let letprimary_isbn10: String
+    let primaryIsbn13: String
+    private enum CodingKeys: String, CodingKey {
+        case title
+        case description
+        case contributor
+        case author
+        case contributorNote = "contributor_note"
+        case price
+        case publisher
+        case primaryIsbn13 = "primary_isbn13"
+    }
     
 }

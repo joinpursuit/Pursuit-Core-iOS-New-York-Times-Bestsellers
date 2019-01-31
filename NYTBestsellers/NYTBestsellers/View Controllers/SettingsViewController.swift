@@ -24,10 +24,13 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         self.view.addSubview(settingsView)
-        
+        loadGenres()
         settingsView.settingsPickerView.dataSource = self
         settingsView.settingsPickerView.delegate = self
         
+        
+    }
+    func loadGenres() {
         APIClient.getGenres { (appError, data) in
             if let appError = appError {
                 print(appError.errorMessage())
@@ -47,7 +50,7 @@ extension SettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return bookGenres.count
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return bookGenres[row].listName
     }

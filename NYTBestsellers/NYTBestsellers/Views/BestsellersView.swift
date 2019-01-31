@@ -53,7 +53,7 @@ class BestsellersView: UIView {
     }
     
     
-    func setupBestCollectionView() {
+    private func setupBestCollectionView() {
         addSubview(bestsellerCollectionView)
         bestsellerCollectionView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -64,7 +64,7 @@ class BestsellersView: UIView {
             ])
     }
     
-    func setupBestsellersPickerView() {
+   private func setupBestsellersPickerView() {
         self.addSubview(bestsellersPickerView)
         bestsellersPickerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([bestsellersPickerView.topAnchor.constraint(equalTo: bestsellerCollectionView.bottomAnchor, constant: 20),bestsellersPickerView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.40),bestsellersPickerView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),bestsellersPickerView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8),bestsellersPickerView.centerXAnchor.constraint(equalTo: self.centerXAnchor),bestsellersPickerView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -12)])

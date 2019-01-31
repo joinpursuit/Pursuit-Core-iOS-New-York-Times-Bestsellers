@@ -27,13 +27,14 @@ class BestsellersCollectionCell: UICollectionViewCell {
     lazy var bestsellersDescriptionTextView: UITextView = {
         let textView = UITextView()
         textView.text = " description goes here...."
+        textView.isEditable = false
         return textView
         
     }()
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .blue
-        addSubview(bookImageView)
+        //addSubview(bookImageView)
         setContraints()
     }
     

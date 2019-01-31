@@ -15,7 +15,7 @@ struct Genre: Codable {
 struct BestsellerGenre: Codable {
     let displayName: String
     let listName: String
-    enum CodingKeys: String, CodingKey {
+   private enum CodingKeys: String, CodingKey {
         case displayName = "display_name"
         case listName = "list_name"
     }

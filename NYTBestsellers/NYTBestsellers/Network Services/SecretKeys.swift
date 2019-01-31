@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SecrectKeys {
+final class SecrectKeys {
     static let nytAPIKey = "wlkeW3pD0pUSGetw4xoQJPqE96hcoGOx"
     static let googleBooksAPIKey = "AIzaSyDaQm1Xl8ZmC9kQ_uy_mPk9peLpUsaFP9o"
 }

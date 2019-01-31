@@ -28,7 +28,7 @@ final class APIClient {
         }
         
     }
-   static func getBooks(genre: String, completionHandler: @escaping (AppError?,[Books]?) -> Void) {
+    static func getBooks(genre: String, completionHandler: @escaping (AppError?,[Books]?) -> Void) {
         let genreNameFormatted = genre.replacingOccurrences(of: " ", with: "-")
         let url = "https://api.nytimes.com/svc/books/v3/lists.json?api-key=\(SecrectKeys.nytAPIKey)&list=\(genreNameFormatted)"
         NetworkHelper.shared.performDataTask(endpointURLString: url) { (appError, data) in
@@ -42,8 +42,14 @@ final class APIClient {
                 } catch {
                     completionHandler(AppError.jsonDecodingError(error), nil)
                 }
+            }
         }
+        
     }
-    
- }
+//    static func getGoogleData(isbn: String, completionHandler: @escaping (AppError?,[Books]?) -> Void) {
+//        let url = "https://www.googleapis.com/books/v1/volumes?q=isbn:9780425285183&key=AIzaSyDaQm1Xl8ZmC9kQ_uy_mPk9peLpUsaFP9o"
+//        NetworkHelper.shared.performDataTask(endpointURLString:url) { (AppError?, Data?) in
+//            <#code#>
+//        }
+//    }
 }

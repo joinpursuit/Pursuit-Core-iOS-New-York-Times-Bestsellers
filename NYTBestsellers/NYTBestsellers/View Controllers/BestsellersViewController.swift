@@ -29,10 +29,10 @@ class BestsellersViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         self.view.addSubview(bestsellersView)
-        dump(bookGenres)
-        dump(books)
+        // dump(bookGenres)
+        //dump(books)
         loadGenres()
-       // loadBooks(genre:  )
+        loadBooks(genre:  "Manga")
         bestsellersView.bestsellerCollectionView.dataSource = self
         bestsellersView.bestsellerCollectionView.delegate = self
         bestsellersView.bestsellersPickerView.delegate = self
@@ -70,14 +70,23 @@ class BestsellersViewController: UIViewController {
 }
 extension BestsellersViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return books.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = bestsellersView.bestsellerCollectionView.dequeueReusableCell(withReuseIdentifier: "BestsellersCell", for: indexPath) as? BestsellersCollectionCell else { return UICollectionViewCell() }
-         //cell.weeksLabel.text =
+        let currentBook = books[indexPath.row]
+        cell.weeksLabel.text = " \(currentBook.weeksOnList) weeks on best seller list"
+        cell.bestsellersDescriptionTextView.text = currentBook.bookDetails[0].description
         return cell
         
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let bookToSegue = books[indexPath.row]
+        let detailVC = DetailViewController()
+        detailVC.book = bookToSegue
+        navigationController?.pushViewController(detailVC, animated: true)
+      
     }
     
     
