@@ -36,6 +36,7 @@
 		D6048C9C220004E800087176 /* NYTBestsellingBooksAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6048C9B220004E800087176 /* NYTBestsellingBooksAPIClient.swift */; };
 		D6048C9E2200050400087176 /* GoogleBookSearchAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6048C9D2200050400087176 /* GoogleBookSearchAPIClient.swift */; };
 		D6048D332202C27C00087176 /* UIColor_Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6048D322202C27C00087176 /* UIColor_Extensions.swift */; };
+		D63FD1B92203B26F0099C8E4 /* FavoriteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63FD1B82203B26F0099C8E4 /* FavoriteDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		D6048C9B220004E800087176 /* NYTBestsellingBooksAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestsellingBooksAPIClient.swift; sourceTree = "<group>"; };
 		D6048C9D2200050400087176 /* GoogleBookSearchAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBookSearchAPIClient.swift; sourceTree = "<group>"; };
 		D6048D322202C27C00087176 /* UIColor_Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor_Extensions.swift; sourceTree = "<group>"; };
+		D63FD1B82203B26F0099C8E4 /* FavoriteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 				D604020621FBB8BC0002A04C /* NYTBook.swift */,
 				D604020421FBB8920002A04C /* GoogleBook.swift */,
 				D604020221FBB2650002A04C /* FavoriteModel.swift */,
+				D63FD1B82203B26F0099C8E4 /* FavoriteDataManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				D604020321FBB2650002A04C /* FavoriteModel.swift in Sources */,
 				D60401ED21FBA58F0002A04C /* SettingViewController.swift in Sources */,
 				5718BFE921FA75A800A8E4B8 /* AppDelegate.swift in Sources */,
+				D63FD1B92203B26F0099C8E4 /* FavoriteDataManager.swift in Sources */,
 				D6048D332202C27C00087176 /* UIColor_Extensions.swift in Sources */,
 				D60401F721FBA8FB0002A04C /* NYTDetailBestSellingView.swift in Sources */,
 				D604020521FBB8920002A04C /* GoogleBook.swift in Sources */,

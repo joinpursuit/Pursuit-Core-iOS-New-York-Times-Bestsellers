@@ -21,7 +21,7 @@ class NYTDetailBestSellingView: UIView {
         var label = UILabel()
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         label.text = "Book Title"
         label.backgroundColor = UIColor(hexString: "86c1d4")
         return label
@@ -30,6 +30,7 @@ class NYTDetailBestSellingView: UIView {
     lazy var bookDescriptionTextView: UITextView = {
         var tv = UITextView()
         tv.isEditable = false
+        tv.font = UIFont.systemFont(ofSize: 15)
         tv.text = "I am a Happy Person 😺. I am a Happy Person 😺. I am a Happy Person 😺. I am a Happy Person 😺."
         tv.backgroundColor = UIColor(hexString: "d9f9f4")
         return tv
@@ -60,16 +61,30 @@ extension NYTDetailBestSellingView {
     
     private func setupBookImageView() {
         addSubview(bookImageView)
-        // constraints
+        bookImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        bookImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        bookImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        bookImageView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.5).isActive = true
+        NSLayoutConstraint(item: bookImageView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0.85, constant: 0).isActive = true
     }
     
     private func setupBookTitleLabel() {
         addSubview(bookTitleLabel)
-        // constraints
+        bookTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        bookTitleLabel.topAnchor.constraint(equalTo: bookImageView.bottomAnchor, constant: 15).isActive = true
+        bookTitleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        NSLayoutConstraint(item: bookTitleLabel, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0.85, constant: 0).isActive = true
     }
     
     private func setupBookDescriptionTextField() {
         addSubview(bookDescriptionTextView)
-        // constraints
+        bookDescriptionTextView.translatesAutoresizingMaskIntoConstraints = false
+        
+        bookDescriptionTextView.topAnchor.constraint(equalTo: bookTitleLabel.bottomAnchor, constant: 15).isActive = true
+        bookDescriptionTextView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -15).isActive = true
+        bookDescriptionTextView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        NSLayoutConstraint(item: bookDescriptionTextView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0.85, constant: 0).isActive = true
     }
 }

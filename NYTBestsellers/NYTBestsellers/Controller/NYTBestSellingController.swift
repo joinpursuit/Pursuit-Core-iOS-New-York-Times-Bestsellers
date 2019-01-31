@@ -8,7 +8,15 @@
 
 import UIKit
 
+private struct GoogleBookInfo {
+    let image: UIImage?
+    let isbn: String
+    let description: String
+}
+
 class NYTBestSellingController: UIViewController {
+    
+    private var allGoogleBookInfo = [GoogleBookInfo]()
     
     let nYTBestSellingView = NYTBestSellingView()
     
@@ -66,17 +74,15 @@ class NYTBestSellingController: UIViewController {
 
 extension NYTBestSellingController: NYTBestSellingViewDelegate {
     // CollectionView
-    func collectionCellPressed(indexPath: IndexPath) {
+    func cellPressedToSegue(indexPath: IndexPath) {
         let currentBook = nYTBestSellers[indexPath.row]
-        let destinationVC = NYTDetailBestSellingController.init(book: currentBook)
+        var googleBookInfo: GoogleBookInfo?
+        let index = allGoogleBookInfo.firstIndex {$0.isbn == currentBook.bookDetails[0].primaryIsbn13}
+        if let index = index {
+            googleBookInfo = allGoogleBookInfo[index]
+        }
+        let destinationVC = NYTDetailBestSellingController(book: currentBook, bookImage: googleBookInfo?.image, bookDescription: googleBookInfo?.description)
         self.navigationController?.pushViewController(destinationVC, animated: true)
-    }
-    
-    func configureUICollectionCell(indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = nYTBestSellingView.bestsellersCollectionView.dequeueReusableCell(withReuseIdentifier: "BookCell", for: indexPath) as? BookCell else { return UICollectionViewCell() }
-        let currentBook = nYTBestSellers[indexPath.row]
-        cell.configureCell(nYTBook: currentBook)
-        return cell
     }
     
     func numberOfNYTBooks() -> Int {
@@ -86,6 +92,44 @@ extension NYTBestSellingController: NYTBestSellingViewDelegate {
     func numberOfCategories() -> Int {
         return allBookCategories.count
     }
+    
+    func configureUICollectionCell(indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = nYTBestSellingView.bestsellersCollectionView.dequeueReusableCell(withReuseIdentifier: "BookCell", for: indexPath) as? BookCell else { return UICollectionViewCell() }
+        let currentBook = nYTBestSellers[indexPath.row]
+        let bookIsbn13 = currentBook.bookDetails.first!.primaryIsbn13
+        
+        cell.configureCell(nYTBook: currentBook)
+        configureCellImage(cell: cell, bookIsbn: bookIsbn13)
+        return cell
+    }
+    
+    private func configureCellImage(cell: BookCell, bookIsbn: String) {
+        var googleBookDescription = ""
+        var bookImageUrlString = "" {
+            didSet {
+                ImageHelper.fetchImageFromNetwork(urlString: bookImageUrlString) { (appError, bookImage) in
+                    if let appError = appError {
+                        print(appError.errorMessage())
+                    } else if let bookImage = bookImage {
+                        cell.bookImageView.image = bookImage
+                        let bookImageInfo = GoogleBookInfo.init(image: bookImage, isbn: bookIsbn, description: googleBookDescription)
+                        self.allGoogleBookInfo.append(bookImageInfo)
+                    }
+                }
+            }
+        }
+        
+        GoogleBookSearchAPIClient.getGoogleBooksFromISBN(isbn: bookIsbn) { (appError, googleBook) in
+            if let appError = appError {
+                print(appError.errorMessage())
+            } else if let googleBook = googleBook {
+                let imageUrl = googleBook.volumeInfo.imageLinks.thumbnail
+                googleBookDescription = googleBook.volumeInfo.description
+                bookImageUrlString = imageUrl.absoluteString
+            }
+        }
+    }
+    
     
     // PickerView
     func setTitleOfPickerView(rowNum: Int) -> String {

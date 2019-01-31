@@ -15,7 +15,7 @@ protocol NYTBestSellingViewDelegate: AnyObject {
     // for collection view
     func numberOfNYTBooks() -> Int
     func configureUICollectionCell(indexPath: IndexPath) -> UICollectionViewCell
-    func collectionCellPressed(indexPath: IndexPath)
+    func cellPressedToSegue(indexPath: IndexPath)
 }
 
 class NYTBestSellingView: UIView {
@@ -98,8 +98,7 @@ extension NYTBestSellingView: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.collectionCellPressed(indexPath: indexPath)
-        print("Cell Pressed")
+        delegate?.cellPressedToSegue(indexPath: indexPath)
     }
 }
 
