@@ -22,7 +22,7 @@ struct GoogleAPIGeneralInfo: Codable {
 
 struct BookDetailInfo: Codable {
   
- 
+  
   let imageLinks: Images
   let description: String
   
@@ -30,5 +30,7 @@ struct BookDetailInfo: Codable {
 
 
 struct Images: Codable {
-  let thumbnail: String //URL
+  
+  let thumbnail: String
+  
 }

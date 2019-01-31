@@ -109,6 +109,4 @@ extension FavoritesCollectionCell {
     moreActions.leadingAnchor.constraint(equalTo: imageCover.trailingAnchor, constant: 11).isActive = true
     moreActions.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
   }
-  
-  
 }

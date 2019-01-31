@@ -39,15 +39,15 @@ class DetailedView: UIView {
   lazy var amazonLaunchButton: UIButton = {
     let button = UIButton()
     button.setImage(UIImage(named: "amazonLogo"), for: .normal)
-//    button.addTarget(self, action: #selector(amazonButtonPressed), for: .touchUpInside)
+    //    button.addTarget(self, action: #selector(amazonButtonPressed), for: .touchUpInside)
     
     return button
   }()
   
-//  @objc func amazonButtonPressed() {
-//    ButtonInfoDelegate.amazonButton()
-//  }
-
+  //  @objc func amazonButtonPressed() {
+  //    ButtonInfoDelegate.amazonButton()
+  //  }
+  
   
   override init(frame: CGRect) {
     super.init(frame: UIScreen.main.bounds)
@@ -57,7 +57,7 @@ class DetailedView: UIView {
     addSubview(amazonLaunchButton)
     setupDetailedViewConstraints()
     
-   
+    
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -107,6 +107,4 @@ extension DetailedView {
     amazonLaunchButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11).isActive = true
     amazonLaunchButton.leadingAnchor.constraint(equalTo: bookCover.trailingAnchor, constant: 11).isActive = true
   }
-  
-
 }

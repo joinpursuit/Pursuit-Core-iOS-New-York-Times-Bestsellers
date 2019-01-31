@@ -9,10 +9,8 @@
 import Foundation
 
 final class ImagesAPIClient {
-
+  
   static func getBookImages(isbn: String, completionHandler: @escaping (AppError?, [GoogleAPIGeneralInfo]?) -> Void) {
-    
-    
     
     let imageUrl =  "https://www.googleapis.com/books/v1/volumes?q=\(isbn)&key=\(Constants.googleImageKey)"
     
@@ -29,8 +27,5 @@ final class ImagesAPIClient {
         }
       }
     }
-    
   }
-  
-  
 }

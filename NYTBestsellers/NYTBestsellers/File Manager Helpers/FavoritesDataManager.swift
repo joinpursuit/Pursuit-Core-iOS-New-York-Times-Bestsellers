@@ -54,8 +54,7 @@ final class FavoritesDataManager {
   }
   
   static func delete(atIndex index: Int) {
-   bookItems.remove(at: index)
+    bookItems.remove(at: index)
     saveFavoriteBooks()
   }
-  
 }

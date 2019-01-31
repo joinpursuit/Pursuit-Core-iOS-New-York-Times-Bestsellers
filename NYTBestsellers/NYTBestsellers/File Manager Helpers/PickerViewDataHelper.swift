@@ -46,16 +46,5 @@ final class PickerViewDataHelper {
     
     return pickerViewArray
   }
-  
-//  static func addEntry(title: BookCategories) {
-//    pickerViewArray.append(title)
-//    savePickerViewCategoriesData(arrayOfCategories: pickerViewArray)
-//  }
-//
-//  static func delete(atIndex index: Int) {
-//    pickerViewArray.remove(at: index)
-//    savePickerViewCategoriesData()
-//  }
-  
 }
 

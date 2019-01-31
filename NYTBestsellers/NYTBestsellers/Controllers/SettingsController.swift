@@ -9,7 +9,7 @@
 import UIKit
 
 class SettingsController: UIViewController {
-
+  
   let settings = SettingsView()
   
   var arrayOfPickerViewData = [BookCategories]() {
@@ -20,34 +20,34 @@ class SettingsController: UIViewController {
     }
   }
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      self.view.addSubview(settings)
-      view.backgroundColor = .white
-      navigationItem.title = "Settings"
-      
-
-      arrayOfPickerViewData = PickerViewDataHelper.getPickerViewCategoriesData()
-      
-      settings.settingsPickerView.dataSource = self
-      settings.settingsPickerView.delegate = self
-      
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.view.addSubview(settings)
+    view.backgroundColor = .white
+    navigationItem.title = "Settings"
+    
+    
+    arrayOfPickerViewData = PickerViewDataHelper.getPickerViewCategoriesData()
+    
+    settings.settingsPickerView.dataSource = self
+    settings.settingsPickerView.delegate = self
+    
+  }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(true)
     setThePickerViewToSavedCategory()
-
+    
   }
   
-
+  
   func setThePickerViewToSavedCategory() {
     if let selectedCategoryIndex = UserDefaults.standard.object(forKey: KeysForUserDefaults.indexForPickerView) as? String {
       self.settings.settingsPickerView.selectRow(Int(selectedCategoryIndex)!, inComponent: 0, animated: true)
     }
-
+    
   }
-
+  
 }
 
 extension SettingsController: UIPickerViewDelegate, UIPickerViewDataSource {

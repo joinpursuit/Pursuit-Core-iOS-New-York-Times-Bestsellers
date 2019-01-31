@@ -34,9 +34,9 @@ class BookDetailsController: UIViewController {
   
   
   @objc func favoriteButtonTapped(_ sender: UIBarButtonItem!) {
-   
     
-    let weeksOnBestSeller = bookInDetail?.weeks_on_list.description ?? "no weeks on best seller"
+    
+    let weeksOnBestSeller = bookInDetail?.weeksOnList.description ?? "no weeks on best seller"
     let bookDesription = descriptionFromGoodle ?? "no book description"
     
     let favoriteBook = FavoriteBook.init(imageData: imageForDetailed?.jpegData(compressionQuality: 0.5),
@@ -56,23 +56,18 @@ class BookDetailsController: UIViewController {
   }
   
   func setupUI() {
-    if let author = bookInDetail?.book_details[0].author {
+    if let author = bookInDetail?.bookDetails[0].author {
       detailedViewInstance.authorName.text = "Author: \(author)"
     }
     
     if let extendedBookDescription = descriptionFromGoodle {
-     detailedViewInstance.bookDescription.text = extendedBookDescription
+      detailedViewInstance.bookDescription.text = extendedBookDescription
     }
     
     detailedViewInstance.amazonLaunchButton.setImage(UIImage(named: "amazonLogo"), for: .normal)
     
     if let image = imageForDetailed{
-    detailedViewInstance.bookCover.image = image
+      detailedViewInstance.bookCover.image = image
     }
-
   }
-  
-  
-  
-  
 }

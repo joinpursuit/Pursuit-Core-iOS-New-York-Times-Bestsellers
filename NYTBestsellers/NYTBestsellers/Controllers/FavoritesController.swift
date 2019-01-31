@@ -38,17 +38,13 @@ class FavoritesController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(true)
     setBookFromModel()
-    
     self.favoriteBooksView.favoritesCollectionView.reloadData()
-
   }
   
   func setBookFromModel() {
     self.favoriteBookArray = FavoritesDataManager.getFavoriteBooksInfo()
     self.favoriteBooksView.favoritesCollectionView.reloadData()
   }
-  
-  
 }
 
 
@@ -65,18 +61,18 @@ extension FavoritesController: UICollectionViewDataSource, UICollectionViewDeleg
     cell.moreActions.tag = indexPath.row
     
     cell.moreActions.addTarget(self, action: #selector(actionButtonPressed(_:)), for: .touchUpInside)
-  
     
-//    cell.delegate = self
+    
+    //    cell.delegate = self
     cell.bookDescription.text = currentBook.bookDescription
     cell.weeksLabel.text = "\(currentBook.weeksOnBestSellerList) weeks on the NYT Best Seller List"
     if let imageToSet = currentBook.imageData {
-     cell.imageCover.image = UIImage(data: imageToSet)
+      cell.imageCover.image = UIImage(data: imageToSet)
     } else {
-     cell.imageCover.image = UIImage(named: "book")
+      cell.imageCover.image = UIImage(named: "book")
     }
     
-   cell.backgroundColor = .white
+    cell.backgroundColor = .white
     return cell
   }
   
@@ -84,7 +80,7 @@ extension FavoritesController: UICollectionViewDataSource, UICollectionViewDeleg
     
     
     
-  let index = sender.tag
+    let index = sender.tag
     
     let  actionSheet = UIAlertController(title: "More Actions", message: "Choose an option", preferredStyle: .actionSheet)
     
@@ -110,7 +106,7 @@ extension FavoritesController: UICollectionViewDataSource, UICollectionViewDeleg
     
     present(actionSheet, animated: true)
   }
- 
+  
 }
 
 

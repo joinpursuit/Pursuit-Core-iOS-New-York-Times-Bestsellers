@@ -9,7 +9,7 @@
 import Foundation
 
 struct Constants {
-
+  
   public static var nytKey = "1bK3RA6wA8LUPtSCiQ6JqRNJ3yGwZxeb"
   public static var googleImageKey = "AIzaSyCXAIBnt067u_EDHnPrSc0kAbvVobDTRO0"
   

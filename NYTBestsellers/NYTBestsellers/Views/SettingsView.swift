@@ -9,7 +9,7 @@
 import UIKit
 
 class SettingsView: UIView {
-
+  
   
   lazy var settingsPickerView: UIPickerView = {
     let pickerView = UIPickerView()
@@ -28,11 +28,10 @@ class SettingsView: UIView {
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-
 }
 
 extension SettingsView {
-
+  
   private func setSettingsView() {
     settingsPickerview()
   }
@@ -45,5 +44,4 @@ extension SettingsView {
     settingsPickerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
     settingsPickerView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive =  true
   }
-  
 }

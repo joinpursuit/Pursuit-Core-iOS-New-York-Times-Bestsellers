@@ -59,14 +59,12 @@ extension BestSellerView {
     bestSellerCollectionView.widthAnchor.constraint(equalTo: widthAnchor).isActive =  true
     
   }
-
+  
   private func pickerViewConstraints() {
     categoryPickerView.translatesAutoresizingMaskIntoConstraints = false
     categoryPickerView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -40).isActive = true
     categoryPickerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3).isActive = true
     categoryPickerView.widthAnchor.constraint(equalTo: widthAnchor).isActive =  true
-
+    
   }
-  
-  
 }

@@ -10,6 +10,5 @@ import Foundation
 
 struct KeysForUserDefaults {
   static let preferredCategory = "Preferred Category"
-  
   static let indexForPickerView = "row"
 }

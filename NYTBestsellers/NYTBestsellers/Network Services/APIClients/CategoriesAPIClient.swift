@@ -9,7 +9,7 @@
 import Foundation
 
 final class CategoriesAPICLient {
-
+  
   static func getCategoriesData(completionHandler: @escaping (AppError?, [BookCategories]?) -> Void){
     
     let urlString = "https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=\(Constants.nytKey)"
@@ -24,11 +24,10 @@ final class CategoriesAPICLient {
           let categoryData = try JSONDecoder().decode(NYTCategories.self, from: data)
           completionHandler(nil, categoryData.results)
         } catch {
-          
+          print("NetworkHelper.shared.performDataTask data is nil")
         }
       }
     }
-
+    
   }
-  
 }

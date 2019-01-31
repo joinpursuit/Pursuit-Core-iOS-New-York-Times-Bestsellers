@@ -10,7 +10,6 @@ import UIKit
 
 class FavoriteViews: UIView {
   
-  
   lazy var favoritesCollectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.itemSize = CGSize(width: self.bounds.width - 40, height: (self.bounds.height) / 2)
@@ -23,10 +22,6 @@ class FavoriteViews: UIView {
     return collectionView
     
   }()
-  
-  
-  
-
   
   override init(frame: CGRect) {
     super.init(frame: UIScreen.main.bounds)
@@ -44,7 +39,6 @@ extension FavoriteViews {
   private func setFavoritesView() {
     collectionViewConstraints()
   }
-  
   
   func collectionViewConstraints() {
     favoritesCollectionView.translatesAutoresizingMaskIntoConstraints = false

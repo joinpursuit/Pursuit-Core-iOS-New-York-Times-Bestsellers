@@ -9,6 +9,7 @@
 import UIKit
 
 class BestSellerCollectionCell: UICollectionViewCell {
+  
   lazy var imageCover: UIImageView = {
     let image = UIImageView(image: UIImage(named: "book"))
     return image
@@ -30,7 +31,7 @@ class BestSellerCollectionCell: UICollectionViewCell {
     tv.textColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
     return tv
   }()
-
+  
   
   override init(frame: CGRect) {
     super.init(frame: UIScreen.main.bounds)
@@ -43,9 +44,6 @@ class BestSellerCollectionCell: UICollectionViewCell {
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
-
-  
   
 }
 
@@ -79,5 +77,4 @@ extension BestSellerCollectionCell {
     bookDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
     bookDescription.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.3).isActive = true
   }
-  
 }

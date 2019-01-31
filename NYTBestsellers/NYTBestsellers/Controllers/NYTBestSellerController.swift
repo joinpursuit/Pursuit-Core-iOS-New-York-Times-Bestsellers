@@ -12,7 +12,6 @@ class NYTBestSellerController: UIViewController {
   
   let bestSellerView = BestSellerView()
   
-  
   public var descriptionFromGoogle = String()
   
   var categoriesInfo = [BookCategories]() {
@@ -60,7 +59,6 @@ class NYTBestSellerController: UIViewController {
   
   private func checkforDefaults() {
     
-    
     if let defaultCategory = UserDefaults.standard.object(forKey: KeysForUserDefaults.preferredCategory) as? String {
       getBookInfo(categoryName: defaultCategory)
     } else {
@@ -72,7 +70,6 @@ class NYTBestSellerController: UIViewController {
       self.bestSellerView.categoryPickerView.selectRow(Int(selectRowIndex)!, inComponent: 0, animated: true)
     }
   }
-  
   
   func getCategories() {
     CategoriesAPICLient.getCategoriesData { (appError, categories) in
@@ -98,7 +95,6 @@ class NYTBestSellerController: UIViewController {
       }
     }
   }
-  
 }
 
 extension NYTBestSellerController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -112,11 +108,11 @@ extension NYTBestSellerController: UICollectionViewDataSource, UICollectionViewD
     
     cell.backgroundColor = .white
     let currentBook = bookInfoForCollectionView[indexPath.row]
-    cell.bookDescription.text = currentBook.book_details[0].description
-    cell.weeksLabel.text = "\(currentBook.weeks_on_list) weeks on the NYT Best Sellers List"
+    cell.bookDescription.text = currentBook.bookDetails[0].description
+    cell.weeksLabel.text = "\(currentBook.weeksOnList) weeks on the NYT Best Sellers List"
     
     
-    let isbn = currentBook.book_details[0].primary_isbn13
+    let isbn = currentBook.bookDetails[0].primaryISBN13
     
     ImagesAPIClient.getBookImages(isbn: isbn) { (appError, image) in
       if let appError = appError {
@@ -148,7 +144,6 @@ extension NYTBestSellerController: UICollectionViewDataSource, UICollectionViewD
         }
       }
     }
-    
     return cell
   }
   
@@ -167,7 +162,6 @@ extension NYTBestSellerController: UICollectionViewDataSource, UICollectionViewD
     navigationController?.pushViewController(detailedVC, animated: true)
     
   }
-  
 }
 
 extension NYTBestSellerController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -189,8 +183,6 @@ extension NYTBestSellerController: UIPickerViewDelegate, UIPickerViewDataSource 
     
     getBookInfo(categoryName: categoryName)
   }
-  
-  
 }
 
 

@@ -9,13 +9,13 @@
 import Foundation
 
 struct NYTCategories: Codable {
-
+  
   let results: [BookCategories]
   
 }
 
 struct BookCategories: Codable {
-
+  
   let listName: String
   
   private enum CodingKeys: String, CodingKey {

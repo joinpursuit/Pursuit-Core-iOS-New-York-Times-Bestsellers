@@ -9,6 +9,7 @@
 import Foundation
 
 struct FavoriteBook: Codable {
+  
   let imageData: Data?
   let weeksOnBestSellerList: String
   let bookDescription: String
