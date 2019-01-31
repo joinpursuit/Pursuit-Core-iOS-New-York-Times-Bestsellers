@@ -64,7 +64,8 @@ class NYTBestSellerController: UIViewController {
       }
       if let arrayOfCategoryName = categories {
         self.categoriesInfo = arrayOfCategoryName
-        PickerViewDataHelper.savePickerViewCategoriesData()
+       PickerViewDataHelper.savePickerViewCategoriesData(arrayOfCategories: arrayOfCategoryName)
+      
       }
     }
   }

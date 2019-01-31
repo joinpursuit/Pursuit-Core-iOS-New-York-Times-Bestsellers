@@ -15,12 +15,12 @@ final class PickerViewDataHelper {
   
   private init() {}
   
-  static func savePickerViewCategoriesData() {
+  static func savePickerViewCategoriesData(arrayOfCategories: [BookCategories]) {
     let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename)
     print("I have a path: \(path)")
     
     do{
-      let data = try PropertyListEncoder().encode(pickerViewArray)
+      let data = try PropertyListEncoder().encode(arrayOfCategories)
       try data.write(to: path, options: Data.WritingOptions.atomic)
     } catch {
       print("property list encoding error: \(error)")
@@ -28,7 +28,6 @@ final class PickerViewDataHelper {
   }
   
   static func getPickerViewCategoriesData() -> [BookCategories] {
-    
     let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename).path
     
     if FileManager.default.fileExists(atPath: path) {
@@ -50,7 +49,7 @@ final class PickerViewDataHelper {
   
 //  static func addEntry(title: BookCategories) {
 //    pickerViewArray.append(title)
-//    savePickerViewCategoriesData()
+//    savePickerViewCategoriesData(arrayOfCategories: pickerViewArray)
 //  }
 //
 //  static func delete(atIndex index: Int) {

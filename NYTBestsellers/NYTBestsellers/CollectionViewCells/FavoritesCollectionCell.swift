@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol MoreActionsDelegate: AnyObject {
+  func moreActionsButtonPressed()
+}
+
 class FavoritesCollectionCell: UICollectionViewCell {
+  
+  var delegate: MoreActionsDelegate?
   
   lazy var moreActions: UIButton = {
     let button = UIButton()
@@ -16,10 +22,14 @@ class FavoritesCollectionCell: UICollectionViewCell {
     button.setTitle(". . .", for: .normal)
     button.setTitleColor(UIColor.blue, for: .normal)
     
-    //    button.addTarget(self, action: #selector(seguePressed), for: .touchUpInside)
+    button.addTarget(self, action: #selector(moreActionsButtonPressed), for: .touchUpInside)
     
     return button
   }()
+  
+  @objc func moreActionsButtonPressed() {
+    delegate?.moreActionsButtonPressed()
+  }
   
   lazy var imageCover: UIImageView = {
     let image = UIImageView(image: UIImage(named: "book"))
@@ -94,7 +104,7 @@ extension FavoritesCollectionCell {
   }
   
   private func moreActionsConstraints() {
-   moreActions.translatesAutoresizingMaskIntoConstraints = false
+    moreActions.translatesAutoresizingMaskIntoConstraints = false
     moreActions.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 11).isActive = true
     moreActions.leadingAnchor.constraint(equalTo: imageCover.trailingAnchor, constant: 11).isActive = true
     moreActions.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
