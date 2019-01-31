@@ -23,7 +23,7 @@ struct BookResults: Codable {
     let weeksOnList: Int
     let asterisk: Int
     let dagger: Int
-    let amazonProductUrl: String
+    let amazonProductUrl: String?
     let bookDetails: [BookDetails]
     private enum CodingKeys: String, CodingKey {
         case listName = "list_name"

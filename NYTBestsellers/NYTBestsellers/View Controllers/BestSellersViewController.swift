@@ -19,8 +19,8 @@ class BestSellersViewController: UIViewController {
                 if let categorySelected = UserDefaults.standard.value(forKey: UserDefaultsKeys.CategoryKey) as? Int {
                     print(categorySelected)
                     self.bestSellerView.myBestSellerPickerView.selectRow(categorySelected, inComponent: 0, animated: true)
-
-                    
+                    print(self.bestSellerCategories.count)
+                    self.setupBooks(listName: self.bestSellerCategories[categorySelected].listNameEncoded)
                 } else {
                     print("no category in defaults")
                 }
@@ -53,12 +53,13 @@ class BestSellersViewController: UIViewController {
     var listName = String()
     var imageURL = UIImage()
     var googleDescription = String()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(bestSellerView)
         setupPicker()
-        setupBooks(listName: "combined-print-and-e-book-fiction")
+//        setupBooks(listName: "combined-print-and-e-book-fiction")
         bestSellerView.myBestSellerCollectionView.dataSource = self
         bestSellerView.myBestSellerCollectionView.delegate = self
         bestSellerView.myBestSellerPickerView.dataSource = self
@@ -95,21 +96,6 @@ class BestSellersViewController: UIViewController {
             }
         }
     }
-    private func setupGoogleInfo(bookIsbn: String) {
-//        GoogleBookAPI.getGoogleInfo(bookIsbn: bookIsbn) { (appError, urlString) in
-//            if let appError = appError {
-//                print("error getting pixabay image url string - \(appError)")
-//            } else if let urlString = urlString {
-//                ImageHelper.fetchImageFromNetwork(urlString: urlString, completion: { (appError, image) in
-//                    if let appError = appError {
-//                        print("error trying to get image out of pixabay url - \(appError)")
-//                    } else if let image = image {
-//                        self.bookImage = image
-//                    }
-//                })
-//            }
-//        }
-    }
 }
 extension BestSellersViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -118,36 +104,47 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestCollectionViewCell", for: indexPath) as? BestCollectionViewCell else { return UICollectionViewCell()}
+        var isbn = String()
         let book = bestSellerBooks[indexPath.row]
-        if let isbn = book.bookDetails.first?.primaryIsbn13 {
-            GoogleBookAPI.getGoogleInfo(bookIsbn: isbn) { (appError, data) in
-                if let appError = appError {
-                    print(appError.errorMessage())
+        // issue is here! isbn not showing up sometimes?
+        if let bookDetails = book.bookDetails.first {
+            if !bookDetails.primaryIsbn13.isEmpty {
+                isbn = bookDetails.primaryIsbn13
+            
+            } else {
+                isbn = bookDetails.primaryIsbn10
+            }
+        }
+        print("Current isbn: \(isbn)")
+        GoogleBookAPI.getGoogleInfo(bookIsbn: isbn) { (appError, data) in
+            if let appError = appError {
+                print(appError.errorMessage())
+            }
+            if let data = data {
+                let description = data[0].volumeInfo.description
+                DispatchQueue.main.async {
+                    cell.cellTextView.text = description
+                    self.googleDescription = description
+                    print(description)
                 }
-                if let data = data {
-                    let description = data[0].volumeInfo.description
+                if let image = ImageHelper.fetchImageFromCache(urlString: data[0].volumeInfo.imageLinks.smallThumbnail) {
                     DispatchQueue.main.async {
-                        cell.cellTextView.text = description
-                        self.googleDescription = description
+                        cell.cellImage.image = image
+                        self.imageURL = image
+
                     }
-                    if let image = ImageHelper.fetchImageFromCache(urlString: data[0].volumeInfo.imageLinks.smallThumbnail) {
-                        DispatchQueue.main.async {
+                } else {
+                    ImageHelper.fetchImageFromNetwork(urlString: data[0].volumeInfo.imageLinks.smallThumbnail, completion: { (appError, image) in
+                        if let appError = appError {
+                            print(appError.errorMessage())
+                        } else if let image = image {
                             cell.cellImage.image = image
                             self.imageURL = image
-
                         }
-                    } else {
-                        ImageHelper.fetchImageFromNetwork(urlString: data[0].volumeInfo.imageLinks.smallThumbnail, completion: { (appError, image) in
-                            if let appError = appError {
-                                print(appError.errorMessage())
-                            } else if let image = image {
-                                cell.cellImage.image = image
-                                self.imageURL = image
-                            }
-                        })
-                    }
+                    })
                 }
             }
+        }
             
 //            GoogleBookAPI.getGoogleInfo(bookIsbn: isbn) { (appError, urlString) in
 //                if let appError = appError {
@@ -163,18 +160,26 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
 //                    })
 //                }
 //            }
-        }
+        
         cell.cellLabel.text = "\(book.weeksOnList) weeks on Best Sellers"
         cell.cellTextView.text = book.bookDetails.first?.bookDescription
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let selectedCell = collectionView.cellForItem(at: indexPath) as? BestCollectionViewCell else {return}
         let book = bestSellerBooks[indexPath.row]
         let detailVC = DetailViewController()
+       
+        
+        detailVC.detailView.detailImage.image = selectedCell.cellImage.image
+        detailVC.detailView.detailTextView.text = selectedCell.cellTextView.text
+        detailVC.detailView.detailFavoritesImage.image = selectedCell.cellImage.image
+        
+        
         detailVC.detailView.detailLabel.text = book.bookDetails.first?.author
-        detailVC.detailView.detailImage.image = imageURL
-        detailVC.detailView.detailTextView.text = googleDescription
-        detailVC.detailView.detailFavoritesImage.image = imageURL
+//        detailVC.detailView.detailImage.image = imageURL
+//        detailVC.detailView.detailTextView.text = googleDescription
+//        detailVC.detailView.detailFavoritesImage.image = imageURL
         
 //        detailVC.detailView.detailTextView.text = book.bookDetails.first?.bookDescription
 
@@ -184,7 +189,6 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
     
 }
 extension BestSellersViewController: UIPickerViewDataSource, UIPickerViewDelegate {
-    // scroll to to set picker view index
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

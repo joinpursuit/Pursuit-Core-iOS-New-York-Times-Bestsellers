@@ -29,6 +29,10 @@ class BestCollectionViewCell: UICollectionViewCell {
         tv.isEditable = false
         return tv
     }()
+     
+    override func prepareForReuse() {
+        self.cellImage.image = nil
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

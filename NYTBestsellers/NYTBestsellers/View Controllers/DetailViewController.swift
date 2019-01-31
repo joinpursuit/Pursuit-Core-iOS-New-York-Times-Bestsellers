@@ -9,8 +9,6 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    //lazy var book
-    //when saving a book, tab bar stuff. 
 
     let detailView = DetailView()
     private var animator: UIViewPropertyAnimator!
@@ -23,12 +21,6 @@ class DetailViewController: UIViewController {
         self.view.addSubview(detailView)
         print(detailView.detailLabel)
         detailView.delegate = self
-//        animator = UIViewPropertyAnimator(duration: 1.0, curve: .easeInOut, animations: {
-//            self.detailView.detailImage.transform = CGAffineTransform(scaleX: 10.0, y: 10.0)
-//            self.durationTime = self.animator.duration
-//            print(self.durationTime)
-//        })
-
         navigationItem.rightBarButtonItem = detailView.favoriteButton
         
     }
@@ -73,32 +65,17 @@ extension DetailViewController: DetailViewDelegate {
         }
         detailView.detailFavoritesImage.isHidden = false
         navigationItem.rightBarButtonItem?.isEnabled = false
-        self.detailView.detailFavoritesImage.alpha = 1.0
-//        UIView.animate(withDuration: 1.0, delay: 0.0, options: [], animations: {
-//            self.detailView.detailFavoritesImage.frame.origin.y += self.view.bounds.height
-//            self.detailView.detailFavoritesImage.alpha = 1.0
-//        })
-        UIView.animate(withDuration: 1.0, delay: 0.5, options: [.curveEaseInOut], animations: {
-//            self.detailView.detailFavoritesImage.alpha = 1.0
-
-            self.detailView.detailFavoritesImage.frame.origin.y += self.view.bounds.height
-            self.detailView.detailFavoritesImage.alpha = 0.0
+        self.detailView.detailFavoritesImage.alpha = 0.0
+        
+        UIView.animateKeyframes(withDuration: 3.0, delay: 0.0, options: [.calculationModeLinear], animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5, animations: {
+                self.detailView.detailFavoritesImage.alpha = 1.0
+            })
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 1.0, animations: {
+                self.detailView.detailFavoritesImage.frame.origin.y += self.view.bounds.height
+                self.detailView.detailFavoritesImage.alpha = 0.0
+            })
         })
-        
-        
-        
-//        UIView.animate(withDuration: 1.0, delay: 0.0, options: [], animations: {
-//            self.detailView.detailImage.frame.origin.y += self.view.bounds.height
-//            self.animator.fractionComplete = CGFloat(self.durationTime)
-//
-////            self.detailView.detailImage.transform = CGAffineTransform(scaleX: 10.0, y: 10.0)
-//            self.detailView.detailImage.alpha = 0.0
-//        }) { (done) in
-//            //cleanup or reseting values after animation is complete
-//            self.detailView.detailImage.frame.origin.y -= self.view.bounds.height
-//            self.detailView.detailImage.transform = CGAffineTransform.identity
-//            self.detailView.detailImage.alpha = 1.0
-//        
-//        }
     }
 }

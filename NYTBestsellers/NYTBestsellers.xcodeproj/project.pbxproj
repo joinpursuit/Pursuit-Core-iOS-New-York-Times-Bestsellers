@@ -109,7 +109,6 @@
 				5718C00821FA790000A8E4B8 /* Date Helpers */,
 				5718BFFA21FA75C000A8E4B8 /* Supporting Files */,
 				5718BFF421FA75A900A8E4B8 /* Info.plist */,
-				976D11FF21FFA64D0076D81D /* UserDefaultsKeys.swift */,
 			);
 			path = NYTBestsellers;
 			sourceTree = "<group>";
@@ -142,6 +141,7 @@
 				5718BFFB21FA763200A8E4B8 /* String+DateExtensions.swift */,
 				5718BFFD21FA764E00A8E4B8 /* Date+Extensions.swift */,
 				976D11A321FE709A0076D81D /* SecretKeys.swift */,
+				976D11FF21FFA64D0076D81D /* UserDefaultsKeys.swift */,
 			);
 			path = "Date Helpers";
 			sourceTree = "<group>";

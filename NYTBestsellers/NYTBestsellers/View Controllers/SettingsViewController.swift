@@ -38,10 +38,6 @@ class SettingsViewController: UIViewController {
         if let categorySelected = UserDefaults.standard.value(forKey: UserDefaultsKeys.CategoryKey) as? Int {
             print(categorySelected)
             settingsView.mySettingsPickerView.selectRow(categorySelected, inComponent: 0, animated: true)
-            
-            
-            
-            
 //            category = categorySelected
         } else {
             print("no category in defaults")
