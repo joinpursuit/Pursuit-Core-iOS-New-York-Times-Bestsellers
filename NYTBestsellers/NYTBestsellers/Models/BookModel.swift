@@ -15,15 +15,12 @@ struct  Book: Codable {
     let display_name: String
     let weeks_on_list: Int
     let amazon_product_url: URL
-    let isbns : [BookID]
     let book_details: [Details]
 }
-struct BookID: Codable {
-    let isbn13: String
 
-}
 struct Details: Codable{
     let title: String
     let description: String
     let author: String
+    let primary_isbn10: String
 }

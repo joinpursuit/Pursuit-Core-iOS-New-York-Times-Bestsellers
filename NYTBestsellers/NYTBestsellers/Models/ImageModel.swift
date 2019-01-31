@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct items: Codable {
+struct Items: Codable {
     let items: [Info]
 }
 
@@ -17,8 +17,9 @@ struct Info: Codable{
 }
 struct ImageLink: Codable {
     let imageLinks: Links
+    let description: String
 }
 struct Links: Codable {
     let thumbnail: URL
-    let smallthumbnail: URL
+    let smallThumbnail: URL
 }

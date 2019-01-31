@@ -17,17 +17,15 @@ class BestSellersView: UIView {
         
         layout.scrollDirection = .horizontal
         var cv = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
-        cv.backgroundColor = .white
-        cv.dataSource = self
+        cv.backgroundColor = .lightText
         return cv
         
 }()
     
     lazy var myPicker: UIPickerView = {
         let picker = UIPickerView.init(frame: self.bounds)
-        picker.backgroundColor = .lightGray
-        picker.delegate = self
-        picker.dataSource = self
+        picker.backgroundColor = .white
+       
         return picker
     }()
     override init(frame: CGRect) {
@@ -41,7 +39,7 @@ class BestSellersView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     private func commonInit(){
-        backgroundColor = .yellow
+        backgroundColor = .white
         self.myCollectionView.register(BSCollectionViewCell.self, forCellWithReuseIdentifier: "BestSellerCell")
         setUpViews()
     }
@@ -68,31 +66,3 @@ class BestSellersView: UIView {
         
     }
 }
-extension BestSellersView: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestSellerCell", for: indexPath) as? BSCollectionViewCell else {return UICollectionViewCell()}
-        return cell
-    }
-    
-    
-    
-}
-extension BestSellersView: UIPickerViewDataSource, UIPickerViewDelegate {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 4
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-       return String(row)
-    }
-    
-}
-

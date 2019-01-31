@@ -1,17 +1,24 @@
 //
-//  BSCollectionViewCell.swift
+//  FavoritesCollectionViewCell.swift
 //  NYTBestsellers
 //
-//  Created by Kevin Waring on 1/25/19.
+//  Created by Kevin Waring on 1/29/19.
 //  Copyright © 2019 Pursuit. All rights reserved.
 //
 
 import UIKit
 
-class BSCollectionViewCell: UICollectionViewCell {
+class FavoritesCollectionViewCell: UICollectionViewCell {
+    lazy var button: UIButton = {
+        let button = UIButton()
+        button.setTitle("...", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Futura", size: 50)
+        button.setTitleColor(.black , for: .normal)
+        return button
+    }()
     lazy var bookImage: UIImageView = {
         let image = UIImageView()
-        image.backgroundColor = .green
+        image.backgroundColor = .white
         return image
     }()
     lazy var bookLabel: UILabel = {
@@ -43,11 +50,12 @@ class BSCollectionViewCell: UICollectionViewCell {
         setupCells()
     }
 }
-extension BSCollectionViewCell {
+extension FavoritesCollectionViewCell {
     private func setupCells() {
         setupImageView()
         setupLabel()
         setupTextView()
+        setUpButton()
     }
     private func setupImageView() {
         addSubview(bookImage)
@@ -76,6 +84,12 @@ extension BSCollectionViewCell {
         bookText.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
         
     }
+    private func setUpButton() {
+        addSubview(button)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
+        button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+    }
 }
-
-
