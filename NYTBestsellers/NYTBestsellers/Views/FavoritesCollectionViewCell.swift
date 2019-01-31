@@ -9,7 +9,8 @@
 import UIKit
 
 protocol FavoritesCollectionViewCellDelegate:AnyObject {
-  func presentAlertController()
+  func presentAlertController(alertController:UIAlertController)
+  func deleteFromFaves(index:Int)
 }
 
 class FavoritesCollectionViewCell: UICollectionViewCell {
@@ -38,11 +39,12 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     let button = UIButton()
     button.backgroundColor = .gray
     button.setTitleColor(.white, for: .normal)
-   button.setImage(#imageLiteral(resourceName: "icons8-more-filled-25.png"), for: .normal)
+    button.setImage(#imageLiteral(resourceName: "icons8-more-filled-25.png"), for: .normal)
     button.addTarget(self, action: #selector(expandButtonPressed), for: .touchUpInside)
     
     return button
   }()
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     self.backgroundColor = .black
@@ -58,11 +60,25 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     labelConstraints()
     textViewConstraints()
     expandButtonConstraints()
+    prepareForReuse()
   }
   
   @objc func expandButtonPressed(){
     self.backgroundColor = .red
-    delegate?.presentAlertController()
+    let alertController = UIAlertController(title: "More Options", message: "What would you like to do?", preferredStyle: .actionSheet)
+    let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (delete) in
+      self.delegate?.deleteFromFaves(index: self.expandButton.tag)
+      
+    }
+    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+    let seeOnAmazon = UIAlertAction(title: "See on Amazon", style: .default) { (amazon) in
+      print("amazon")
+    }
+    alertController.addAction(deleteAction)
+    alertController.addAction(seeOnAmazon)
+    alertController.addAction(cancelAction)
+    
+    delegate?.presentAlertController(alertController: alertController)
    
  
   }

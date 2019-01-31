@@ -35,7 +35,7 @@ class FavoritesView: UIView {
     addSubview(favoriteCollectionView)
     favoriteCollectionView.translatesAutoresizingMaskIntoConstraints = false
     
-    let theConstraints = [favoriteCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),favoriteCollectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),favoriteCollectionView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),favoriteCollectionView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor)]
+    let theConstraints = [favoriteCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),favoriteCollectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),favoriteCollectionView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),favoriteCollectionView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor),favoriteCollectionView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)]
     theConstraints.forEach{$0.isActive = true}
   }
    

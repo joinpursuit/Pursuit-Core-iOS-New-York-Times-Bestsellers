@@ -39,7 +39,7 @@ final class PersistanceHelper{
       print("propertyList encoding error")
     }
   }
-  static func deleteItemsFromDirectory(newBook:NewBook,index:Int){
+  static func deleteItemsFromDirectory(newBook:NewBookCodable,index:Int){
     books.remove(at: index)
     saveItemToDirectory()
   }

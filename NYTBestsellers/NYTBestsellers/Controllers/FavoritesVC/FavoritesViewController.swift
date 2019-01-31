@@ -11,7 +11,8 @@ import UIKit
 class FavoritesViewController: UIViewController {
 
   let favoriteView = FavoritesView()
-
+  var favItem: NewBookCodable!
+  
     override func viewDidLoad() {
         super.viewDidLoad()
       view.backgroundColor = #colorLiteral(red: 0.7817301154, green: 0.7033625245, blue: 1, alpha: 1)
@@ -31,20 +32,17 @@ class FavoritesViewController: UIViewController {
 
 }
 extension FavoritesViewController:FavoritesCollectionViewCellDelegate{
-  func presentAlertController() {
-    let alertController = UIAlertController(title: "More Options", message: "What would you like to do?", preferredStyle: .actionSheet)
-    let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (delete) in
-      
-    }
-    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-    let seeOnAmazon = UIAlertAction(title: "See on Amazon", style: .default) { (amazon) in
-      print("amazon")
-    }
-    alertController.addAction(deleteAction)
-    alertController.addAction(seeOnAmazon)
-    alertController.addAction(cancelAction)
+  func deleteFromFaves(index: Int) {
+    PersistanceHelper.deleteItemsFromDirectory(newBook: favItem, index: index)
+ 
+      self.favoriteView.favoriteCollectionView.reloadData()
+    
+  }
+  
+  func presentAlertController(alertController: UIAlertController) {
     self.present(alertController, animated: true, completion: nil)
   }
   
+ 
   
 }

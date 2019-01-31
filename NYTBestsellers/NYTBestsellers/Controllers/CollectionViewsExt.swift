@@ -32,7 +32,7 @@ extension BestSellerViewController:UICollectionViewDataSource{
     cell.infoLabel.text = book.book_details[indexPath.section].title
     cell.bookCoverImageView.image = UIImage(named: "placeholder")
     cell.descriptiontextView.text = book.book_details[indexPath.section].description
-    
+  
     return cell
   }
   
@@ -62,7 +62,7 @@ extension BestSellerViewController:UICollectionViewDataSource{
     let bestSeller = BestSellerDetailledViewController()
     
      newBook = NewBook.init(authorName: book.book_details[indexPath.section].author, description: cell.descriptiontextView.text, bookName: book.book_details[indexPath.section].title, bookCover: cell.bookCoverImageView.image, imageData: nil)
-          
+    
     bestSeller.newBook = newBook
     self.navigationController?.pushViewController(bestSeller, animated: true)
   }
@@ -91,8 +91,9 @@ extension FavoritesViewController:UICollectionViewDataSource{
     cell.infoLabel.text = book.authorName
     cell.DescriptiontextView.text = book.description
     cell.bookCoverImageView.image = UIImage(data: book.imageData!)
+    cell.expandButton.tag = indexPath.row
     cell.delegate = self
-  
+    self.favItem = book
     return cell
   }
   
