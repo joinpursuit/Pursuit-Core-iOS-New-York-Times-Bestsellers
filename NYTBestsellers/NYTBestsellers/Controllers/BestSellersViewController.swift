@@ -69,6 +69,8 @@ class BestSellersViewController: UIViewController {
     func checkForDefault() {
         if let genreDefault = UserDefaults.standard.object(forKey: DefaultKeys.genre){
             getBookInfo(keyword: genreDefault as! String)
+        } else {
+            getBookInfo(keyword: keyword)
         }
         if let pickedRow = (UserDefaults.standard.object(forKey: DefaultKeys.pickerRow)) as? String {
             DispatchQueue.main.async {
