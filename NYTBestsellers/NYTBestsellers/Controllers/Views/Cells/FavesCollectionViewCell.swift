@@ -22,13 +22,13 @@ class FavesCollectionViewCell: UICollectionViewCell {
     }
     
     
-    lazy var FavesImageView: UIImageView = {
+    public lazy var FavesImageView: UIImageView = {
         let imageView = UIImageView ()
-        imageView.image = UIImage.init(named: "placeholder-image-2")
+        imageView.image = UIImage.init(named: "icons8-book-50")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-    lazy var WeeksLabel: UILabel = {
+   public lazy var WeeksLabel: UILabel = {
         let weeksLabel = UILabel()
         weeksLabel.text = ""
         weeksLabel.textColor = .white
@@ -37,7 +37,7 @@ class FavesCollectionViewCell: UICollectionViewCell {
         return weeksLabel
     }()
     
-    lazy var TextViewDescription: UITextView = {
+    public lazy var TextViewDescription: UITextView = {
         let textDescription = UITextView()
         textDescription.textColor = .white
         textDescription.backgroundColor = .magenta

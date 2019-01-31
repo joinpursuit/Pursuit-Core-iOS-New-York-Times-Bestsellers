@@ -10,10 +10,11 @@ import Foundation
 
 final class GoogleAPIClient {
     
-    static func getDetails(completionHandler: @escaping (AppError?, [BookInfo]?) -> Void)
+    static func getDetails(isbn: String,completionHandler: @escaping (AppError?, [BookInfo]?) -> Void)
     {
-        NetworkHelper.shared.performDataTask(endpointURLString: "https://www.googleapis.com/books/v1/volumes?q=isbn:9781524763138&key=AIzaSyCKiGDv9pXIoGYkKMhf_9rpNfDRlOvP1RI") { (appError, data) in
+        NetworkHelper.shared.performDataTask(endpointURLString: "https://www.googleapis.com/books/v1/volumes?q=isbn:\(isbn)&key=AIzaSyCKiGDv9pXIoGYkKMhf_9rpNfDRlOvP1RI") { (appError, data) in
             if let appError = appError {
+                print(appError)
                 completionHandler(appError, nil)
             }
             if let data = data {

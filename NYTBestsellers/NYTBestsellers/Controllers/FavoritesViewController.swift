@@ -18,5 +18,5 @@ class FavoritesViewController: UIViewController {
         self.view.backgroundColor = .yellow 
     }
 
-
+    
 }

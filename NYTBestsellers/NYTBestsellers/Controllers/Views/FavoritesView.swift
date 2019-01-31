@@ -22,6 +22,13 @@ class FavoritesView: UIView {
         cv.backgroundColor = .blue
         return cv
     }()
+    
+    public lazy var optionsButton: UIButton = {
+        let button = UIButton()
+       // button.setAttributedTitle(<#T##title: NSAttributedString?##NSAttributedString?#>, for: <#T##UIControl.State#>)
+        return button
+        
+    }()
   
     
     override init(frame: CGRect) {

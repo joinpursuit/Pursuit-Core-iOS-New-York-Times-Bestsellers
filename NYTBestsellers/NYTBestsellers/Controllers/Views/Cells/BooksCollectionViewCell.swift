@@ -15,6 +15,8 @@ class BooksCollectionViewCell: UICollectionViewCell {
         self.backgroundColor = .magenta
         setUpImageView()
     }
+    
+    var googleBookInfo: BookInfo? 
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

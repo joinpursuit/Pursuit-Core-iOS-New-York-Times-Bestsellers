@@ -8,8 +8,10 @@
 
 import Foundation
 
+//google
+
 struct NYTBestSellersDetail: Codable {
-    let items: [BookInfo]
+    let items: [BookInfo]?
 }
 struct BookInfo: Codable {
     let selfLink: String

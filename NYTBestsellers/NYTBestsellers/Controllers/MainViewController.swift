@@ -13,6 +13,13 @@ class MainViewController: UIViewController {
     
     let mainView = MainView()
     
+    var category = "Hardcover Nonfiction"
+    {
+        didSet {
+            getBooks()
+        }
+    }
+    
     var bookCategories = [Books](){
         didSet {
             DispatchQueue.main.async {
@@ -24,7 +31,7 @@ class MainViewController: UIViewController {
    var googleInfo = [BookInfo](){
         didSet {
             DispatchQueue.main.async {
-    
+                self.mainView.myCollectionView.reloadData()
             }
         }
     }
@@ -33,7 +40,7 @@ class MainViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
              self.mainView.myCollectionView.reloadData()
-                dump(self.bookDetails)
+//                dump(self.bookDetails)
             }
         }
     }
@@ -51,17 +58,20 @@ class MainViewController: UIViewController {
     }
     
     
-    func getMoreInfo() {
-        GoogleAPIClient.getDetails { (appError, book) in
-            if let appError = appError {
-                print(appError.errorMessage())
-            }
-            if let data = book {
-                self.googleInfo = data
-                //dump(self.googleInfo)
-            }
-        }
-    }
+//    func getMoreInfo() {
+//        GoogleAPIClient.getDetails { (appError, book) in
+//            if let appError = appError {
+//                print(appError.errorMessage())
+//            }
+//            if let data = book {
+//                DispatchQueue.main.async {
+//
+//                self.googleInfo = data
+//                }
+//                //dump(self.googleInfo)
+//            }
+//        }
+//    }
     
     func getDetailedInfo() {
         DetailsAPIClient.getDetails { (appError, book) in
@@ -76,13 +86,16 @@ class MainViewController: UIViewController {
             }
         }
     }
+    
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(mainView)
         self.view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         //NYTAPIClient()
         getBooks()
-        getMoreInfo()
+       // getMoreInfo()
         getDetailedInfo()
         mainView.myCollectionView.dataSource = self
         mainView.myCollectionView.delegate = self
@@ -94,17 +107,44 @@ class MainViewController: UIViewController {
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BooksCollectionViewCell", for: indexPath) as? BooksCollectionViewCell else { return UICollectionViewCell() }
-        let cellInfo = bookDetails[indexPath.row]
-    cell.WeeksLabel.text = "\(cellInfo.weeksOnList) weeks on best seller list"
-    cell.TextViewDescription.text = cellInfo.bookDetails.first?.description
-//        cell.BestsellerImageView.image = UIImage(named: (googleInfo.first?.volumeInfo.imageLinks.smallThumbnail)!)
+        let bookInfo = bookDetails[indexPath.row]
+    cell.WeeksLabel.text = "\(bookInfo.weeksOnList) weeks on best seller list"
+    cell.TextViewDescription.text = bookInfo.bookDetails.first?.description
+
+        if let bookISNBs = bookInfo.isbns.first?.isbn13 {
+            GoogleAPIClient.getDetails(isbn: bookISNBs) { (appError, bookInfo) in
+                
+            
+            if let bookInfo = bookInfo {
+                cell.googleBookInfo = bookInfo[0]
+                ImageHelper.fetchImageFromNetwork(urlString: bookInfo[0].volumeInfo.imageLinks.smallThumbnail, completion: { (appError, image) in
+                    if let appError = appError {
+                        print(appError)
+                    } else if let image = image {
+                        cell.BestsellerImageView.image = image
+        
+                    }
+                })
+        
+            } else if let appError = appError {
+                print(appError)
+            }
+            
+            }
+        }
+        
+        
+        
+        
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return bookDetails.count
         //return bookDetails[section].bookDetails[section].title.count
     }
+    
+    
 }
 extension MainViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -121,6 +161,23 @@ extension MainViewController: UIPickerViewDataSource, UIPickerViewDelegate {
 }
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        navigationController?.pushViewController(DetailViewController(), animated: true)
+        if let cell = collectionView.cellForItem(at: indexPath) as? BooksCollectionViewCell {
+             let detailViewController = DetailViewController()
+            if let image = cell.BestsellerImageView.image {
+            
+                detailViewController.googleInfo = cell.googleBookInfo
+                   // detailViewController.bookDetails? = bookInfo
+                detailViewController.bookImage = image
+                navigationController?.pushViewController(detailViewController, animated: true)
+           
+            } else {
+                detailViewController.bookImage = UIImage(named: "icons8-book-50")
+                 detailViewController.googleInfo = cell.googleBookInfo
+                navigationController?.pushViewController(detailViewController, animated: true)
+                
+            }
+            
+        }
+
     }
 }
