@@ -12,6 +12,13 @@ class BestSellerView: UIView {
     var collectionview: UICollectionView!
     var cellId = "Cell"
     
+    lazy var pickerView: UIPickerView = {
+        let pv = UIPickerView()
+        pv.backgroundColor = .orange
+        return pv
+    }()
+//
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
@@ -25,15 +32,14 @@ class BestSellerView: UIView {
     
     private func commonInit() {
         backgroundColor = .white
-        setupViews()
+        setupCollectionView()
+        setupPickerView()
     }
     
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        collectionview.delegate = self
-        collectionview.dataSource = self
-        addSubview(collectionview)
+
         collectionview.register(BestSellerCell.self, forCellWithReuseIdentifier: cellId)
     }
     
@@ -41,25 +47,46 @@ class BestSellerView: UIView {
     
     
 }
-extension BestSellerView : UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    private func setupViews(){
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: self.frame.width, height: 500)
+extension BestSellerView {
+
+    private func setupCollectionView(){
         
-        collectionview = UICollectionView(frame: self.frame, collectionViewLayout: layout)
+        //layout
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 20 ,left: 10, bottom: 20, right: 10)
+        layout.itemSize = CGSize(width: 150, height: 300)
+        
+        collectionview = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
         collectionview.showsHorizontalScrollIndicator = false
         collectionview.backgroundColor = .black
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+
+    private func setupPickerView() {
+        addSubview(pickerView)
+        addSubview(collectionview)
+        pickerViewConstraints()
+        collectionViewConstraints()
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-      let cell = collectionview.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! BestSellerCell
-        return cell
+
+    private func collectionViewConstraints(){
+        collectionview.translatesAutoresizingMaskIntoConstraints = false
+
+        collectionview.topAnchor.constraint(equalTo:topAnchor).isActive = true
+        collectionview.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        collectionview.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        collectionview.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
     }
+
+    private func pickerViewConstraints(){
+        pickerView.translatesAutoresizingMaskIntoConstraints = false
+
+        pickerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
+        pickerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        pickerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        pickerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5) .isActive = true
+    }
+
+
 }

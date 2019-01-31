@@ -9,6 +9,7 @@
 import Foundation
 
 enum AppError: Error {
+    
   case badURL(String)
   case jsonDecodingError(Error)
   case networkError(Error)

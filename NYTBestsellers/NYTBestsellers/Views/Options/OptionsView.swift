@@ -11,14 +11,13 @@ import UIKit
 class OptionsView: UIView {
 
 
-    public lazy var optionsTitle: UILabel = {
-        let label = UILabel()
-        label.text = "Title of options"
-        label.textColor = .white
-        label.backgroundColor = .black
-        label.numberOfLines = 0
-        return label
+    public lazy var pickerView: UIPickerView = {
+        let pv = UIPickerView()
+        pv.backgroundColor = .orange
+        return pv
     }()
+    
+   
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
@@ -45,16 +44,22 @@ class OptionsView: UIView {
 extension OptionsView {
     
     private func setupViews() {
-        setConstraints()
+        addSubview(pickerView)
+        pickerViewConstraints()
+    }
+
+    
+    func pickerViewConstraints(){
+        pickerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        pickerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        pickerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
+        pickerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        pickerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+       
     }
     
-    private func setConstraints() {
-        addSubview(optionsTitle)
-        optionsTitle.translatesAutoresizingMaskIntoConstraints = false
-        optionsTitle.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        optionsTitle.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 11).isActive = true
-        optionsTitle.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -11).isActive = true
-        
-    }
+    
+   
 
 }
