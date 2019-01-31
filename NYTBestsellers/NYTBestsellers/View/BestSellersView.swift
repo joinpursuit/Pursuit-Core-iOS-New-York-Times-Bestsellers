@@ -29,7 +29,7 @@ class BestSellersView: UIView{
         layout.scrollDirection = .horizontal
 //        layout.scrollDirection = .horizontal
         var collectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
-        collectionView.backgroundColor = .gray
+        collectionView.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         return collectionView
     }()
 

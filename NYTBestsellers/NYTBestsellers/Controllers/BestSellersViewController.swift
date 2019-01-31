@@ -9,7 +9,11 @@
 import UIKit
 
 class BestSellersViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, UIPickerViewDataSource,UIPickerViewDelegate {
-    var listNames = DataPersistenceModel.getListNames()
+    var listNames = [BookListName.resultsWrapper]() {
+        didSet{
+            bestSellerVC.myPickerView.reloadAllComponents()
+        }
+    }
     let bestSellerVC = BestSellersView()
     var bestSellerBooks = [BestSellerBook.ResultsWrapper](){
         didSet{
@@ -44,6 +48,18 @@ class BestSellersViewController: UIViewController,UICollectionViewDataSource,UIC
             getBooks(listName: "Manga")
         }
         
+    }
+
+    func getCategories(){
+        APIClient.getListNames { (appError, listNames) in
+            if let appError = appError{
+                print(appError)
+            }
+            if let listNames = listNames{
+                self.listNames = listNames
+                DataPersistenceModel.save(data: listNames)
+            }
+        }
     }
     override func viewDidAppear(_ animated: Bool) {
         if let row = UserDefaults.standard.object(forKey: "Row") as? Int {

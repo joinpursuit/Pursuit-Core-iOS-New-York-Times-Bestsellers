@@ -17,6 +17,7 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource,UIPickerV
     override func viewDidLoad() {
         title = "Pick Default Category"
         super.viewDidLoad()
+        getCategories()
         view.addSubview(settingView)
         settingView.settingsPickerView.dataSource = self
         settingView.settingsPickerView.delegate = self
@@ -24,6 +25,16 @@ class SettingsViewController: UIViewController, UIPickerViewDataSource,UIPickerV
             settingView.settingsPickerView.selectRow(row, inComponent: 0, animated: true)
         }
         // Do any additional setup after loading the view.
+    }
+    func getCategories(){
+        APIClient.getListNames { (appError, listNames) in
+            if let appError = appError{
+                print(appError)
+            }
+            if let listNames = listNames{
+                self.listNames = listNames
+            }
+        }
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

@@ -42,6 +42,9 @@ class BestSellersCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupViews(){
+        self.layer.borderWidth = 4
+        self.layer.borderColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
+        self.layer.cornerRadius = 10
        setupBookImage()
        setupBookNameLabel()
        setupBookDescription()
