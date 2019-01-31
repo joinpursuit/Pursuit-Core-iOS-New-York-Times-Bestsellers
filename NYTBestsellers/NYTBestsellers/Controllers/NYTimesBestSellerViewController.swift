@@ -15,6 +15,7 @@ class NYTimesBestSellerViewController: UIViewController {
             fetchBooks()
         }
     }
+    var onlineCovers =  [BookImageData]()
     var onlineBooks = [ResultsOfBestSellerBooks](){
         didSet{
             DispatchQueue.main.async {
@@ -46,10 +47,22 @@ class NYTimesBestSellerViewController: UIViewController {
         } else {
            print("has not been save")
         }
+       
     }
     func fetchNYBSCategory(){
         nYBSCategories = CategoryDataManager.fetchCategoriesFromDocumentsDirectory()
     }
+//    func stepupCoverBook(isbn: String){
+//        GoogleApi.searchForBookCovers(isbnNumber: isbn) { (error, onlineCovers) in
+//            if let error = error {
+//                print("Error is \(error)")
+//            }
+//            if let onlineCovers = onlineCovers {
+//                self.onlineCovers = onlineCovers
+////              dump(onlineCovers)
+//            }
+//        }
+//    }
     func fetchBooks(){
         NewYorkBestSellerApiClient.getBestSellerByCategory(category: userSelection) { (appError, onlineCategories) in
             if let appError = appError {
@@ -65,13 +78,48 @@ extension NYTimesBestSellerViewController: UICollectionViewDelegateFlowLayout, U
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return onlineBooks.count
     }
+//    fileprivate func extractedFunc(_ indexPath: IndexPath, _ cell: BestSellerCell) {
+//        ImageHelper.fetchImageFromNetwork(urlString: onlineBooks[indexPath.row].isbns[indexPath.section].isbn13) { (appError, image) in
+//            if let appError = appError {
+//                print(appError.errorMessage())
+//            }
+//            if let image = image {
+//                DispatchQueue.main.async {
+//                    cell.imageObj.image = image
+//                }
+//            }
+//        }
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestSellerCell", for: indexPath) as? BestSellerCell else {return UICollectionViewCell()}
         let settingBookCells = onlineBooks[indexPath.row]
+        if let isbn = settingBookCells.isbns.first?.isbn13  {
+            GoogleApi.searchForBookCovers(isbnNumber: isbn) { (error, imageData) in
+                if let error = error {
+                    print("error is \(error)")
+                }
+                if let imageData = imageData {
+                    ImageHelper.fetchImageFromNetwork(urlString: imageData.imageLinks.smallThumbnail, completion: { (appError, image) in
+                        if let appError = appError {
+                            print("\(appError)")
+                        }
+                        if let image = image {
+                            cell.imageObj.image = image
+                        }
+                    })
+                }
+                
+            }
+        } else {
+            print("no isbn found")
+        }
        cell.titleLabelObj.text = "\(settingBookCells.NumberOfWeeksOnTheBestSellerList) weeks on best seller list"
         if let description = settingBookCells.moreBookInformation.first?.booksDescription {
            cell.bestSellerBookDescriptionTxtViewObj.text = description
         }
+//        extractedFunc(indexPath, cell)
+        
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -8,21 +8,19 @@
 
 import Foundation
 
-
-struct BookImageData {
+struct BookImageData: Codable {
     let totalItems: Int
-    let items: [ItemsData]
+    let items: [ItemsContainer]?
 }
-struct ItemsData {
+struct ItemsContainer: Codable {
     let volumeInfo: VolumeInfoData
 }
 
-struct VolumeInfoData {
+struct VolumeInfoData: Codable {
     let description: String
     let imageLinks: ImageLinksData
 }
 
-struct ImageLinksData {
+struct ImageLinksData: Codable {
     let smallThumbnail: String
-    let thumbnail: String
 }
