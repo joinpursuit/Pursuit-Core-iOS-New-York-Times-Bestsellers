@@ -12,13 +12,10 @@ class BestSellersViewController: UIViewController {
     
     private let bestSellerView = BestSellersView()
     private var bestSellerCategories = [CategoryResults](){
-        didSet { //use case ex. when searching
-            //tableview reload data needs to be on the main thread
+        didSet {
             DispatchQueue.main.async {
                 self.bestSellerView.myBestSellerPickerView.reloadAllComponents()
                 if let categorySelected = UserDefaults.standard.value(forKey: UserDefaultsKeys.settingsCategoryKey) as? Int {
-                    print(categorySelected)
-                    print("Defaults ran")
                     self.bestSellerView.myBestSellerPickerView.selectRow(categorySelected, inComponent: 0, animated: true)
                     self.setupBooks(listName: self.bestSellerCategories[categorySelected].listNameEncoded)
                 } else {
@@ -28,8 +25,7 @@ class BestSellersViewController: UIViewController {
         }
     }
     private var bestSellerBooks = [BookResults](){
-        didSet { //use case ex. when searching
-            //tableview reload data needs to be on the main thread
+        didSet {
             DispatchQueue.main.async {
                 self.bestSellerView.myBestSellerCollectionView.reloadData()
             }
@@ -52,22 +48,12 @@ class BestSellersViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(bestSellerView)
         setupPicker()
-//        setupBooks(listName: "combined-print-and-e-book-fiction")
+        
         bestSellerView.myBestSellerCollectionView.dataSource = self
         bestSellerView.myBestSellerCollectionView.delegate = self
         bestSellerView.myBestSellerPickerView.dataSource = self
         bestSellerView.myBestSellerPickerView.delegate = self
         print(DataPersistenceManager.documentsDirectory())
-    }
-    override func viewDidAppear(_ animated: Bool) {
-//        if let categorySelected = UserDefaults.standard.value(forKey: UserDefaultsKeys.settingsCategoryKey) as? Int {
-//            print(categorySelected)
-//            self.bestSellerView.myBestSellerPickerView.selectRow(categorySelected, inComponent: 0, animated: true)
-//            //code here to setupBooks but I need a string and I have an Int
-//            
-//        } else {
-//            print("no category in defaults")
-//        }
     }
 
     private func setupPicker(){
@@ -78,7 +64,6 @@ class BestSellersViewController: UIViewController {
                 self.bestSellerCategories = categories
             }
         }
-        //code here
     }
     private func setupBooks(listName: String) {
         NYTBookAPI.bookResults(listName: listName) { (appError, books) in
@@ -115,7 +100,6 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
             if let appError = appError {
                 print("couldn't get google info! \(appError.errorMessage())")
                 DispatchQueue.main.async {
-
                     cell.cellImage.image = UIImage(named: "Placeholder")
                 }
             }
@@ -190,8 +174,12 @@ extension BestSellersViewController: UIPickerViewDataSource, UIPickerViewDelegat
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let categoryName = bestSellerCategories[row].listNameEncoded
-        //CHECK IF OK!
         print("category name: \(categoryName)")
         setupBooks(listName: categoryName)
+    }
+}
+extension BestSellersViewController: SettingsViewControllerDelegate {
+    func settingsPicker(row: Int) {
+                self.bestSellerView.myBestSellerPickerView.selectRow(row, inComponent: 0, animated: true)
     }
 }

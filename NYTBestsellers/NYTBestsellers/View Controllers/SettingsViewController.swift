@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol SettingsViewControllerDelegate: AnyObject {
+    func settingsPicker(row: Int)
+}
 class SettingsViewController: UIViewController {
     
+    weak var delegate: SettingsViewControllerDelegate?
     let settingsView = SettingsView()
+    
     private var settingsCategories = [CategoryResults](){
         didSet { //use case ex. when searching
             //tableview reload data needs to be on the main thread
@@ -71,6 +76,7 @@ extension SettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print(settingsCategories[row])
         let category = row
+        delegate?.settingsPicker(row: category)
         UserDefaults.standard.set(category, forKey: UserDefaultsKeys.settingsCategoryKey)
     }
     

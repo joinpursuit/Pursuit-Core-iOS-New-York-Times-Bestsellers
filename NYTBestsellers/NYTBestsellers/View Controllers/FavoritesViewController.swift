@@ -34,7 +34,6 @@ class FavoritesViewController: UIViewController {
 }
 extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return FavoriteModel.getBooks().count
     }
@@ -42,7 +41,6 @@ extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesCollectionViewCell", for: indexPath) as? FavoritesCollectionViewCell else { return UICollectionViewCell()}
         let book = FavoriteModel.getBooks()[indexPath.row]
-//           **** PhotoJournalModel.getPhotoJournal()[indexPath.row]
         cell.layer.cornerRadius = 20.0
         cell.cellButton.tag = indexPath.row
         cell.cellImage.image = UIImage(data: book.imageData)
@@ -58,7 +56,6 @@ extension FavoritesViewController: FavoritesCollectionViewCellDelegate {
         let  deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) -> Void in
             FavoriteModel.deleteBook(index: tag)
             self.favoritesView.myFavoritesCollectionView.reloadData()
-
         })
         let editAction = UIAlertAction(title: "See on Amazon", style: .default)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)

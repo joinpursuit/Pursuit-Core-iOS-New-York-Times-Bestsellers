@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let setVC = SettingsViewController()
     setVC.title = "Settings"
     let setNav = UINavigationController.init(rootViewController: setVC)
+    
+    setVC.delegate = bestVC
 
     let tab = UITabBarController()
     tab.viewControllers = [bestNav,favNav,setNav]

@@ -31,7 +31,6 @@ final class NYTBookAPI {
     }
     static func bookResults(listName: String, completionHandler: @escaping (AppError?, [BookResults]?) -> Void) {
 
-        //listName use encoded
         let endpointURLString = "https://api.nytimes.com/svc/books/v3/lists.json?api-key=\(SecretKeys.bookKey)&list=\(listName)"
         
         NetworkHelper.shared.performDataTask(endpointURLString: endpointURLString) { (appError, data) in
@@ -41,12 +40,11 @@ final class NYTBookAPI {
             if let data = data {
                 do {
                     let bookInfo = try JSONDecoder().decode(BookModel.self, from: data)
-                    
                     completionHandler(nil, bookInfo.results)
                 } catch {
                     completionHandler(AppError.jsonDecodingError(error), nil)
                 }
             }
-            }
+        }
     }
 }
