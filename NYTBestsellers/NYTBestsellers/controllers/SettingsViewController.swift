@@ -56,6 +56,7 @@ extension SettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         let defaultCategory = categories[row].list_name
         UserDefaults.standard.set(defaultSearch, forKey: UserdDefaultKey.pickerviewkey)
         UserDefaults.standard.set(defaultCategory, forKey: UserdDefaultKey.pickerviewkey2)
+       
     }
     
 }

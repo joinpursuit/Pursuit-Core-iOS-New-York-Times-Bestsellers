@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol FavoriteCollectionViewCellDelegate: AnyObject {
+    func presentAlertController(alertController: UIAlertController)
+    func updateCell(favorite: [FavoriteBooks])
+}
+
 
 class FavoriteCollectionViewCell: UICollectionViewCell {
+    weak var delegate: FavoriteCollectionViewCellDelegate?
     lazy var favoriteCollectionCellImage: UIImageView = {
         let background = UIImageView()
       let bg = UIImage(named: "BookPlaceHolder")
@@ -45,6 +51,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
       myButton.backgroundColor = .white
         myButton.setTitleColor(.black, for: .normal)
         myButton.titleLabel?.font = UIFont(name: "Helvetica", size: 50)
+        myButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return myButton
     }()
     
@@ -59,10 +66,21 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
         favoriteTextViewContrains()
         favoriteButton()
         
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+  @objc private func buttonPressed() {
+    let alertController = UIAlertController(title: "Options", message: "", preferredStyle: .actionSheet)
+    let delete = UIAlertAction(title: "Delete", style: .destructive) { delete in
+       BookDataManager.delete(atIndex: self.button.tag)
+        self.delegate?.updateCell(favorite: BookDataManager.fetchFavoriteBooksFromDocumentsDirectory())
+    }
+    alertController.addAction(delete)
+    self.delegate?.presentAlertController(alertController: alertController)
     }
     
     

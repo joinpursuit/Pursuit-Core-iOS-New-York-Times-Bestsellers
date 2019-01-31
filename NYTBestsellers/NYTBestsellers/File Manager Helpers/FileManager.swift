@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class EventDataManager {
+final class BookDataManager {
     private init() {}
     
     private static let filename = "FavoriteBooks.plist"
@@ -31,7 +31,7 @@ final class EventDataManager {
         }
         return books
     }
-    
+    @discardableResult
     static public func saveToDocumentDirectory(newFavoriteEvent: FavoriteBooks) -> (success: Bool, error: Error?) {
         var favoriteBooks = fetchFavoriteBooksFromDocumentsDirectory()
         favoriteBooks.append(newFavoriteEvent)
@@ -46,7 +46,7 @@ final class EventDataManager {
         return (true, nil)
     }
     
-    static func delete(favoriteBook: FavoriteBooks, atIndex index: Int) {
+    static func delete(atIndex index: Int) {
         // get current favorite book and remove favorite from index
         var favoriteBooks = fetchFavoriteBooksFromDocumentsDirectory()
         favoriteBooks.remove(at: index)
@@ -59,6 +59,7 @@ final class EventDataManager {
         } catch {
             print("property list encoding error: \(error)")
         }
+//        favoriteBooks = fetchFavoriteBooksFromDocumentsDirectory()
     }
     
     static public func isFavorite(id: String) -> Bool {

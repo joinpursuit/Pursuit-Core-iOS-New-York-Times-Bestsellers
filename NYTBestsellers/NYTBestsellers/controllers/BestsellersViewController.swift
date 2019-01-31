@@ -38,22 +38,17 @@ class BestSellerViewController: UIViewController {
         bestSeller.BestSellerCollectionView.dataSource = self
         bestSeller.bestSellerPickerView.dataSource = self
         bestSeller.bestSellerPickerView.delegate = self
-        getCategories()
         if let searchRow = UserDefaults.standard.object(forKey: UserdDefaultKey.pickerviewkey) as? Int {
             if let searchWord = UserDefaults.standard.object(forKey: UserdDefaultKey.pickerviewkey2) as? String {
                 keyword = searchWord
                 row = searchRow
                 getBookResults(category: keyword)
-                bestSeller.bestSellerPickerView.selectRow(row, inComponent: 0, animated: true)
             }
             
         }
+         getCategories()
     }
     
-   
-    override func viewWillAppear(_ animated: Bool) {
-          bestSeller.bestSellerPickerView.selectRow(row, inComponent: 0, animated: true)
-    }
     
     
     private func getCategories() {
@@ -62,6 +57,9 @@ class BestSellerViewController: UIViewController {
                 print(appError.errorMessage())
             } else if let categories = categories {
                 self.categories = categories
+                DispatchQueue.main.async {
+                      self.bestSeller.bestSellerPickerView.selectRow(self.row, inComponent: 0, animated: true)
+                }
             }
         }
     }
