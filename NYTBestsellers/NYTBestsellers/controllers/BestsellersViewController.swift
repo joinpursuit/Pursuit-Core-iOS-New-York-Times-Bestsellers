@@ -12,6 +12,7 @@ import UIKit
 
 class BestSellerViewController: UIViewController {
     let bestSeller = BestSellerView()
+    public var row = 0
     public var keyword = ""
     private var categories = [Results](){
         didSet {
@@ -38,13 +39,22 @@ class BestSellerViewController: UIViewController {
         bestSeller.bestSellerPickerView.dataSource = self
         bestSeller.bestSellerPickerView.delegate = self
         getCategories()
-        if let searchCategory = UserDefaults.standard.object(forKey: UserdDefaultKey.pickerviewkey) as? String {
-            keyword = searchCategory
-            getBookResults(category: keyword)
+        if let searchRow = UserDefaults.standard.object(forKey: UserdDefaultKey.pickerviewkey) as? Int {
+            if let searchWord = UserDefaults.standard.object(forKey: UserdDefaultKey.pickerviewkey2) as? String {
+                keyword = searchWord
+                row = searchRow
+                getBookResults(category: keyword)
+                bestSeller.bestSellerPickerView.selectRow(row, inComponent: 0, animated: true)
+            }
+            
         }
-        
-        
     }
+    
+   
+    override func viewWillAppear(_ animated: Bool) {
+          bestSeller.bestSellerPickerView.selectRow(row, inComponent: 0, animated: true)
+    }
+    
     
     private func getCategories() {
         bookAPIClient.getBooksCategory{ (appError, categories) in
@@ -99,13 +109,13 @@ extension BestSellerViewController: UICollectionViewDataSource {
     }
     
     
-
+    
     
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailController = DetailViewController()
-            guard let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell else { return }
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell else { return }
         detailController.detailview.detailImage.image = cell.bestSellerCollectionCellImage.image
         detailController.detailview.detailLabel.text = cell.bestSellerCollectionLabel.text
         detailController.detailview.detailTextView.text = cell.bestSellerTextView.text
@@ -130,6 +140,4 @@ extension BestSellerViewController: UIPickerViewDelegate, UIPickerViewDataSource
         self.keyword = categories[row].list_name
         getBookResults(category: keyword)
     }
-    
-    
 }
