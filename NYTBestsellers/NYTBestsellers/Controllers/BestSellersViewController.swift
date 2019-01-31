@@ -81,7 +81,6 @@ class BestSellersViewController: UIViewController {
 
             }
         } else {
-           // bestSellersView.pickerView.selectRow(0, inComponent: 0, animated: true)
             currentBookCategoryToSearch = bookCategoryPickerViewData[0].list_name_encoded
         }
         searchForBooks()
@@ -103,7 +102,9 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
             GoogleBooksAPIClient.getGoogleBookImageUrl(bookISBN: bookDetailsExists.primaryISBN13) { (appError, bookData) in
                 if let appError = appError {
                     print("GoogleBooksAPIClient - probably reached daily limits - \(appError)")
-                    cell.bookImage.image = UIImage(named: "placeHolder")
+                    DispatchQueue.main.async {
+                         cell.bookImage.image = UIImage(named: "placeHolder")
+                    }
                 } else if let bookData = bookData {
                     self.saveGoogleDescription[indexPath.row] = bookData.bookLongDescription
                     if let image = ImageHelper.fetchImageFromCache(urlString: bookData.imageLinks.thumbnail) {

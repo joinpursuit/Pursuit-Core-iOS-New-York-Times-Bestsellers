@@ -12,15 +12,6 @@ class BookDetailViewController: UIViewController {
     
     let bookDetailView = BookDetailView()
     
-    
-    // passing data from view 1 to detail
-    
-    // prepereForSegue
-    // detailVC.book = book
-    
-    // dependencyInjection
-    // detailVC = DetailViewController(book: book)
-    
     public var bookToSet: SavedBook?
     
     init(book: SavedBook) {
@@ -39,13 +30,22 @@ class BookDetailViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favorite", style: .plain, target: self, action: #selector(favoriteButtonPressed))
         if let bookToSet = bookToSet {
             title = bookToSet.title
-            bookDetailView.bookDetail.text = "\(bookToSet.title) by \(bookToSet.author) \n\n\(bookToSet.longDescription)"
+            bookDetailView.bookDetail.text = "\(bookToSet.title) by \(bookToSet.author) \n\nISBN:\(bookToSet.isbn13)\n\n\(bookToSet.longDescription)"
             if let imageData = bookToSet.bookImage {
                 bookDetailView.bookImage.image = UIImage(data: imageData)
             } else {
                 bookDetailView.bookImage.image = UIImage(named: "placeHolder")
             }
         }
+        bookDetailView.amazonButton.addTarget(self, action: #selector(amazonButtonPressed), for: .touchUpInside)
+    }
+    
+    @objc func amazonButtonPressed() {
+//        if let bookToSet = bookToSet {
+//            let linkToSend = bookToSet.amazonLink
+//            let destination = AmazonLinkViewController(link: linkToSend)
+//            navigationController?.pushViewController(destination, animated: true)
+//        }
     }
     
     @objc func favoriteButtonPressed() {

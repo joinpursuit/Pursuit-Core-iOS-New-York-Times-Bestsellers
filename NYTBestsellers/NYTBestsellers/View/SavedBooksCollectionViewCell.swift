@@ -53,7 +53,7 @@ class SavedBooksCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         [bookImage, bookTitleAndAuthor, bookDescriptionLabel, moreOptionsButton].forEach{ $0.translatesAutoresizingMaskIntoConstraints = false }
         
         [bookImage.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -62,7 +62,6 @@ class SavedBooksCollectionViewCell: UICollectionViewCell {
          bookImage.widthAnchor.constraint(equalToConstant: 200),
          
          bookTitleAndAuthor.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 11),
-//         bookTitleAndAuthor.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5),
          bookTitleAndAuthor.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
          
          bookDescriptionLabel.topAnchor.constraint(equalTo: bookTitleAndAuthor.bottomAnchor, constant: 11),

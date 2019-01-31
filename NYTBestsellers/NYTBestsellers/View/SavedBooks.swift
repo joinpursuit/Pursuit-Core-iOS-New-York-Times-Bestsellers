@@ -33,7 +33,7 @@ class SavedBooks: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func setupConstraints() {
+    private func setupConstraints() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         [collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
          collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0),

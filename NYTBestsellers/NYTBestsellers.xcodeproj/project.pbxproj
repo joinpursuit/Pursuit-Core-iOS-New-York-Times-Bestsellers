@@ -36,6 +36,8 @@
 		A514E18B21FBF60F00BB4B25 /* SavedBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E18A21FBF60F00BB4B25 /* SavedBookModel.swift */; };
 		A514E1CB21FFC76E00BB4B25 /* SavedBooksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E1CA21FFC76E00BB4B25 /* SavedBooksCollectionViewCell.swift */; };
 		A514E1CF2200A95900BB4B25 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E1CE2200A95900BB4B25 /* UserDefaultKeys.swift */; };
+		A514E1EF2201022400BB4B25 /* AmazonLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E1EE2201022400BB4B25 /* AmazonLinkView.swift */; };
+		A514E1F12201029100BB4B25 /* AmazonLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A514E1F02201029100BB4B25 /* AmazonLinkViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +72,8 @@
 		A514E18A21FBF60F00BB4B25 /* SavedBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedBookModel.swift; sourceTree = "<group>"; };
 		A514E1CA21FFC76E00BB4B25 /* SavedBooksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedBooksCollectionViewCell.swift; sourceTree = "<group>"; };
 		A514E1CE2200A95900BB4B25 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
+		A514E1EE2201022400BB4B25 /* AmazonLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmazonLinkView.swift; sourceTree = "<group>"; };
+		A514E1F02201029100BB4B25 /* AmazonLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmazonLinkViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +181,7 @@
 				A514E16C21FB85EE00BB4B25 /* SavedBooks.swift */,
 				A514E1CA21FFC76E00BB4B25 /* SavedBooksCollectionViewCell.swift */,
 				A514E16E21FB85F800BB4B25 /* SettingsView.swift */,
+				A514E1EE2201022400BB4B25 /* AmazonLinkView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 				A514E18421FBC1DD00BB4B25 /* BookDetailViewController.swift */,
 				A514E17621FB863B00BB4B25 /* SavedBooksViewController.swift */,
 				A514E17421FB863600BB4B25 /* SettingsViewController.swift */,
+				A514E1F02201029100BB4B25 /* AmazonLinkViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -276,6 +282,7 @@
 				5718C00421FA77AA00A8E4B8 /* DataPersistenceManager.swift in Sources */,
 				A514E18721FBD44200BB4B25 /* GoogleBook.swift in Sources */,
 				5718BFE921FA75A800A8E4B8 /* AppDelegate.swift in Sources */,
+				A514E1EF2201022400BB4B25 /* AmazonLinkView.swift in Sources */,
 				A514E17521FB863600BB4B25 /* SettingsViewController.swift in Sources */,
 				A514E16421FB7A7100BB4B25 /* SecretKeys.swift in Sources */,
 				A514E18121FBB0E700BB4B25 /* BookListResult.swift in Sources */,
@@ -287,6 +294,7 @@
 				5718BFFE21FA764E00A8E4B8 /* Date+Extensions.swift in Sources */,
 				A514E18921FBF60900BB4B25 /* SavedBook.swift in Sources */,
 				A514E1CB21FFC76E00BB4B25 /* SavedBooksCollectionViewCell.swift in Sources */,
+				A514E1F12201029100BB4B25 /* AmazonLinkViewController.swift in Sources */,
 				5718C00621FA78BA00A8E4B8 /* ImageHelper.swift in Sources */,
 				A514E16F21FB85F800BB4B25 /* SettingsView.swift in Sources */,
 			);

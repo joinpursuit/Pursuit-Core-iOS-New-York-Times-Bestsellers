@@ -11,7 +11,7 @@ import Foundation
 struct NYTAPIClient {
     private init() { }
     static func getBookList(completionHandler: @escaping ((AppError?, [BookCategories]?) -> Void)) {
-        NetworkHelper.shared.performDataTask(endpointURLString: "https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=\(SecretKeys.nytAPIKey)") { (appError, data) in
+        NetworkHelper.shared.performDataTask(endpointURLString: "https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=\(SecretKeys.NYTAPIKey)") { (appError, data) in
             if let appError = appError {
                 completionHandler(appError, nil)
             }
@@ -27,7 +27,7 @@ struct NYTAPIClient {
     }
     
     static func searchForBooks(in list: String, completionHandler: @escaping ((AppError?, [NYTBook]?) -> Void)) {
-        NetworkHelper.shared.performDataTask(endpointURLString: "https://api.nytimes.com/svc/books/v3/lists.json?api-key=\(SecretKeys.nytAPIKey)&list=\(list)") { (appError, data) in
+        NetworkHelper.shared.performDataTask(endpointURLString: "https://api.nytimes.com/svc/books/v3/lists.json?api-key=\(SecretKeys.NYTAPIKey)&list=\(list)") { (appError, data) in
             if let appError = appError {
                 completionHandler(appError, nil)
             }

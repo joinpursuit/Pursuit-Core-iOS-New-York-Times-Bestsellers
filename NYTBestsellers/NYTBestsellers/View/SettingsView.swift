@@ -20,14 +20,14 @@ class SettingsView: UIView {
         super.init(frame: UIScreen.main.bounds)
         backgroundColor = .white
         addSubview(pickerView)
-        setupContraints()
+        setupConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupContraints() {
+    private func setupConstraints() {
         pickerView.translatesAutoresizingMaskIntoConstraints = false
         [pickerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
          pickerView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0),

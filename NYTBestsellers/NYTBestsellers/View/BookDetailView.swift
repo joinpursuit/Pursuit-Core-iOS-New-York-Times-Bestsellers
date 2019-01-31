@@ -9,6 +9,12 @@
 import UIKit
 
 class BookDetailView: UIView {
+    
+    public lazy var amazonButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(named: "amazon"), for: .normal)
+        return button
+    }()
 
     public lazy var bookImage: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "placeHolder"))
@@ -28,6 +34,7 @@ class BookDetailView: UIView {
         backgroundColor = .white
         addSubview(bookImage)
         addSubview(bookDetail)
+        addSubview(amazonButton)
         setupConstraints()
     }
     
@@ -35,8 +42,8 @@ class BookDetailView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupConstraints() {
-        [bookImage, bookDetail].forEach{ $0.translatesAutoresizingMaskIntoConstraints = false }
+    private func setupConstraints() {
+        [bookImage, bookDetail, amazonButton].forEach{ $0.translatesAutoresizingMaskIntoConstraints = false }
         
         [bookImage.centerXAnchor.constraint(equalTo: centerXAnchor),
          bookImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
@@ -46,8 +53,13 @@ class BookDetailView: UIView {
          bookDetail.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 22),
          bookDetail.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 22),
          bookDetail.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -22),
-         bookDetail.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -22)
-            ].forEach{ $0.isActive = true }
+         bookDetail.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -22),
+            
+         amazonButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
+         amazonButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0),
+         amazonButton.heightAnchor.constraint(equalToConstant: 48),
+         amazonButton.widthAnchor.constraint(equalToConstant: 48)
+         ].forEach{ $0.isActive = true }
     }
 
 }

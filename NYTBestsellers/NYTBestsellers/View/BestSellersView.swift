@@ -40,7 +40,7 @@ class BestSellersView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func setupContraints() {
+    private func setupContraints() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         pickerView.translatesAutoresizingMaskIntoConstraints = false
         [collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
