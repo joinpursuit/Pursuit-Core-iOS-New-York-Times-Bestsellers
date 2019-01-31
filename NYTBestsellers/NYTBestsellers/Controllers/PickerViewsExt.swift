@@ -20,8 +20,7 @@ extension BestSellerViewController:UIPickerViewDataSource{
 extension BestSellerViewController:UIPickerViewDelegate{
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     let category = categories[row].list_name
-    selectedCategory = category
-    getBooks(category: category)
+  getBooks(category: category)
   }
   
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -37,8 +36,19 @@ extension SettingsViewController:UIPickerViewDataSource{
   }
   
   func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    return 2
+    return categories.count
   }
   
   
+}
+extension SettingsViewController:UIPickerViewDelegate{
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+     let category = categories[row]
+    UserDefaults.standard.set(category.list_name, forKey: UserDefaultsKeys.chosenCateogry)
+    pickerView.selectedRow(inComponent: component)
+    print(category)
+  }
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    return categories[row].list_name
+  }
 }

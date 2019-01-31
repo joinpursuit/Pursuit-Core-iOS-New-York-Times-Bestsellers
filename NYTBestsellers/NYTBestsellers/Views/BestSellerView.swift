@@ -16,14 +16,13 @@ class BestSellerView: UIView {
     let cv = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
     cv.register(BestSellerCollectionViewCell.self, forCellWithReuseIdentifier: "bestSeller")
     cv.clipsToBounds = true
-    cv.backgroundColor = #colorLiteral(red: 0.8201146126, green: 0.8239109516, blue: 0.8331870437, alpha: 1)
+    cv.backgroundColor = #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1)
     return cv
   }()
   
   public lazy var categoryPickerView:UIPickerView = {
   let pickerView = UIPickerView()
-    pickerView.backgroundColor = #colorLiteral(red: 0.8709788918, green: 0.8658018708, blue: 0.8749588728, alpha: 1)
-    
+    pickerView.backgroundColor = #colorLiteral(red: 0.9008722305, green: 0.5611919165, blue: 0.3632033467, alpha: 1)
   return pickerView
   }()
   
@@ -49,7 +48,7 @@ extension BestSellerView {
   private func setupCollectionView() {
     addSubview(bestSellersCollectionView)
 bestSellersCollectionView.translatesAutoresizingMaskIntoConstraints = false
- bestSellersCollectionView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.40).isActive = true
+ bestSellersCollectionView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.6).isActive = true
   bestSellersCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
   bestSellersCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
   bestSellersCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true

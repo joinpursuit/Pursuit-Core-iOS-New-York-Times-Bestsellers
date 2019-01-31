@@ -19,6 +19,7 @@ struct Results:Codable {
 
 struct BookDetails:Codable{
   let title:String
+  let description:String
   let author:String
   let primary_isbn13: String
 }

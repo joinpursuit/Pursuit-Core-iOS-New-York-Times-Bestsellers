@@ -32,7 +32,7 @@ completionHandler(AppError.badURL(error.errorMessage()),nil)
       if let data = data {
         do{
           let books = try JSONDecoder().decode(Books.self, from: data).results
-          dump(books)
+         // dump(books)
           completionHandler(nil,books)
         }catch{
     completionHandler(AppError.jsonDecodingError(error),nil)
@@ -40,7 +40,7 @@ completionHandler(AppError.badURL(error.errorMessage()),nil)
       }
     }
   }
-  static func getBookCoverInfo(isbn:String,completionHandler: @escaping (AppError?,URL?)->Void){
+  static func getBookCoverInfo(isbn:String,completionHandler: @escaping (AppError?,VolumeInfo?)->Void){
     NetworkHelper.shared.performDataTask(endpointURLString: SecretKeys.getBookCoverUrl(isbn: isbn), httpMethod: "GET", httpBody: nil) { (error, data, response) in
       if let error = error {
     completionHandler(AppError.badURL(error.errorMessage()),nil)
@@ -48,7 +48,7 @@ completionHandler(AppError.badURL(error.errorMessage()),nil)
       if let data = data {
         do{
         let bookInfo = try JSONDecoder().decode(BookInfo.self, from: data)
-          if let smallThumbnail = bookInfo.items.first?.volumeInfo?.imageLinks.smallThumbnail {
+          if let smallThumbnail = bookInfo.items?.first?.volumeInfo {
             print("book url is \(smallThumbnail)")
             completionHandler(nil, smallThumbnail)
           } else {

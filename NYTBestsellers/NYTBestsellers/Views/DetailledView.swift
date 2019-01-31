@@ -9,8 +9,7 @@
 import UIKit
 
 class DetailledView: UIView {
- 
-  let bookCoverImageView:UIImageView = {
+   let bookCoverImageView:UIImageView = {
     let iv = UIImageView()
     iv.image = #imageLiteral(resourceName: "placeholder.png")
     return iv

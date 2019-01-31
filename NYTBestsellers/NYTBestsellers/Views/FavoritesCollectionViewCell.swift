@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol FavoritesCollectionViewCellDelegate:AnyObject {
+  func presentAlertController()
+}
+
 class FavoritesCollectionViewCell: UICollectionViewCell {
+  weak var delegate: FavoritesCollectionViewCellDelegate?
+  
   let bookCoverImageView:UIImageView = {
     let iv = UIImageView()
     iv.image = #imageLiteral(resourceName: "placeholder.png")
@@ -30,25 +36,35 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
   }()
   lazy var expandButton:UIButton = {
     let button = UIButton()
-    button.backgroundColor = .clear
+    button.backgroundColor = .gray
     button.setTitleColor(.white, for: .normal)
    button.setImage(#imageLiteral(resourceName: "icons8-more-filled-25.png"), for: .normal)
+    button.addTarget(self, action: #selector(expandButtonPressed), for: .touchUpInside)
+    
     return button
   }()
   override init(frame: CGRect) {
     super.init(frame: frame)
-    self.backgroundColor = .white
+    self.backgroundColor = .black
     setConstraints()
   }
   
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
   private func setConstraints(){
     imageViewConstraints()
     labelConstraints()
     textViewConstraints()
     expandButtonConstraints()
+  }
+  
+  @objc func expandButtonPressed(){
+    self.backgroundColor = .red
+    delegate?.presentAlertController()
+   
+ 
   }
   private func imageViewConstraints(){
     addSubview(bookCoverImageView)

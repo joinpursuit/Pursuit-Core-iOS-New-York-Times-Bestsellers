@@ -9,13 +9,11 @@
 import Foundation
 
 struct BookInfo :Codable {
- // let kind: String
   let totalItems: Int
-  let items: [Book]
+  let items: [Book]?
 }
 struct Book:Codable {
- // let kind: String
-  let volumeInfo: VolumeInfo?
+  let volumeInfo: VolumeInfo
 }
 struct VolumeInfo:Codable {
   let description:String
