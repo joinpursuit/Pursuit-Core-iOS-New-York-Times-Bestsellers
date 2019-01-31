@@ -89,8 +89,9 @@ extension NYTBestsellersViewController: UICollectionViewDataSource, UICollection
             NYTBestsellers.getCoverImages(isbn: bookISNBs) { (error, data) in
                 if let error = error {
                     print("Error: \(error)")
-                } else if let imageData = data {
-                    ImageHelper.fetchImageFromNetwork(urlString: imageData.smallThumbnail, completion: { (error, image) in
+                } else if let items = data {
+                    cell.googleBookInfo = items[0]
+                    ImageHelper.fetchImageFromNetwork(urlString: items[0].volumeInfo.imageLinks.smallThumbnail, completion: { (error, image) in
                         if let error = error {
                             print("Error: \(error)")
                         } else if let imageData = image {
@@ -105,6 +106,23 @@ extension NYTBestsellersViewController: UICollectionViewDataSource, UICollection
         
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? BestsellersCollectionViewCell {
+           let  detailViewController = NYTBestsellersDetailViewController()
+            if let image = cell.BestsellerImageView.image {
+            
+                detailViewController.googleInfo = cell.googleBookInfo
+                detailViewController.bookImage = image
+                navigationController?.pushViewController(detailViewController, animated: true)
+               
+            } else {
+                detailViewController.bookImage = UIImage(named: "icons8-book-50")
+                detailViewController.googleInfo = cell.googleBookInfo
+                navigationController?.pushViewController(detailViewController, animated: true)
+            }
+        }
     }
 
 }

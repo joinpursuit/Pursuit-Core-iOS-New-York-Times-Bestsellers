@@ -46,15 +46,18 @@ final class NYTBestsellers {
     }
     
     
-    static func getCoverImages(isbn: String, completionHandler: @escaping(Error?,ImageLink?) -> Void){
+    
+    
+    static func getCoverImages(isbn: String, completionHandler: @escaping(Error?,[ItemDetails]?) -> Void){
         let endpoint = "https://www.googleapis.com/books/v1/volumes?q=isbn:\(isbn)&key=AIzaSyAeolJM4r4yvGeRG_Eyel3CDzRWLBke5TQ"
         NetworkHelper.shared.performDataTask(endpointURLString: endpoint) { (error, data) in
             if let error = error {
                 completionHandler(error, nil)
             } else if let data = data {
                 do {
-                    let coverImage = try JSONDecoder().decode(BookInfo.self, from: data)
-                    completionHandler(nil, coverImage.items?.first?.volumeInfo.imageLinks)
+                    let bookInfo = try JSONDecoder().decode(BookInfo.self, from: data)
+                    let items = bookInfo.items
+                    completionHandler(nil, items)
                 } catch {
                     completionHandler(error, nil)
                     print("error")

@@ -35,7 +35,7 @@ class SettingView: UIView {
     func setConstraints() {
     self.addSubview(settingsPickerView)
     settingsPickerView.translatesAutoresizingMaskIntoConstraints = false
-    settingsPickerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 20).isActive = true
+    settingsPickerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 40).isActive = true
     settingsPickerView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.45).isActive = true
     settingsPickerView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
     settingsPickerView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true

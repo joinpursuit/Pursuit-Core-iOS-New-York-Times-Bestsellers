@@ -19,6 +19,8 @@
 		2BD17DCA21FF984200DE15B0 /* FavoritesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD17DC921FF984200DE15B0 /* FavoritesCollectionViewCell.swift */; };
 		2BD17DCC2200997200DE15B0 /* NYTBestsellersAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD17DCB2200997200DE15B0 /* NYTBestsellersAPIClient.swift */; };
 		2BD17DCE2200FFCF00DE15B0 /* GoogleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD17DCD2200FFCF00DE15B0 /* GoogleModel.swift */; };
+		2BD17E1822022FB300DE15B0 /* NYTBestsellersDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD17E1722022FB300DE15B0 /* NYTBestsellersDetailViewController.swift */; };
+		2BD17E2C22036E3F00DE15B0 /* NYTBestsellerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD17E2B22036E3F00DE15B0 /* NYTBestsellerDetailView.swift */; };
 		5718BFE921FA75A800A8E4B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718BFE821FA75A800A8E4B8 /* AppDelegate.swift */; };
 		5718BFF021FA75A900A8E4B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5718BFEF21FA75A900A8E4B8 /* Assets.xcassets */; };
 		5718BFF321FA75A900A8E4B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5718BFF121FA75A900A8E4B8 /* LaunchScreen.storyboard */; };
@@ -43,6 +45,8 @@
 		2BD17DC921FF984200DE15B0 /* FavoritesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BD17DCB2200997200DE15B0 /* NYTBestsellersAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestsellersAPIClient.swift; sourceTree = "<group>"; };
 		2BD17DCD2200FFCF00DE15B0 /* GoogleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleModel.swift; sourceTree = "<group>"; };
+		2BD17E1722022FB300DE15B0 /* NYTBestsellersDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestsellersDetailViewController.swift; sourceTree = "<group>"; };
+		2BD17E2B22036E3F00DE15B0 /* NYTBestsellerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestsellerDetailView.swift; sourceTree = "<group>"; };
 		5718BFE521FA75A800A8E4B8 /* NYTBestsellers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTBestsellers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5718BFE821FA75A800A8E4B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5718BFEF21FA75A900A8E4B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				2BD17D3E21FBB34300DE15B0 /* NYTBestsellersViewController.swift */,
+				2BD17E1722022FB300DE15B0 /* NYTBestsellersDetailViewController.swift */,
 				2BD17D3621FBAB5000DE15B0 /* FavoritesViewController.swift */,
 				2BD17D3821FBAB6100DE15B0 /* SettingsViewController.swift */,
 			);
@@ -81,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				2BD17D4021FBB60000DE15B0 /* BestsellersView.swift */,
+				2BD17E2B22036E3F00DE15B0 /* NYTBestsellerDetailView.swift */,
 				2BD17D4221FBB61200DE15B0 /* FavoritesView.swift */,
 				2BD17D4421FBB62500DE15B0 /* SettingsView.swift */,
 			);
@@ -238,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BD17E2C22036E3F00DE15B0 /* NYTBestsellerDetailView.swift in Sources */,
 				2BD17D4921FBC60000DE15B0 /* BestsellersCollectionViewCell.swift in Sources */,
 				2BD17DCA21FF984200DE15B0 /* FavoritesCollectionViewCell.swift in Sources */,
 				5718C00021FA771800A8E4B8 /* NetworkHelper.swift in Sources */,
@@ -250,6 +257,7 @@
 				5718C00421FA77AA00A8E4B8 /* DataPersistenceManager.swift in Sources */,
 				2BD17D3721FBAB5000DE15B0 /* FavoritesViewController.swift in Sources */,
 				5718BFE921FA75A800A8E4B8 /* AppDelegate.swift in Sources */,
+				2BD17E1822022FB300DE15B0 /* NYTBestsellersDetailViewController.swift in Sources */,
 				5718BFFE21FA764E00A8E4B8 /* Date+Extensions.swift in Sources */,
 				5718C00621FA78BA00A8E4B8 /* ImageHelper.swift in Sources */,
 				2BD17DCE2200FFCF00DE15B0 /* GoogleModel.swift in Sources */,

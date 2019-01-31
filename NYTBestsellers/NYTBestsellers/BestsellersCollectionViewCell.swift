@@ -9,6 +9,9 @@
 import UIKit
 
 class BestsellersCollectionViewCell: UICollectionViewCell {
+    
+    var googleBookInfo: ItemDetails?
+    
     lazy var BestsellerImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .red

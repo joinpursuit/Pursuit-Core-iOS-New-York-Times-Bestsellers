@@ -15,6 +15,9 @@ struct ItemDetails: Codable {
     let volumeInfo: VolumeInformations
 }
 struct VolumeInformations: Codable {
+    let description: String
+    let title: String
+    let authors:[String]
     let imageLinks: ImageLink
     
     
