@@ -9,19 +9,19 @@
 import Foundation
 
 struct NYTBestseller: Codable {
-    let results: [Books]
+    let results: [Books]?
 }
 
 struct Books: Codable {
     let listName: String
     let displayName: String?
     let weeksOnList: Int?
-    let amazonProductUrl: String?
+    //let amazonProductUrl: String?
     enum CodingKeys: String, CodingKey {
         case listName = "list_name"
         case displayName = "display_name"
         case weeksOnList = "weeks_on_list"
-        case amazonProductUrl = "amazon_product_url"
+       // case amazonProductUrl = "amazon_product_url"
         case bookDetails = "book_details"
         
     }

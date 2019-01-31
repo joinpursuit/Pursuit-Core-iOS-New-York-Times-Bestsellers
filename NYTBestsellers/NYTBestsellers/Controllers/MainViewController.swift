@@ -13,7 +13,7 @@ class MainViewController: UIViewController {
     
     let mainView = MainView()
     
-    var bookCategories = [Books]() {
+    var bookCategories = [Books](){
         didSet {
             DispatchQueue.main.async {
                 self.mainView.bestSellerPickerView.reloadAllComponents()
@@ -21,18 +21,19 @@ class MainViewController: UIViewController {
         }
     }
     
-    var googleInfo = [BookInfo]()/*{
+   var googleInfo = [BookInfo](){
         didSet {
             DispatchQueue.main.async {
     
             }
         }
-    } */
+    }
     
-    var bookDetails = [BookData]() {
+    var bookDetails = [BookData](){
         didSet {
             DispatchQueue.main.async {
              self.mainView.myCollectionView.reloadData()
+                dump(self.bookDetails)
             }
         }
     }
@@ -57,7 +58,7 @@ class MainViewController: UIViewController {
             }
             if let data = book {
                 self.googleInfo = data
-                dump(self.googleInfo)
+                //dump(self.googleInfo)
             }
         }
     }
@@ -68,7 +69,10 @@ class MainViewController: UIViewController {
                 print(appError.errorMessage())
             }
             if let data = book {
+                DispatchQueue.main.async {
                 self.bookDetails = data
+                dump(self.bookDetails)
+                }
             }
         }
     }
@@ -84,20 +88,21 @@ class MainViewController: UIViewController {
         mainView.myCollectionView.delegate = self
         mainView.bestSellerPickerView.dataSource = self
         mainView.bestSellerPickerView.delegate = self
+        //dump()
     }
 }
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BooksCollectionViewCell", for: indexPath) as? BooksCollectionViewCell else { return UICollectionViewCell() }
-        cell.WeeksLabel.text = "\(String(describing: bookDetails.first?.weeksOnList)) weeks on best seller list"
-    cell.TextViewDescription.text = bookDetails.first?.bookDetails.description
-        
-//        cell.BestsellerImageView.image = UIImage(named: (collectionCV.first?.volumeInfo.imageLinks.thumbnail)!)
+        let cellInfo = bookDetails[indexPath.row]
+    cell.WeeksLabel.text = "\(cellInfo.weeksOnList) weeks on best seller list"
+    cell.TextViewDescription.text = cellInfo.bookDetails.first?.description
+        cell.BestsellerImageView.image = UIImage(named: (googleInfo.first?.volumeInfo.imageLinks.smallThumbnail)!)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return bookDetails.count
         //return bookDetails[section].bookDetails[section].title.count
     }
 }
@@ -109,6 +114,13 @@ extension MainViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return bookCategories.count
     }
-    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return bookCategories[row].listName
+    }
 
+}
+extension MainViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        navigationController?.pushViewController(DetailViewController(), animated: true)
+    }
 }

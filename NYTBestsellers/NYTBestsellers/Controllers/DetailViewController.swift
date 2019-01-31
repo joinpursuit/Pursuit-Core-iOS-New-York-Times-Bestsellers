@@ -19,6 +19,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(detailView)
+        self.view.backgroundColor = .red 
         // do I declare the images and labels here?
         
       

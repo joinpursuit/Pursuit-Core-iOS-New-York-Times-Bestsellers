@@ -38,7 +38,7 @@ class BooksCollectionViewCell: UICollectionViewCell {
     
     lazy var TextViewDescription: UITextView = {
         let textDescription = UITextView()
-        textDescription.textColor = .white
+        textDescription.textColor = .black
         textDescription.backgroundColor = .magenta
         textDescription.text = "well hello daylightt"
         return textDescription
@@ -55,13 +55,14 @@ class BooksCollectionViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             BestsellerImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
-            BestsellerImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7), BestsellerImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35), WeeksLabel.topAnchor.constraint(equalTo: BestsellerImageView.bottomAnchor, constant: 8), BestsellerImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11)] )
+            BestsellerImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7), BestsellerImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5),BestsellerImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            ] )
         
         NSLayoutConstraint.activate([
-            WeeksLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),  WeeksLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),TextViewDescription.topAnchor.constraint(equalTo: WeeksLabel.bottomAnchor, constant: 0)
+            WeeksLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),  WeeksLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5), WeeksLabel.topAnchor.constraint(equalTo: BestsellerImageView.bottomAnchor, constant: 0)
             ])
         NSLayoutConstraint.activate([
-            TextViewDescription.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),  TextViewDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5), TextViewDescription.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0), TextViewDescription.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5),
+            TextViewDescription.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),  TextViewDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5), TextViewDescription.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),TextViewDescription.topAnchor.constraint(equalTo: WeeksLabel.bottomAnchor) /*TextViewDescription.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5),*/
             ])
     }
     

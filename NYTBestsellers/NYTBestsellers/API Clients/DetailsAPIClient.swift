@@ -10,7 +10,7 @@ import Foundation
 
 final class DetailsAPIClient {
     static func getDetails(completionHandler: @escaping(AppError?, [BookData]?) -> Void) {
-        let URL = "https://api.nytimes.com/svc/books/v3/lists.json?api-key=VRCqUABJm6VlDSFA0TBGv726eRp2RN2t&list=Combined Print and E-Book Fiction"
+        let URL = "https://api.nytimes.com/svc/books/v3/lists.json?api-key=VRCqUABJm6VlDSFA0TBGv726eRp2RN2t&list=Combined-Print-and-E-Book-Fiction"
         NetworkHelper.shared.performDataTask(endpointURLString: URL) { (appError, data) in
             if let data = data {
                 do {
@@ -18,9 +18,11 @@ final class DetailsAPIClient {
                          completionHandler(nil, data.results)
                 } catch {
                          completionHandler(AppError.jsonDecodingError(error), nil)
+                    print("here1")
                 }
                 if let appError = appError {
                     completionHandler(appError, nil)
+                    print("here2")
                 }
             }
         }

@@ -9,16 +9,18 @@
 import Foundation
 
 struct NYTBestsellerCollection: Codable {
-    let results: [BookData]
+    let results: [BookData]?
 }
 
 struct BookData: Codable {
     let isbns: [ISBNS]
     let bookDetails: [Collection]
+    let listName: String
     let weeksOnList: Int
-    let amazonProductUrl: String
+    let amazonProductUrl: String?
     enum CodingKeys: String, CodingKey {
         case isbns
+        case listName = "list_name"
         case bookDetails = "book_details"
         case weeksOnList = "weeks_on_list"
         case amazonProductUrl = "amazon_product_url"
@@ -32,4 +34,6 @@ struct ISBNS: Codable {
 struct Collection: Codable {
     let title: String
     let description: String
+    let author: String
+    let contributor: String
 }

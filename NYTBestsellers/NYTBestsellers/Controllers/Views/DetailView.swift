@@ -10,7 +10,7 @@ import UIKit
 
 class DetailView: UIView {
 
-    lazy var bookImage: UIImageView = {
+   public lazy var bookImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "placeholder-image-2")
         return image
@@ -27,5 +27,24 @@ class DetailView: UIView {
         textView.text = "long description here"
         return textView
     }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: UIScreen.main.bounds)
+        commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+  super.init(coder: aDecoder)
+        commonInit()
+    }
+    private func commonInit() {
+        setConstraints()
+    }
+ 
+    func setConstraints() {
+       
+        
+        
+    }
     
 }
