@@ -65,9 +65,15 @@ class NYTBestSellingController: UIViewController {
 }
 
 extension NYTBestSellingController: NYTBestSellingViewDelegate {
+    // CollectionView
+    func collectionCellPressed(indexPath: IndexPath) {
+        let currentBook = nYTBestSellers[indexPath.row]
+        let destinationVC = NYTDetailBestSellingController.init(book: currentBook)
+        self.navigationController?.pushViewController(destinationVC, animated: true)
+    }
+    
     func configureUICollectionCell(indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = nYTBestSellingView.bestsellersCollectionView.dequeueReusableCell(withReuseIdentifier: "BookCell", for: indexPath) as? BookCell else { return UICollectionViewCell() }
-        
         let currentBook = nYTBestSellers[indexPath.row]
         cell.configureCell(nYTBook: currentBook)
         return cell
@@ -81,9 +87,9 @@ extension NYTBestSellingController: NYTBestSellingViewDelegate {
         return allBookCategories.count
     }
     
+    // PickerView
     func setTitleOfPickerView(rowNum: Int) -> String {
         let currentCategory = allBookCategories[rowNum]
         return currentCategory.displayName
     }
-    
 }

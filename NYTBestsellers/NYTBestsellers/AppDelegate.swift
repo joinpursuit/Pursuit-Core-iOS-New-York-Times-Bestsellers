@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
     
     let mainViewController = NYTBestSellingController()
+    let navMainVC = UINavigationController.init(rootViewController: mainViewController)
     mainViewController.title = "NYT Bestsellers"
     mainViewController.tabBarItem = UITabBarItem.init(title: "Bestsellers", image: UIImage(named: "icons8-best_seller"), selectedImage: UIImage(named: "icons8-best_seller_filled"))
     
@@ -32,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     settingVC.tabBarItem = UITabBarItem.init(title: "Setting", image: UIImage(named: "icons8-settings"), selectedImage: UIImage(named: "icons8-settings_filled"))
     
     let tab = UITabBarController()
-    tab.viewControllers = [mainViewController, favoriteVC, settingVC]
+    tab.viewControllers = [navMainVC, favoriteVC, settingVC]
     
     window = UIWindow.init(frame: UIScreen.main.bounds)
     window?.rootViewController = tab

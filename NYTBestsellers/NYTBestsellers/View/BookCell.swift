@@ -21,14 +21,18 @@ class BookCell: UICollectionViewCell {
     let bookTitleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 13)
+        label.numberOfLines = 0
         label.text = "Book Title"
+        
         return label
     }()
     
     let bookDescriptionTextview: UITextView = {
         let textview = UITextView()
+        textview.isEditable = false
         textview.text = "Gibberish..........Gibberish..........Gibberish..........Gibberish..........Gibberish.........."
-        textview.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
+        textview.backgroundColor = UIColor(hexString: "ffcfdf", alpha: 0.9)
         return textview
     }()
     
@@ -44,7 +48,7 @@ class BookCell: UICollectionViewCell {
     }
     
     private func commmonInt() {
-        self.backgroundColor = .red
+        self.backgroundColor = UIColor(hexString: "ffcfdf")
         setupCell()
     }
     
@@ -92,7 +96,7 @@ extension BookCell {
         bookImageView.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
         bookImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         bookImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-        bookImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.60).isActive = true
+        bookImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.55).isActive = true
         
     }
     
@@ -100,16 +104,16 @@ extension BookCell {
         addSubview(bookTitleLabel)
         bookTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         bookTitleLabel.topAnchor.constraint(equalTo: bookImageView.bottomAnchor, constant: 10).isActive = true
-        bookTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
-        bookTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+        bookTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
+        bookTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
     }
     
     private func setupBookDescription() {
         addSubview(bookDescriptionTextview)
         bookDescriptionTextview.translatesAutoresizingMaskIntoConstraints = false
-        bookDescriptionTextview.topAnchor.constraint(equalTo: bookTitleLabel.bottomAnchor, constant: 10).isActive = true
+        bookDescriptionTextview.topAnchor.constraint(equalTo: bookTitleLabel.bottomAnchor, constant: 0).isActive = true
         bookDescriptionTextview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         bookDescriptionTextview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-        bookDescriptionTextview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
+        bookDescriptionTextview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -18).isActive = true
     }
 }

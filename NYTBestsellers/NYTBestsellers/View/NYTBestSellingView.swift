@@ -9,10 +9,13 @@
 import UIKit
 
 protocol NYTBestSellingViewDelegate: AnyObject {
+    // for pickerView
     func setTitleOfPickerView(rowNum: Int) -> String
-    func numberOfNYTBooks() -> Int
     func numberOfCategories() -> Int
+    // for collection view
+    func numberOfNYTBooks() -> Int
     func configureUICollectionCell(indexPath: IndexPath) -> UICollectionViewCell
+    func collectionCellPressed(indexPath: IndexPath)
 }
 
 class NYTBestSellingView: UIView {
@@ -27,7 +30,8 @@ class NYTBestSellingView: UIView {
         
         let cv = UICollectionView(frame: frame, collectionViewLayout: layout)
         cv.dataSource = self
-        cv.backgroundColor = .yellow
+        cv.delegate = self
+        cv.backgroundColor = UIColor(hexString: "a5dee5")
         return cv
     }()
     
@@ -35,10 +39,10 @@ class NYTBestSellingView: UIView {
         let pv = UIPickerView()
         pv.delegate = self
         pv.dataSource = self
-        pv.backgroundColor = .blue
+        pv.backgroundColor = UIColor(hexString: "a5dee5")
         return pv
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
@@ -50,7 +54,6 @@ class NYTBestSellingView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = .white
         setupViews()
     }
     
@@ -84,7 +87,7 @@ extension NYTBestSellingView {
     }
 }
 
-extension NYTBestSellingView: UICollectionViewDataSource {
+extension NYTBestSellingView: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return delegate?.numberOfNYTBooks() ?? 0
     }
@@ -92,6 +95,11 @@ extension NYTBestSellingView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = delegate?.configureUICollectionCell(indexPath: indexPath) else { return UICollectionViewCell() }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.collectionCellPressed(indexPath: indexPath)
+        print("Cell Pressed")
     }
 }
 
@@ -107,4 +115,8 @@ extension NYTBestSellingView: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return delegate?.setTitleOfPickerView(rowNum: row) ?? "Unknown"
     }
+    
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        <#code#>
+//    }
 }

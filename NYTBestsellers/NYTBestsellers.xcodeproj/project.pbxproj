@@ -35,6 +35,7 @@
 		D6048C9A220004C100087176 /* NYTBestsellingCategoriesAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6048C99220004C100087176 /* NYTBestsellingCategoriesAPIClient.swift */; };
 		D6048C9C220004E800087176 /* NYTBestsellingBooksAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6048C9B220004E800087176 /* NYTBestsellingBooksAPIClient.swift */; };
 		D6048C9E2200050400087176 /* GoogleBookSearchAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6048C9D2200050400087176 /* GoogleBookSearchAPIClient.swift */; };
+		D6048D332202C27C00087176 /* UIColor_Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6048D322202C27C00087176 /* UIColor_Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		D6048C99220004C100087176 /* NYTBestsellingCategoriesAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestsellingCategoriesAPIClient.swift; sourceTree = "<group>"; };
 		D6048C9B220004E800087176 /* NYTBestsellingBooksAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestsellingBooksAPIClient.swift; sourceTree = "<group>"; };
 		D6048C9D2200050400087176 /* GoogleBookSearchAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBookSearchAPIClient.swift; sourceTree = "<group>"; };
+		D6048D322202C27C00087176 /* UIColor_Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor_Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				D6048C9721FFBD8200087176 /* SecretKeys.swift */,
 				5718C00121FA772600A8E4B8 /* AppError.swift */,
 				D60401E421FBA0680002A04C /* Alert Helper */,
+				D6048D312202C26000087176 /* Color Helper */,
 				5718C00721FA78E800A8E4B8 /* Network Services */,
 				5718C00921FA791C00A8E4B8 /* File Manager Helpers */,
 				5718C00821FA790000A8E4B8 /* Date Helpers */,
@@ -166,11 +169,11 @@
 			isa = PBXGroup;
 			children = (
 				D60401F421FBA8E60002A04C /* NYTBestSellingView.swift */,
+				D60401FC21FBA9860002A04C /* BookCell.swift */,
 				D60401F621FBA8FB0002A04C /* NYTDetailBestSellingView.swift */,
 				D60401F821FBA90E0002A04C /* FavoriteView.swift */,
-				D60401FA21FBA9230002A04C /* SettingView.swift */,
-				D60401FC21FBA9860002A04C /* BookCell.swift */,
 				D60401FE21FBA9980002A04C /* FavoriteCell.swift */,
+				D60401FA21FBA9230002A04C /* SettingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -195,6 +198,14 @@
 				D60401EC21FBA58F0002A04C /* SettingViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		D6048D312202C26000087176 /* Color Helper */ = {
+			isa = PBXGroup;
+			children = (
+				D6048D322202C27C00087176 /* UIColor_Extensions.swift */,
+			);
+			name = "Color Helper";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,6 +295,7 @@
 				D604020321FBB2650002A04C /* FavoriteModel.swift in Sources */,
 				D60401ED21FBA58F0002A04C /* SettingViewController.swift in Sources */,
 				5718BFE921FA75A800A8E4B8 /* AppDelegate.swift in Sources */,
+				D6048D332202C27C00087176 /* UIColor_Extensions.swift in Sources */,
 				D60401F721FBA8FB0002A04C /* NYTDetailBestSellingView.swift in Sources */,
 				D604020521FBB8920002A04C /* GoogleBook.swift in Sources */,
 				5718BFFE21FA764E00A8E4B8 /* Date+Extensions.swift in Sources */,

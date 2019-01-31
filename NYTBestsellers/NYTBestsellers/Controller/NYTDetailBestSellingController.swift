@@ -9,10 +9,21 @@
 import UIKit
 
 class NYTDetailBestSellingController: UIViewController {
-
+    
+    let nYTDetailBestSellingView = NYTDetailBestSellingView()
+    
+    var nYTBook: NYTBook!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.addSubview(nYTDetailBestSellingView)
     }
-
+    
+    init (book: NYTBook) {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 }
