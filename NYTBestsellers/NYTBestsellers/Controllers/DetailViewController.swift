@@ -19,9 +19,12 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(detailView)
-        self.view.backgroundColor = .red 
-        // do I declare the images and labels here?
-        
+        self.view.backgroundColor = .red
+        navigationItem.title = "\(String(describing: bookDetails.first?.listName))"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favorite", style: .plain, target: self, action: #selector(addToFavorites))
       
+    }
+    @objc private func addToFavorites() {
+        
     }
 }

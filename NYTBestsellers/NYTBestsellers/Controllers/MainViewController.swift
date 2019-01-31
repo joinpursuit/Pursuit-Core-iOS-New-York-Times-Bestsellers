@@ -97,7 +97,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cellInfo = bookDetails[indexPath.row]
     cell.WeeksLabel.text = "\(cellInfo.weeksOnList) weeks on best seller list"
     cell.TextViewDescription.text = cellInfo.bookDetails.first?.description
-        cell.BestsellerImageView.image = UIImage(named: (googleInfo.first?.volumeInfo.imageLinks.smallThumbnail)!)
+//        cell.BestsellerImageView.image = UIImage(named: (googleInfo.first?.volumeInfo.imageLinks.smallThumbnail)!)
         return cell
     }
     
