@@ -38,6 +38,10 @@ class SavedBooksViewController: UIViewController {
     
     @objc func optionsButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: "What would you like to do?", message: "", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "See on Amazon", style: .default, handler: { (action) in
+            let vc = AmazonLinkViewController(link: self.savedBooks[sender.tag].amazonLink)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }))
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
             SavedBooksModel.deleteBook(atIndex: sender.tag)
             self.getBooks()

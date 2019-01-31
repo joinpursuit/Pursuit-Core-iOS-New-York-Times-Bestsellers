@@ -9,30 +9,40 @@
 import UIKit
 import WebKit
 
-//class AmazonLinkView: UIView {
-//    
-//    public lazy var webView: WKWebView = {
-//        let wv = WKWebView()
-//        wv.backgroundColor = .white
-//        return wv
-//    }()
-//    
-//    override init(frame: CGRect) {
-//        super.init(frame: UIScreen.main.bounds)
-//        backgroundColor = .white
-//        addSubview(webView)
-//        setupConstraints()
-//    }
-//    
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//    
-//    private func setupConstraints() {
-//        webView.translatesAutoresizingMaskIntoConstraints = false
-//        [webView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 1),
-//         webView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 1)
-//            ].forEach{ $0.isActive = true }
-//    }
-//
-//}
+//used https://learnappmaking.com/wkwebview-how-to/ as reference
+
+class AmazonLinkView: UIView {
+    
+    public lazy var webView: WKWebView = {
+        let wv = WKWebView()
+        wv.backgroundColor = .white
+        return wv
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: UIScreen.main.bounds)
+        commonInit()
+    }
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        backgroundColor = .white
+        addSubview(webView)
+        setupConstraints()
+    }
+    
+    private func setupConstraints() {
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        [webView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            webView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            webView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1),
+            webView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1)
+            ].forEach{ $0.isActive = true }
+    }
+
+}

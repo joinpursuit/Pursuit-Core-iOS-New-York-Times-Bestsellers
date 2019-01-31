@@ -41,11 +41,11 @@ class BookDetailViewController: UIViewController {
     }
     
     @objc func amazonButtonPressed() {
-//        if let bookToSet = bookToSet {
-//            let linkToSend = bookToSet.amazonLink
-//            let destination = AmazonLinkViewController(link: linkToSend)
-//            navigationController?.pushViewController(destination, animated: true)
-//        }
+        if let bookToSet = bookToSet {
+            let linkToSend = bookToSet.amazonLink
+            let destination = AmazonLinkViewController(link: linkToSend)
+            navigationController?.pushViewController(destination, animated: true)
+        }
     }
     
     @objc func favoriteButtonPressed() {
