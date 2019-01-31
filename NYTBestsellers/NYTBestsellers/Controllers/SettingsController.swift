@@ -26,17 +26,27 @@ class SettingsController: UIViewController {
       view.backgroundColor = .white
       navigationItem.title = "Settings"
       
+
       arrayOfPickerViewData = PickerViewDataHelper.getPickerViewCategoriesData()
-      dump(arrayOfPickerViewData)
       
       settings.settingsPickerView.dataSource = self
       settings.settingsPickerView.delegate = self
+      
     }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(true)
+    setThePickerViewToSavedCategory()
+
+  }
   
-  //TODO - SAVE to user default didSelectRowat
 
+  func setThePickerViewToSavedCategory() {
+    if let selectedCategoryIndex = UserDefaults.standard.object(forKey: KeysForUserDefaults.indexForPickerView) as? String {
+      self.settings.settingsPickerView.selectRow(Int(selectedCategoryIndex)!, inComponent: 0, animated: true)
+    }
 
+  }
 
 }
 
@@ -56,6 +66,11 @@ extension SettingsController: UIPickerViewDelegate, UIPickerViewDataSource {
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     
     let categoryName = arrayOfPickerViewData[row].listName
+    
+    UserDefaults.standard.set(categoryName, forKey: KeysForUserDefaults.preferredCategory)
+    
+    UserDefaults.standard.set(String(row), forKey: KeysForUserDefaults.indexForPickerView)
+    
     
   }
   

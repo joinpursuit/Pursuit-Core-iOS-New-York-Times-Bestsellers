@@ -12,7 +12,6 @@ class NYTBestSellerController: UIViewController {
   
   let bestSellerView = BestSellerView()
   
-  public var imageToSegue = UIImage()
   
   public var descriptionFromGoogle = String()
   
@@ -56,14 +55,24 @@ class NYTBestSellerController: UIViewController {
     } else {
       getCategories()
     }
-    
-    
-    
-    
-    //TODO I'll wrap this up TO CALL user defaults
-    getBookInfo(categoryName: "Humor")
-    
+    checkforDefaults()
   }
+  
+  private func checkforDefaults() {
+    
+    
+    if let defaultCategory = UserDefaults.standard.object(forKey: KeysForUserDefaults.preferredCategory) as? String {
+      getBookInfo(categoryName: defaultCategory)
+    } else {
+      getBookInfo(categoryName: "Humor")
+    }
+    
+    if let selectRowIndex = UserDefaults.standard.object(forKey: KeysForUserDefaults.indexForPickerView) as? String {
+      
+      self.bestSellerView.categoryPickerView.selectRow(Int(selectRowIndex)!, inComponent: 0, animated: true)
+    }
+  }
+  
   
   func getCategories() {
     CategoriesAPICLient.getCategoriesData { (appError, categories) in
@@ -72,8 +81,8 @@ class NYTBestSellerController: UIViewController {
       }
       if let arrayOfCategoryName = categories {
         self.categoriesInfo = arrayOfCategoryName
-       PickerViewDataHelper.savePickerViewCategoriesData(arrayOfCategories: arrayOfCategoryName)
-      
+        PickerViewDataHelper.savePickerViewCategoriesData(arrayOfCategories: arrayOfCategoryName)
+        
       }
     }
   }

@@ -63,7 +63,9 @@ class BookDetailsController: UIViewController {
     if let extendedBookDescription = descriptionFromGoodle {
      detailedViewInstance.bookDescription.text = extendedBookDescription
     }
+    
     detailedViewInstance.amazonLaunchButton.setImage(UIImage(named: "amazonLogo"), for: .normal)
+    
     if let image = imageForDetailed{
     detailedViewInstance.bookCover.image = image
     }

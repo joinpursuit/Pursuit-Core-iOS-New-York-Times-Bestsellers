@@ -28,6 +28,7 @@
 		1E1601EF21FF910500303E32 /* FavoriteBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1601EE21FF910500303E32 /* FavoriteBook.swift */; };
 		1E16020A220107D800303E32 /* FavoritesDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E160209220107D800303E32 /* FavoritesDataManager.swift */; };
 		1E16020C22010C9800303E32 /* PickerViewDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E16020B22010C9800303E32 /* PickerViewDataHelper.swift */; };
+		1E16029222038BAF00303E32 /* KeyForUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E16029122038BAF00303E32 /* KeyForUserDefaults.swift */; };
 		5718BFE921FA75A800A8E4B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718BFE821FA75A800A8E4B8 /* AppDelegate.swift */; };
 		5718BFF021FA75A900A8E4B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5718BFEF21FA75A900A8E4B8 /* Assets.xcassets */; };
 		5718BFF321FA75A900A8E4B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5718BFF121FA75A900A8E4B8 /* LaunchScreen.storyboard */; };
@@ -61,6 +62,7 @@
 		1E1601EE21FF910500303E32 /* FavoriteBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBook.swift; sourceTree = "<group>"; };
 		1E160209220107D800303E32 /* FavoritesDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesDataManager.swift; sourceTree = "<group>"; };
 		1E16020B22010C9800303E32 /* PickerViewDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewDataHelper.swift; sourceTree = "<group>"; };
+		1E16029122038BAF00303E32 /* KeyForUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyForUserDefaults.swift; sourceTree = "<group>"; };
 		5718BFE521FA75A800A8E4B8 /* NYTBestsellers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTBestsellers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5718BFE821FA75A800A8E4B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5718BFEF21FA75A900A8E4B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 		5718C00921FA791C00A8E4B8 /* File Manager Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				1E16029122038BAF00303E32 /* KeyForUserDefaults.swift */,
 				5718C00321FA77AA00A8E4B8 /* DataPersistenceManager.swift */,
 				1E160209220107D800303E32 /* FavoritesDataManager.swift */,
 				1E16020B22010C9800303E32 /* PickerViewDataHelper.swift */,
@@ -301,6 +304,7 @@
 				1E11498521FB9DD0008E19D2 /* TabViewController.swift in Sources */,
 				1E11498821FB9E79008E19D2 /* FavoritesController.swift in Sources */,
 				1E1149A521FE1476008E19D2 /* BooksAPIClient.swift in Sources */,
+				1E16029222038BAF00303E32 /* KeyForUserDefaults.swift in Sources */,
 				1E16020C22010C9800303E32 /* PickerViewDataHelper.swift in Sources */,
 				1E11499921FB9F7C008E19D2 /* FavoritesCollectionCell.swift in Sources */,
 				1E11499721FB9F62008E19D2 /* BestSellerCollectionCell.swift in Sources */,
