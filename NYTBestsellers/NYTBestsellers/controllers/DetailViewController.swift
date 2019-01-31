@@ -51,6 +51,5 @@ class DetailViewController: UIViewController {
             showAlert(title: "", message: "\(self.detailview.detailLabel.text!) added to favorites")
         }
     }
-    
 }
 

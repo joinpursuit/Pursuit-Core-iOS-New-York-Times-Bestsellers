@@ -12,11 +12,7 @@ import UIKit
 
 class BestSellerViewController: UIViewController {
     let bestSeller = BestSellerView()
-    public var row = 0 {
-        didSet {
-           
-        }
-    }
+    public var row = 0
     public var keyword = ""
     private var categories = [Results](){
         didSet {
@@ -39,9 +35,7 @@ class BestSellerViewController: UIViewController {
             DispatchQueue.main.async {
                 guard self.categories.count > 0 else { return }
                 self.getBookResults(category: self.categories[searchRow].list_name)
-              
             }
-          
         }
         }
     
@@ -94,7 +88,6 @@ class BestSellerViewController: UIViewController {
 }
 
 extension BestSellerViewController: UICollectionViewDelegateFlowLayout {
-    
 }
 
 
@@ -136,7 +129,6 @@ extension BestSellerViewController: UICollectionViewDataSource {
         detailController.detailview.detailLabel.text = cell.bestSellerCollectionLabel.text
         detailController.detailview.detailTextView.text = cell.bestSellerTextView.text
         self.navigationController?.pushViewController(detailController, animated: true)
-        
     }
 }
 

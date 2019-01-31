@@ -36,7 +36,6 @@ let settingsView = SettingsView()
                 print(appError.errorMessage())
             } else if let categories = categories {
                 self.categories = categories
-                
             }
         }
     }
@@ -60,7 +59,6 @@ extension SettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         let defaultCategory = categories[row].list_name
         UserDefaults.standard.set(defaultSearch, forKey: UserdDefaultKey.pickerviewkey)
         UserDefaults.standard.set(defaultCategory, forKey: UserdDefaultKey.pickerviewkey2)
-       // bestSellerView.bestSellerPickerView.selectRow(row, inComponent: 0, animated: true)
     }
     
 }

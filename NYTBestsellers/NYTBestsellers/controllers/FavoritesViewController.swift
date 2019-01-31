@@ -24,18 +24,14 @@ let favoriteView = FavoriteView()
       self.view.addSubview(favoriteView)
         self.favoriteView.favoriteCollectionView.delegate = self
         self.favoriteView.favoriteCollectionView.dataSource = self
-       
     }
     
     override func viewWillAppear(_ animated: Bool) {
          self.favoriteBooks = BookDataManager.fetchFavoriteBooksFromDocumentsDirectory()
     }
-    
-    
 }
 
 extension FavoriteViewController: UICollectionViewDelegateFlowLayout {
-    
 }
 
 extension FavoriteViewController: UICollectionViewDataSource {
@@ -53,24 +49,17 @@ extension FavoriteViewController: UICollectionViewDataSource {
         cell.delegate = self
         return cell
     }
-    
-    
 }
 
 extension FavoriteViewController: FavoriteCollectionViewCellDelegate {
     func updateCell(favorite: [FavoriteBooks]) {
         self.favoriteBooks = favorite
-        
     }
   
   
     func presentAlertController(alertController: UIAlertController) {
         self.present(alertController, animated: true, completion: {
             self.favoriteView.favoriteCollectionView.reloadData()
-       
         })
     }
-    
-   
-    
 }
