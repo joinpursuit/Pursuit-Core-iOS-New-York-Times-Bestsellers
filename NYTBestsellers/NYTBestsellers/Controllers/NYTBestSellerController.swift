@@ -50,25 +50,21 @@ class NYTBestSellerController: UIViewController {
     bestSellerView.categoryPickerView.dataSource = self
     
     
-//    let fetchedCategories = CategoriesDataManager.fetchCategories()
-//    if fetchedCategories.count == 0 {
-//      getCategories()
-//    }
-    getCategories()
+    
+   getCategories()
     //TODO I'll wrap this up TO CALL user defaults
-    getBookInfo(categoryName:"")
+    getBookInfo(categoryName: "Humor")
     
   }
   
-  func getCategories(){
+  func getCategories() {
     CategoriesAPICLient.getCategoriesData { (appError, categories) in
       if let appError = appError {
         print(appError.errorMessage())
       }
       if let arrayOfCategoryName = categories {
         self.categoriesInfo = arrayOfCategoryName
-//        dump(self.categoriesInfo)
-        //save into FileMa
+        PickerViewDataHelper.savePickerViewCategoriesData()
       }
     }
   }
@@ -111,7 +107,7 @@ extension NYTBestSellerController: UICollectionViewDataSource, UICollectionViewD
       if let data = image {
         
         let imageToSet = data[0].volumeInfo.imageLinks.thumbnail
-      
+        
         //Taking advatange of this call to get the long description for the detailed view.
         self.descriptionFromGoogle = data[0].volumeInfo.description
         

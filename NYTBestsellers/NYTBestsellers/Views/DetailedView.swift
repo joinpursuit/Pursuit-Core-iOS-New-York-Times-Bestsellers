@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ButtonInfoDelegate: AnyObject {
+  func amazonButton()
+}
+
 class DetailedView: UIView {
   
   lazy var bookCover: UIImageView = {
@@ -34,15 +38,16 @@ class DetailedView: UIView {
   
   lazy var amazonLaunchButton: UIButton = {
     let button = UIButton()
-    button.imageView?.image = UIImage(named: "amazonLogo")
-    button.backgroundColor = .blue
-    //    button.setTitle("Segue", for: .normal)
-    
-    //    button.addTarget(self, action: #selector(seguePressed), for: .touchUpInside)
+    button.setImage(UIImage(named: "amazonLogo"), for: .normal)
+//    button.addTarget(self, action: #selector(amazonButtonPressed), for: .touchUpInside)
     
     return button
   }()
   
+//  @objc func amazonButtonPressed() {
+//    ButtonInfoDelegate.amazonButton()
+//  }
+
   
   override init(frame: CGRect) {
     super.init(frame: UIScreen.main.bounds)
@@ -51,6 +56,8 @@ class DetailedView: UIView {
     addSubview(bookDescription)
     addSubview(amazonLaunchButton)
     setupDetailedViewConstraints()
+    
+   
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -72,8 +79,8 @@ extension DetailedView {
   private func imageConstraints() {
     bookCover.translatesAutoresizingMaskIntoConstraints = false
     bookCover.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 11).isActive = true
-    bookCover.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.5).isActive = true
-    bookCover.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.6).isActive = true
+    bookCover.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.4).isActive = true
+    bookCover.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.5).isActive = true
     bookCover.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
   }
   
@@ -95,8 +102,11 @@ extension DetailedView {
   }
   
   private func amazonLaunchConstraints() {
-    amazonLaunchButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 11).isActive = true
-    amazonLaunchButton.leadingAnchor.constraint(equalTo: bookCover.trailingAnchor, constant: 5).isActive = true
-    amazonLaunchButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 5).isActive = true
+    amazonLaunchButton.translatesAutoresizingMaskIntoConstraints = false
+    amazonLaunchButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 12).isActive = true
+    amazonLaunchButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11).isActive = true
+    amazonLaunchButton.leadingAnchor.constraint(equalTo: bookCover.trailingAnchor, constant: 11).isActive = true
   }
+  
+
 }

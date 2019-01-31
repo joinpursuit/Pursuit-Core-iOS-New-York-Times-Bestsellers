@@ -43,7 +43,6 @@ class BookDetailsController: UIViewController {
                                          bookDescription: bookDesription,
                                          createdAt: Date.getISOTimestamp())
     
-    
     FavoritesDataManager.addEntry(book: favoriteBook)
     
   }
