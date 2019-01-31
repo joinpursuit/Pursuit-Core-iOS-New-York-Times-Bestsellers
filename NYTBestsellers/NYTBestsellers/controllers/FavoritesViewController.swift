@@ -13,7 +13,6 @@ import UIKit
 
 class FavoriteViewController: UIViewController {
 let favoriteView = FavoriteView()
-    //let favoriteCell = FavoriteCollectionViewCell()
     private var favoriteBooks = [FavoriteBooks]() {
         didSet {
             self.favoriteView.favoriteCollectionView.reloadData()
@@ -25,7 +24,6 @@ let favoriteView = FavoriteView()
       self.view.addSubview(favoriteView)
         self.favoriteView.favoriteCollectionView.delegate = self
         self.favoriteView.favoriteCollectionView.dataSource = self
-//        self.favoriteBooks = BookDataManager.fetchFavoriteBooksFromDocumentsDirectory()
        
     }
     
@@ -69,8 +67,8 @@ extension FavoriteViewController: FavoriteCollectionViewCellDelegate {
     func presentAlertController(alertController: UIAlertController) {
         self.present(alertController, animated: true, completion: {
             self.favoriteView.favoriteCollectionView.reloadData()
+       
         })
-        //self.favoriteView.favoriteCollectionView.reloadData()
     }
     
    

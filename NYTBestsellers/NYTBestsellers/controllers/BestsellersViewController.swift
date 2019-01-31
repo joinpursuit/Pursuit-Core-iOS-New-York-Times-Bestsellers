@@ -12,7 +12,11 @@ import UIKit
 
 class BestSellerViewController: UIViewController {
     let bestSeller = BestSellerView()
-    public var row = 0
+    public var row = 0 {
+        didSet {
+           
+        }
+    }
     public var keyword = ""
     private var categories = [Results](){
         didSet {
@@ -28,6 +32,20 @@ class BestSellerViewController: UIViewController {
             }
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+         if let searchRow = UserDefaults.standard.object(forKey: UserdDefaultKey.pickerviewkey) as? Int {
+             bestSeller.bestSellerPickerView.selectRow(searchRow, inComponent: 0, animated: true)
+            DispatchQueue.main.async {
+                guard self.categories.count > 0 else { return }
+                self.getBookResults(category: self.categories[searchRow].list_name)
+              
+            }
+          
+        }
+        }
+    
+    
     
     
     
