@@ -35,12 +35,6 @@ class BookDetailsController: UIViewController {
   
   @objc func favoriteButtonTapped(_ sender: UIBarButtonItem!) {
    
-    let alert = UIAlertController.init(title: "Book was saved", message: nil, preferredStyle: .alert)
-    let ok = UIAlertAction.init(title: "Ok", style: .default) { (UIAlertAction) in
-      self.dismiss(animated: true, completion: nil)
-    }
-    alert.addAction(ok)
-    present(alert, animated: true, completion: nil)
     
     let weeksOnBestSeller = bookInDetail?.weeks_on_list.description ?? "no weeks on best seller"
     let bookDesription = descriptionFromGoodle ?? "no book description"
@@ -52,6 +46,13 @@ class BookDetailsController: UIViewController {
     
     FavoritesDataManager.addEntry(book: favoriteBook)
     
+    
+    let alert = UIAlertController.init(title: "Book was saved", message: nil, preferredStyle: .alert)
+    let ok = UIAlertAction.init(title: "Ok", style: .default) { (UIAlertAction) in
+      self.dismiss(animated: true, completion: nil)
+    }
+    alert.addAction(ok)
+    present(alert, animated: true, completion: nil)
   }
   
   func setupUI() {

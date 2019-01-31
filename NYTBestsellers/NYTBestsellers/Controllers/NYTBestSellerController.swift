@@ -49,9 +49,17 @@ class NYTBestSellerController: UIViewController {
     bestSellerView.categoryPickerView.delegate =  self
     bestSellerView.categoryPickerView.dataSource = self
     
+    let arrayForPickerViewFromDocumentsDirectory = PickerViewDataHelper.getPickerViewCategoriesData()
+    
+    if arrayForPickerViewFromDocumentsDirectory.count != 0 {
+      categoriesInfo = arrayForPickerViewFromDocumentsDirectory
+    } else {
+      getCategories()
+    }
     
     
-   getCategories()
+    
+    
     //TODO I'll wrap this up TO CALL user defaults
     getBookInfo(categoryName: "Humor")
     
