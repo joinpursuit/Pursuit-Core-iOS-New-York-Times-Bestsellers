@@ -12,29 +12,37 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     
     lazy var bookImage: UIImageView = {
         let image = UIImageView()
-        image.backgroundColor = .green
+        image.backgroundColor = .white
         return image
     }()
     lazy var bookLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .gray
+        label.backgroundColor = .white
+        label.layer.cornerRadius = 2.0
+        label.layer.borderWidth = 1.0
         return label
     }()
     lazy var bookText: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = .white
+        textView.layer.cornerRadius = 5.0
+        textView.layer.borderWidth = 2.0
         return textView
     }()
     lazy var menuButton: UIButton = {
         let button = UIButton()
         button.setTitle("•••", for: .normal)
         button.setTitleColor(.black, for: .normal)
+        button.layer.borderWidth = 0.8
+        button.layer.cornerRadius = 2.0
         return button
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .red
+        self.backgroundColor = .white
+        self.layer.cornerRadius = 10.0
+        self.layer.borderWidth = 5.0
         commonInit()
     }
     required init?(coder aDecoder: NSCoder) {

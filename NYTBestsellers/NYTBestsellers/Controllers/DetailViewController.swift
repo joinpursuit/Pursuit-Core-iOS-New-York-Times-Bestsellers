@@ -50,7 +50,9 @@ class DetailViewController: UIViewController {
     }
     @objc func amazonSegue() {
         let amazon = AmazonWebViewController()
-        self.navigationController?.pushViewController(amazon, animated: true)
+        amazon.urlLink = favoriteBook.amazon_product_url.absoluteString
+        amazon.modalPresentationStyle = .overFullScreen
+        self.present(amazon, animated: true, completion: nil)
     }
     func updateUI(book: Book){
         DispatchQueue.main.async {
@@ -69,7 +71,6 @@ class DetailViewController: UIViewController {
                             if let image = image {
                                 DispatchQueue.main.async {
                                     self.detailView.bookImage.image = image
-                                
                                 }
                             }
                         })

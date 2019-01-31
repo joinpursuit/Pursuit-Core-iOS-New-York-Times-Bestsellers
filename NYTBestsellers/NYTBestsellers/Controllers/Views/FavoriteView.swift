@@ -18,7 +18,9 @@ class FavoriteView: UIView {
         
         var cv = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
         
-        cv.backgroundColor = .gray
+        cv.backgroundColor = .white
+        cv.layer.borderWidth = 10.0
+        cv.layer.cornerRadius = 10.0
         return cv
     }()
     
@@ -33,7 +35,7 @@ class FavoriteView: UIView {
     }
     private func commonInit(){
         self.collectionView.register(FavoriteCollectionViewCell.self, forCellWithReuseIdentifier: "FavoriteCell")
-        backgroundColor = .red
+        backgroundColor = .white
         setUpConstraints()
     }
 }

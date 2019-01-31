@@ -45,6 +45,10 @@ class FavoriteViewController: UIViewController {
         {
             (alert: UIAlertAction!) -> Void in
             // add amazon button
+            let amazon = AmazonWebViewController()
+            amazon.urlLink = self.books[sender.tag].link.absoluteString
+            amazon.modalPresentationStyle = .overFullScreen
+            self.present(amazon, animated: true, completion: nil)
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:

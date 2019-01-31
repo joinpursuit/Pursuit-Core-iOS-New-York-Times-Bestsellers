@@ -7,13 +7,21 @@
 //
 
 import UIKit
-
+import WebKit
 class AmazonWebView: UIView {
 
     lazy var dismissButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        button.isOpaque = false
         return button
+    }()
+    lazy var newView: WKWebView = {
+        let newView = WKWebView()
+        newView.translatesAutoresizingMaskIntoConstraints = false
+        newView.backgroundColor = .white
+        return newView
     }()
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
@@ -25,17 +33,20 @@ class AmazonWebView: UIView {
         fatalError("init(coder:) failed to implement")
     }
     private func commonInit(){
-        backgroundColor = .red
         setUpConstraints()
     }
-
     func setUpConstraints() {
-        func setupDismissButton() {
-            addSubview(dismissButton)
-            dismissButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-            dismissButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-            dismissButton.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-            dismissButton.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        }
+        addSubview(dismissButton)
+        dismissButton.translatesAutoresizingMaskIntoConstraints = false
+        dismissButton.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
+        dismissButton.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor).isActive = true
+        dismissButton.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor).isActive = true
+        dismissButton.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor).isActive = true
+        
+        addSubview(newView)
+        newView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        newView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        newView.heightAnchor.constraint(equalToConstant: 600).isActive = true
+        newView.widthAnchor.constraint(equalToConstant: 400).isActive = true
     }
 }

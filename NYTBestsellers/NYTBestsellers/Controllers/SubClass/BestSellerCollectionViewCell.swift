@@ -12,25 +12,30 @@ class BestSellerCollectionViewCell: UICollectionViewCell {
     
     lazy var bookImage: UIImageView = {
         let image = UIImageView()
-        image.backgroundColor = .green
         return image
     }()
     lazy var bookLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .gray
+        label.backgroundColor = .white
         label.font = UIFont.systemFont(ofSize: 15.0)
+        label.layer.borderWidth = 1.0
+        label.layer.cornerRadius = 5.0
         return label
     }()
     lazy var bookText: UITextView = {
         let textView = UITextView()
-        textView.backgroundColor = .yellow
+        textView.backgroundColor = .white
         textView.isEditable = false
+        textView.layer.borderWidth = 2.0
+        textView.layer.cornerRadius = 10.0
         return textView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .red
+        backgroundColor = .white
+        self.layer.borderWidth = 2.0
+        self.layer.cornerRadius = 5.0
         commonInit()
     }
     required init?(coder aDecoder: NSCoder) {

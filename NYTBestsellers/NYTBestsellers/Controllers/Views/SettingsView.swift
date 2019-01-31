@@ -12,18 +12,17 @@ class SettingsView: UIView {
 
     lazy var pickerView: UIPickerView = {
         let picker = UIPickerView.init(frame: self.bounds)
-        picker.backgroundColor = .blue
+        picker.backgroundColor = .white
         return picker
     }()
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
-        backgroundColor = .green
+
         setupPickerView()
     }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        backgroundColor = .green
         setupPickerView()
         fatalError("init(coder:) failed to implement")
     }
@@ -35,20 +34,5 @@ class SettingsView: UIView {
         pickerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
         pickerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
         pickerView.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
-    }
-}
-extension SettingsView: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 50
-    }
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(row)
-    }
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
     }
 }

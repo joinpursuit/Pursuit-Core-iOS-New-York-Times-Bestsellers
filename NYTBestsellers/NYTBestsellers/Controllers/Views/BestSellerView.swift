@@ -23,12 +23,16 @@ class BestSellerView: UIView {
         
         var cv = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
 
-        cv.backgroundColor = .gray
+        cv.backgroundColor = .white
+        cv.layer.borderWidth = 10.0
+        cv.layer.cornerRadius = 10.0
         return cv
     }()
     lazy var pickerView: UIPickerView = {
         let picker = UIPickerView.init(frame: self.bounds)
-        picker.backgroundColor = .blue
+        picker.backgroundColor = .white
+        picker.layer.cornerRadius = 10.0
+        picker.layer.borderWidth = 10.0
         return picker
     }()
     override init(frame: CGRect) {
@@ -42,7 +46,6 @@ class BestSellerView: UIView {
     }
     private func commonInit(){
         self.collectionView.register(BestSellerCollectionViewCell.self, forCellWithReuseIdentifier: "BestSellerCell")
-        backgroundColor = .yellow
         setUpConstraints()
     }
 }

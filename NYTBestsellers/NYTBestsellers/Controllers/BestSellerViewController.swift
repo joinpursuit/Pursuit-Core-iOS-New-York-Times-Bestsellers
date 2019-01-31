@@ -27,7 +27,7 @@ class BestSellerViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = .white
         bestSellerView.collectionView.dataSource = self
         bestSellerView.collectionView.delegate = self
         bestSellerView.pickerView.dataSource = self
