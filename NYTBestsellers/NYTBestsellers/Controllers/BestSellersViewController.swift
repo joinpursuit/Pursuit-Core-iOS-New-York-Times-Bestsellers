@@ -117,7 +117,8 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
                                                author: bestSellingBooks[indexPath.row].book_details[0].author,
                                                description: bestSellingBooks[indexPath.row].book_details[0].description,
                                                weeks: bestSellingBooks[indexPath.row].weeks_on_list,
-                                               amazonLink: bestSellingBooks[indexPath.row].amazon_product_url)
+                                               amazonLink: bestSellingBooks[indexPath.row].amazon_product_url,
+                                               bookTitle: bestSellingBooks[indexPath.row].book_details[0].title)
         self.navigationController?.pushViewController(detail, animated: true)
     }
     

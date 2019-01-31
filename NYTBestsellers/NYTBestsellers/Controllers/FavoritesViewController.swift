@@ -7,15 +7,16 @@
 //
 
 import UIKit
+import SafariServices
 
-class FavoritesViewController: UIViewController {
+class FavoritesViewController: UIViewController, SFSafariViewControllerDelegate {
     
     let favoritesView = FavoritesView()
     var allFavorites = DataPersistenceModel.getFavBooks()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Favorites()"
+        navigationItem.title = "Favorites(\(allFavorites.count))"
         view.addSubview(favoritesView)
         favoritesView.favCollectionView.dataSource = self
 
@@ -32,13 +33,27 @@ class FavoritesViewController: UIViewController {
         allFavorites = DataPersistenceModel.getFavBooks()
     }
     
+    
     @objc func actionButtonPressed(sender: UIButton) {
         let optionMenu = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (UIAlertAction) in
             DataPersistenceModel.delete(index: sender.tag)
             self.reload()
         }
+        let amazonAction = UIAlertAction(title: "See on Amazon", style: .default) { (UIAlertAction) in
+            let urlString = self.allFavorites[sender.tag].amazonLink.absoluteString
+            if let url = URL(string: urlString) {
+                let config = SFSafariViewController.Configuration()
+                config.entersReaderIfAvailable = true
+                let vc = SFSafariViewController(url: url, configuration: config)
+                self.present(vc, animated: true)
+            }
+    
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         optionMenu.addAction(deleteAction)
+        optionMenu.addAction(amazonAction)
+        optionMenu.addAction(cancelAction)
         self.present(optionMenu, animated: true, completion: nil)
     
     }
@@ -55,6 +70,9 @@ extension FavoritesViewController: UICollectionViewDataSource {
         if let image = UIImage(data: favToSet.bookImage) {
             cell.bookImage.image = image
         }
+        cell.layer.borderWidth = 3
+        cell.layer.cornerRadius = 10
+        cell.layer.borderColor = UIColor.black.cgColor
         cell.actionButton.tag = indexPath.row
         cell.actionButton.addTarget(self, action: #selector(actionButtonPressed(sender:)), for: .touchUpInside)
         cell.bookLabel.text = "\(favToSet.weeksOnBS) weeks on best seller list"

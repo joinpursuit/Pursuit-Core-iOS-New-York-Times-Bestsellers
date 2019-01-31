@@ -12,20 +12,17 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     
     lazy var bookImage: UIImageView = {
         let image = UIImageView()
-        image.backgroundColor = .black
         return image
     }()
     
     lazy var bookLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .purple
         label.textAlignment = .center
         return label
     }()
     
     lazy var bookTextView: UITextView = {
         let textView = UITextView()
-        textView.backgroundColor = .green
         return textView
     }()
     
@@ -39,7 +36,8 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .red
+        self.backgroundColor = .white
+        
         commonInit()
     }
     
