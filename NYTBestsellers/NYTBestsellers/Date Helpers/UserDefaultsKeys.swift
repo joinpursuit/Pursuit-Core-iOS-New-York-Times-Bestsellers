@@ -9,5 +9,6 @@
 import Foundation
 
 struct UserDefaultsKeys {
-    static let CategoryKey = "Category Key"
+    static let settingsCategoryKey = "Category Key"
+    static let mainViewKey = "default Key"
 }

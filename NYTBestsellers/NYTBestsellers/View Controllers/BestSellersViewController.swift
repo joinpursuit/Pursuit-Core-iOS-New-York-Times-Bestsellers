@@ -16,10 +16,10 @@ class BestSellersViewController: UIViewController {
             //tableview reload data needs to be on the main thread
             DispatchQueue.main.async {
                 self.bestSellerView.myBestSellerPickerView.reloadAllComponents()
-                if let categorySelected = UserDefaults.standard.value(forKey: UserDefaultsKeys.CategoryKey) as? Int {
+                if let categorySelected = UserDefaults.standard.value(forKey: UserDefaultsKeys.settingsCategoryKey) as? Int {
                     print(categorySelected)
+                    print("Defaults ran")
                     self.bestSellerView.myBestSellerPickerView.selectRow(categorySelected, inComponent: 0, animated: true)
-                    print(self.bestSellerCategories.count)
                     self.setupBooks(listName: self.bestSellerCategories[categorySelected].listNameEncoded)
                 } else {
                     print("no category in defaults")
@@ -35,13 +35,6 @@ class BestSellersViewController: UIViewController {
             }
         }
     }
-//    private var bookInfo = [VolumeInfo]() {
-//        didSet {
-//            DispatchQueue.main.async {
-//                self.bestSellerView.myBestSellerCollectionView.reloadData()
-//            }
-//        }
-//    }
     
     private var bookImage = UIImage() {
         didSet {
@@ -66,17 +59,17 @@ class BestSellersViewController: UIViewController {
         bestSellerView.myBestSellerPickerView.delegate = self
         print(DataPersistenceManager.documentsDirectory())
     }
-    
     override func viewDidAppear(_ animated: Bool) {
-        if let categorySelected = UserDefaults.standard.value(forKey: UserDefaultsKeys.CategoryKey) as? Int {
-            print(categorySelected)
-            self.bestSellerView.myBestSellerPickerView.selectRow(categorySelected, inComponent: 0, animated: true)
-            //code here to setupBooks but I need a string and I have an Int
-            
-        } else {
-            print("no category in defaults")
-        }
+//        if let categorySelected = UserDefaults.standard.value(forKey: UserDefaultsKeys.settingsCategoryKey) as? Int {
+//            print(categorySelected)
+//            self.bestSellerView.myBestSellerPickerView.selectRow(categorySelected, inComponent: 0, animated: true)
+//            //code here to setupBooks but I need a string and I have an Int
+//            
+//        } else {
+//            print("no category in defaults")
+//        }
     }
+
     private func setupPicker(){
         NYTBookAPI.getBookCategories { (appError, categories) in
             if let appError = appError {
@@ -110,36 +103,41 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
         if let bookDetails = book.bookDetails.first {
             if !bookDetails.primaryIsbn13.isEmpty {
                 isbn = bookDetails.primaryIsbn13
-            
+
             } else {
                 isbn = bookDetails.primaryIsbn10
             }
         }
+        
+//        isbn = book.isbns[0].isbn13
         print("Current isbn: \(isbn)")
-        GoogleBookAPI.getGoogleInfo(bookIsbn: isbn) { (appError, data) in
+        GoogleBookAPI.getGoogleInfo(bookIsbn:isbn ) { (appError, data) in
             if let appError = appError {
-                print(appError.errorMessage())
+                print("couldn't get google info! \(appError.errorMessage())")
+                DispatchQueue.main.async {
+
+                    cell.cellImage.image = UIImage(named: "Placeholder")
+                }
             }
             if let data = data {
                 let description = data[0].volumeInfo.description
                 DispatchQueue.main.async {
                     cell.cellTextView.text = description
-                    self.googleDescription = description
-                    print(description)
                 }
-                if let image = ImageHelper.fetchImageFromCache(urlString: data[0].volumeInfo.imageLinks.smallThumbnail) {
+                if let image = ImageHelper.fetchImageFromCache(urlString: data[0].volumeInfo.imageLinks.thumbnail) {
                     DispatchQueue.main.async {
                         cell.cellImage.image = image
-                        self.imageURL = image
+                        print("fetched image from cache: \(image)")
 
                     }
                 } else {
-                    ImageHelper.fetchImageFromNetwork(urlString: data[0].volumeInfo.imageLinks.smallThumbnail, completion: { (appError, image) in
+                    ImageHelper.fetchImageFromNetwork(urlString: data[0].volumeInfo.imageLinks.thumbnail, completion: { (appError, image) in
                         if let appError = appError {
                             print(appError.errorMessage())
                         } else if let image = image {
                             cell.cellImage.image = image
-                            self.imageURL = image
+                            print("fetched image from network: \(image)")
+
                         }
                     })
                 }
@@ -169,24 +167,12 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
         guard let selectedCell = collectionView.cellForItem(at: indexPath) as? BestCollectionViewCell else {return}
         let book = bestSellerBooks[indexPath.row]
         let detailVC = DetailViewController()
-       
-        
         detailVC.detailView.detailImage.image = selectedCell.cellImage.image
         detailVC.detailView.detailTextView.text = selectedCell.cellTextView.text
         detailVC.detailView.detailFavoritesImage.image = selectedCell.cellImage.image
-        
-        
         detailVC.detailView.detailLabel.text = book.bookDetails.first?.author
-//        detailVC.detailView.detailImage.image = imageURL
-//        detailVC.detailView.detailTextView.text = googleDescription
-//        detailVC.detailView.detailFavoritesImage.image = imageURL
-        
-//        detailVC.detailView.detailTextView.text = book.bookDetails.first?.bookDescription
-
-        
         navigationController?.pushViewController(detailVC, animated: true)
     }
-    
 }
 extension BestSellersViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
@@ -205,6 +191,7 @@ extension BestSellersViewController: UIPickerViewDataSource, UIPickerViewDelegat
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let categoryName = bestSellerCategories[row].listNameEncoded
         //CHECK IF OK!
+        print("category name: \(categoryName)")
         setupBooks(listName: categoryName)
     }
 }

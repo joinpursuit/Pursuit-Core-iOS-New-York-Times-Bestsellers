@@ -12,7 +12,7 @@ class SettingsView: UIView {
     
     public lazy var mySettingsPickerView: UIPickerView = {
         let cv = UIPickerView()
-        cv.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
+        cv.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         return cv
     }()
     

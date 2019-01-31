@@ -35,7 +35,7 @@ class SettingsViewController: UIViewController {
     }
     
     func setupCategory() {
-        if let categorySelected = UserDefaults.standard.value(forKey: UserDefaultsKeys.CategoryKey) as? Int {
+        if let categorySelected = UserDefaults.standard.value(forKey: UserDefaultsKeys.settingsCategoryKey) as? Int {
             print(categorySelected)
             settingsView.mySettingsPickerView.selectRow(categorySelected, inComponent: 0, animated: true)
 //            category = categorySelected
@@ -71,7 +71,7 @@ extension SettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print(settingsCategories[row])
         let category = row
-        UserDefaults.standard.set(category, forKey: UserDefaultsKeys.CategoryKey)
+        UserDefaults.standard.set(category, forKey: UserDefaultsKeys.settingsCategoryKey)
     }
     
 }

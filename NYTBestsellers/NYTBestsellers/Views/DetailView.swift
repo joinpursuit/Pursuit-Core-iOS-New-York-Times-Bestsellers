@@ -102,8 +102,6 @@ extension DetailView {
         addSubview(detailFavoritesImage)
         detailFavoritesImage.translatesAutoresizingMaskIntoConstraints = false
         detailFavoritesImage.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant:  -11).isActive = true
-//        detailFavoritesImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50).isActive = true
-//        detailFavoritesImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50).isActive = true
         detailFavoritesImage.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.07).isActive = true
         detailFavoritesImage.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.10).isActive = true
         detailFavoritesImage.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true

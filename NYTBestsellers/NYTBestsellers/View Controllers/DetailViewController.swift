@@ -40,17 +40,6 @@ class DetailViewController: UIViewController {
         return favoriteBook
     }
     
-    
-//    init() {
-//        super.init(nibName: nil, bundle: nil)
-////        detailView.detailLabel.text = "Label"
-//        
-//    }
-//    
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
 }
 extension DetailViewController: DetailViewDelegate {
     func favoritePressed() {

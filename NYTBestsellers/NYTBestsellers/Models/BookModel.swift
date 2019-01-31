@@ -24,6 +24,7 @@ struct BookResults: Codable {
     let asterisk: Int
     let dagger: Int
     let amazonProductUrl: String?
+    let isbns: [Isbn]
     let bookDetails: [BookDetails]
     private enum CodingKeys: String, CodingKey {
         case listName = "list_name"
@@ -36,8 +37,13 @@ struct BookResults: Codable {
         case asterisk
         case dagger
         case amazonProductUrl = "amazon_product_url"
+        case isbns
         case bookDetails = "book_details"
     }
+}
+struct Isbn: Codable {
+    let isbn10: String
+    let isbn13: String
 }
 struct BookDetails: Codable {
     let title: String
