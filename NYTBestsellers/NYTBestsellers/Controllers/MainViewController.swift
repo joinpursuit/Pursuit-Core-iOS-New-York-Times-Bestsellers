@@ -99,8 +99,6 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
 
         if let bookISNBs = bookInfo.isbns.first?.isbn13 {
             GoogleAPIClient.getDetails(isbn: bookISNBs) { (appError, bookInfo) in
-                
-            
             if let bookInfo = bookInfo {
                 cell.googleBookInfo = bookInfo[0]
                 ImageHelper.fetchImageFromNetwork(urlString: bookInfo[0].volumeInfo.imageLinks.smallThumbnail, completion: { (appError, image) in
@@ -110,7 +108,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
                     } else if let image = image {
                         DispatchQueue.main.async {
                             cell.BestsellerImageView.image = image
-                            
+                            cell.BestsellerImageView.setNeedsLayout()
                         }
                     }
                 })
@@ -158,7 +156,7 @@ extension MainViewController: UICollectionViewDelegate {
                 detailViewController.googleInfo = cell.googleBookInfo
                 detailViewController.bookImage = image
                 navigationController?.pushViewController(detailViewController, animated: true)
-           
+                
             } else {
                 detailViewController.bookImage = UIImage(named: "icons8-book-50")
                  detailViewController.googleInfo = cell.googleBookInfo

@@ -23,7 +23,7 @@ class FavoritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(favoritesView)
-        favoriteBooks = EventDataManager.fetchFavoriteBooksFromDocumentsDirectory()
+        favoriteBooks = BookDataManager.fetchFavoriteBooksFromDocumentsDirectory()
         favoritesView.favesCollectionView.dataSource = self
         favoritesView.favesCollectionView.delegate = self
         self.view.backgroundColor = .yellow

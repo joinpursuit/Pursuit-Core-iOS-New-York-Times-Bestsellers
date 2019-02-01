@@ -7,7 +7,7 @@
 //
 import Foundation
 
-final class EventDataManager {
+final class BookDataManager {
     private init() {}
     
     private static let filename = "FavoriteBooks.plist"

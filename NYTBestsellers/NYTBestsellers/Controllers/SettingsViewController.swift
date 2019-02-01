@@ -10,7 +10,7 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
-//    let title = "Pick Default Category"
+
     var pVCategories = [Books]() {
         didSet {
             DispatchQueue.main.async {

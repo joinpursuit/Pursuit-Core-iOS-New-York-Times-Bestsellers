@@ -31,7 +31,7 @@ class DetailViewController: UIViewController {
         if let imageData = bookImage {
           let faveImage = imageData.jpegData(compressionQuality: 0.5)
              let favoriteBook = FavoriteBook.init(bookName: googleInfo!.volumeInfo.title, favoritedAt: current , imageData: faveImage, description: googleInfo!.volumeInfo.description)
-            EventDataManager.saveToDocumentDirectory(newFavoriteBook: favoriteBook)
+            BookDataManager.saveToDocumentDirectory(newFavoriteBook: favoriteBook)
             print("I favorited a book")
         }
         
