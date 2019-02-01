@@ -20,7 +20,6 @@ class SettingsViewController: UIViewController {
       settingsView.settingPickerView.dataSource = self
       settingsView.settingPickerView.delegate = self
       self.view.addSubview(settingsView)
-    
       title = "Settings"
     }
     

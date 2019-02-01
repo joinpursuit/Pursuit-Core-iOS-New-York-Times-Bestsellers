@@ -18,7 +18,7 @@ extension BestSellerViewController:UICollectionViewDataSource{
   
     let book = books[indexPath.row]
     let isbn = book.book_details[indexPath.section].primary_isbn13
-    
+  
     BookShelfApiClient.getBookCoverInfo(isbn: isbn) { (error, googleBookInfo) in
       if let error = error {
         print(error.errorMessage())
@@ -32,9 +32,14 @@ extension BestSellerViewController:UICollectionViewDataSource{
       }
     }
     
-    cell.infoLabel.text = book.book_details[indexPath.section].title
+    cell.infoLabel.text = "\(book.weeks_on_list) weeks on list "
     cell.bookCoverImageView.image = UIImage(named: "placeholder")
-    cell.descriptiontextView.text = book.book_details[indexPath.section].description
+    if book.book_details[indexPath.section].description == ""{
+      cell.descriptiontextView.text = "No description is avalible for this book"
+    }else {
+      cell.descriptiontextView.text = book.book_details[indexPath.section].description
+    }
+    
     
     return cell
   }
@@ -61,7 +66,6 @@ extension BestSellerViewController:UICollectionViewDataSource{
       return}
     
     let book = books[indexPath.row]
-    let newDescription = descriptions
     let bestSeller = BestSellerDetailledViewController()
     
      newBook = NewBook.init(authorName: book.book_details[indexPath.section].author, description: cell.descriptiontextView.text, bookName: book.book_details[indexPath.section].title, bookCover: cell.bookCoverImageView.image, imageData: nil)

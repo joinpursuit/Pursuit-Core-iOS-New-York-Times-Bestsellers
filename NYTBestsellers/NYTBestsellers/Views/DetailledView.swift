@@ -16,14 +16,15 @@ class DetailledView: UIView {
   }()
   let infoLabel:UILabel = {
     let label = UILabel()
-    label.backgroundColor = .white
+    label.backgroundColor = #colorLiteral(red: 1, green: 0.8090879917, blue: 0.7170669436, alpha: 1)
     label.textColor = .black
+    label.textAlignment = .center
     label.text = "Hello my name is Ashli"
     return label
   }()
   let DescriptiontextView:UITextView = {
     let textView = UITextView()
-    textView.backgroundColor = .white
+    textView.backgroundColor = #colorLiteral(red: 1, green: 0.8090879917, blue: 0.7170669436, alpha: 1)
     textView.textColor = .black
     textView.text = "Hello nice gal enjoy your self"
     return textView

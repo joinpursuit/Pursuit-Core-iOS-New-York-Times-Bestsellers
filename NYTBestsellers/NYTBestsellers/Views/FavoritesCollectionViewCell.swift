@@ -23,8 +23,8 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
   }()
   let infoLabel:UILabel = {
     let label = UILabel()
-    label.backgroundColor = .black
-    label.textColor = .white
+    label.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+    label.textColor = .black
     label.text = "Hello my name is Ashli"
     label.textAlignment = .center
     label.layer.masksToBounds = true
@@ -33,9 +33,10 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
   }()
   let DescriptiontextView:UITextView = {
     let textView = UITextView()
-    textView.backgroundColor = .black
-    textView.textColor = .white
+    textView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+    textView.textColor = .black
     textView.text = "Hello nice gal enjoy your self"
+    textView.font = UIFont(name: "Times", size: 20.0)
     textView.layer.cornerRadius = 17.0
     return textView
   }()

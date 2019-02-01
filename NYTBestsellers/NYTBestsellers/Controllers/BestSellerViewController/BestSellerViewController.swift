@@ -51,6 +51,7 @@ self.bestSellerView.bestSellersCollectionView.reloadData()
         getBooks(category: keyword)
       }
     }
+    title = "BestSellers"
   }
   
   override func viewWillAppear(_ animated: Bool) {

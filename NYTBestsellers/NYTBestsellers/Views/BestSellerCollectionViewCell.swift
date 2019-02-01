@@ -21,8 +21,10 @@ class BestSellerCollectionViewCell: UICollectionViewCell {
     label.textColor = .black
     label.text = "Hello my name is Ashli"
     label.textAlignment = .center
-   label.layer.masksToBounds = true
-    label.layer.cornerRadius = 17.0
+    label.layer.masksToBounds = true
+    label.layer.cornerRadius = 14.0
+    label.font = UIFont(name: "Times", size: 22)
+    label.font = UIFont.boldSystemFont(ofSize: 22)
     return label
   }()
   let descriptiontextView:UITextView = {
@@ -31,6 +33,8 @@ class BestSellerCollectionViewCell: UICollectionViewCell {
     textView.textColor = .black
     textView.text = "Hello nice gal enjoy your self"
     textView.isEditable = false
+    textView.font = UIFont(name: "Times", size: 20)
+    textView.textAlignment = .center
     textView.layer.cornerRadius = 22.0
     return textView
   }()
