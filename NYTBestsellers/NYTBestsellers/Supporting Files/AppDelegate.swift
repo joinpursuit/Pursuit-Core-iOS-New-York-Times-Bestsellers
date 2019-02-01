@@ -15,8 +15,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
-    return true
+    let NYTB = NYTBestsellersViewController()
+    let FVC = FavoritesViewController()
+    let SVC = SettingsViewController()
+    let tab = UITabBarController()
+    let nav = UINavigationController.init(rootViewController: NYTB)
+    let nav2 = UINavigationController.init(rootViewController: FVC)
+    let nav3 = UINavigationController.init(rootViewController: SVC)
+    nav.tabBarItem = UITabBarItem(title: "Best Sellers", image: UIImage.init(named: "icons8-best-seller-filled-25"), selectedImage: UIImage.init(named: "icons8-best-seller-filled-25"))
+    nav2.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage.init(named: "icons8-heart-filled-25"), selectedImage: UIImage.init(named: "icons8-heart-filled-25"))
+    nav3.tabBarItem = UITabBarItem(title: "Setting", image: UIImage.init(named: "icons8-settings-filled-25"), selectedImage: UIImage.init(named: "icons8-settings-filled-25"))
+    tab.viewControllers = [nav, nav2, nav3]
+    
+    window = UIWindow(frame: UIScreen.main.bounds)
+    window?.rootViewController =  tab
+    window?.makeKeyAndVisible()
+        return true
   }
 
   func applicationWillResignActive(_ application: UIApplication) {
