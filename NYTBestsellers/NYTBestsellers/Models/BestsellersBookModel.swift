@@ -37,9 +37,10 @@ struct BookDetail: Codable {
     let description: String
     let author: String
     let primaryIsbn13: String
-    
+    let googleDescription: String?
     enum CodingKeys: String, CodingKey {
         case title
+        case googleDescription
         case description
         case author
         case primaryIsbn13 = "primary_isbn13"

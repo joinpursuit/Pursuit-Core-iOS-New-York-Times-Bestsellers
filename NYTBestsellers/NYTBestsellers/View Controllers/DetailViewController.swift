@@ -12,6 +12,7 @@ class DetailViewController: UIViewController {
     
     let detailView = DetailView()
     
+    public var googleImage: Google?
     public var book: Books?
     public var detailBookImageView: UIImage?
     public var DetailDescription: String?
@@ -19,17 +20,20 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configureNavBar()
 
         self.view.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
         self.view.addSubview(detailView)
         
-      //  detailView.authorName.text = book?.bookDetails.first?.author
+        detailView.authorName.text = book?.bookDetails.first?.author
+        detailView.bookDescription.text = book?.bookDetails.first?.googleDescription
+        
+        //detailView.bookDetailImageView.image = //googleImage!.items?.first?.volumeInfo.imageLinks.thumbnail
     }
     
     private func configureNavBar() {
         // set navigation bar title
-       // navigationItem.title = event.name
+        navigationItem.title = book?.bookDetails.first?.title
         
         // setup right bar button item to "Favorite"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favorite", style: .plain, target: self, action: #selector(addToFavorite))

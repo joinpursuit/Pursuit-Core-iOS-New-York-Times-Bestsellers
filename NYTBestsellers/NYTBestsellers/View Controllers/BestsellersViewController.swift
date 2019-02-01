@@ -32,8 +32,6 @@ class BestsellersViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         self.view.addSubview(bestsellersView)
-        // dump(bookGenres)
-        //dump(books)
         loadGenres()
         loadBooks(genre:  "Manga")
         bestsellersView.bestsellerCollectionView.dataSource = self
@@ -44,9 +42,6 @@ class BestsellersViewController: UIViewController {
         
     }
     
-    
-    //todo: func for catagories then call in viewDidLoad
-    // func for NYT Bestsellers then call in viewDidLoad
     func loadGenres() {
         APIClient.getGenres { (appError, data) in
             if let appError = appError {
@@ -80,20 +75,22 @@ extension BestsellersViewController: UICollectionViewDataSource {
         
         let currentBook = books[indexPath.row]
         
+        
         cell.weeksLabel.text = " \(currentBook.weeksOnList) week(s) on best seller list"
         cell.bestsellersDescriptionTextView.text = currentBook.bookDetails[0].description
         
         
         let isbn = currentBook.bookDetails[0].primaryIsbn13
+        //currentBook.bookDetails.first?.googleDescription
         
         APIClient.getGoogleData(isbn: isbn) { (appError, googleData) in
             if let appError = appError {
                 print(appError)
-                }
+            }
             if let data = googleData {
                 dump("this is google data \(data)")
-            let imageToSet = data[0].volumeInfo.imageLinks.thumbnail
-//                self.googleDescription = data[0].volumeInfo.description
+                let imageToSet = data[0].volumeInfo.imageLinks.thumbnail
+                self.googleDescription = data[0].volumeInfo.description ?? "No Description"
                 DispatchQueue.main.async {
                     if let image = ImageHelper.fetchImageFromCache(urlString: imageToSet) {
                         DispatchQueue.main.async {
@@ -105,7 +102,7 @@ extension BestsellersViewController: UICollectionViewDataSource {
                                 print(appError.errorMessage())
                                 DispatchQueue.main.async {
                                     cell.bookImageView.image = UIImage.init(named: "bookPlaceHolder")
-
+                                    
                                 }
                             }
                             if let imageYYY = imageXXX  {
@@ -116,7 +113,6 @@ extension BestsellersViewController: UICollectionViewDataSource {
                 }
             }
         }
-        //TODO get google api working and loading data
         
         
         return cell
@@ -126,6 +122,9 @@ extension BestsellersViewController: UICollectionViewDataSource {
         let bookToSegue = books[indexPath.row]
         let detailVC = DetailViewController()
         detailVC.book = bookToSegue
+        detailVC.DetailDescription = googleDescription
+        
+        //detailVC.detailBookImageView = bookToSegue
         
         
         

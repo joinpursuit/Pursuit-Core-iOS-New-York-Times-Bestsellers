@@ -9,7 +9,6 @@
 import Foundation
 
 
-// maybe needed
-//struct Favorites: Codable {
-//    let
-//}
+struct FavoritesBook: Codable {
+   // let
+}
