@@ -8,7 +8,14 @@
 
 import UIKit
 
+//Step 1 create a protocol
+protocol FavoiteBookCellDelegate: AnyObject {
+   func presentAlertController(alertController: UIAlertController)
+}
+
 class FavoiteBookCell: UICollectionViewCell {
+    //create the weak var
+    weak var delegate: FavoiteBookCellDelegate?
     lazy var favoriteImageObj: UIImageView = {
         let image = UIImageView.init(image: UIImage.init(named: "placeHolder"))
         return image
@@ -19,6 +26,9 @@ class FavoiteBookCell: UICollectionViewCell {
         button.setTitle("Action", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.isEnabled = true
+        //3 create target function
+        button.addTarget(self, action: #selector(bttnPressed), for: .touchUpInside)
+        
         return button
     }()
     lazy var favoriteBookTitleLabel: UILabel = {
@@ -37,12 +47,28 @@ class FavoiteBookCell: UICollectionViewCell {
         textView.isEditable = false 
         return textView
     }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
+        bttnPressed()
        
     }
-    
+    @objc func bttnPressed(){
+        let alertController = UIAlertController(title: "More Options", message: "What would you like to do?", preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (delete) in
+            
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let seeOnAmazon = UIAlertAction(title: "See on Amazon", style: .default) { (amazon) in
+            print("amazon")
+        }
+        alertController.addAction(deleteAction)
+        alertController.addAction(seeOnAmazon)
+        alertController.addAction(cancelAction)
+        // 4 call the delegate function from the protocol
+        delegate?.presentAlertController(alertController: alertController)
+    }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()

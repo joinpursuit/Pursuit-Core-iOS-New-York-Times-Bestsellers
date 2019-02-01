@@ -18,6 +18,7 @@ class FavoritesViewController: UIViewController {
         view.addSubview(favoritesView)
         favoritesView.collectionViewCellObj.dataSource = self
         favoritesView.collectionViewCellObj.delegate = self
+    
         favoritesBttonPressed()
     }
     func favoritesBttonPressed(){
@@ -36,13 +37,20 @@ class FavoritesViewController: UIViewController {
     }
     
 }
-extension FavoritesViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+//5 conform and convert call the alert
+
+extension FavoritesViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, FavoiteBookCellDelegate {
+    func presentAlertController(alertController: UIAlertController) {
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 50
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteCell", for: indexPath) as? FavoiteBookCell else {return UICollectionViewCell()}
+        cell.delegate = self
         return cell
     }
 }
