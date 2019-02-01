@@ -9,7 +9,7 @@
 import UIKit
 
 class BestSellerView: UIView {
-
+  
   public lazy var bestSellersCollectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .horizontal
@@ -22,9 +22,9 @@ class BestSellerView: UIView {
   }()
   
   public lazy var categoryPickerView:UIPickerView = {
-  let pickerView = UIPickerView()
+    let pickerView = UIPickerView()
     pickerView.backgroundColor = #colorLiteral(red: 0.4278073907, green: 0.3330721855, blue: 0.3150036633, alpha: 1)
-  return pickerView
+    return pickerView
   }()
   
   
@@ -49,16 +49,16 @@ extension BestSellerView {
   
   private func setupCollectionView() {
     addSubview(bestSellersCollectionView)
-bestSellersCollectionView.translatesAutoresizingMaskIntoConstraints = false
- bestSellersCollectionView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.6).isActive = true
-  bestSellersCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-  bestSellersCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-  bestSellersCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
+    bestSellersCollectionView.translatesAutoresizingMaskIntoConstraints = false
+    bestSellersCollectionView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.6).isActive = true
+    bestSellersCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+    bestSellersCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+    bestSellersCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
   }
   private func setupPickerView(){
     addSubview(categoryPickerView)
     categoryPickerView.translatesAutoresizingMaskIntoConstraints = false
-
+    
     categoryPickerView.topAnchor.constraint(equalTo: self.bestSellersCollectionView.bottomAnchor).isActive = true
     categoryPickerView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
     categoryPickerView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor).isActive = true

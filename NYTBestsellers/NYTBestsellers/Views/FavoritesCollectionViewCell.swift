@@ -83,13 +83,13 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     alertController.addAction(cancelAction)
     
     delegate?.presentAlertController(alertController: alertController)
-   
- 
+    
+    
   }
   private func imageViewConstraints(){
     addSubview(bookCoverImageView)
     bookCoverImageView.translatesAutoresizingMaskIntoConstraints = false
-  bookCoverImageView.topAnchor.constraint(lessThanOrEqualToSystemSpacingBelow: safeAreaLayoutGuide.topAnchor, multiplier: 0.9999).isActive = true
+    bookCoverImageView.topAnchor.constraint(lessThanOrEqualToSystemSpacingBelow: safeAreaLayoutGuide.topAnchor, multiplier: 0.9999).isActive = true
     bookCoverImageView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, constant: CGFloat(-200)).isActive = true
     bookCoverImageView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: CGFloat(0.60)).isActive = true
     bookCoverImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: CGFloat(95)).isActive = true
@@ -119,7 +119,7 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
   private func expandButtonConstraints(){
     addSubview(expandButton)
     expandButton.translatesAutoresizingMaskIntoConstraints = false
-   let theConstraints = [ expandButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),expandButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
+    let theConstraints = [ expandButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),expandButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
     ]
     theConstraints.forEach{$0.isActive = true}
   }

@@ -13,22 +13,22 @@ class BestSellerViewController: UIViewController {
   var categories = [CategoryInfo](){
     didSet{
       DispatchQueue.main.async {
-self.bestSellerView.categoryPickerView.reloadAllComponents()
-
+        self.bestSellerView.categoryPickerView.reloadAllComponents()
+        
       }
     }
   }
-
-var books = [Results](){
+  
+  var books = [Results](){
     didSet{
       DispatchQueue.main.async {
-self.bestSellerView.bestSellersCollectionView.reloadData()
+        self.bestSellerView.bestSellersCollectionView.reloadData()
       }
     }
   }
   var keyword = ""
   var theRow = Int()
- var descriptions = ""
+  var descriptions = ""
   let bestSellerView = BestSellerView()
   var newBook:NewBook?
   var bookCover:URL?
@@ -38,17 +38,18 @@ self.bestSellerView.bestSellersCollectionView.reloadData()
       print("I got set description")
     }
   }
-
+  
   override func viewDidLoad() {
-        super.viewDidLoad()
-      self.view.addSubview(bestSellerView)
-     view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    super.viewDidLoad()
+    self.view.addSubview(bestSellerView)
+    view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     delegatesAndDatasources()
     if let row = UserDefaults.standard.object(forKey: UserDefaultsKeys.row) as? Int{
       if let category = UserDefaults.standard.object(forKey: UserDefaultsKeys.chosenCateogry) as? String{
         theRow = row
         keyword = category
         getBooks(category: keyword)
+        self.bestSellerView.categoryPickerView.selectRow(theRow, inComponent: 0, animated: true)
       }
     }
     title = "BestSellers"
@@ -59,16 +60,16 @@ self.bestSellerView.bestSellersCollectionView.reloadData()
     userDefaults()
   }
   private func userDefaults(){
-  if let component = UserDefaults.standard.object(forKey: UserDefaultsKeys.row) as? Int {
-    bestSellerView.categoryPickerView.selectRow(component, inComponent: 0, animated: true)
-    DispatchQueue.main.async {
-      guard self.categories.count > 0 else {return}
-      self.getBooks(category: self.categories[component].list_name)
-    }
+    if let component = UserDefaults.standard.object(forKey: UserDefaultsKeys.row) as? Int {
+      bestSellerView.categoryPickerView.selectRow(component, inComponent: 0, animated: true)
+      DispatchQueue.main.async {
+        guard self.categories.count > 0 else {return}
+        self.getBooks(category: self.categories[component].list_name)
+      }
     }
   }
   
- private func delegatesAndDatasources(){
+  private func delegatesAndDatasources(){
     bestSellerView.bestSellersCollectionView.delegate = self
     bestSellerView.bestSellersCollectionView.dataSource = self
     bestSellerView.categoryPickerView.dataSource = self
@@ -82,10 +83,10 @@ self.bestSellerView.bestSellersCollectionView.reloadData()
       }
       if let books = books {
         self.books = books
-   
+        
       }
     }
-}
+  }
   
 }
 

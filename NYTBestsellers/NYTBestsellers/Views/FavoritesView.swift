@@ -17,7 +17,7 @@ class FavoritesView: UIView {
     return collectionView
     
   }()
- 
+  
   
   override init(frame: CGRect) {
     super.init(frame: UIScreen.main.bounds)
@@ -38,5 +38,5 @@ class FavoritesView: UIView {
     let theConstraints = [favoriteCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),favoriteCollectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),favoriteCollectionView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),favoriteCollectionView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor),favoriteCollectionView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)]
     theConstraints.forEach{$0.isActive = true}
   }
-   
+  
 }

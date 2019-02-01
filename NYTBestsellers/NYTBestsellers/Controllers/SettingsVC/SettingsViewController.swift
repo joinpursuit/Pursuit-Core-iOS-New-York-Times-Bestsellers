@@ -22,7 +22,4 @@ class SettingsViewController: UIViewController {
       self.view.addSubview(settingsView)
       title = "Settings"
     }
-    
-
-  
 }
