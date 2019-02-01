@@ -9,6 +9,7 @@
 import UIKit
 protocol DetailViewDelegate: AnyObject {
     func favoritePressed()
+    func amazonPressed()
 }
 class DetailView: UIView {
     
@@ -20,7 +21,6 @@ class DetailView: UIView {
     }()
     @objc func favoritePressed() {
         delegate?.favoritePressed()
-
     }
     lazy var amazonButton: UIButton = {
         let button = UIButton()
@@ -30,7 +30,7 @@ class DetailView: UIView {
         return button
     }()
     @objc func amazonPressed() {
-        print("amazon pressed")
+        delegate?.amazonPressed()
     }
     
     public lazy var detailImage: UIImageView = {

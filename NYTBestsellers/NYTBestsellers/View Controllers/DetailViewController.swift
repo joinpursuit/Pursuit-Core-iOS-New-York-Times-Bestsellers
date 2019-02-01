@@ -15,13 +15,13 @@ class DetailViewController: UIViewController {
     var durationTime = Double()
     var favoriteBook: FavoriteBook?
     var selectedTitle: String?
+    var amazonLink: String?
     var myBooks = [FavoriteBook]()
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(detailView)
-        print(detailView.detailLabel)
         detailView.delegate = self
         myBooks = FavoriteModel.getBooks()
         navigationItem.title = selectedTitle
@@ -88,18 +88,11 @@ extension DetailViewController: DetailViewDelegate {
             guard let book = saveBook() else {return}
             FavoriteModel.appendBook(favorite: book)
             animatedSave()
-//            detailView.detailFavoritesImage.isHidden = false
-//            navigationItem.rightBarButtonItem?.isEnabled = false
-//            self.detailView.detailFavoritesImage.alpha = 0.0
-//            UIView.animateKeyframes(withDuration: 3.0, delay: 0.0, options: [.calculationModeLinear], animations: {
-//                UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5, animations: {
-//                    self.detailView.detailFavoritesImage.alpha = 1.0
-//                })
-//                UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 1.0, animations: {
-//                    self.detailView.detailFavoritesImage.frame.origin.y += self.view.bounds.height
-//                    self.detailView.detailFavoritesImage.alpha = 0.0
-//                })
-//            })
         }
+    }
+    func amazonPressed() {
+        guard let amazonURlString = amazonLink else {return}
+        guard let amazonURL = URL(string: amazonURlString) else {return}
+        UIApplication.shared.open(amazonURL, options: [:], completionHandler: nil)
     }
 }
