@@ -10,7 +10,8 @@ import UIKit
 
 class MainViewController: UIViewController {
     let baseView = BaseView()
-    var selectedBookCategory = "Travel" {
+
+    var selectedBookCategory: String? {
         didSet {
             getBooks()
         }
@@ -23,14 +24,13 @@ class MainViewController: UIViewController {
             }
         }
     }
-    var booksInCategory = [BookDetailsAndCredentials](){
+    var booksInCategory = [BookDetailsAndCredentials]() {
         didSet{
             DispatchQueue.main.async {
                 self.baseView.collectionView.reloadData()
             }
         }
     }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .blue
@@ -44,22 +44,37 @@ class MainViewController: UIViewController {
     }
     
     func getCategoriesData(){
-        bookCategories = CategoryDataManager.fetchCategoriesFromDocumentsDirectory()
+        if CategoryDataManager.fetchCategoriesFromDocumentsDirectory().count == 0 {
+            getCategories()
+            
+        } else {
+            bookCategories = CategoryDataManager.fetchCategoriesFromDocumentsDirectory()
+        }
     }
     
-    
-    func getBooks(){
-        BookAPIClient.BookDetail(categoryName: selectedBookCategory) { (error, book) in
+    func getCategories(){
+        BookAPIClient.BookCategories { (error, data) in
             if let error = error {
                 print("Error: \(error)")
-            } else if let book = book {
-                self.booksInCategory = book.results
-                
+            } else if let categories = data {
+                self.bookCategories = categories
+                CategoryDataManager.saveToCategoriesToDocumentsDirectory(categories: categories)
             }
         }
     }
     
-
+    func getBooks(){
+        BookAPIClient.BookDetail(categoryName: selectedBookCategory ?? bookCategories.first!.list_name) { [weak self] (error, book) in
+            if let error = error {
+                print("Error: \(error)")
+            } else if let book = book {
+                self?.booksInCategory = book.results
+                DispatchQueue.main.async {
+                    self?.baseView.collectionView.reloadData()
+                }
+            }
+        }
+    }
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -70,6 +85,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CVCell", for: indexPath) as? CollectionViewCell else {return UICollectionViewCell()}
         let book = booksInCategory[indexPath.row]
+        cell.backgroundColor = .clear
         
         cell.label.text = "\(book.weeks_on_list) weeks on best sellers list"
         
@@ -83,10 +99,11 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             if let error = error {
                 print("Error: \(error)")
             } else if let data = imageData {
-                ImageHelper.fetchImageFromNetwork(urlString: data.imageLinks.smallThumbnail, completion: { (error, UIImage) in
+                ImageHelper.fetchImage(urlString: data.imageLinks.smallThumbnail, completion: { (error, UIImage) in
                     if let error = error {
                         print("Error: \(error)")
                     } else if let data = UIImage {
+                        
                         cell.imageView.image = data
                     }
                 })
@@ -98,15 +115,19 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let book = booksInCategory[indexPath.row]
+        if let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell {
+            let selectedImage = cell.imageView.image
         let detailedVC = DetailViewController(book:book)
         if let details = book.book_details.first?.author {
             detailedVC.detailView.label.text = details
         }
-        if let description = book.book_details.first?.description {
-            detailedVC.detailView.textView.text = description
-        }
-        
+            if let description = book.book_details.first?.description {
+                detailedVC.detailView.textView.text = description
+            }
+            detailedVC.detailView.imageView.image = selectedImage
+            
     self.navigationController?.pushViewController(detailedVC, animated: true)
+    }
     }
 
 }

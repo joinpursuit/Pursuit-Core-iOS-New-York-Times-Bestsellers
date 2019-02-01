@@ -17,6 +17,7 @@ struct BookDetailsAndCredentials: Codable {
     let list_name: String
     let display_name: String
     let bestsellers_date: String
+    var googleDescription: String?
     let published_date: String
     let rank: Int
     let rank_last_week: Int

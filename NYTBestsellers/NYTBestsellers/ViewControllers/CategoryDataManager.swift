@@ -33,8 +33,6 @@ final class CategoryDataManager {
     }
     
     
-    
-    
     public static func saveToCategoriesToDocumentsDirectory(categories:[BookCategories]) {
          let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: fileName)
     

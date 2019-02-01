@@ -13,12 +13,12 @@ final class FavoritedBookModel {
     private static let filename = "FavoritedBook.plist"
     
     private static var favoriteBooks = [FavoriteBook]()
-    static func FavoritedBooks(){
+    static func FavoritedBooks() {
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename)
         do {
             let data = try PropertyListEncoder().encode(favoriteBooks)
-            try data.write(to: path,options: Data.WritingOptions.atomic)
-        }catch {
+            try data.write(to: path, options: Data.WritingOptions.atomic)
+        } catch {
               print("error encountered while encoding data")
         }
     }
@@ -26,7 +26,7 @@ final class FavoritedBookModel {
     static func getFavoritedBooks() -> [FavoriteBook]{
         
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename).path
-        if FileManager.default.fileExists(atPath: path){
+        if FileManager.default.fileExists(atPath: path) {
             if let data = FileManager.default.contents(atPath: path) {
                 do {
                     favoriteBooks = try PropertyListDecoder().decode([FavoriteBook].self, from: data)
@@ -39,15 +39,20 @@ final class FavoritedBookModel {
         } else {
             print("\(filename) does not exist")
         }
-    
-    
         return favoriteBooks
     
-}
-    
+    }
     static func favorite(Book: FavoriteBook){
         favoriteBooks.append(Book)
+        FavoritedBooks()
     }
+    
+    static func delete(index: Int){
+        favoriteBooks.remove(at: index)
+        FavoritedBooks()
+    }
+    
+    
     
     
     

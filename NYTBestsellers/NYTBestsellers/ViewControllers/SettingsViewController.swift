@@ -18,44 +18,22 @@ class SettingsViewController: UIViewController {
             }
         }
     }
-    
-    
-    
-    let settings = SettingsView()
-    
-    
-    
-    
 
+    let settings = SettingsView()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .green
         self.view.addSubview(settings)
         settings.pickerView.dataSource = self
         settings.pickerView.delegate = self
-        getCategoriesData()
+        fetchedCategories()
         
-        let fetchedCategories = CategoryDataManager.fetchCategoriesFromDocumentsDirectory()
-        if fetchedCategories.count == 0 {
-            getCategoriesData()
-        }
-        bookCategories = fetchedCategories
-
     }
     
-    func getCategoriesData(){
-        BookAPIClient.BookCategories { (error, bookCategory) in
-            if let error = error {
-                print("Error: \(error)")
-            } else if let bookCategoris = bookCategory {
-                self.bookCategories = bookCategoris
-                CategoryDataManager.saveToCategoriesToDocumentsDirectory(categories: bookCategoris)
-                
-            }
-        }
+    func fetchedCategories(){
+        bookCategories = CategoryDataManager.fetchCategoriesFromDocumentsDirectory()
     }
-  
-
+    
 }
 extension SettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

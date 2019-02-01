@@ -18,7 +18,7 @@ class FavoriteView: UIView {
         
         let favoritedBooksCV = UICollectionView(frame: CGRect.zero, collectionViewLayout: cellLayout)
         
-        favoritedBooksCV.backgroundColor = .gray
+        favoritedBooksCV.backgroundColor = UIColor.red.withAlphaComponent(0.1)
 
         return favoritedBooksCV
         

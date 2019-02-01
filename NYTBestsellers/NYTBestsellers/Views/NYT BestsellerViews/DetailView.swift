@@ -25,6 +25,7 @@ class DetailView: UIView {
         authorName.textAlignment = .center
         authorName.text = "no author name"
         authorName.numberOfLines = 0
+        authorName.backgroundColor = .gray
         return authorName
     }()
     

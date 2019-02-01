@@ -10,7 +10,7 @@ import Foundation
 
 struct FavoriteBook: Codable {
     let numberOfWeeksSpent: Int
-    let Image: Data
+    let imageUrlStr: String
     let description: String
 }
 

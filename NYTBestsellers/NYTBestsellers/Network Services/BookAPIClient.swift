@@ -27,9 +27,13 @@ final class BookAPIClient {
             }
         }
     }
+    
+    static func BookCoverImageUrl(Isbn: String) -> String {
+        return "https://www.googleapis.com/books/v1/volumes?q=isbn:\(Isbn)&key=\(SecretKeys.APIKey)"
+    }
         
 static func BookCoverImage(Isbn: String, completionHandler: @escaping(Error?, VolumeInformations?)-> Void) {
-    let endpoint = "https://www.googleapis.com/books/v1/volumes?q=isbn:\(Isbn)&key=\(SecretKeys.BookCoverImage)"
+    let endpoint = BookCoverImageUrl(Isbn: Isbn)
 NetworkHelper.shared.performDataTask(endpointURLString: endpoint) { (error, imagelink) in
         if let error = error {
             completionHandler(error, nil)
