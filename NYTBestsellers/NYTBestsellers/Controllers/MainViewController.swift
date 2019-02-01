@@ -110,6 +110,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
                     } else if let image = image {
                         DispatchQueue.main.async {
                             cell.BestsellerImageView.image = image
+                            
                         }
                     }
                 })
