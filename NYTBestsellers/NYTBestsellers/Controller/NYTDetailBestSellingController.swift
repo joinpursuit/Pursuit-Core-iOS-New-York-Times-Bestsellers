@@ -45,6 +45,7 @@ class NYTDetailBestSellingController: UIViewController {
     
     private func configureNavBar() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favorite", style: .plain, target: self, action: #selector(favoriteBook))
+        title = nYTBook.bookDetails[0].title
     }
     
     @objc private func favoriteBook() {
