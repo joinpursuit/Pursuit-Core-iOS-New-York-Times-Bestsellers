@@ -27,7 +27,6 @@ class DetailView: UIView {
         let textView = UITextView()
         textView.text = "Long book description..."
         textView.textAlignment = .justified
-        textView.textColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
         textView.isEditable = false
         return textView
     }()
@@ -35,18 +34,17 @@ class DetailView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
-        addSubview(bookDetailImageView)
-        addSubview(authorName)
-        addSubview(bookDescription)
         setupConstraints()
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     private func setupConstraints() {
+        addSubview(bookDetailImageView)
+        addSubview(authorName)
+        addSubview(bookDescription)
         setpBookDetailImageView()
         setupAuthorName()
         setupBookDescription()

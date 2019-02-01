@@ -33,8 +33,7 @@ class BestsellersCollectionCell: UICollectionViewCell {
     }()
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .blue
-        //addSubview(bookImageView)
+        self.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         setContraints()
     }
     

@@ -18,13 +18,11 @@ class FavoritesView: UIView {
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
         collectionView.backgroundColor = #colorLiteral(red: 0.9257920923, green: 0.9627893281, blue: 0.9841015494, alpha: 1)
-        
         return collectionView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
-       // addSubview(favoritesCollectionView)
         setupFavoritesCollectionView()
         
         favoritesCollectionView.register(FavoritesCollectionCell.self, forCellWithReuseIdentifier: "FavoritesCell")

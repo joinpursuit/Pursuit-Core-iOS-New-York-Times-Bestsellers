@@ -13,6 +13,7 @@ class BestsellersViewController: UIViewController {
     public var googleDescription = String()
     
     let bestsellersView = BestsellersView()
+    
     private var bookGenres = [BestsellerGenre]() {
         didSet {
             DispatchQueue.main.async {
@@ -58,7 +59,6 @@ class BestsellersViewController: UIViewController {
                 print(appError.errorMessage())
             } else if let data = data {
                 self.books = data
-                dump(self.books)
             }
         }
         
@@ -81,14 +81,12 @@ extension BestsellersViewController: UICollectionViewDataSource {
         
         
         let isbn = currentBook.bookDetails[0].primaryIsbn13
-        //currentBook.bookDetails.first?.googleDescription
         
         APIClient.getGoogleData(isbn: isbn) { (appError, googleData) in
             if let appError = appError {
                 print(appError)
             }
             if let data = googleData {
-                dump("this is google data \(data)")
                 let imageToSet = data[0].volumeInfo.imageLinks.thumbnail
                 self.googleDescription = data[0].volumeInfo.description ?? "No Description"
                 DispatchQueue.main.async {
@@ -120,21 +118,21 @@ extension BestsellersViewController: UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let bookToSegue = books[indexPath.row]
+        
+        guard let cell = collectionView.cellForItem(at: indexPath) as? BestsellersCollectionCell else {
+            print("cell nil")
+            return
+        }
         let detailVC = DetailViewController()
         detailVC.book = bookToSegue
+        detailVC.detailBookImageView = cell.bookImageView.image
         detailVC.DetailDescription = googleDescription
-        
-        //detailVC.detailBookImageView = bookToSegue
-        
-        
-        
         navigationController?.pushViewController(detailVC, animated: true)
         
         
     }
-    
-    
 }
+
 extension BestsellersViewController: UICollectionViewDelegate {
     
 }
@@ -153,6 +151,12 @@ extension BestsellersViewController: UIPickerViewDataSource {
 extension BestsellersViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return bookGenres[row].listName
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+       // let genrePicked = bookGenres[row].listName
+        
         
     }
 }

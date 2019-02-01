@@ -22,13 +22,11 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         configureNavBar()
 
-        self.view.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        self.view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         self.view.addSubview(detailView)
         
         detailView.authorName.text = book?.bookDetails.first?.author
         detailView.bookDescription.text = book?.bookDetails.first?.googleDescription
-        
-        //detailView.bookDetailImageView.image = //googleImage!.items?.first?.volumeInfo.imageLinks.thumbnail
     }
     
     private func configureNavBar() {

@@ -39,7 +39,7 @@ class FavoritesCollectionCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .green
+        self.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         
         setFavoritesConstraints()
     }
@@ -82,7 +82,8 @@ class FavoritesCollectionCell: UICollectionViewCell {
             
             ])
         
-        NSLayoutConstraint.activate([saveButton.topAnchor.constraint(equalTo: self.topAnchor),
-                                     saveButton.trailingAnchor.constraint(equalTo: self.trailingAnchor)])
+        NSLayoutConstraint.activate([
+            saveButton.topAnchor.constraint(equalTo: self.topAnchor),
+            saveButton.trailingAnchor.constraint(equalTo: self.trailingAnchor)])
     }
 }

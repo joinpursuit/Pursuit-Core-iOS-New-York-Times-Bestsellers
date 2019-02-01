@@ -13,10 +13,9 @@ struct Genre: Codable {
     let results: [BestsellerGenre]
 }
 struct BestsellerGenre: Codable {
-    let displayName: String
+    
     let listName: String
    private enum CodingKeys: String, CodingKey {
-        case displayName = "display_name"
         case listName = "list_name"
     }
     
