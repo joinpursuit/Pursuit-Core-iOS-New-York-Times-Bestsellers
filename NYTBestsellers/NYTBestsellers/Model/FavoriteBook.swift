@@ -11,4 +11,5 @@ import UIKit
 struct FavoriteBook: Codable {
     let bookDetails: NYTBook
     let imageData: Data?
+    let timeStamp: String
 }

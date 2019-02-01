@@ -37,6 +37,7 @@
 		D6048D332202C27C00087176 /* UIColor_Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6048D322202C27C00087176 /* UIColor_Extensions.swift */; };
 		D63FD1B92203B26F0099C8E4 /* FavoriteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63FD1B82203B26F0099C8E4 /* FavoriteDataManager.swift */; };
 		D63FD1BB2203CA0A0099C8E4 /* FavoriteBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63FD1BA2203CA0A0099C8E4 /* FavoriteBook.swift */; };
+		D63FD1BD220406F70099C8E4 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63FD1BC220406F70099C8E4 /* UserDefaultsKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		D6048D322202C27C00087176 /* UIColor_Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor_Extensions.swift; sourceTree = "<group>"; };
 		D63FD1B82203B26F0099C8E4 /* FavoriteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDataManager.swift; sourceTree = "<group>"; };
 		D63FD1BA2203CA0A0099C8E4 /* FavoriteBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBook.swift; sourceTree = "<group>"; };
+		D63FD1BC220406F70099C8E4 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 				D604020421FBB8920002A04C /* GoogleBook.swift */,
 				D63FD1B82203B26F0099C8E4 /* FavoriteDataManager.swift */,
 				D63FD1BA2203CA0A0099C8E4 /* FavoriteBook.swift */,
+				D63FD1BC220406F70099C8E4 /* UserDefaultsKeys.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				D60401FB21FBA9230002A04C /* SettingView.swift in Sources */,
 				D60401EF21FBA5A50002A04C /* FavoriteViewController.swift in Sources */,
 				5718C00421FA77AA00A8E4B8 /* DataPersistenceManager.swift in Sources */,
+				D63FD1BD220406F70099C8E4 /* UserDefaultsKeys.swift in Sources */,
 				D60401FD21FBA9860002A04C /* BookCell.swift in Sources */,
 				D60401F121FBA6240002A04C /* NYTBestSellingController.swift in Sources */,
 				D60401ED21FBA58F0002A04C /* SettingViewController.swift in Sources */,

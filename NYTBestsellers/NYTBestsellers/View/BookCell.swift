@@ -18,7 +18,7 @@ class BookCell: UICollectionViewCell {
         return image
     }()
  
-    let bookTitleLabel: UILabel = {
+    let weekOnListLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 13)
@@ -53,9 +53,9 @@ class BookCell: UICollectionViewCell {
     }
     
     public func configureCell(nYTBook: NYTBook) {
-        let bookDetails = nYTBook.bookDetails[0]
-        bookTitleLabel.text = bookDetails.title
-        bookDescriptionTextview.text = bookDetails.description
+        bookImageView.image = UIImage(named: "bookImagePlaceHolder")
+        weekOnListLabel.text = "\(nYTBook.weeksOnList) weeks on best seller list"
+        bookDescriptionTextview.text = nYTBook.bookDetails[0].description
     }
     
 }
@@ -78,17 +78,17 @@ extension BookCell {
     }
     
     private func setupBookTitleLabel() {
-        addSubview(bookTitleLabel)
-        bookTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        bookTitleLabel.topAnchor.constraint(equalTo: bookImageView.bottomAnchor, constant: 10).isActive = true
-        bookTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
-        bookTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
+        addSubview(weekOnListLabel)
+        weekOnListLabel.translatesAutoresizingMaskIntoConstraints = false
+        weekOnListLabel.topAnchor.constraint(equalTo: bookImageView.bottomAnchor, constant: 10).isActive = true
+        weekOnListLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
+        weekOnListLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
     }
     
     private func setupBookDescription() {
         addSubview(bookDescriptionTextview)
         bookDescriptionTextview.translatesAutoresizingMaskIntoConstraints = false
-        bookDescriptionTextview.topAnchor.constraint(equalTo: bookTitleLabel.bottomAnchor, constant: 0).isActive = true
+        bookDescriptionTextview.topAnchor.constraint(equalTo: weekOnListLabel.bottomAnchor, constant: 0).isActive = true
         bookDescriptionTextview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         bookDescriptionTextview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         bookDescriptionTextview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -18).isActive = true

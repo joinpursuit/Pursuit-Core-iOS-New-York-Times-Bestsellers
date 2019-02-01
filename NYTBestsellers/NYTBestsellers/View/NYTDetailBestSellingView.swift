@@ -17,11 +17,11 @@ class NYTDetailBestSellingView: UIView {
         return iv
     }()
     
-    lazy var bookTitleLabel: UILabel = {
+    lazy var bookTitleAndAuthorLabel: UILabel = {
         var label = UILabel()
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.text = "Book Title"
         label.backgroundColor = UIColor(hexString: "86c1d4")
         return label
@@ -70,19 +70,19 @@ extension NYTDetailBestSellingView {
     }
     
     private func setupBookTitleLabel() {
-        addSubview(bookTitleLabel)
-        bookTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(bookTitleAndAuthorLabel)
+        bookTitleAndAuthorLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        bookTitleLabel.topAnchor.constraint(equalTo: bookImageView.bottomAnchor, constant: 15).isActive = true
-        bookTitleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        NSLayoutConstraint(item: bookTitleLabel, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0.85, constant: 0).isActive = true
+        bookTitleAndAuthorLabel.topAnchor.constraint(equalTo: bookImageView.bottomAnchor, constant: 15).isActive = true
+        bookTitleAndAuthorLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        NSLayoutConstraint(item: bookTitleAndAuthorLabel, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0.85, constant: 0).isActive = true
     }
     
     private func setupBookDescriptionTextField() {
         addSubview(bookDescriptionTextView)
         bookDescriptionTextView.translatesAutoresizingMaskIntoConstraints = false
         
-        bookDescriptionTextView.topAnchor.constraint(equalTo: bookTitleLabel.bottomAnchor, constant: 15).isActive = true
+        bookDescriptionTextView.topAnchor.constraint(equalTo: bookTitleAndAuthorLabel.bottomAnchor, constant: 15).isActive = true
         bookDescriptionTextView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -15).isActive = true
         bookDescriptionTextView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         NSLayoutConstraint(item: bookDescriptionTextView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0.85, constant: 0).isActive = true

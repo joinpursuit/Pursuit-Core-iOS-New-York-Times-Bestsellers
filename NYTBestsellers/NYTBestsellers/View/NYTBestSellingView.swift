@@ -12,6 +12,7 @@ protocol NYTBestSellingViewDelegate: AnyObject {
     // for pickerView
     func setTitleOfPickerView(rowNum: Int) -> String
     func numberOfCategories() -> Int
+    func categorySelected(row: Int, component: Int)
     // for collection view
     func numberOfNYTBooks() -> Int
     func configureUICollectionCell(indexPath: IndexPath) -> UICollectionViewCell
@@ -115,7 +116,7 @@ extension NYTBestSellingView: UIPickerViewDataSource, UIPickerViewDelegate {
         return delegate?.setTitleOfPickerView(rowNum: row) ?? "Unknown"
     }
     
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        <#code#>
-//    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        delegate?.categorySelected(row: row, component: component)
+    }
 }

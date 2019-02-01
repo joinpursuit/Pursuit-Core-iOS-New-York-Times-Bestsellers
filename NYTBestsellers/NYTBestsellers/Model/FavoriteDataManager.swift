@@ -59,16 +59,6 @@ final class FavoriteDataManager {
             print("property list encoding error: \(error)")
         }
     }
-    
-//    private func encodeFavorites(filename: String, favoriteBooks: [FavoriteBook]) {
-//        let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename)
-//        do {
-//            let data = try PropertyListEncoder().encode(favoriteBooks)
-//            try data.write(to: path, options: Data.WritingOptions.atomic)
-//        } catch {
-//            print("property list encoding error: \(error)")
-//        }
-//    }
 
     static public func isFavorite(isbn: String) -> Bool {
         let index = fetchFavoriteBooksFromDocumentsDirectory().index { $0.bookDetails.bookDetails[0].primaryIsbn13 == isbn }

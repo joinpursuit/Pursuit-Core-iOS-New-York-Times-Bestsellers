@@ -10,9 +10,11 @@ import UIKit
 
 class SettingViewController: UIViewController {
 
+    let settingView = SettingView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.addSubview(settingView)
     }
 
 }

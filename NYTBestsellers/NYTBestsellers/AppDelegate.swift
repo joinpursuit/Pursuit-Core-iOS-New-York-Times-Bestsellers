@@ -24,12 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let favoriteVC = FavoriteViewController()
     favoriteVC.title = "Favorites"
-    favoriteVC.view.backgroundColor = .blue
     favoriteVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
     
     let settingVC = SettingViewController()
     settingVC.title = "Default Category"
-    settingVC.view.backgroundColor = .yellow
     settingVC.tabBarItem = UITabBarItem.init(title: "Setting", image: UIImage(named: "icons8-settings"), selectedImage: UIImage(named: "icons8-settings_filled"))
     
     let tab = UITabBarController()

@@ -9,5 +9,8 @@
 import UIKit
 
 class FavoriteCell: UICollectionViewCell {
-    
+    // book image
+    // numberofweeks as best seller label
+    // book description textview
+    // button for delete & cancel
 }

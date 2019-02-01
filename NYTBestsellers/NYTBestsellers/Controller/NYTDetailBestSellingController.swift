@@ -35,7 +35,7 @@ class NYTDetailBestSellingController: UIViewController {
     }
     
     private func configureUI() {
-        nYTDetailBestSellingView.bookTitleLabel.text = nYTBook.bookDetails[0].title
+        nYTDetailBestSellingView.bookTitleAndAuthorLabel.text = nYTBook.bookDetails[0].title + "\n" + nYTBook.bookDetails[0].author
         nYTDetailBestSellingView.bookDescriptionTextView.text = bookDescription == nil ?
             nYTBook.bookDetails[0].description : bookDescription
         if let bookImage = self.bookImage {
@@ -54,7 +54,7 @@ class NYTDetailBestSellingController: UIViewController {
             return
         }
         let imageData = bookImage?.jpegData(compressionQuality: 0.5)
-        let favoriteBook = FavoriteBook.init(bookDetails: nYTBook, imageData: imageData)
+        let favoriteBook = FavoriteBook.init(bookDetails: nYTBook, imageData: imageData, timeStamp: Date.getISOTimestamp())
         FavoriteDataManager.saveToDocumentDirectory(newFavoriteBook: favoriteBook) { (success, error) in
             if let error = error {
                 print("Fail to Favorite: \(error)")

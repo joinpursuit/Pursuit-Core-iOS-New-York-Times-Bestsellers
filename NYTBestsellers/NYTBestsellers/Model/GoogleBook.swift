@@ -17,7 +17,7 @@ struct GoogleBook: Codable {
         let title: String
         let subtitle: String?
         let authors: [String]?
-        let publisher: String
+        let publisher: String?
         let publishedDate: String
         let description: String
         

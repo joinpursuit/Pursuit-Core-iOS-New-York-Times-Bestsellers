@@ -27,6 +27,7 @@ struct NYTBook: Codable {
     let listName: String                           // "Animals",
     let displayName: String                        // "Animals",
     let bestsellersDate: String                    // "2016-12-31"
+    let weeksOnList: Int
     let publishedDate: String                      // "2017-01-15"
     let rank: Int                                   // 1
     let amazonProductUrl: URL
@@ -53,6 +54,7 @@ struct NYTBook: Codable {
         case listName = "list_name"
         case displayName = "display_name"
         case bestsellersDate = "bestsellers_date"
+        case weeksOnList = "weeks_on_list"
         case publishedDate = "published_date"
         case rank
         case amazonProductUrl = "amazon_product_url"

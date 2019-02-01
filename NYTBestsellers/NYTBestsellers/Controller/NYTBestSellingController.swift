@@ -20,10 +20,15 @@ class NYTBestSellingController: UIViewController {
     
     let nYTBestSellingView = NYTBestSellingView()
     
+    var defaultCategoryName = "manga"
     var allBookCategories = [Category]() {
         didSet {
+            let rowNum = allBookCategories.firstIndex { (category) -> Bool in
+                return category.listNameEncoded == defaultCategoryName
+            }
             DispatchQueue.main.async {
                 self.nYTBestSellingView.categoryPickerView.reloadAllComponents()
+                self.nYTBestSellingView.categoryPickerView.selectRow(rowNum!, inComponent: 0, animated: true)
             }
         }
     }
@@ -40,15 +45,24 @@ class NYTBestSellingController: UIViewController {
         super.viewDidLoad()
         self.view.addSubview(nYTBestSellingView)
         nYTBestSellingView.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         initialSetup()
     }
     
     private func initialSetup() {
-        getAllCategories()
-        searchNYTBestSellersByCategory(category: "animals")
+        if let defaultCategoryName = UserDefaults.standard.object(forKey: UserDefaultsKeys.defaultCategory) as? String {
+            searchNYTBestSellersByCategory(category: defaultCategoryName)
+            self.defaultCategoryName = defaultCategoryName
+        } else {
+            searchNYTBestSellersByCategory(category: self.defaultCategoryName)
+        }
+        getAllCategoriesAndSetupPickerView()
     }
     
-    private func getAllCategories() {
+    private func getAllCategoriesAndSetupPickerView() {
         NYTBestsellingCategoriesAPIClient.getAllCategories { (appError, categories) in
             if let appError = appError {
                 print(appError.errorMessage())
@@ -73,6 +87,7 @@ class NYTBestSellingController: UIViewController {
 }
 
 extension NYTBestSellingController: NYTBestSellingViewDelegate {
+    
     // CollectionView
     func cellPressedToSegue(indexPath: IndexPath) {
         let currentBook = nYTBestSellers[indexPath.row]
@@ -97,7 +112,6 @@ extension NYTBestSellingController: NYTBestSellingViewDelegate {
         guard let cell = nYTBestSellingView.bestsellersCollectionView.dequeueReusableCell(withReuseIdentifier: "BookCell", for: indexPath) as? BookCell else { return UICollectionViewCell() }
         let currentBook = nYTBestSellers[indexPath.row]
         let bookIsbn13 = currentBook.bookDetails.first!.primaryIsbn13
-        
         cell.configureCell(nYTBook: currentBook)
         configureCellImage(cell: cell, bookIsbn: bookIsbn13)
         return cell
@@ -135,5 +149,12 @@ extension NYTBestSellingController: NYTBestSellingViewDelegate {
     func setTitleOfPickerView(rowNum: Int) -> String {
         let currentCategory = allBookCategories[rowNum]
         return currentCategory.displayName
+    }
+    
+    func categorySelected(row: Int, component: Int) {
+        let categoryName = allBookCategories[row].listNameEncoded
+        searchNYTBestSellersByCategory(category: categoryName)
+        allGoogleBookInfo = [GoogleBookInfo]()
+        UserDefaults.standard.set(categoryName, forKey: UserDefaultsKeys.defaultCategory)
     }
 }
