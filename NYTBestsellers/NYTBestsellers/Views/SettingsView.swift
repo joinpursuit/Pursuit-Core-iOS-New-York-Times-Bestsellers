@@ -9,8 +9,8 @@
 import UIKit
 
 class SettingsView: UIView {
-
-   
+    
+    
     public lazy var pickerView: UIPickerView = {
         let pickerView = UIPickerView()
         return pickerView
@@ -38,7 +38,7 @@ extension SettingsView {
     private func setUpView(){
         setUpPickerView()
     }
-   
+    
     
     func setUpPickerView(){
         addSubview(pickerView)

@@ -30,7 +30,7 @@ class DetailView: UIView {
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         
-       commonInit()
+        commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -73,5 +73,5 @@ class DetailView: UIView {
         textView.centerXAnchor.constraint(equalTo:safeAreaLayoutGuide.centerXAnchor).isActive = true
         
     }
-
+    
 }

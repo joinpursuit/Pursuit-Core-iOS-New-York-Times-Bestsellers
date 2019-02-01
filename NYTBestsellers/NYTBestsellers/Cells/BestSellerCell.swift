@@ -41,7 +41,7 @@ class BestSellerCell: UICollectionViewCell {
         super.init(coder: aDecoder)
         fatalError("init(coder:) has not been implemented")
         
-
+        
     }
     private func imageConstraints(){
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -63,7 +63,7 @@ class BestSellerCell: UICollectionViewCell {
         textView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.3).isActive = true
         textView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 1).isActive = true
         textView.centerXAnchor.constraint(equalTo:safeAreaLayoutGuide.centerXAnchor).isActive = true
-
+        
     }
     
 }

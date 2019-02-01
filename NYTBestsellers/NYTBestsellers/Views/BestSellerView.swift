@@ -9,8 +9,8 @@
 import UIKit
 
 class BestSellerView: UIView {
-   
-
+    
+    
     public lazy var colloectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
@@ -30,7 +30,7 @@ class BestSellerView: UIView {
     override init(frame: CGRect) {
         super .init(frame: UIScreen.main.bounds)
         
-       
+        
         commonInit()
     }
     
@@ -45,9 +45,9 @@ class BestSellerView: UIView {
     }
 }
 extension BestSellerView {
-   private func setUpView(){
-    setUpCollectionView()
-    setUpPickerView()
+    private func setUpView(){
+        setUpCollectionView()
+        setUpPickerView()
     }
     func setUpCollectionView(){
         addSubview(colloectionView)
@@ -58,13 +58,13 @@ extension BestSellerView {
     }
     
     func setUpPickerView(){
-    addSubview(pickerView)
+        addSubview(pickerView)
         pickerView.translatesAutoresizingMaskIntoConstraints = false
         pickerView.bottomAnchor.constraint(equalTo:safeAreaLayoutGuide.bottomAnchor).isActive = true
         pickerView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         pickerView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.50).isActive = true
     }
     
-   
+    
 }
 

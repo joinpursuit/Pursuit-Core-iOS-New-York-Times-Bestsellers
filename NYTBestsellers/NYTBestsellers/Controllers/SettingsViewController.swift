@@ -9,7 +9,7 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-
+    
     let settingsView = SettingsView()
     var genre = [Results](){
         didSet{
@@ -21,7 +21,7 @@ class SettingsViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         view.addSubview(settingsView)
         settingsView.pickerView.dataSource = self
         settingsView.pickerView.delegate = self
@@ -38,9 +38,9 @@ class SettingsViewController: UIViewController {
             }
         }
     }
-
     
-
+    
+    
 }
 extension SettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate{
     

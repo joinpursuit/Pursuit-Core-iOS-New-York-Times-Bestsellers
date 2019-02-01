@@ -8,5 +8,5 @@
 
 import Foundation
 final class UserDefaultKeys {
-    static let category = "Default Category"
+    static let category = "Humor"
 }
