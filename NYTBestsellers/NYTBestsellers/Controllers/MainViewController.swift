@@ -47,32 +47,20 @@ class MainViewController: UIViewController {
     
     func getBooks() {
         NYTAPIClient.getBook { (appError, book) in
+            DispatchQueue.main.async {
+                
+            
             if let appError = appError {
                 print(appError.errorMessage())
             }
             if let data = book {
                 self.bookCategories = data
-//                dump(self.bookCategories)
+                self.mainView.myCollectionView.reloadData()
+            }
             }
         }
     }
-    
-    
-//    func getMoreInfo() {
-//        GoogleAPIClient.getDetails { (appError, book) in
-//            if let appError = appError {
-//                print(appError.errorMessage())
-//            }
-//            if let data = book {
-//                DispatchQueue.main.async {
-//
-//                self.googleInfo = data
-//                }
-//                //dump(self.googleInfo)
-//            }
-//        }
-//    }
-    
+  
     func getDetailedInfo() {
         DetailsAPIClient.getDetails { (appError, book) in
             if let appError = appError {
@@ -93,15 +81,13 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         self.view.addSubview(mainView)
         self.view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        //NYTAPIClient()
         getBooks()
-       // getMoreInfo()
         getDetailedInfo()
         mainView.myCollectionView.dataSource = self
         mainView.myCollectionView.delegate = self
         mainView.bestSellerPickerView.dataSource = self
         mainView.bestSellerPickerView.delegate = self
-        //dump()
+     
     }
 }
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -118,6 +104,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             if let bookInfo = bookInfo {
                 cell.googleBookInfo = bookInfo[0]
                 ImageHelper.fetchImageFromNetwork(urlString: bookInfo[0].volumeInfo.imageLinks.smallThumbnail, completion: { (appError, image) in
+                      cell.BestsellerImageView.image = nil 
                     if let appError = appError {
                         print(appError)
                     } else if let image = image {
@@ -157,6 +144,9 @@ extension MainViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return bookCategories[row].listName
     }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.category = bookCategories[row].listName
+    }
 
 }
 extension MainViewController: UICollectionViewDelegate {
@@ -166,7 +156,6 @@ extension MainViewController: UICollectionViewDelegate {
             if let image = cell.BestsellerImageView.image {
             
                 detailViewController.googleInfo = cell.googleBookInfo
-                   // detailViewController.bookDetails? = bookInfo
                 detailViewController.bookImage = image
                 navigationController?.pushViewController(detailViewController, animated: true)
            

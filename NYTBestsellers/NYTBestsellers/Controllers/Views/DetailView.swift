@@ -12,7 +12,7 @@ class DetailView: UIView {
     
     public lazy var bookImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "placeholder-image-2")
+        image.image = UIImage(named: "icons8-book-50")
         image.contentMode = .scaleAspectFit
         return image
     }()
@@ -21,6 +21,7 @@ class DetailView: UIView {
         let label = UILabel()
         label.text = "Michelle Obama"
         label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.bold)
         return label
     }()
     
@@ -28,6 +29,7 @@ class DetailView: UIView {
         let textView = UITextView()
         textView.text = "long description here"
         textView.textAlignment = .center
+        textView.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.regular)
         return textView
     }()
     

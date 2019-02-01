@@ -22,13 +22,13 @@ class FavesCollectionViewCell: UICollectionViewCell {
     }
     
     
-    public lazy var FavesImageView: UIImageView = {
+    public lazy var favesImageView: UIImageView = {
         let imageView = UIImageView ()
         imageView.image = UIImage.init(named: "icons8-book-50")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-   public lazy var WeeksLabel: UILabel = {
+    public lazy var weeksLabel: UILabel = {
         let weeksLabel = UILabel()
         weeksLabel.text = ""
         weeksLabel.textColor = .white
@@ -37,31 +37,48 @@ class FavesCollectionViewCell: UICollectionViewCell {
         return weeksLabel
     }()
     
-    public lazy var TextViewDescription: UITextView = {
+    public lazy var textViewDescription: UITextView = {
         let textDescription = UITextView()
         textDescription.textColor = .white
         textDescription.backgroundColor = .magenta
         textDescription.text = "well hello midnight"
         return textDescription
     }()
+    
+    public func configureCell(favoriteBook: FavoriteBook){
+        weeksLabel.text = favoriteBook.bookName
+        textViewDescription.text = favoriteBook.description
+        
+        if let imageData = favoriteBook.imageData {
+            DispatchQueue.global().async {
+                let image = UIImage(data: imageData)
+                DispatchQueue.main.async {
+                    self.favesImageView.image = image
+                }
+            }
+        }
+        
+    }
+    
+    
     func setUpImageView() {
-        addSubview(FavesImageView)
-        addSubview(WeeksLabel)
-        addSubview(TextViewDescription)
+        addSubview(favesImageView)
+        addSubview(weeksLabel)
+        addSubview(textViewDescription)
         
-        FavesImageView.translatesAutoresizingMaskIntoConstraints = false
-        WeeksLabel.translatesAutoresizingMaskIntoConstraints = false
-        TextViewDescription.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            FavesImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
-            FavesImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1.0), FavesImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35), WeeksLabel.topAnchor.constraint(equalTo: FavesImageView.bottomAnchor, constant: 8), FavesImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11)] )
+        favesImageView.translatesAutoresizingMaskIntoConstraints = false
+        weeksLabel.translatesAutoresizingMaskIntoConstraints = false
+        textViewDescription.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            WeeksLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),  WeeksLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),TextViewDescription.topAnchor.constraint(equalTo: WeeksLabel.bottomAnchor, constant: 0)
+            favesImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            favesImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1.0), favesImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35), weeksLabel.topAnchor.constraint(equalTo: favesImageView.bottomAnchor, constant: 8), favesImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11)] )
+        
+        NSLayoutConstraint.activate([
+            weeksLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),  weeksLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),textViewDescription.topAnchor.constraint(equalTo: weeksLabel.bottomAnchor, constant: 0)
             ])
         NSLayoutConstraint.activate([
-            TextViewDescription.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),  TextViewDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5), TextViewDescription.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0), TextViewDescription.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5),
+            textViewDescription.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),  textViewDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5), textViewDescription.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0), textViewDescription.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5),
             ])
         
         

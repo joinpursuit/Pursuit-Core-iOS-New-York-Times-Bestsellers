@@ -35,6 +35,7 @@ class FavoritesView: UIView {
         super.init(frame: UIScreen.main.bounds)
         addSubview(favesCollectionView)        
         favesCollectionView.register(FavesCollectionViewCell.self, forCellWithReuseIdentifier: "FavesCollectionViewCell")
+        print(DataPersistenceManager.documentsDirectory())
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -16,7 +16,6 @@ class DetailViewController: UIViewController {
     
     var googleInfo: BookInfo?
     
-    var bookDetails: BookData?
     var bookImage: UIImage?
     
     override func viewDidLoad() {
@@ -29,8 +28,16 @@ class DetailViewController: UIViewController {
       
     }
     @objc private func addToFavorites() {
+        let current = Date.getISOTimestamp()
+        if let imageData = bookImage {
+          let faveImage = imageData.jpegData(compressionQuality: 0.5)
+             let favoriteBook = FavoriteBook.init(bookName: googleInfo!.volumeInfo.title, favoritedAt: current , imageData: faveImage, description: googleInfo!.volumeInfo.description)
+            EventDataManager.saveToDocumentDirectory(newFavoriteBook: favoriteBook)
+            print("I favorited a book")
+        }
         
-    }
+        }
+
     
     func configureDetailView() {
         if let image = bookImage {
