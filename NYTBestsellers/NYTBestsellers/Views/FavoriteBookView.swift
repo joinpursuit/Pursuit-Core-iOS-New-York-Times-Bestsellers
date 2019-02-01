@@ -16,7 +16,6 @@ class FavoriteBookView: UIView {
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
         collectionView.backgroundColor = .white
-        
         return collectionView
     }()
     override init(frame: CGRect) {
@@ -35,13 +34,9 @@ class FavoriteBookView: UIView {
     }
     private func setupViews(){
         setupFavoriteCollectionViewContraints()
-        
-        
     }
     private func setupFavoriteCollectionViewContraints() {
         collectionViewCellObj.translatesAutoresizingMaskIntoConstraints = false
-        
-        
          collectionViewCellObj.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
          collectionViewCellObj.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
          collectionViewCellObj.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true

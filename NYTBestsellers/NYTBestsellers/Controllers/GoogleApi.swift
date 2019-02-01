@@ -19,7 +19,7 @@ final class GoogleApi {
             }
             if let data = data {
                 do {
-                    let onlineBookCovers = try JSONDecoder().decode(BookImageData.self, from: data)
+                    let onlineBookCovers = try JSONDecoder().decode(GoogleBookImageInfo.self, from: data)
                     callBack(nil, onlineBookCovers.items?.first?.volumeInfo)
                 } catch {
                     callBack(AppError.jsonDecodingError(error), nil)

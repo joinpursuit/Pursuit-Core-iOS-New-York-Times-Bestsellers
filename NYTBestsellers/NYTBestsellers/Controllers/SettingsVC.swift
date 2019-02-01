@@ -12,7 +12,7 @@ struct CategoryList: Codable {
     let listName: Category
 }
 
-class SettingsViewController: UIViewController {
+class SettingsVC: UIViewController {
 //    private let fileName = "BestSellersCategories.plist"
     let settingsView = SettingsView()
     var categories = [Category]() {
@@ -37,7 +37,7 @@ class SettingsViewController: UIViewController {
     
     
     func fetchCategoriesFromDocumentsDirectory(){
-        NewYorkBestSellerApiClient.searchForBestSellingBooks { (appError, onlineBooks) in
+        BestSellerApiClient.searchForBestSellingBooks { (appError, onlineBooks) in
             if let appError = appError {
                 print(appError.errorMessage())
             }
@@ -49,7 +49,7 @@ class SettingsViewController: UIViewController {
     }
 }
 
-extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+extension SettingsVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

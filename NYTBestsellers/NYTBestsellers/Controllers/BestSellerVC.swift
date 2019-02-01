@@ -8,14 +8,14 @@
 
 import UIKit
 
-class NYTimesBestSellerViewController: UIViewController {
+class BestSellerVC: UIViewController {
     let nyTimesCollection = BestSellerView()
    public var userSelection = "" {
         didSet{
             fetchBooks()
         }
     }
-    var onlineCovers =  [BookImageData]()
+    var onlineCovers =  [GoogleBookImageInfo]()
     var onlineBooks = [ResultsOfBestSellerBooks](){
         didSet{
             DispatchQueue.main.async {
@@ -34,37 +34,27 @@ class NYTimesBestSellerViewController: UIViewController {
         super.viewDidLoad()
         self.title = "NYT BestSellers"
         self.view.backgroundColor = .white
-        
         view.addSubview(nyTimesCollection)
         nyTimesCollection.collectionViewCellObj.dataSource = self
         nyTimesCollection.collectionViewCellObj.delegate = self
         nyTimesCollection.pickerViewObj.dataSource = self
         nyTimesCollection.pickerViewObj.delegate =  self
-       fetchNYBSCategory()
+        fetchNYBSCategory()
         fetchBooks()
+        setupUserDefaultSettings()
+    }
+    fileprivate func setupUserDefaultSettings() {
         if let selection = UserDefaults.standard.object(forKey: DefaultKeys.key) as? String {
             userSelection = selection
         } else {
-           print("has not been save")
+            print("has not been save")
         }
-       
     }
-    func fetchNYBSCategory(){
+    func fetchNYBSCategory(){ //sets the picker view by category using the Documents Directory to fetch the list of names
         nYBSCategories = CategoryDataManager.fetchCategoriesFromDocumentsDirectory()
     }
-//    func stepupCoverBook(isbn: String){
-//        GoogleApi.searchForBookCovers(isbnNumber: isbn) { (error, onlineCovers) in
-//            if let error = error {
-//                print("Error is \(error)")
-//            }
-//            if let onlineCovers = onlineCovers {
-//                self.onlineCovers = onlineCovers
-////              dump(onlineCovers)
-//            }
-//        }
-//    }
-    func fetchBooks(){
-        NewYorkBestSellerApiClient.getBestSellerByCategory(category: userSelection) { (appError, onlineCategories) in
+    func fetchBooks(){// gets the NYT Best Sellers Book From thr ApiClient from the second Endpoint
+        BestSellerApiClient.getBestSellerByCategory(category: userSelection) { (appError, onlineCategories) in
             if let appError = appError {
                 print(appError.errorMessage())
             }
@@ -74,26 +64,17 @@ class NYTimesBestSellerViewController: UIViewController {
         }
     }
 }
-extension NYTimesBestSellerViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+extension BestSellerVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return onlineBooks.count
     }
-//    fileprivate func extractedFunc(_ indexPath: IndexPath, _ cell: BestSellerCell) {
-//        ImageHelper.fetchImageFromNetwork(urlString: onlineBooks[indexPath.row].isbns[indexPath.section].isbn13) { (appError, image) in
-//            if let appError = appError {
-//                print(appError.errorMessage())
-//            }
-//            if let image = image {
-//                DispatchQueue.main.async {
-//                    cell.imageObj.image = image
-//                }
-//            }
-//        }
+//    fileprivate func getGoogleBookCover(_ settingBookCells: ResultsOfBestSellerBooks, _ cell: BestSellerCell) {
+//
 //    }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestSellerCell", for: indexPath) as? BestSellerCell else {return UICollectionViewCell()}
         let settingBookCells = onlineBooks[indexPath.row]
+//        getGoogleBookCover(settingBookCells, cell) //gets the book image covers from the google api using the image helper
         if let isbn = settingBookCells.isbns.first?.isbn13  {
             GoogleApi.searchForBookCovers(isbnNumber: isbn) { (error, imageData) in
                 if let error = error {
@@ -118,18 +99,20 @@ extension NYTimesBestSellerViewController: UICollectionViewDelegateFlowLayout, U
         if let description = settingBookCells.moreBookInformation.first?.booksDescription {
            cell.bestSellerBookDescriptionTxtViewObj.text = description
         }
-//        extractedFunc(indexPath, cell)
-        
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let destination = DetailNYTBSViewController()
+        let destination = DetailBSVC()
+        guard let cell = collectionView.cellForItem(at: indexPath) as? BestSellerCell else {
+            print("cant segue items to the detail cell")
+            return
+        }
+        destination.detailDestination.detailTitleLabelObj.text = cell.titleLabelObj.text
+       destination.detailDestination.detailDescriptionTextViewObj.text = cell.bestSellerBookDescriptionTxtViewObj.text
         self.navigationController?.pushViewController(destination, animated: true)
-        
     }
-    
 }
-extension NYTimesBestSellerViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+extension BestSellerVC: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

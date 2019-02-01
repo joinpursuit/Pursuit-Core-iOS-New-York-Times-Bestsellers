@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct NewYorkTimesData: Codable {
+struct CategoryData: Codable {
     let numResults: Int
     let results: [Category]
     enum CodingKeys: String, CodingKey{

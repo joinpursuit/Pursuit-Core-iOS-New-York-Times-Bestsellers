@@ -7,7 +7,7 @@
 //
 
 import Foundation
-final class NewYorkBestSellerApiClient {
+final class BestSellerApiClient {
     private init(){}
     static func searchForBestSellingBooks(callBack: @escaping(AppError?, [Category]?) -> Void){
         NetworkHelper.shared.performDataTask(endpointURLString: "https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=\(SecretInfo.nybsSecretKey)") { (appError, data) in
@@ -17,7 +17,7 @@ final class NewYorkBestSellerApiClient {
             }
             if let data = data {
                 do {
-                    let bestSellerBooks = try JSONDecoder().decode(NewYorkTimesData.self, from: data)
+                    let bestSellerBooks = try JSONDecoder().decode(CategoryData.self, from: data)
                     callBack(nil, bestSellerBooks.results)
                 } catch {
                     callBack(AppError.jsonDecodingError(error), nil)

@@ -17,9 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     let navigation = UINavigationController()
     let tabBarController = UITabBarController()
-    let newYorkBS = NYTimesBestSellerViewController()
-    let favorite = FavoritesViewController()
-    let setting = SettingsViewController()
+    let newYorkBS = BestSellerVC()
+    let favorite = UserFavoritesVC()
+    let setting = SettingsVC()
         newYorkBS.tabBarItem = UITabBarItem(tabBarSystemItem: .mostViewed, tag: 0)
      favorite.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
      setting.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 2)

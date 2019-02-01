@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavoritesViewController: UIViewController {
+class UserFavoritesVC: UIViewController {
     let favoritesView = FavoriteBookView()
     let cellItem = FavoiteBookCell()
     override func viewDidLoad() {
@@ -18,7 +18,6 @@ class FavoritesViewController: UIViewController {
         view.addSubview(favoritesView)
         favoritesView.collectionViewCellObj.dataSource = self
         favoritesView.collectionViewCellObj.delegate = self
-    
         favoritesBttonPressed()
     }
     func favoritesBttonPressed(){
@@ -35,11 +34,9 @@ class FavoritesViewController: UIViewController {
         }))
        self.present(alert, animated: true)
     }
-    
 }
 //5 conform and convert call the alert
-
-extension FavoritesViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, FavoiteBookCellDelegate {
+extension UserFavoritesVC: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, FavoiteBookCellDelegate {
     func presentAlertController(alertController: UIAlertController) {
         self.present(alertController, animated: true, completion: nil)
     }

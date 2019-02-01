@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct BookImageData: Codable {
+struct GoogleBookImageInfo: Codable {
     let totalItems: Int
     let items: [ItemsContainer]?
 }
