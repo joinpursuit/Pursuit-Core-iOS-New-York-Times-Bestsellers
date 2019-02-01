@@ -13,6 +13,7 @@ protocol NYTBestSellingViewDelegate: AnyObject {
     func setTitleOfPickerView(rowNum: Int) -> String
     func numberOfCategories() -> Int
     func categorySelected(row: Int, component: Int)
+    
     // for collection view
     func numberOfNYTBooks() -> Int
     func configureUICollectionCell(indexPath: IndexPath) -> UICollectionViewCell

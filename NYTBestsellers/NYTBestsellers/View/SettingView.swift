@@ -11,6 +11,11 @@ import UIKit
 class SettingView: UIView {
 
    //picker view
+    lazy var categoryPickerView: UIPickerView = {
+        let pv = UIPickerView()
+        pv.backgroundColor = UIColor(hexString: "5a92af")
+        return pv
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
@@ -33,6 +38,11 @@ extension SettingView {
     }
     
     private func setupSettingPickerView() {
-        
+        addSubview(categoryPickerView)
+        categoryPickerView.translatesAutoresizingMaskIntoConstraints = false
+        categoryPickerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        categoryPickerView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+        categoryPickerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
+        categoryPickerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
     }
 }

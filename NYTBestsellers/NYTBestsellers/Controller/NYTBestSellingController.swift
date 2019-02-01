@@ -28,7 +28,7 @@ class NYTBestSellingController: UIViewController {
             }
             DispatchQueue.main.async {
                 self.nYTBestSellingView.categoryPickerView.reloadAllComponents()
-                self.nYTBestSellingView.categoryPickerView.selectRow(rowNum!, inComponent: 0, animated: true)
+                self.nYTBestSellingView.categoryPickerView.selectRow(rowNum ?? 0, inComponent: 0, animated: false)
             }
         }
     }
@@ -45,24 +45,24 @@ class NYTBestSellingController: UIViewController {
         super.viewDidLoad()
         self.view.addSubview(nYTBestSellingView)
         nYTBestSellingView.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
         initialSetup()
     }
     
     private func initialSetup() {
+        getAllCategories()
+        checkUserDefaultsAndFetchBestSellers()
+    }
+    
+    private func checkUserDefaultsAndFetchBestSellers() {
         if let defaultCategoryName = UserDefaults.standard.object(forKey: UserDefaultsKeys.defaultCategory) as? String {
             searchNYTBestSellersByCategory(category: defaultCategoryName)
             self.defaultCategoryName = defaultCategoryName
         } else {
             searchNYTBestSellersByCategory(category: self.defaultCategoryName)
         }
-        getAllCategoriesAndSetupPickerView()
     }
     
-    private func getAllCategoriesAndSetupPickerView() {
+    private func getAllCategories() {
         NYTBestsellingCategoriesAPIClient.getAllCategories { (appError, categories) in
             if let appError = appError {
                 print(appError.errorMessage())
@@ -155,6 +155,5 @@ extension NYTBestSellingController: NYTBestSellingViewDelegate {
         let categoryName = allBookCategories[row].listNameEncoded
         searchNYTBestSellersByCategory(category: categoryName)
         allGoogleBookInfo = [GoogleBookInfo]()
-        UserDefaults.standard.set(categoryName, forKey: UserDefaultsKeys.defaultCategory)
     }
 }
