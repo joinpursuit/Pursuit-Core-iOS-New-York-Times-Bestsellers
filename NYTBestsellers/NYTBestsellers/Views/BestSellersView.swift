@@ -40,11 +40,6 @@ class BestSellersView: UIView {
         backgroundColor = .white
         setupViews()
     }
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//    }
-
-    
 }
 extension BestSellersView {
     private func setupViews() {

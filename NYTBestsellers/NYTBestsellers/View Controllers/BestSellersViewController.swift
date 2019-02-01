@@ -11,6 +11,8 @@ import UIKit
 class BestSellersViewController: UIViewController {
     
     private let bestSellerView = BestSellersView()
+    let bestVCButton = UITabBarItem(tabBarSystemItem: UITabBarItem.SystemItem.featured, tag: 0)
+
     private var bestSellerCategories = [CategoryResults](){
         didSet {
             DispatchQueue.main.async {
@@ -84,7 +86,6 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestCollectionViewCell", for: indexPath) as? BestCollectionViewCell else { return UICollectionViewCell()}
         var isbn = String()
         let book = bestSellerBooks[indexPath.row]
-        // issue is here! isbn not showing up sometimes?
         if let bookDetails = book.bookDetails.first {
             if !bookDetails.primaryIsbn13.isEmpty {
                 isbn = bookDetails.primaryIsbn13
@@ -93,7 +94,6 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
                 isbn = bookDetails.primaryIsbn10
             }
         }
-        
 //        isbn = book.isbns[0].isbn13
         print("Current isbn: \(isbn)")
         GoogleBookAPI.getGoogleInfo(bookIsbn:isbn ) { (appError, data) in
@@ -127,22 +127,6 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
                 }
             }
         }
-            
-//            GoogleBookAPI.getGoogleInfo(bookIsbn: isbn) { (appError, urlString) in
-//                if let appError = appError {
-//                    print("error getting google image url string - \(appError)")
-//                } else if let urlString = urlString {
-//
-//                    ImageHelper.fetchImageFromNetwork(urlString: urlString, completion: { (appError, image) in
-//                        if let appError = appError {
-//                            print("error trying to get image out of google url - \(appError)")
-//                        } else if let image = image {
-//                            self.bookImage = image
-//                        }
-//                    })
-//                }
-//            }
-        
         cell.cellLabel.text = "\(book.weeksOnList) weeks on Best Sellers"
         cell.cellTextView.text = book.bookDetails.first?.bookDescription
         return cell
@@ -161,11 +145,9 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
     }
 }
 extension BestSellersViewController: UIPickerViewDataSource, UIPickerViewDelegate {
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return bestSellerCategories.count
     }
@@ -185,5 +167,4 @@ extension BestSellersViewController: SettingsViewControllerDelegate {
         self.bestSellerView.myBestSellerPickerView.selectRow(row, inComponent: 0, animated: true)
         self.setupBooks(listName: self.bestSellerCategories[row].listNameEncoded)
     }
-    
 }

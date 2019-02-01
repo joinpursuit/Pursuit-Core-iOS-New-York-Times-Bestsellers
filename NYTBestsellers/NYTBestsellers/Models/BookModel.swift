@@ -9,8 +9,6 @@
 import Foundation
 
 struct BookModel: Codable {
-//    let num_results: Int
-//    let last_modified: String
     let results: [BookResults]
 }
 struct BookResults: Codable {
@@ -50,7 +48,6 @@ struct BookDetails: Codable {
     let bookDescription: String
     let contributor: String
     let author: String
-//    let price: Double
     let ageGroup: String
     let publisher: String
     let primaryIsbn13: String
@@ -60,7 +57,6 @@ struct BookDetails: Codable {
         case bookDescription = "description"
         case contributor
         case author
-        //    case price
         case ageGroup = "age_group"
         case publisher
         case primaryIsbn13 = "primary_isbn13"

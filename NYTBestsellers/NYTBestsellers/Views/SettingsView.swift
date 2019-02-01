@@ -30,11 +30,6 @@ class SettingsView: UIView {
         backgroundColor = .white
         setupViews()
     }
-    //    override func layoutSubviews() {
-    //        super.layoutSubviews()
-    //    }
-    
-    
 }
 extension SettingsView {
     private func setupViews() {

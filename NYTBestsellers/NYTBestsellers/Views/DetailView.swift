@@ -25,7 +25,6 @@ class DetailView: UIView {
     lazy var amazonButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "amazon"), for: .normal)
-        //add action code
         button.addTarget(self, action: #selector(amazonPressed), for: .touchUpInside)
         return button
     }()

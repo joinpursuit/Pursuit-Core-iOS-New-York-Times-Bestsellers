@@ -17,7 +17,6 @@ final class FavoriteModel {
         saveBook()
     }
     static func bookAlreadyFavorited(newTitle: String)-> Bool {
-        //itterate through array of favorites and check if title matches
         var title = false
         if favorites.isEmpty {
             return title
@@ -62,9 +61,6 @@ final class FavoriteModel {
             print("\(filename) does not exist")
         }
         favorites = favorites.sorted {$0.createdAt > $1.createdAt}
-        
         return favorites
     }
-    
-    
 }

@@ -35,12 +35,8 @@ class DetailViewController: UIViewController {
         guard let titleSelected = selectedTitle else {return}
         if FavoriteModel.bookAlreadyFavorited(newTitle: titleSelected) {
             navigationItem.rightBarButtonItem?.isEnabled = false
-            
         } else {
             navigationItem.rightBarButtonItem?.isEnabled = true
-//            detailView.detailFavoritesImage.isHidden = false
-            
-
         }
     }
     private func animatedSave() {
@@ -63,7 +59,7 @@ class DetailViewController: UIViewController {
     private func saveBook()-> FavoriteBook? {
         guard let image = detailView.detailImage.image,
             let author = detailView.detailLabel.text,
-        let description = detailView.detailTextView.text else {return nil}
+            let description = detailView.detailTextView.text else {return nil}
         guard let title = selectedTitle,
         let amazonLink = amazonLinkString else {return nil}
         let date = Date()

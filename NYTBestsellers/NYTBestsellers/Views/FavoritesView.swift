@@ -35,11 +35,6 @@ class FavoritesView: UIView {
         backgroundColor = .white
         setupViews()
     }
-    //    override func layoutSubviews() {
-    //        super.layoutSubviews()
-    //    }
-    
-    
 }
 extension FavoritesView {
     private func setupViews() {

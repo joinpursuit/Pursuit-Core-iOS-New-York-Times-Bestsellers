@@ -17,8 +17,7 @@ class SettingsViewController: UIViewController {
     let settingsView = SettingsView()
     
     private var settingsCategories = [CategoryResults](){
-        didSet { //use case ex. when searching
-            //tableview reload data needs to be on the main thread
+        didSet {
             DispatchQueue.main.async {
                 self.settingsView.mySettingsPickerView.reloadAllComponents()
                 self.setupCategory()
@@ -32,7 +31,6 @@ class SettingsViewController: UIViewController {
         navigationItem.title =
             "Pick Default Category"
         view.addSubview(settingsView)
-        
         settingsView.mySettingsPickerView.dataSource = self
         settingsView.mySettingsPickerView.delegate = self
         setupSettings()
@@ -43,14 +41,9 @@ class SettingsViewController: UIViewController {
         if let categorySelected = UserDefaults.standard.value(forKey: UserDefaultsKeys.settingsCategoryKey) as? Int {
             print(categorySelected)
             settingsView.mySettingsPickerView.selectRow(categorySelected, inComponent: 0, animated: true)
-//            category = categorySelected
         } else {
             print("no category in defaults")
         }
-//        else {
-//            category = defaultCategory
-//        }
-//        setupSettings()
     }
     func setupSettings() {
         NYTBookAPI.getBookCategories { (appError, categories) in
@@ -66,7 +59,6 @@ extension SettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return settingsCategories.count
     }
@@ -79,5 +71,4 @@ extension SettingsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         delegate?.settingsPicker(row: category)
         UserDefaults.standard.set(category, forKey: UserDefaultsKeys.settingsCategoryKey)
     }
-    
 }
