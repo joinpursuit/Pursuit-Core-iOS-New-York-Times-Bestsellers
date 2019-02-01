@@ -13,6 +13,7 @@ class BestSellerDetailView: UIView {
     
     public lazy var photoOfBook: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "imageHolder"))
+        iv.backgroundColor = .gray
         return iv
     }()
     
@@ -20,6 +21,8 @@ class BestSellerDetailView: UIView {
         let label = UILabel()
         label.text = "Title of Book"
         label.textColor = .black
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         label.numberOfLines = 0
         return label
     }()
@@ -28,6 +31,7 @@ class BestSellerDetailView: UIView {
         let textView = UITextView()
         textView.text = ""
         textView.textColor = .black
+        textView.backgroundColor = .gray
         textView.isEditable = false
         textView.font = UIFont.systemFont(ofSize: 17)
         return textView
@@ -47,7 +51,7 @@ class BestSellerDetailView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = .white
+        backgroundColor = .gray
         setupViews()
     }
     

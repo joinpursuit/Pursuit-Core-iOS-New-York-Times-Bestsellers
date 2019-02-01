@@ -12,31 +12,34 @@ class FavoriteCell: UICollectionViewCell {
     
     let optionsButton: UIButton = {
         let button = UIButton()
-        button.setTitle("...", for: .normal)
         button.clipsToBounds = true
+        button.setTitle("...", for: .normal)
+        button.backgroundColor = .gray
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 50)
         return button
     }()
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = .black
-        label.backgroundColor = .white
-        label.text = ""
+        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.textColor = .white
+        label.backgroundColor = .gray
+        label.numberOfLines = 0
         label.textAlignment = .center
         return label
     }()
     
     public lazy var favoriteBookPhoto: UIImageView = {
         let image = UIImageView(image: UIImage(named: "imageHolder"))
+        image.backgroundColor = .gray
         return image
     }()
     
     lazy var descriptionTextView: UITextView = {
         let textView = UITextView()
         textView.text = "Description"
-        textView.font = UIFont.systemFont(ofSize: 17)
-        textView.backgroundColor = .white
+        textView.font = UIFont.italicSystemFont(ofSize: 17)
+        textView.backgroundColor = .gray
         textView.textColor = .black
         textView.isEditable = false
         return textView
@@ -50,6 +53,7 @@ class FavoriteCell: UICollectionViewCell {
     
     
     func addViews(){
+        backgroundColor = .gray
         buttonConstraints()
         nameLabelConstraints()
         favoriteBookPhotoConstraints()
@@ -62,16 +66,17 @@ class FavoriteCell: UICollectionViewCell {
         addSubview(favoriteBookPhoto)
         favoriteBookPhoto.translatesAutoresizingMaskIntoConstraints = false
         favoriteBookPhoto.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        favoriteBookPhoto.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4).isActive = true
-        favoriteBookPhoto.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 25).isActive = true
-        favoriteBookPhoto.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25).isActive = true
+        favoriteBookPhoto.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
+        favoriteBookPhoto.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 40).isActive = true
+        favoriteBookPhoto.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40).isActive = true
     }
     
     func buttonConstraints(){
         addSubview(optionsButton)
         optionsButton.translatesAutoresizingMaskIntoConstraints = false
-       
-        optionsButton.topAnchor.constraint(equalTo: topAnchor, constant: 38).isActive = true
+        
+        optionsButton.topAnchor.constraint(equalTo: favoriteBookPhoto.bottomAnchor)
+        
         optionsButton.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
 
     }

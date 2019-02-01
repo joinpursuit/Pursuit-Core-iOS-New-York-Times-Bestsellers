@@ -20,10 +20,12 @@ class OptionsVC: UIViewController {
         }
     }
     
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Settings"
+        tabBarItem.image = UIImage(named: "setting")
         getData()
         view.addSubview(optionsView)
         optionsView.pickerView.dataSource = self

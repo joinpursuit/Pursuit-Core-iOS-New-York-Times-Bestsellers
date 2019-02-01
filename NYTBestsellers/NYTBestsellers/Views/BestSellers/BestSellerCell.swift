@@ -17,17 +17,18 @@ class BestSellerCell: UICollectionViewCell {
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 20)
         label.textColor = .black
-        label.text = "Joshua Viera"
+        label.backgroundColor = .gray
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
     
     lazy var descriptionTextView: UITextView = {
         let textView = UITextView()
-        textView.text = "Description"
-        textView.font = UIFont.systemFont(ofSize: 17)
-        textView.backgroundColor = .white
+        textView.font = UIFont.italicSystemFont(ofSize: 13)
+        textView.backgroundColor = .gray
         textView.textColor = .black
         textView.isEditable = false
         return textView
@@ -35,7 +36,7 @@ class BestSellerCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
+        backgroundColor = .gray
         addViews()
     }
     
@@ -48,6 +49,7 @@ class BestSellerCell: UICollectionViewCell {
     }
     
     func setConstraints(){
+        backgroundColor = .gray
         photoImageConstraints()
         nameLabelConstraints()
         descriptionTextViewConstraints()
@@ -58,7 +60,7 @@ class BestSellerCell: UICollectionViewCell {
         bookPhoto.topAnchor.constraint(equalTo: topAnchor).isActive = true
         bookPhoto.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         bookPhoto.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        bookPhoto.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
+        bookPhoto.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.6).isActive = true
     }
     
     func nameLabelConstraints(){

@@ -16,6 +16,7 @@ class FavoritesVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarItem.image = UIImage(named: "fav")
         favoritesView.myCollectionView.delegate = self
         favoritesView.myCollectionView.dataSource = self
         view.addSubview(favoritesView)
@@ -29,11 +30,15 @@ class FavoritesVC: UIViewController {
     @objc func buttonPressed(sender: UIButton){
         let index = sender.tag
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (alert) in
+            self.dismiss(animated: true, completion: nil)
+        }
         let delete = UIAlertAction(title: "Delete", style: .destructive) { (alert) in
             DataPersistenceModel.deleteFavoriteBook(atIndex: index)
             self.favoriteBooks = DataPersistenceModel.getFavoriteBooks()
             self.favoritesView.myCollectionView.reloadData()
         }
+        actionSheet.addAction(cancel)
         actionSheet.addAction(delete)
         present(actionSheet, animated: true, completion: nil)
     }

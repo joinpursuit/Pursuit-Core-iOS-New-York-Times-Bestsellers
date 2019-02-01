@@ -13,7 +13,7 @@ class OptionsView: UIView {
 
     public lazy var pickerView: UIPickerView = {
         let pv = UIPickerView()
-        pv.backgroundColor = .orange
+        pv.backgroundColor = .gray
         return pv
     }()
     

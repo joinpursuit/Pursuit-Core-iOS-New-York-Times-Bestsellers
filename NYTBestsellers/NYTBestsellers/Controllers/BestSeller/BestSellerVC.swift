@@ -31,6 +31,7 @@ class BestSellerVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarItem.image = UIImage(named: "best")
         if let category = UserDefaults.standard.object(forKey: Constants.userDefaults) as? String {
             APIClient.getBookDetails(listName: category) { (error, books) in
                 if let error = error {

@@ -52,8 +52,11 @@ class BestSellerDetailVC: UIViewController {
         bestSellerDetailView.bookTitle.text = bookString
         APIClient.getGoogleData(isbn: isbnString) { (error, image) in
             if let error = error {
-                self.bestSellerDetailView.photoOfBook.image = UIImage(named: "imageHolder")
-                self.bestSellerDetailView.myTextView.text = self.descriptionString
+                DispatchQueue.main.async {
+                    self.bestSellerDetailView.photoOfBook.image = UIImage(named: "imageHolder")
+                    self.bestSellerDetailView.myTextView.text = self.descriptionString
+                    
+                }
                 print(error)
             }
             if let image = image {
