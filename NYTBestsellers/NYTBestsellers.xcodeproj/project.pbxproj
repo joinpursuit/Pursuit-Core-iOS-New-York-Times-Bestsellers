@@ -21,6 +21,8 @@
 		2BD17DCE2200FFCF00DE15B0 /* GoogleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD17DCD2200FFCF00DE15B0 /* GoogleModel.swift */; };
 		2BD17E1822022FB300DE15B0 /* NYTBestsellersDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD17E1722022FB300DE15B0 /* NYTBestsellersDetailViewController.swift */; };
 		2BD17E2C22036E3F00DE15B0 /* NYTBestsellerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD17E2B22036E3F00DE15B0 /* NYTBestsellerDetailView.swift */; };
+		2BD17E2E2203A6CB00DE15B0 /* FavoriteBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD17E2D2203A6CB00DE15B0 /* FavoriteBooks.swift */; };
+		2BD17E302203AC5600DE15B0 /* NYTBestsellersBookDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD17E2F2203AC5600DE15B0 /* NYTBestsellersBookDataManager.swift */; };
 		5718BFE921FA75A800A8E4B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718BFE821FA75A800A8E4B8 /* AppDelegate.swift */; };
 		5718BFF021FA75A900A8E4B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5718BFEF21FA75A900A8E4B8 /* Assets.xcassets */; };
 		5718BFF321FA75A900A8E4B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5718BFF121FA75A900A8E4B8 /* LaunchScreen.storyboard */; };
@@ -47,6 +49,9 @@
 		2BD17DCD2200FFCF00DE15B0 /* GoogleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleModel.swift; sourceTree = "<group>"; };
 		2BD17E1722022FB300DE15B0 /* NYTBestsellersDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestsellersDetailViewController.swift; sourceTree = "<group>"; };
 		2BD17E2B22036E3F00DE15B0 /* NYTBestsellerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestsellerDetailView.swift; sourceTree = "<group>"; };
+		2BD17E2D2203A6CB00DE15B0 /* FavoriteBooks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBooks.swift; sourceTree = "<group>"; };
+		2BD17E2F2203AC5600DE15B0 /* NYTBestsellersBookDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTBestsellersBookDataManager.swift; sourceTree = "<group>"; };
+		2BD17E312203AD4F00DE15B0 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
 		5718BFE521FA75A800A8E4B8 /* NYTBestsellers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTBestsellers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5718BFE821FA75A800A8E4B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5718BFEF21FA75A900A8E4B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -99,6 +104,9 @@
 				2BD17D3421FB902600DE15B0 /* NYTBestsellersModel.swift */,
 				2BD17D6A21FCA20C00DE15B0 /* NYTBestsellersInfo.swift */,
 				2BD17DCD2200FFCF00DE15B0 /* GoogleModel.swift */,
+				2BD17E2D2203A6CB00DE15B0 /* FavoriteBooks.swift */,
+				2BD17E2F2203AC5600DE15B0 /* NYTBestsellersBookDataManager.swift */,
+				2BD17E312203AD4F00DE15B0 /* DataPersistenceManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -248,10 +256,12 @@
 				2BD17D4921FBC60000DE15B0 /* BestsellersCollectionViewCell.swift in Sources */,
 				2BD17DCA21FF984200DE15B0 /* FavoritesCollectionViewCell.swift in Sources */,
 				5718C00021FA771800A8E4B8 /* NetworkHelper.swift in Sources */,
+				2BD17E2E2203A6CB00DE15B0 /* FavoriteBooks.swift in Sources */,
 				2BD17D3F21FBB34300DE15B0 /* NYTBestsellersViewController.swift in Sources */,
 				2BD17D4321FBB61200DE15B0 /* FavoritesView.swift in Sources */,
 				2BD17D4521FBB62500DE15B0 /* SettingsView.swift in Sources */,
 				5718BFFC21FA763200A8E4B8 /* String+DateExtensions.swift in Sources */,
+				2BD17E302203AC5600DE15B0 /* NYTBestsellersBookDataManager.swift in Sources */,
 				5718C00221FA772600A8E4B8 /* AppError.swift in Sources */,
 				2BD17D3521FB902600DE15B0 /* NYTBestsellersModel.swift in Sources */,
 				5718C00421FA77AA00A8E4B8 /* DataPersistenceManager.swift in Sources */,

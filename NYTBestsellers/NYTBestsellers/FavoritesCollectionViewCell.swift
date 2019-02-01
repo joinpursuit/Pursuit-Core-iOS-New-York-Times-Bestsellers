@@ -15,7 +15,7 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
         return image
     }()
     
-    public lazy var weeksLabel: UILabel = {
+    public lazy var authorLabel: UILabel = {
         let label = UILabel()
         label.text = "randomText"
         label.textAlignment = .center
@@ -35,7 +35,7 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         self.backgroundColor = .white
-        addSubview(weeksLabel)
+        addSubview(authorLabel)
         addSubview(descriptionField)
         setupBookImage()
         setupWeeksLabel()
@@ -63,17 +63,17 @@ extension FavoritesCollectionViewCell {
     }
     
     private func setupWeeksLabel() {
-        addSubview(weeksLabel)
-        weeksLabel.translatesAutoresizingMaskIntoConstraints = false
-        weeksLabel.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 11).isActive = true
-        weeksLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        weeksLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        addSubview(authorLabel)
+        authorLabel.translatesAutoresizingMaskIntoConstraints = false
+        authorLabel.topAnchor.constraint(equalTo: bookImage.bottomAnchor, constant: 11).isActive = true
+        authorLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        authorLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
     }
     
     private func setupDescription() {
         addSubview(descriptionField)
         descriptionField.translatesAutoresizingMaskIntoConstraints = false
-        descriptionField.topAnchor.constraint(equalTo: weeksLabel.bottomAnchor, constant: 2).isActive = true
+        descriptionField.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 2).isActive = true
         descriptionField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
         descriptionField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -0).isActive = true
         descriptionField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true

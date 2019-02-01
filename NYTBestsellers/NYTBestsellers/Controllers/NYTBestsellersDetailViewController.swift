@@ -42,7 +42,16 @@ class NYTBestsellersDetailViewController: UIViewController {
     }
     
     @objc private func addToFavorites() {
-        
+        if let title = self.navigationItem.title, let description = self.bookDetails?.book_details[0].description {
+        let alertController = UIAlertController(title: "Add to favorites", message: "Saved", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alertController, animated: true, completion: nil)
+        let data = bookImage?.jpegData(compressionQuality: 0.5)
+            
+        let favorite = FavoriteBooks.init(author: "String", imageData: data, description: description)
+            NYTBestsellersBookDataManager.saveToDocumentDirectory(newFavoriteBook: favorite)
+            
+        }
     }
 }
     
