@@ -25,11 +25,20 @@ class FavoritesViewController: UIViewController {
         favoritesView.myFavoritesCollectionView.dataSource = self
         favoritesView.myFavoritesCollectionView.delegate = self
         myBooks = FavoriteModel.getBooks()
+        updateTitle()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         myBooks = FavoriteModel.getBooks()
         favoritesView.myFavoritesCollectionView.reloadData()
+        updateTitle()
+    }
+    private func updateTitle() {
+        if self.myBooks.count > 0 {
+            self.navigationItem.title = ("Favorites \(myBooks.count)")
+        } else {
+            self.navigationItem.title = "Favorites"
+        }
     }
 }
 extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -55,6 +64,8 @@ extension FavoritesViewController: FavoritesCollectionViewCellDelegate {
         let optionMenu = UIAlertController(title: nil, message: "Options:", preferredStyle: .actionSheet)
         let  deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) -> Void in
             FavoriteModel.deleteBook(index: tag)
+            self.myBooks = FavoriteModel.getBooks()
+            self.updateTitle()
             self.favoritesView.myFavoritesCollectionView.reloadData()
         })
         let editAction = UIAlertAction(title: "See on Amazon", style: .default)

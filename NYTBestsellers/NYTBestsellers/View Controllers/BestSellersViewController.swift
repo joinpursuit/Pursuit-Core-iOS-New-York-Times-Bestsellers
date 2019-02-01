@@ -155,7 +155,6 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
         detailVC.detailView.detailTextView.text = selectedCell.cellTextView.text
         detailVC.detailView.detailFavoritesImage.image = selectedCell.cellImage.image
         detailVC.detailView.detailLabel.text = book.bookDetails.first?.author
-//        detailVC.detailView.detailTitle.title = book.bookDetails.first?.title
         detailVC.selectedTitle = book.bookDetails.first?.title
     
         navigationController?.pushViewController(detailVC, animated: true)

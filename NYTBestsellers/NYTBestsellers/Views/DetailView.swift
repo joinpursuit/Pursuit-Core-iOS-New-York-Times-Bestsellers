@@ -22,6 +22,16 @@ class DetailView: UIView {
         delegate?.favoritePressed()
 
     }
+    lazy var amazonButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "amazon"), for: .normal)
+        //add action code
+        button.addTarget(self, action: #selector(amazonPressed), for: .touchUpInside)
+        return button
+    }()
+    @objc func amazonPressed() {
+        print("amazon pressed")
+    }
     
     public lazy var detailImage: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "Placeholder"))
@@ -31,11 +41,6 @@ class DetailView: UIView {
         let iv = UIImageView(image: UIImage(named: "Placeholder"))
         iv.isHidden = true
         return iv
-    }()
-    public lazy var detailTitle: UINavigationItem = {
-        let label = UINavigationItem()
-        label.title = "Title"
-        return label
     }()
     
     public lazy var detailLabel: UILabel = {
@@ -76,6 +81,7 @@ extension DetailView {
         setupDetailLabel()
         setupDetailTextView()
         setupDetailFavoriteImage()
+        setupAmazonButton()
     }
     
     private func setupDetailImageView () {
@@ -111,6 +117,14 @@ extension DetailView {
         detailFavoritesImage.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.10).isActive = true
         detailFavoritesImage.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
 
+    }
+    private func setupAmazonButton() {
+        addSubview(amazonButton)
+        amazonButton.translatesAutoresizingMaskIntoConstraints = false
+        amazonButton.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        amazonButton.widthAnchor.constraint(equalToConstant: 75).isActive = true
+        amazonButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 25).isActive = true
+        amazonButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5).isActive = true
     }
 }
 

@@ -15,18 +15,53 @@ class DetailViewController: UIViewController {
     var durationTime = Double()
     var favoriteBook: FavoriteBook?
     var selectedTitle: String?
+    var myBooks = [FavoriteBook]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(detailView)
         print(detailView.detailLabel)
         detailView.delegate = self
+        myBooks = FavoriteModel.getBooks()
         navigationItem.title = selectedTitle
         navigationItem.rightBarButtonItem = detailView.favoriteButton
         guard let titleSelected = selectedTitle else {return}
         if FavoriteModel.bookAlreadyFavorited(newTitle: titleSelected) {
             navigationItem.rightBarButtonItem?.isEnabled = false
         }
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        guard let titleSelected = selectedTitle else {return}
+        if FavoriteModel.bookAlreadyFavorited(newTitle: titleSelected) {
+            navigationItem.rightBarButtonItem?.isEnabled = false
+            
+        } else {
+            navigationItem.rightBarButtonItem?.isEnabled = true
+            
+
+        }
+    }
+    private func animatedSave() {
+        detailView.detailFavoritesImage.isHidden = false
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        self.detailView.detailFavoritesImage.alpha = 0.0
+        UIView.animateKeyframes(withDuration: 3.0, delay: 0.0, options: [.calculationModeLinear], animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5, animations: {
+                self.detailView.detailFavoritesImage.alpha = 1.0
+            })
+            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 1.0, animations: {
+                self.detailView.detailFavoritesImage.frame.origin.y += self.view.bounds.height
+                self.detailView.detailFavoritesImage.alpha = 0.0
+            })
+            
+            
+//            self.detailView.detailFavoritesImage.transform = CGAffineTransform.identity
+//            self.detailView.detailFavoritesImage.isHidden = true
+
+        })
+        
+
     }
     private func saveBook()-> FavoriteBook? {
         guard let image = detailView.detailImage.image,
@@ -52,18 +87,19 @@ extension DetailViewController: DetailViewDelegate {
         } else {
             guard let book = saveBook() else {return}
             FavoriteModel.appendBook(favorite: book)
-            detailView.detailFavoritesImage.isHidden = false
-            navigationItem.rightBarButtonItem?.isEnabled = false
-            self.detailView.detailFavoritesImage.alpha = 0.0
-            UIView.animateKeyframes(withDuration: 3.0, delay: 0.0, options: [.calculationModeLinear], animations: {
-                UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5, animations: {
-                    self.detailView.detailFavoritesImage.alpha = 1.0
-                })
-                UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 1.0, animations: {
-                    self.detailView.detailFavoritesImage.frame.origin.y += self.view.bounds.height
-                    self.detailView.detailFavoritesImage.alpha = 0.0
-                })
-            })
+            animatedSave()
+//            detailView.detailFavoritesImage.isHidden = false
+//            navigationItem.rightBarButtonItem?.isEnabled = false
+//            self.detailView.detailFavoritesImage.alpha = 0.0
+//            UIView.animateKeyframes(withDuration: 3.0, delay: 0.0, options: [.calculationModeLinear], animations: {
+//                UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5, animations: {
+//                    self.detailView.detailFavoritesImage.alpha = 1.0
+//                })
+//                UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 1.0, animations: {
+//                    self.detailView.detailFavoritesImage.frame.origin.y += self.view.bounds.height
+//                    self.detailView.detailFavoritesImage.alpha = 0.0
+//                })
+//            })
         }
     }
 }
