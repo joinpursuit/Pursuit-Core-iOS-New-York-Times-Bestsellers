@@ -18,7 +18,7 @@ class DetailView: UIView {
     
     lazy var authorName: UILabel = {
         let label = UILabel()
-        label.text = "weeks on best seller list"
+        label.text = "Author's name"
         label.textAlignment = .center
         return label
     }()

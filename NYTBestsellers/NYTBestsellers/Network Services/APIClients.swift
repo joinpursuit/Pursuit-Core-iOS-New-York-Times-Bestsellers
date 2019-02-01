@@ -46,10 +46,22 @@ final class APIClient {
         }
         
     }
-//    static func getGoogleData(isbn: String, completionHandler: @escaping (AppError?,[Books]?) -> Void) {
-//        let url = "https://www.googleapis.com/books/v1/volumes?q=isbn:9780425285183&key=AIzaSyDaQm1Xl8ZmC9kQ_uy_mPk9peLpUsaFP9o"
-//        NetworkHelper.shared.performDataTask(endpointURLString:url) { (AppError?, Data?) in
-//            <#code#>
-//        }
-//    }
+    
+    static func getGoogleData(isbn: String, completionHandler: @escaping (AppError?, [GoogleAPIInfo]?) -> Void) {
+        let url = "https://www.googleapis.com/books/v1/volumes?q=\(isbn)&key=\(SecrectKeys.googleBooksAPIKey)"
+        NetworkHelper.shared.performDataTask(endpointURLString: url) { (appError, data) in
+            if let appError = appError {
+                completionHandler(appError, nil)
+            }
+            if let data = data {
+                do {
+                    let data = try JSONDecoder().decode(Google.self, from: data)
+                    completionHandler(nil,data.items)
+                } catch {
+                    completionHandler(AppError.jsonDecodingError(error), nil)
+                }
+            }
+        }
+    }
+
 }

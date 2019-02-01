@@ -13,11 +13,9 @@ class DetailViewController: UIViewController {
     let detailView = DetailView()
     
     public var book: Books?
-//    public var bookDetailImageView: BookDetailImageView?
-// b
-//    public var bookD: UIImage?
-//
-//    public var descriptionFromGoodle: String?
+    public var detailBookImageView: UIImage?
+    public var DetailDescription: String?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +24,7 @@ class DetailViewController: UIViewController {
         self.view.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
         self.view.addSubview(detailView)
         
-        
+      //  detailView.authorName.text = book?.bookDetails.first?.author
     }
     
     private func configureNavBar() {
