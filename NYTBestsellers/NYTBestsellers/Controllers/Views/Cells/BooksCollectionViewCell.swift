@@ -12,7 +12,7 @@ class BooksCollectionViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .magenta
+        self.backgroundColor = .lightGray 
         setUpImageView()
     }
     
@@ -32,16 +32,12 @@ class BooksCollectionViewCell: UICollectionViewCell {
     lazy var WeeksLabel: UILabel = {
         let weeksLabel = UILabel()
         weeksLabel.text = "randomText"
-        weeksLabel.textColor = .white
         weeksLabel.textAlignment = .center
-        weeksLabel.backgroundColor = .magenta
         return weeksLabel
     }()
     
     lazy var TextViewDescription: UITextView = {
         let textDescription = UITextView()
-        textDescription.textColor = .black
-        textDescription.backgroundColor = .magenta
         textDescription.text = "well hello daylightt"
         return textDescription
     }()
@@ -64,7 +60,7 @@ class BooksCollectionViewCell: UICollectionViewCell {
             WeeksLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),  WeeksLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5), WeeksLabel.topAnchor.constraint(equalTo: BestsellerImageView.bottomAnchor, constant: 0)
             ])
         NSLayoutConstraint.activate([
-            TextViewDescription.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),  TextViewDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5), TextViewDescription.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),TextViewDescription.topAnchor.constraint(equalTo: WeeksLabel.bottomAnchor) /*TextViewDescription.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5),*/
+            TextViewDescription.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),  TextViewDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5), TextViewDescription.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),TextViewDescription.topAnchor.constraint(equalTo: WeeksLabel.bottomAnchor) 
             ])
     }
     

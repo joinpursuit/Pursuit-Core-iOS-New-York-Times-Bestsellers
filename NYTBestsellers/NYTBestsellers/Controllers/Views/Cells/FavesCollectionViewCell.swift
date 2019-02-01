@@ -12,7 +12,7 @@ class FavesCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .magenta
+        self.backgroundColor = .white 
         setUpImageView()
         
     }
@@ -31,16 +31,13 @@ class FavesCollectionViewCell: UICollectionViewCell {
     public lazy var weeksLabel: UILabel = {
         let weeksLabel = UILabel()
         weeksLabel.text = ""
-        weeksLabel.textColor = .white
-        weeksLabel.textAlignment = .center
-        weeksLabel.backgroundColor = .magenta
+        weeksLabel.textAlignment = .left
+        weeksLabel.backgroundColor = .white
         return weeksLabel
     }()
     
     public lazy var textViewDescription: UITextView = {
         let textDescription = UITextView()
-        textDescription.textColor = .white
-        textDescription.backgroundColor = .magenta
         textDescription.text = "well hello midnight"
         return textDescription
     }()

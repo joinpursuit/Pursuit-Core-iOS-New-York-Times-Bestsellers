@@ -21,9 +21,8 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(detailView)
-        self.view.backgroundColor = .red
+        self.view.backgroundColor = .lightGray
         configureDetailView()
-//       navigationItem.title = "\(String(describing: googleInfo?.volumeInfo.))"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favorite", style: .plain, target: self, action: #selector(addToFavorites))
       
     }

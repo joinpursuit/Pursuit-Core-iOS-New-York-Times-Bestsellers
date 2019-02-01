@@ -26,7 +26,8 @@ class FavoritesViewController: UIViewController {
         favoriteBooks = EventDataManager.fetchFavoriteBooksFromDocumentsDirectory()
         favoritesView.favesCollectionView.dataSource = self
         favoritesView.favesCollectionView.delegate = self
-        self.view.backgroundColor = .yellow 
+        self.view.backgroundColor = .yellow
+        navigationItem.title = "Favorites"
     }
 
     override func viewWillAppear(_ animated: Bool) {

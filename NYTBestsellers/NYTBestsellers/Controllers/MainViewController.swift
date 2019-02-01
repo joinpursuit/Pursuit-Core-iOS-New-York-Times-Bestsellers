@@ -40,7 +40,7 @@ class MainViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
              self.mainView.myCollectionView.reloadData()
-//                dump(self.bookDetails)
+//         
             }
         }
     }
@@ -104,12 +104,13 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             if let bookInfo = bookInfo {
                 cell.googleBookInfo = bookInfo[0]
                 ImageHelper.fetchImageFromNetwork(urlString: bookInfo[0].volumeInfo.imageLinks.smallThumbnail, completion: { (appError, image) in
-                      cell.BestsellerImageView.image = nil 
+                      cell.BestsellerImageView.image = nil
                     if let appError = appError {
                         print(appError)
                     } else if let image = image {
-                        cell.BestsellerImageView.image = image
-        
+                        DispatchQueue.main.async {
+                            cell.BestsellerImageView.image = image
+                        }
                     }
                 })
         
@@ -119,16 +120,14 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             
             }
         }
-        
-        
-        
-        
+        cell.layer.borderColor = UIColor.lightGray.cgColor
+        cell.layer.borderWidth = 1.0 
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return bookDetails.count
-        //return bookDetails[section].bookDetails[section].title.count
+        
     }
     
     

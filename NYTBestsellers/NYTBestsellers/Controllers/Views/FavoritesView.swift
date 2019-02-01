@@ -19,7 +19,7 @@ class FavoritesView: UIView {
         cv.dataSource = self
         cv.delegate = self
         layout.scrollDirection = .vertical
-        cv.backgroundColor = .blue
+        cv.backgroundColor = .lightGray 
         return cv
     }()
     
