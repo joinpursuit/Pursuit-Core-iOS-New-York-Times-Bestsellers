@@ -12,6 +12,7 @@ class BestSellerDetailledViewController: UIViewController {
   
   let detailledView = DetailledView()
   var newBook: NewBook?
+ 
   
     override func viewDidLoad() {
         super.viewDidLoad()

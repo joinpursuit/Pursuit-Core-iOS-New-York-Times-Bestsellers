@@ -9,4 +9,5 @@
 import Foundation
 struct UserDefaultsKeys{
   static let chosenCateogry = "Chosen Category"
+  static let row = "row"
 }

@@ -43,10 +43,11 @@ extension SettingsViewController:UIPickerViewDataSource{
 }
 extension SettingsViewController:UIPickerViewDelegate{
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-     let category = categories[row]
-    UserDefaults.standard.set(category.list_name, forKey: UserDefaultsKeys.chosenCateogry)
-    pickerView.selectedRow(inComponent: component)
-    print(category)
+     let category = categories[row].list_name
+      let theRow = row
+    UserDefaults.standard.set(category, forKey: UserDefaultsKeys.chosenCateogry)
+    UserDefaults.standard.set(theRow, forKey: UserDefaultsKeys.row)
+   
   }
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
     return categories[row].list_name

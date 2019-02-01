@@ -26,8 +26,9 @@ self.bestSellerView.bestSellersCollectionView.reloadData()
       }
     }
   }
-  
-
+  var keyword = ""
+  var theRow = Int()
+ var descriptions = ""
   let bestSellerView = BestSellerView()
   var newBook:NewBook?
   var bookCover:URL?
@@ -40,24 +41,38 @@ self.bestSellerView.bestSellersCollectionView.reloadData()
 
   override func viewDidLoad() {
         super.viewDidLoad()
-      view.backgroundColor = #colorLiteral(red: 1, green: 0.6699612737, blue: 0.8998487592, alpha: 1)
       self.view.addSubview(bestSellerView)
-     bestSellerView.bestSellersCollectionView.delegate = self
-      bestSellerView.bestSellersCollectionView.dataSource = self
-      bestSellerView.categoryPickerView.dataSource = self
-    bestSellerView.categoryPickerView.delegate = self
-    
-   title = "BestSellers"
-     
-  }
-  func retrieveUserDefaults(pickerView:UIPickerView){
-    if let category = UserDefaults.standard.object(forKey: UserDefaultsKeys.chosenCateogry){
-      
-    } else{
-      
+     view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    delegatesAndDatasources()
+    if let row = UserDefaults.standard.object(forKey: UserDefaultsKeys.row) as? Int{
+      if let category = UserDefaults.standard.object(forKey: UserDefaultsKeys.chosenCateogry) as? String{
+        theRow = row
+        keyword = category
+        getBooks(category: keyword)
+      }
     }
   }
-
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(true)
+    userDefaults()
+  }
+  private func userDefaults(){
+  if let component = UserDefaults.standard.object(forKey: UserDefaultsKeys.row) as? Int {
+    bestSellerView.categoryPickerView.selectRow(component, inComponent: 0, animated: true)
+    DispatchQueue.main.async {
+      guard self.categories.count > 0 else {return}
+      self.getBooks(category: self.categories[component].list_name)
+    }
+    }
+  }
+  
+ private func delegatesAndDatasources(){
+    bestSellerView.bestSellersCollectionView.delegate = self
+    bestSellerView.bestSellersCollectionView.dataSource = self
+    bestSellerView.categoryPickerView.dataSource = self
+    bestSellerView.categoryPickerView.delegate = self
+  }
   
   public func getBooks(category:String){
     BookShelfApiClient.getBooksInCategory(category: category) { (error, books) in

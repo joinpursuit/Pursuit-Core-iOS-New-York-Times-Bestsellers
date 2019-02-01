@@ -16,13 +16,14 @@ class BestSellerView: UIView {
     let cv = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
     cv.register(BestSellerCollectionViewCell.self, forCellWithReuseIdentifier: "bestSeller")
     cv.clipsToBounds = true
-    cv.backgroundColor = #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1)
+    cv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    
     return cv
   }()
   
   public lazy var categoryPickerView:UIPickerView = {
   let pickerView = UIPickerView()
-    pickerView.backgroundColor = #colorLiteral(red: 0.9008722305, green: 0.5611919165, blue: 0.3632033467, alpha: 1)
+    pickerView.backgroundColor = #colorLiteral(red: 0.4278073907, green: 0.3330721855, blue: 0.3150036633, alpha: 1)
   return pickerView
   }()
   
@@ -30,8 +31,9 @@ class BestSellerView: UIView {
   
   override init(frame: CGRect) {
     super.init(frame: UIScreen.main.bounds)
-    self.backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+    self.backgroundColor = #colorLiteral(red: 0.4278073907, green: 0.3330721855, blue: 0.3150036633, alpha: 1)
     setupViews()
+    
   }
   
   required init?(coder aDecoder: NSCoder) {

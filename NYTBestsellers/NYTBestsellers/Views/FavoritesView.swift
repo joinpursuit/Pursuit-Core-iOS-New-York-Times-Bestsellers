@@ -13,7 +13,7 @@ class FavoritesView: UIView {
     let layout = UICollectionViewFlowLayout()
     let collectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
     collectionView.register(FavoritesCollectionViewCell.self, forCellWithReuseIdentifier: "favoriteCell")
-    collectionView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    collectionView.backgroundColor = #colorLiteral(red: 0.8111895323, green: 0.6748743653, blue: 0.6124779582, alpha: 1)
     return collectionView
     
   }()

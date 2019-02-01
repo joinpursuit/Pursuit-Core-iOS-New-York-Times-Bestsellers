@@ -15,6 +15,7 @@ extension BestSellerViewController:UICollectionViewDataSource{
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     guard let cell = bestSellerView.bestSellersCollectionView.dequeueReusableCell(withReuseIdentifier: "bestSeller", for: indexPath) as? BestSellerCollectionViewCell else {return UICollectionViewCell()}
+  
     let book = books[indexPath.row]
     let isbn = book.book_details[indexPath.section].primary_isbn13
     
@@ -24,7 +25,9 @@ extension BestSellerViewController:UICollectionViewDataSource{
       }
       if let googleBookInfo = googleBookInfo {
         DispatchQueue.main.async {
+          self.descriptions = googleBookInfo.description
           self.configureBookCover(imageURL: googleBookInfo.imageLinks.smallThumbnail, cell: cell)
+          
         }
       }
     }
@@ -32,7 +35,7 @@ extension BestSellerViewController:UICollectionViewDataSource{
     cell.infoLabel.text = book.book_details[indexPath.section].title
     cell.bookCoverImageView.image = UIImage(named: "placeholder")
     cell.descriptiontextView.text = book.book_details[indexPath.section].description
-  
+    
     return cell
   }
   
@@ -55,10 +58,10 @@ extension BestSellerViewController:UICollectionViewDataSource{
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     guard let cell = collectionView.cellForItem(at: indexPath) as? BestSellerCollectionViewCell else {
       print("no cell blah blah")
-      return
-    }
+      return}
     
     let book = books[indexPath.row]
+    let newDescription = descriptions
     let bestSeller = BestSellerDetailledViewController()
     
      newBook = NewBook.init(authorName: book.book_details[indexPath.section].author, description: cell.descriptiontextView.text, bookName: book.book_details[indexPath.section].title, bookCover: cell.bookCoverImageView.image, imageData: nil)
@@ -67,11 +70,6 @@ extension BestSellerViewController:UICollectionViewDataSource{
     self.navigationController?.pushViewController(bestSeller, animated: true)
   }
 }
-
-
-
-
-
 
 
 extension BestSellerViewController:UICollectionViewDelegateFlowLayout{

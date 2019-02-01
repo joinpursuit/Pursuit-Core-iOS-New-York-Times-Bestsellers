@@ -15,7 +15,7 @@ class FavoritesViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-      view.backgroundColor = #colorLiteral(red: 0.7817301154, green: 0.7033625245, blue: 1, alpha: 1)
+      view.backgroundColor = #colorLiteral(red: 0.8111895323, green: 0.6748743653, blue: 0.6124779582, alpha: 1)
       favoriteView.favoriteCollectionView.dataSource = self
       favoriteView.favoriteCollectionView.delegate = self
       self.view.addSubview(favoriteView)

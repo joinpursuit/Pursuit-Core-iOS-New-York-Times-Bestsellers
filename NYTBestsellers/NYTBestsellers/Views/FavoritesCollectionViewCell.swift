@@ -23,21 +23,25 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
   }()
   let infoLabel:UILabel = {
     let label = UILabel()
-    label.backgroundColor = .white
-    label.textColor = .black
+    label.backgroundColor = .black
+    label.textColor = .white
     label.text = "Hello my name is Ashli"
+    label.textAlignment = .center
+    label.layer.masksToBounds = true
+    label.layer.cornerRadius = 10.0
     return label
   }()
   let DescriptiontextView:UITextView = {
     let textView = UITextView()
-    textView.backgroundColor = .white
-    textView.textColor = .black
+    textView.backgroundColor = .black
+    textView.textColor = .white
     textView.text = "Hello nice gal enjoy your self"
+    textView.layer.cornerRadius = 17.0
     return textView
   }()
   lazy var expandButton:UIButton = {
     let button = UIButton()
-    button.backgroundColor = .gray
+    button.backgroundColor = #colorLiteral(red: 0.8111895323, green: 0.6748743653, blue: 0.6124779582, alpha: 1)
     button.setTitleColor(.white, for: .normal)
     button.setImage(#imageLiteral(resourceName: "icons8-more-filled-25.png"), for: .normal)
     button.addTarget(self, action: #selector(expandButtonPressed), for: .touchUpInside)
@@ -47,7 +51,7 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-    self.backgroundColor = .black
+    self.backgroundColor = #colorLiteral(red: 0.8111895323, green: 0.6748743653, blue: 0.6124779582, alpha: 1)
     setConstraints()
   }
   
@@ -64,7 +68,6 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
   }
   
   @objc func expandButtonPressed(){
-    self.backgroundColor = .red
     let alertController = UIAlertController(title: "More Options", message: "What would you like to do?", preferredStyle: .actionSheet)
     let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (delete) in
       self.delegate?.deleteFromFaves(index: self.expandButton.tag)
@@ -85,7 +88,7 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
   private func imageViewConstraints(){
     addSubview(bookCoverImageView)
     bookCoverImageView.translatesAutoresizingMaskIntoConstraints = false
-    bookCoverImageView.topAnchor.constraint(lessThanOrEqualToSystemSpacingBelow: safeAreaLayoutGuide.topAnchor, multiplier: 0.9999).isActive = true
+  bookCoverImageView.topAnchor.constraint(lessThanOrEqualToSystemSpacingBelow: safeAreaLayoutGuide.topAnchor, multiplier: 0.9999).isActive = true
     bookCoverImageView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, constant: CGFloat(-200)).isActive = true
     bookCoverImageView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: CGFloat(0.60)).isActive = true
     bookCoverImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: CGFloat(95)).isActive = true
@@ -97,7 +100,7 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     addSubview(infoLabel)
     infoLabel.translatesAutoresizingMaskIntoConstraints = false
     let theConstraints = [
-      infoLabel.topAnchor.constraint(equalTo: self.bookCoverImageView.bottomAnchor),infoLabel.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 1.0)
+      infoLabel.topAnchor.constraint(equalTo: bookCoverImageView.bottomAnchor, constant: 8.0),infoLabel.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 1.0)
     ]
     theConstraints.forEach{$0.isActive = true}
     
@@ -107,7 +110,7 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     addSubview(DescriptiontextView)
     DescriptiontextView.translatesAutoresizingMaskIntoConstraints = false
     let theConstraints = [
-      DescriptiontextView.topAnchor.constraint(equalTo: infoLabel.bottomAnchor), DescriptiontextView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor) , DescriptiontextView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor)
+      DescriptiontextView.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 8), DescriptiontextView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor) , DescriptiontextView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor)
     ]
     theConstraints.forEach{$0.isActive = true}
     
