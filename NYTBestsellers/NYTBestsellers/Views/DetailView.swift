@@ -32,6 +32,11 @@ class DetailView: UIView {
         iv.isHidden = true
         return iv
     }()
+    public lazy var detailTitle: UINavigationItem = {
+        let label = UINavigationItem()
+        label.title = "Title"
+        return label
+    }()
     
     public lazy var detailLabel: UILabel = {
         let label = UILabel()

@@ -14,18 +14,25 @@ class DetailViewController: UIViewController {
     private var animator: UIViewPropertyAnimator!
     var durationTime = Double()
     var favoriteBook: FavoriteBook?
+    var selectedTitle: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(detailView)
         print(detailView.detailLabel)
         detailView.delegate = self
+        navigationItem.title = selectedTitle
         navigationItem.rightBarButtonItem = detailView.favoriteButton
+        guard let titleSelected = selectedTitle else {return}
+        if FavoriteModel.bookAlreadyFavorited(newTitle: titleSelected) {
+            navigationItem.rightBarButtonItem?.isEnabled = false
+        }
     }
     private func saveBook()-> FavoriteBook? {
         guard let image = detailView.detailImage.image,
             let author = detailView.detailLabel.text,
         let description = detailView.detailTextView.text else {return nil}
+        guard let title = selectedTitle else {return nil}
         let amazonLink = "Amazon"
         let date = Date()
         let formatter = DateFormatter()
@@ -33,31 +40,30 @@ class DetailViewController: UIViewController {
         formatter.timeStyle = .medium
         let timestamp = formatter.string(from: date)
         guard let imageData = image.jpegData(compressionQuality: 0.5) else {return nil}
-        let favoriteBook = FavoriteBook.init(imageData: imageData, author: author, description: description, createdAt: timestamp, amazonLink: amazonLink)
+        let favoriteBook = FavoriteBook.init(imageData: imageData, author: author, description: description, createdAt: timestamp, amazonLink: amazonLink, title: title)
         return favoriteBook
     }
 }
 extension DetailViewController: DetailViewDelegate {
     func favoritePressed() {
-        if favoriteBook != nil {
-            if let book =  saveBook() {
-                print("Book saved already")
-            }
+        guard let title = selectedTitle else {return}
+        if FavoriteModel.bookAlreadyFavorited(newTitle: title) {
+            print("Book saved already")
         } else {
             guard let book = saveBook() else {return}
             FavoriteModel.appendBook(favorite: book)
+            detailView.detailFavoritesImage.isHidden = false
+            navigationItem.rightBarButtonItem?.isEnabled = false
+            self.detailView.detailFavoritesImage.alpha = 0.0
+            UIView.animateKeyframes(withDuration: 3.0, delay: 0.0, options: [.calculationModeLinear], animations: {
+                UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5, animations: {
+                    self.detailView.detailFavoritesImage.alpha = 1.0
+                })
+                UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 1.0, animations: {
+                    self.detailView.detailFavoritesImage.frame.origin.y += self.view.bounds.height
+                    self.detailView.detailFavoritesImage.alpha = 0.0
+                })
+            })
         }
-        detailView.detailFavoritesImage.isHidden = false
-        navigationItem.rightBarButtonItem?.isEnabled = false
-        self.detailView.detailFavoritesImage.alpha = 0.0
-        UIView.animateKeyframes(withDuration: 3.0, delay: 0.0, options: [.calculationModeLinear], animations: {
-            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5, animations: {
-                self.detailView.detailFavoritesImage.alpha = 1.0
-            })
-            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 1.0, animations: {
-                self.detailView.detailFavoritesImage.frame.origin.y += self.view.bounds.height
-                self.detailView.detailFavoritesImage.alpha = 0.0
-            })
-        })
     }
 }

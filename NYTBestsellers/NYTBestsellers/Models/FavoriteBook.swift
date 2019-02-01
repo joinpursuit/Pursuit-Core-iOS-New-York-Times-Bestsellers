@@ -10,9 +10,9 @@ import Foundation
 
 struct FavoriteBook: Codable {
     let imageData: Data
-//    let imageData: String
     let author: String
     let description: String
     let createdAt: String
     let amazonLink: String
+    let title: String
 }

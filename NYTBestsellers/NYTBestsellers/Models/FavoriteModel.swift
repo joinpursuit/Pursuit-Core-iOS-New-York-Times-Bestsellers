@@ -16,6 +16,21 @@ final class FavoriteModel {
         favorites.append(favorite)
         saveBook()
     }
+    static func bookAlreadyFavorited(newTitle: String)-> Bool {
+        //itterate through array of favorites and check if title matches
+        var title = false
+        if favorites.isEmpty {
+            return title
+        } else {
+            for num in 0...favorites.count - 1 {
+                if favorites[num].title == newTitle {
+                    title = true
+                }
+            }
+        }
+        return title
+    }
+    
     static func saveBook() {
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename)
         
