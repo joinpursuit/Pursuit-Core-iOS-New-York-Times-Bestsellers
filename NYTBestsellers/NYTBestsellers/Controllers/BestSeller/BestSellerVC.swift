@@ -31,14 +31,30 @@ class BestSellerVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        APIClient.getBookDetails(listName: "Manga") { (error, books) in
-            if let error = error {
-                print("Could not set Default Book: \(error)")
+        if let category = UserDefaults.standard.object(forKey: Constants.userDefaults) as? String {
+            APIClient.getBookDetails(listName: category) { (error, books) in
+                if let error = error {
+                    print("Could not set Default Book: \(error)")
+                }
+                if let books = books {
+                    self.book = books
+                }
             }
-            if let books = books {
-                self.book = books
+        } else {
+            APIClient.getBookDetails(listName: "Manga") { (error, books) in
+                if let error = error {
+                    print("Could not set Default Book: \(error)")
+                }
+                if let books = books {
+                    self.book = books
+                }
             }
         }
+     
+        if let row = UserDefaults.standard.object(forKey: Constants.rowDefaults) as? Int {
+            bestSellerView.pickerView.selectRow(row, inComponent: 0, animated: true)
+        }
+        
         getData()
         bestSellerView.collectionview.delegate = self
         bestSellerView.collectionview.dataSource = self
@@ -57,6 +73,31 @@ class BestSellerVC: UIViewController {
                 self.category = categories
             }
         }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        if let category = UserDefaults.standard.object(forKey: Constants.userDefaults) as? String {
+            APIClient.getBookDetails(listName: category) { (error, books) in
+                if let error = error {
+                    print("Could not set Default Book: \(error)")
+                }
+                if let books = books {
+                    self.book = books
+                }
+            }
+        } else {
+            APIClient.getBookDetails(listName: "Manga") { (error, books) in
+                if let error = error {
+                    print("Could not set Default Book: \(error)")
+                }
+                if let books = books {
+                    self.book = books
+                }
+            }
+        }
+        if let row = UserDefaults.standard.object(forKey: Constants.rowDefaults) as? Int {
+            bestSellerView.pickerView.selectRow(row, inComponent: 0, animated: true)
+        }
+        
     }
 }
 

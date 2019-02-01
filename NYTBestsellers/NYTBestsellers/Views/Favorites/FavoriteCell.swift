@@ -50,7 +50,6 @@ class FavoriteCell: UICollectionViewCell {
     
     
     func addViews(){
-        backgroundColor = .darkGray
         buttonConstraints()
         nameLabelConstraints()
         favoriteBookPhotoConstraints()
@@ -71,7 +70,8 @@ class FavoriteCell: UICollectionViewCell {
     func buttonConstraints(){
         addSubview(optionsButton)
         optionsButton.translatesAutoresizingMaskIntoConstraints = false
-        optionsButton.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
+       
+        optionsButton.topAnchor.constraint(equalTo: topAnchor, constant: 38).isActive = true
         optionsButton.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
 
     }

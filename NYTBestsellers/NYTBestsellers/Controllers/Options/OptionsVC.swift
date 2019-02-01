@@ -53,4 +53,8 @@ extension OptionsVC : UIPickerViewDataSource, UIPickerViewDelegate{
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return category[row].listName
     }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        UserDefaults.standard.set(category[row].listName, forKey: Constants.userDefaults)
+        UserDefaults.standard.set(row, forKey: Constants.rowDefaults)
+    }
 }

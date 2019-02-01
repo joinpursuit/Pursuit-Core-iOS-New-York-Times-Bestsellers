@@ -25,6 +25,18 @@ class FavoritesVC: UIViewController {
         favoritesView.myCollectionView.reloadData()
         favoriteBooks = DataPersistenceModel.getFavoriteBooks()
     }
+    
+    @objc func buttonPressed(sender: UIButton){
+        let index = sender.tag
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let delete = UIAlertAction(title: "Delete", style: .destructive) { (alert) in
+            DataPersistenceModel.deleteFavoriteBook(atIndex: index)
+            self.favoriteBooks = DataPersistenceModel.getFavoriteBooks()
+            self.favoritesView.myCollectionView.reloadData()
+        }
+        actionSheet.addAction(delete)
+        present(actionSheet, animated: true, completion: nil)
+    }
 }
 extension FavoritesVC : UICollectionViewDelegate, UICollectionViewDataSource {
   
@@ -41,6 +53,12 @@ extension FavoritesVC : UICollectionViewDelegate, UICollectionViewDataSource {
         if let image = UIImage(data: bookIWant.imageData) {
             cell.favoriteBookPhoto.image = image
         }
+        
+        
+        cell.optionsButton.tag = indexPath.row
+        cell.optionsButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside )
+        
+        
         return cell
     }
 }
