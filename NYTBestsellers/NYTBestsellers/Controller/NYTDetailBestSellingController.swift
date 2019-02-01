@@ -49,6 +49,20 @@ class NYTDetailBestSellingController: UIViewController {
     }
     
     @objc private func favoriteBook() {
-        
+        guard !FavoriteDataManager.isFavorite(isbn: nYTBook.bookDetails[0].primaryIsbn13) else {
+            showAlert(title: "Book already favorited 🙂", message: nil)
+            return
+        }
+        let imageData = bookImage?.jpegData(compressionQuality: 0.5)
+        let favoriteBook = FavoriteBook.init(bookDetails: nYTBook, imageData: imageData)
+        FavoriteDataManager.saveToDocumentDirectory(newFavoriteBook: favoriteBook) { (success, error) in
+            if let error = error {
+                print("Fail to Favorite: \(error)")
+                showAlert(title: "Fail To Favorite", message: "\(error)")
+            } else if let _ = success {
+                showAlert(title: "Book Favorited 😀", message: nil)
+            }
+        }
+        print(FavoriteDataManager.fetchFavoriteBooksFromDocumentsDirectory().count.description + " books favorited.")
     }
 }

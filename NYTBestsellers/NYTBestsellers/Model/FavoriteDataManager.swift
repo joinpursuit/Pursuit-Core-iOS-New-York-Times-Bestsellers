@@ -12,13 +12,13 @@ final class FavoriteDataManager {
     private init() {}
     private static let filename = "FavoriteBooks.plist"
     
-    static public func fetchFavoriteBooksFromDocumentsDirectory() -> [NYTBook] {
-        var favoriteBooks = [NYTBook]()
+    static public func fetchFavoriteBooksFromDocumentsDirectory() -> [FavoriteBook] {
+        var favoriteBooks = [FavoriteBook]()
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename).path
         if FileManager.default.fileExists(atPath: path) {
             if let data = FileManager.default.contents(atPath: path) {
                 do {
-                    favoriteBooks = try PropertyListDecoder().decode([NYTBook].self, from: data)
+                    favoriteBooks = try PropertyListDecoder().decode([FavoriteBook].self, from: data)
                 } catch {
                     print("Property List Decoding error: \(error)")
                 }
@@ -31,7 +31,7 @@ final class FavoriteDataManager {
         return favoriteBooks
     }
     
-    static public func saveToDocumentDirectory(newFavoriteBook: NYTBook, completionHandler: (Bool?, Error?) -> Void) {
+    static public func saveToDocumentDirectory(newFavoriteBook: FavoriteBook, completionHandler: (Bool?, Error?) -> Void) {
         var favoriteBooks = fetchFavoriteBooksFromDocumentsDirectory()
         favoriteBooks.append(newFavoriteBook)
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename)
@@ -47,7 +47,7 @@ final class FavoriteDataManager {
         }
     }
 
-    static func delete(favoriteBook: NYTBook, atIndex index: Int) {
+    static func delete(favoriteBook: FavoriteBook, atIndex index: Int) {
         var favoriteBooks = fetchFavoriteBooksFromDocumentsDirectory()
         favoriteBooks.remove(at: index)
         
@@ -60,7 +60,7 @@ final class FavoriteDataManager {
         }
     }
     
-//    private func encodeFavorites(filename: String, favoriteBooks: [NYTBook]) {
+//    private func encodeFavorites(filename: String, favoriteBooks: [FavoriteBook]) {
 //        let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename)
 //        do {
 //            let data = try PropertyListEncoder().encode(favoriteBooks)
@@ -71,7 +71,7 @@ final class FavoriteDataManager {
 //    }
 
     static public func isFavorite(isbn: String) -> Bool {
-        let index = fetchFavoriteBooksFromDocumentsDirectory().index { $0.bookDetails[0].primaryIsbn13 == isbn }
+        let index = fetchFavoriteBooksFromDocumentsDirectory().index { $0.bookDetails.bookDetails[0].primaryIsbn13 == isbn }
         if let _ = index {
             return true
         }
