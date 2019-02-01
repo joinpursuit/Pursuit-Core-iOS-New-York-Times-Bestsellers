@@ -2,7 +2,7 @@
 //  String+DateExtensions.swift
 //  NYTBestsellers
 //
-//  Created by Alex Paul on 1/24/19.
+//  Created by Joshua Viera on 1/27/19.
 //  Copyright © 2019 Pursuit. All rights reserved.
 //
 
