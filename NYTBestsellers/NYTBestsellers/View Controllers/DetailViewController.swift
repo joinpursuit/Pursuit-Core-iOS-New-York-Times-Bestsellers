@@ -38,6 +38,7 @@ class DetailViewController: UIViewController {
             
         } else {
             navigationItem.rightBarButtonItem?.isEnabled = true
+//            detailView.detailFavoritesImage.isHidden = false
             
 
         }
@@ -54,14 +55,10 @@ class DetailViewController: UIViewController {
                 self.detailView.detailFavoritesImage.frame.origin.y += self.view.bounds.height
                 self.detailView.detailFavoritesImage.alpha = 0.0
             })
-            
-            
-//            self.detailView.detailFavoritesImage.transform = CGAffineTransform.identity
-//            self.detailView.detailFavoritesImage.isHidden = true
-
-        })
-        
-
+        }){ (done) in
+            self.detailView.detailFavoritesImage.frame.origin.y -= self.view.bounds.height
+            self.detailView.detailFavoritesImage.isHidden = true
+        }
     }
     private func saveBook()-> FavoriteBook? {
         guard let image = detailView.detailImage.image,

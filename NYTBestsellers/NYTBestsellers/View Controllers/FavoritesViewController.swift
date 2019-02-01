@@ -75,11 +75,6 @@ extension FavoritesViewController: FavoritesCollectionViewCellDelegate {
             let amazonURlString = self.myBooks[tag].amazonLink
             guard let amazonURL = URL(string: amazonURlString) else {return}
             UIApplication.shared.open(amazonURL, options: [:], completionHandler: nil)
-            
-//            FavoriteModel.deleteBook(index: tag)
-//            self.myBooks = FavoriteModel.getBooks()
-//            self.updateTitle()
-//            self.favoritesView.myFavoritesCollectionView.reloadData()
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         optionMenu.addAction(deleteAction)
