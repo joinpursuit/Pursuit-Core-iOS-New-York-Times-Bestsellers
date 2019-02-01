@@ -156,7 +156,7 @@ extension BestSellersViewController: UICollectionViewDataSource, UICollectionVie
         detailVC.detailView.detailFavoritesImage.image = selectedCell.cellImage.image
         detailVC.detailView.detailLabel.text = book.bookDetails.first?.author
         detailVC.selectedTitle = book.bookDetails.first?.title
-        detailVC.amazonLink = book.amazonProductUrl    
+        detailVC.amazonLinkString = book.amazonProductUrl    
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }

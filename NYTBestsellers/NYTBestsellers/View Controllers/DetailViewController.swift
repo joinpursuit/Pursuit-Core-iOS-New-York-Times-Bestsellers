@@ -15,7 +15,7 @@ class DetailViewController: UIViewController {
     var durationTime = Double()
     var favoriteBook: FavoriteBook?
     var selectedTitle: String?
-    var amazonLink: String?
+    var amazonLinkString: String?
     var myBooks = [FavoriteBook]()
 
     
@@ -67,8 +67,8 @@ class DetailViewController: UIViewController {
         guard let image = detailView.detailImage.image,
             let author = detailView.detailLabel.text,
         let description = detailView.detailTextView.text else {return nil}
-        guard let title = selectedTitle else {return nil}
-        let amazonLink = "Amazon"
+        guard let title = selectedTitle,
+        let amazonLink = amazonLinkString else {return nil}
         let date = Date()
         let formatter = DateFormatter()
         formatter.dateStyle = DateFormatter.Style.long
@@ -91,7 +91,7 @@ extension DetailViewController: DetailViewDelegate {
         }
     }
     func amazonPressed() {
-        guard let amazonURlString = amazonLink else {return}
+        guard let amazonURlString = amazonLinkString else {return}
         guard let amazonURL = URL(string: amazonURlString) else {return}
         UIApplication.shared.open(amazonURL, options: [:], completionHandler: nil)
     }

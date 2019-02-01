@@ -10,6 +10,7 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
     
+    var amazonLink = String()
     let favoritesView = FavoritesView()
     var myBooks = [FavoriteBook]() {
         didSet {
@@ -56,6 +57,8 @@ extension FavoritesViewController: UICollectionViewDataSource, UICollectionViewD
         cell.cellLabel.text = book.author
         cell.cellTextView.text = book.description
         cell.delegate = self
+        amazonLink = book.amazonLink
+        print(amazonLink)
         return cell
     }
 }
@@ -68,10 +71,19 @@ extension FavoritesViewController: FavoritesCollectionViewCellDelegate {
             self.updateTitle()
             self.favoritesView.myFavoritesCollectionView.reloadData()
         })
-        let editAction = UIAlertAction(title: "See on Amazon", style: .default)
+        let amazonAction = UIAlertAction(title: "See on Amazon", style: .default, handler: { (action) -> Void in
+            let amazonURlString = self.myBooks[tag].amazonLink
+            guard let amazonURL = URL(string: amazonURlString) else {return}
+            UIApplication.shared.open(amazonURL, options: [:], completionHandler: nil)
+            
+//            FavoriteModel.deleteBook(index: tag)
+//            self.myBooks = FavoriteModel.getBooks()
+//            self.updateTitle()
+//            self.favoritesView.myFavoritesCollectionView.reloadData()
+        })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         optionMenu.addAction(deleteAction)
-        optionMenu.addAction(editAction)
+        optionMenu.addAction(amazonAction)
         optionMenu.addAction(cancelAction)
         self.present(optionMenu, animated: true, completion: nil)
     }
