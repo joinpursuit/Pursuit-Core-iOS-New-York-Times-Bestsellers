@@ -15,7 +15,17 @@ class FavoriteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(favoriteView)
+        favoriteView.delegate = self
     }
     
+}
 
+extension FavoriteViewController: FavoriteViewDelegate {
+    func numberOfFavoriteBooks() -> Int {
+        <#code#>
+    }
+    
+    func configureCollectionViewCell(indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
+    }
 }

@@ -95,7 +95,9 @@ extension NYTBestSellingView: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = delegate?.configureUICollectionCell(indexPath: indexPath) else { return UICollectionViewCell() }
+        guard let cell = delegate?.configureUICollectionCell(indexPath: indexPath) else {
+            return UICollectionViewCell()
+        }
         return cell
     }
     
