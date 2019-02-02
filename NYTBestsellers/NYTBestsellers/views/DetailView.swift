@@ -48,7 +48,6 @@ class DetailView: UIView {
         detailImageConstrains()
         detailLabelConstrains()
         textViewConstrains()
-     
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -70,7 +69,6 @@ class DetailView: UIView {
         detailLabel.topAnchor.constraint(equalTo: detailImage.bottomAnchor, constant: 11).isActive = true
         detailLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
         detailLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
-        
     }
     
     private func textViewConstrains() {
@@ -81,6 +79,4 @@ class DetailView: UIView {
         detailTextView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 11).isActive = true
         detailTextView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -11).isActive = true
     }
-    
-    
 }

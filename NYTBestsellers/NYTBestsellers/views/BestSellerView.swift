@@ -10,14 +10,10 @@ import UIKit
 
 
 class BestSellerView: UIView {
-    
-    
-    
     lazy var backgroundImage: UIImageView = {
         let background = UIImageView()
         let bg = UIImage(named: "nyLibrary")
         background.image = bg
-        
         return background
     }()
     
@@ -70,7 +66,6 @@ myCollectionView.backgroundColor = .green
         BestSellerCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 11).isActive = true
         BestSellerCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -11).isActive = true
         BestSellerCollectionView.bottomAnchor.constraint(equalTo: bestSellerPickerView.topAnchor, constant: 10).isActive = true
-        
     }
     
     func pickerConstrains() {
@@ -87,7 +82,6 @@ myCollectionView.backgroundColor = .green
         effectView.frame = self.bounds
         effectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(effectView)
-        
     }
 }
 

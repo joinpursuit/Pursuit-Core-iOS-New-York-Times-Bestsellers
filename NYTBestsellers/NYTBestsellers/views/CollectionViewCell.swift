@@ -76,5 +76,4 @@ class CollectionViewCell: UICollectionViewCell {
         bestSellerTextView.topAnchor.constraint(equalTo: bestSellerCollectionLabel.bottomAnchor, constant: 5).isActive = true
         bestSellerTextView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5).isActive = true
     }
-    
 }

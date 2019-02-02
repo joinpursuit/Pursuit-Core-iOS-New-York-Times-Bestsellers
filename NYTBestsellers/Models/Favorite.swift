@@ -15,6 +15,4 @@ struct FavoriteBooks: Codable {
     let bookName: String
     let imageData: Data
     let description: String
-    
-    
 }

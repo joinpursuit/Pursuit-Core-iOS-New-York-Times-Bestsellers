@@ -65,8 +65,6 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
         labelConstrains()
         favoriteTextViewContrains()
         favoriteButton()
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

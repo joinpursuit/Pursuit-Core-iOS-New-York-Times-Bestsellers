@@ -54,7 +54,7 @@ final class bookAPIClient {
                    let books = try JSONDecoder().decode(GoogleBooks.self, from: data)
                     completionhandler(nil,books.items.first?.volumeInfo)
                 } catch {
-                    
+                   print("decoding error")
                 }
             }
         }

@@ -17,7 +17,6 @@ class SettingsView: UIView {
     lazy var settingsPickerView: UIPickerView = {
         let pickerView = UIPickerView()
         pickerView.backgroundColor = .clear
-        
         return pickerView
     }()
 

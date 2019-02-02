@@ -10,9 +10,7 @@ import Foundation
 
 final class BookDataManager {
     private init() {}
-    
     private static let filename = "FavoriteBooks.plist"
-    
     static public func fetchFavoriteBooksFromDocumentsDirectory() -> [FavoriteBooks] {
         var books = [FavoriteBooks]()
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename).path
@@ -50,7 +48,6 @@ final class BookDataManager {
         // get current favorite book and remove favorite from index
         var favoriteBooks = fetchFavoriteBooksFromDocumentsDirectory()
         favoriteBooks.remove(at: index)
-        
         // save change to documents directory
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename)
         do {
@@ -59,7 +56,6 @@ final class BookDataManager {
         } catch {
             print("property list encoding error: \(error)")
         }
-//        favoriteBooks = fetchFavoriteBooksFromDocumentsDirectory()
     }
     
     static public func isFavorite(id: String) -> Bool {
