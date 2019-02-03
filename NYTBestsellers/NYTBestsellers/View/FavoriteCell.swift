@@ -62,10 +62,11 @@ class FavoriteCell: UICollectionViewCell {
         
     }
     
-    private func configureCell(favoriteBook: FavoriteBook) {
+    public func configureCell(favoriteBook: FavoriteBook, buttonTag: Int) {
         if let imageData = favoriteBook.imageData, let image = UIImage.init(data: imageData) {
             bookImageView.image = image
         }
+        favoritePopupMenuButton.tag = buttonTag
         weekOnListLabel.text = "\(favoriteBook.bookDetails.weeksOnList) weeks on best seller list"
         bookDescriptionTextView.text = favoriteBook.bookDetails.bookDetails[0].description
     }
