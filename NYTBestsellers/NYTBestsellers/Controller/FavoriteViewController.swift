@@ -11,6 +11,7 @@ import UIKit
 class FavoriteViewController: UIViewController {
 
     let favoriteView = FavoriteView()
+
     var favorites = FavoriteDataManager.fetchFavoriteBooksFromDocumentsDirectory() {
         didSet {
             DispatchQueue.main.async {
@@ -42,6 +43,23 @@ extension FavoriteViewController: FavoriteViewDelegate {
         guard let cell = favoriteView.favoriteCollectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteCell", for: indexPath) as? FavoriteCell else { return UICollectionViewCell() }
         let currentFavoriteBook = favorites[indexPath.row]
         cell.configureCell(favoriteBook: currentFavoriteBook, buttonTag: indexPath.row)
+        cell.delegate = self
         return cell
+    }
+}
+
+extension FavoriteViewController: FavoriteCellDelegate {
+    func cellButtonPressed(tag: Int) {
+        let currentFavoriteBook = favorites[tag]
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let delete = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+            FavoriteDataManager.delete(favoriteBook: currentFavoriteBook, atIndex: tag)
+            self.favorites = FavoriteDataManager.fetchFavoriteBooksFromDocumentsDirectory()
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        actionSheet.addAction(delete)
+        actionSheet.addAction(cancel)
+        present(actionSheet, animated: true, completion: nil)
     }
 }

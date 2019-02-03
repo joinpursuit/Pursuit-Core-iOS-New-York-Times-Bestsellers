@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol FavoriteCellDelegate: AnyObject {
+    func cellButtonPressed(tag: Int)
+}
+
 class FavoriteCell: UICollectionViewCell {
+    
+    weak var delegate: FavoriteCellDelegate?
     
     lazy var bookImageView: UIImageView = {
         var imageV = UIImageView()
@@ -22,6 +28,8 @@ class FavoriteCell: UICollectionViewCell {
         button.setTitle("...", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 25)
+    
+        // https://stackoverflow.com/questions/39947076/uitableviewcell-buttons-with-action
         button.addTarget(self, action: #selector(favoritePopupMenu), for: .touchUpInside)
         return button
     }()
@@ -58,10 +66,6 @@ class FavoriteCell: UICollectionViewCell {
         setupCellItemsConstraints()
     }
     
-    @objc private func favoritePopupMenu() {
-        
-    }
-    
     public func configureCell(favoriteBook: FavoriteBook, buttonTag: Int) {
         if let imageData = favoriteBook.imageData, let image = UIImage.init(data: imageData) {
             bookImageView.image = image
@@ -69,6 +73,10 @@ class FavoriteCell: UICollectionViewCell {
         favoritePopupMenuButton.tag = buttonTag
         weekOnListLabel.text = "\(favoriteBook.bookDetails.weeksOnList) weeks on best seller list"
         bookDescriptionTextView.text = favoriteBook.bookDetails.bookDetails[0].description
+    }
+    
+    @objc private func favoritePopupMenu() {
+        delegate?.cellButtonPressed(tag: favoritePopupMenuButton.tag)
     }
 }
 
