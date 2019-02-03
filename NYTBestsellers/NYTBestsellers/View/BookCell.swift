@@ -11,24 +11,23 @@ import UIKit
 class BookCell: UICollectionViewCell {
     
     lazy var bookImageView: UIImageView = {
-        let image = UIImageView()
-        image.contentMode = .scaleAspectFit
+        let imageV = UIImageView()
+        imageV.contentMode = .scaleAspectFit
         //<a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by rawpixel.com - www.freepik.com</a>
-        image.image = UIImage(named: "bookImagePlaceHolder")
-        return image
+        imageV.image = UIImage(named: "bookImagePlaceHolder")
+        return imageV
     }()
  
-    let weekOnListLabel: UILabel = {
+    lazy var weekOnListLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 13)
         label.numberOfLines = 0
-        label.text = "Book Title"
-        
+        label.text = "Number of Weeks as BestSellers"
         return label
     }()
     
-    let bookDescriptionTextview: UITextView = {
+    lazy var bookDescriptionTextview: UITextView = {
         let textview = UITextView()
         textview.isEditable = false
         textview.text = "Gibberish..........Gibberish..........Gibberish..........Gibberish..........Gibberish.........."

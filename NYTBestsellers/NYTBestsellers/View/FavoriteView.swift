@@ -23,7 +23,7 @@ class FavoriteView: UIView {
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
         let cv = UICollectionView(frame: frame, collectionViewLayout: layout)
-        cv.backgroundColor = UIColor(hexString: "dfdfdf")
+        cv.backgroundColor = UIColor(hexString: "bfd8d5")
         cv.dataSource = self
         return cv
     }()
@@ -66,7 +66,6 @@ extension FavoriteView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = delegate?.configureCollectionViewCell(indexPath: indexPath) {
-            cell.backgroundColor = UIColor(hexString: "f4f3f3")
             return cell
         }
         return UICollectionViewCell()
