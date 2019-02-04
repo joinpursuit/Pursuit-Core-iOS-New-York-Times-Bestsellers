@@ -9,7 +9,7 @@
 import Foundation
 
 class SecretKeys {
-    static let APIKey = "hcCdsArHLAhkPwn6UVIjkooIw8DWUwDq"
+    static let APIKey = "UuicDUmYGGxbD0B48QavhRujWWzcvjuu"
     
     static let GoogleKey = "AIzaSyDpfCRXs8GQw-3sPe-U8y3c7LQqzvPVfS8"
 }
