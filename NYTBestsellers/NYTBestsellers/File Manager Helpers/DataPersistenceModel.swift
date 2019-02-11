@@ -12,7 +12,7 @@ struct DataPersistenceModel{
     private static let listFilename = "ListNames.plist"
     private static let favoriteBooksFilename = "FavoriteBooks.plist"
     private static var listNames = [BookListName.resultsWrapper]()
-    private static var favoriteBooks = [FavoriteBooks]()
+    private static var favoriteBooks = [FavoriteBook]()
     
     static func save(data: [BookListName.resultsWrapper]){
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: listFilename)
@@ -32,7 +32,7 @@ struct DataPersistenceModel{
             print("Property list encoding error \(error)")
         }
     }
-    static func favoriteBook(favoriteBook: FavoriteBooks){
+    static func favoriteBook(favoriteBook: FavoriteBook){
         favoriteBooks.append(favoriteBook)
         saveBookToFavorites()
     }
@@ -41,12 +41,12 @@ struct DataPersistenceModel{
         favoriteBooks.remove(at: atIndex)
         saveBookToFavorites()
     }
-    static func getFavoriteBooks() -> [FavoriteBooks]{
+    static func getFavoriteBooks() -> [FavoriteBook]{
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: favoriteBooksFilename).path
         if FileManager.default.fileExists(atPath: path){
             if let data = FileManager.default.contents(atPath: path){
                 do {
-                    favoriteBooks = try PropertyListDecoder().decode([FavoriteBooks].self, from: data)
+                    favoriteBooks = try PropertyListDecoder().decode([FavoriteBook].self, from: data)
                     favoriteBooks = favoriteBooks.sorted{$0.date > $1.date}
                 }catch{
                     print("Property list decoding error: \(error)")

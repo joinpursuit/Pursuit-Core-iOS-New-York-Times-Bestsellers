@@ -41,7 +41,7 @@ class BestSellerDetailVC: UIViewController {
         if let image = bestSellerDetailView.photoOfBook.image{
             let timeStamp = Date.getISOTimestamp()
             if let imageData = image.jpegData(compressionQuality: 0.5){
-                let favBook = FavoriteBooks.init(bookName: self.bookString, favoritedAt: timeStamp, imageData: imageData, description: descriptionString)
+                let favBook = FavoriteBook.init(bookName: self.bookString, favoritedAt: timeStamp, imageData: imageData, description: descriptionString)
                 DataPersistenceModel.favoriteBook(favoriteBook: favBook)
             }
         }

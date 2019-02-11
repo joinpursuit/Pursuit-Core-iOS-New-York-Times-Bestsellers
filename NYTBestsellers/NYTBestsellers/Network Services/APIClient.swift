@@ -40,7 +40,7 @@ class APIClient{
             }
         }
     }
-    static func getGoogleData(isbn: String, completionHandler: @escaping (AppError?, [BookImage.ItemsWrapper]?) -> Void ) {
+    static func getGoogleData(isbn: String, completionHandler: @escaping (AppError?, [BookImages.ItemsWrapper]?) -> Void ) {
         NetworkHelper.shared.performDataTask(endpointURLString: "https://www.googleapis.com/books/v1/volumes?q=+isbn:\(isbn)&key=\(SecretKeys.googleAPIKey)") { (appError, data) in
             
             if appError != nil{
@@ -48,7 +48,7 @@ class APIClient{
             }
             if let data = data {
                 do{
-                    let googleData = try JSONDecoder().decode(BookImage.self, from: data)
+                    let googleData = try JSONDecoder().decode(BookImages.self, from: data)
                     completionHandler(nil, googleData.items)
                 } catch{
                     completionHandler(AppError.jsonDecodingError(error), nil)
