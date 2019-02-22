@@ -1,6 +1,6 @@
 # Unit 4 Assignment - New York Times Bestsellers
 
-![nyt bestsellers app gif](https://github.com/joinpursuit/Pursuit-Core-iOS-New-York-Times-Bestsellers/blob/master/Images/nyt-bestsellers-app.gif)
+![deny location gif](https://github.com/SLRAM/FourSquareReplica/blob/dev-steph/Images/denyLocations.gif)
 
 # Github Instructions
 - Fork this repository.
