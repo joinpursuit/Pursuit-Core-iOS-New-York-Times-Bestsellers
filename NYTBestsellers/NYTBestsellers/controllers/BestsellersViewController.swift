@@ -116,12 +116,6 @@ extension BestSellerViewController: UICollectionViewDataSource {
         }
         return cell
     }
-    
-    
-    
-    
-    
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailController = DetailViewController()
         guard let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell else { return }

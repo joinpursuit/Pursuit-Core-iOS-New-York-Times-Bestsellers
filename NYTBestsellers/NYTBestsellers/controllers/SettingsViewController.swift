@@ -28,7 +28,9 @@ let settingsView = SettingsView()
         getCategories()
     }
     
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+    }
     
     private func getCategories() {
         bookAPIClient.getBooksCategory{ (appError, categories) in
