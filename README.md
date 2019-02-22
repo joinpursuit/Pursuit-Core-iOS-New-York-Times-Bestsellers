@@ -1,6 +1,5 @@
 # Unit 4 Assignment - New York Times Bestsellers
 
-![deny location gif](https://github.com/SLRAM/FourSquareReplica/blob/dev-steph/Images/denyLocations.gif)
 
 # Github Instructions
 - Fork this repository.
