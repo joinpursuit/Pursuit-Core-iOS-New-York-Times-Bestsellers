@@ -4,7 +4,7 @@
 - Create a empty repository on one group member's account. Do not fork this repo; You won't need any of the assets in here.
 - Clone down your repository to each member's machine.
 - Use branches to work on different features of the application at different times. Make sure to check out from the current `master` branch (`git pull master` before `git checkout -b my-new-branch`)
-- Push changes and make pull requests when your feature is complete. Be sure to tag someone in your pull request so they can review.
+- Push changes and make pull requests when your feature is complete. Be sure to tag someone in your pull request so they can review and merge.
 
 
 # Overview
