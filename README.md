@@ -1,9 +1,9 @@
 # Unit 4 Assignment - New York Times Bestsellers
 
 # Github Instructions
-- Create a empty repository on one group member's account. Do not fork this repo: You won't need any of the assets in here.
+- Create a empty repository on one group member's account. Do not fork this repo; You won't need any of the assets in here.
 - Clone down your repository to each member's machine.
-- Use branches to work on different features of the application at different times. Make sure to check out from the current `master` branch (`git pull master` before `git checkout -b my-new-branch`
+- Use branches to work on different features of the application at different times. Make sure to check out from the current `master` branch (`git pull master` before `git checkout -b my-new-branch`)
 - Push changes and make pull requests when your feature is complete. Be sure to tag someone in your pull request so they can review.
 
 
@@ -11,7 +11,7 @@
 
 Use the **NYTimes Best Sellers Books API** to load a list of best-selling books in a collection view. 
 
-The User Interface should be created 100% programmatically (no storyboards).
+The User Interface should be created 100% programmatically (no storyboards or xibs).
 
 Requirements:
 - The user should be able to select different categories to view the best-selling books in that category.  
