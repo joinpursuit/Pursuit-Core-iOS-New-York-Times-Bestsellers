@@ -2,7 +2,7 @@
 
 
 # Github Instructions
-- Create a empty repository on one group member's account. Do not fork this repo; you won't need any of the assets in here.
+- Create a empty repository on one group member's account. Do not fork the instructions repo (the one you are looking at right now); you won't need any of the assets in here.
 - Each member should clone down that repository to their machine.
 - Use branches to work on different features of the application at different times. Make sure to check out from the `master` branch (`git pull master` before `git checkout -b my-new-branch`)
 - Push changes from your branch and make pull requests when your feature is complete. Be sure to tag someone in your pull request so they can review and merge.
