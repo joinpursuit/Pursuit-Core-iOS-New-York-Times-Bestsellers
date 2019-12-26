@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class DetailViewController: UIViewController {
     
@@ -18,6 +19,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(detailView)
+        detailView.delegate = self
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Favorite", style: .plain, target: self, action: #selector(favorite))
         detailView.label.text = theBooks.book_details.first?.author
         
@@ -76,7 +78,6 @@ class DetailViewController: UIViewController {
         if let image = detailView.image.image, let text = detailView.textView.text{
             if let imageData = image.jpegData(compressionQuality: 0.5){
                 let bookFavorites = Book.init(weeks_on_list: theBooks!.weeks_on_list, author: (theBooks.book_details.first?.author)!, imageData: imageData, description: text, createdAt: timestamp)
-//                if book == nil {
                 if bookFavorites.description == BookModel.getBook().first?.description {
                     alreadyFavorited(title: "You already Favorited this item!", message: "Will not duplicate!")
                 } else {
@@ -84,13 +85,23 @@ class DetailViewController: UIViewController {
                     showAlert(title: "Succesfully Favorited Book", message: "")
                 }
                 
-//                } else {
-//                    BookModel.updateItem(updatedItem: bookFavorites, atIndex: bookIndex!)
-//                }
             }
         }
         dismiss(animated: true, completion: nil)
     }
     
     
+}
+extension DetailViewController: DetailViewDelegate {
+ 
+  
+  func amazonPressed() {
+    guard let urlString = theBooks.amazon_product_url else {return}
+    guard let url = URL(string: urlString) else {return}
+    print(url)
+    let safariVC = SFSafariViewController(url: url)
+    present(safariVC, animated: true, completion: nil)
+
+  }
+  
 }

@@ -29,7 +29,6 @@ class FavoritesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         books = BookModel.getBook()
-        print(books)
     }
     @objc private func updateAlert(){
         let alert = UIAlertController(title: "NYTimes", message: "Edit Mode", preferredStyle: .actionSheet)
@@ -57,6 +56,8 @@ extension FavoritesViewController: UICollectionViewDataSource {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Favorites", for: indexPath) as? FavoritesCell else { return UICollectionViewCell() }
         let book = books[indexPath.row]
+      cell.layer.cornerRadius = 20.0
+
         cell.label.text = book.author
         cell.image.image = UIImage(data: book.imageData)
         cell.textView.text = book.description

@@ -14,6 +14,7 @@ struct Books: Codable{
 }
 struct BookResults: Codable {
     let weeks_on_list: Int
+  let amazon_product_url: String?
     let book_details: [BookDetails]
 }
 struct BookDetails: Codable {
@@ -21,4 +22,6 @@ struct BookDetails: Codable {
     let title: String
     let description: String
     let primary_isbn13: String
+  
+
 }

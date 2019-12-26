@@ -7,10 +7,23 @@
 //
 
 import UIKit
-
+protocol DetailViewDelegate: AnyObject {
+    func amazonPressed()
+}
 class DetailView: UIView {
     
-    
+    weak var delegate: DetailViewDelegate?
+       
+     
+       lazy var amazonButton: UIButton = {
+           let button = UIButton()
+           button.setImage(UIImage(named: "amazon"), for: .normal)
+           button.addTarget(self, action: #selector(amazonPressed), for: .touchUpInside)
+           return button
+       }()
+       @objc func amazonPressed() {
+           delegate?.amazonPressed()
+       }
     lazy var image: UIImageView = {
         let image = UIImageView()
         return image
@@ -39,7 +52,7 @@ class DetailView: UIView {
         
     }
     private func commonInit(){
-        self.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        self.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         setUp()
     }
     private func setUp(){
@@ -47,6 +60,8 @@ class DetailView: UIView {
         imageConstraints()
         labelConstraint()
         textViewConstraint()
+      setupAmazonButton()
+
     }
     private func imageConstraints(){
         addSubview(image)
@@ -73,5 +88,13 @@ class DetailView: UIView {
         textView.centerXAnchor.constraint(equalTo:safeAreaLayoutGuide.centerXAnchor).isActive = true
         
     }
+  private func setupAmazonButton() {
+         addSubview(amazonButton)
+         amazonButton.translatesAutoresizingMaskIntoConstraints = false
+         amazonButton.heightAnchor.constraint(equalToConstant: 75).isActive = true
+         amazonButton.widthAnchor.constraint(equalToConstant: 75).isActive = true
+         amazonButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 25).isActive = true
+         amazonButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5).isActive = true
+     }
     
 }

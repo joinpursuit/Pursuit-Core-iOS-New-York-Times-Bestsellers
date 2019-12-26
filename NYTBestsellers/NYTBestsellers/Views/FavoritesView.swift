@@ -11,11 +11,11 @@ import UIKit
 class FavoritesView: UIView {
     
     public lazy var colloectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        layout.itemSize = CGSize.init(width: 400, height: 400)
-        layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
-        layout.scrollDirection = .vertical
+             let layout = UICollectionViewFlowLayout()
+           layout.itemSize = CGSize.init(width: 350, height: 350) // cell size
+           layout.scrollDirection = .vertical
+           layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
+           let collectionView = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         return collectionView
     }()
@@ -45,11 +45,11 @@ extension FavoritesView {
     }
     func setUpCollectionView(){
         addSubview(colloectionView)
-        colloectionView.translatesAutoresizingMaskIntoConstraints = false
-        colloectionView.topAnchor.constraint(equalTo:safeAreaLayoutGuide.topAnchor).isActive = true
-        colloectionView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
-        colloectionView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 1).isActive = true
-    }
+               colloectionView.translatesAutoresizingMaskIntoConstraints = false
+               colloectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
+               colloectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
+               colloectionView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+               colloectionView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true    }
     
 }
 

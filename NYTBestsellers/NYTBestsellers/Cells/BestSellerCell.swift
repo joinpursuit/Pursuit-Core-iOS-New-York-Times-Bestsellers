@@ -12,7 +12,8 @@ class BestSellerCell: UICollectionViewCell {
     let bestSellerView = BestSellerView()
     lazy var image: UIImageView = {
         let image = UIImageView()
-        
+        let myImage = UIImage.init(named: "icons8-book")
+        image.image = myImage
         return image
     }()
     lazy var label: UILabel = {
