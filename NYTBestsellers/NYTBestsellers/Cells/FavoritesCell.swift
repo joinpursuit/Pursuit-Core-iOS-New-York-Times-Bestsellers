@@ -27,9 +27,9 @@ class FavoritesCell: UICollectionViewCell {
     }()
     lazy var button: UIButton = {
         let button = UIButton()
-        button.setTitle("Edit", for: .normal)
+      button.setImage(UIImage(named: "icons8-more"), for: .normal)
         
-        button.backgroundColor =  #colorLiteral(red: 0.8934412003, green: 0.6393497586, blue: 0.9272561669, alpha: 1)
+        button.backgroundColor =  #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         return button
     }()
     override init(frame: CGRect) {

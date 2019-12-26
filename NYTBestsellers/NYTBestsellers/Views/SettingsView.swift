@@ -29,7 +29,7 @@ class SettingsView: UIView {
     }
     
     private func commonInit(){
-        backgroundColor = #colorLiteral(red: 0.9397123456, green: 0.7953640819, blue: 0.7539283037, alpha: 1)
+        backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         setUpView()
     }
 }

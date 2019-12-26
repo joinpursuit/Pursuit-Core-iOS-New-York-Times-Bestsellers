@@ -8,5 +8,6 @@
 
 import Foundation
 final class UserDefaultKeys {
-    static let category = "Humor"
+    static let pickerviewkey = "Default Picker"
+    static let pickerviewkey2 = "Default Picker row"
 }

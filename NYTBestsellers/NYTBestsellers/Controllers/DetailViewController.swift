@@ -50,11 +50,7 @@ class DetailViewController: UIViewController {
         let okAction = UIAlertAction(title: "Ok", style: .default) { alert in }
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
-        let when = DispatchTime.now() + 5
-        DispatchQueue.main.asyncAfter(deadline: when){
-            // your code with delay
-            alertController.dismiss(animated: true, completion: nil)
-        }
+       
     }
     private func alreadyFavorited(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)

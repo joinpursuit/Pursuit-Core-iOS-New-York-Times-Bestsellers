@@ -18,12 +18,16 @@ class BestSellerCell: UICollectionViewCell {
     lazy var label: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont(name: "Helvetica", size: 15.0)
+        label.font = UIFont(name: "Helvetica", size: 12.0)
+      label.font = UIFont.boldSystemFont(ofSize: 16.0)
         return label
     }()
     lazy var textView: UITextView = {
         let textView = UITextView()
-        textView.backgroundColor = .lightGray
+      textView.backgroundColor = .white
+      textView.textAlignment = .center
+      textView.isEditable = false
+      textView.isSelectable = false
         return textView
     }()
     override init(frame: CGRect) {
@@ -51,9 +55,10 @@ class BestSellerCell: UICollectionViewCell {
         image.centerXAnchor.constraint(equalTo:safeAreaLayoutGuide.centerXAnchor).isActive = true
     }
     private func labelConstraint(){
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 8).isActive = true
-        label.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, constant: 10).isActive = true
+           label.translatesAutoresizingMaskIntoConstraints = false
+           label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5).isActive = true
+           label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5).isActive = true
+           label.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 10).isActive = true
         
     }
     

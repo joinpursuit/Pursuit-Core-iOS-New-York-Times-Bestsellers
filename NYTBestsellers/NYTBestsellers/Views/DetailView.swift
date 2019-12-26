@@ -23,7 +23,7 @@ class DetailView: UIView {
     }()
     lazy var textView: UITextView = {
         let textView = UITextView()
-        textView.backgroundColor = #colorLiteral(red: 0.9397123456, green: 0.7953640819, blue: 0.7539283037, alpha: 1)
+        textView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         textView.font = UIFont(name:"Helvetica" , size:20.0);
         return textView
     }()
@@ -39,7 +39,7 @@ class DetailView: UIView {
         
     }
     private func commonInit(){
-        self.backgroundColor = #colorLiteral(red: 0.9397123456, green: 0.7953640819, blue: 0.7539283037, alpha: 1)
+        self.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         setUp()
     }
     private func setUp(){

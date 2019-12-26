@@ -9,6 +9,8 @@
 import UIKit
 
 class BestSellersViewController: UIViewController {
+    public var row = 0
+
     public var defaulGenre = ""
     let bestSellerView = BestSellerView()
     var genre = [Results](){
@@ -36,7 +38,15 @@ class BestSellersViewController: UIViewController {
         
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+            if let searchRow = UserDefaults.standard.object(forKey: UserDefaultKeys.pickerviewkey) as? Int {
+                bestSellerView.pickerView.selectRow(searchRow, inComponent: 0, animated: true)
+               DispatchQueue.main.async {
+                   guard self.genre.count > 0 else { return }
+                   self.getBooks(keyword: self.genre[searchRow].listName)
+               }
+           }
+           }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,11 +56,16 @@ class BestSellersViewController: UIViewController {
         bestSellerView.pickerView.delegate = self
         bestSellerView.colloectionView.dataSource = self
         bestSellerView.colloectionView.delegate = self
+      if let searchRow = UserDefaults.standard.object(forKey: UserDefaultKeys.pickerviewkey) as? Int {
+          if let searchWord = UserDefaults.standard.object(forKey: UserDefaultKeys.pickerviewkey2) as? String {
+              defaulGenre = searchWord
+              row = searchRow
+              getBooks(keyword: defaulGenre)
+          }
+          
+      }
         getGenres()
-        if let searchCategory = UserDefaults.standard.object(forKey: UserDefaultKeys.category) as? String {
-            defaulGenre = searchCategory
-            getBooks(keyword: defaulGenre)
-        }
+      
         
         
     }
@@ -107,7 +122,7 @@ extension BestSellersViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestSellerCell", for: indexPath) as? BestSellerCell else { return UICollectionViewCell() }
-        cell.label.text = "\(books[indexPath.row].weeks_on_list) weeks on best sellers list"
+        cell.label.text = "Best seller for \(books[indexPath.row].weeks_on_list) weeks"
         
         APIClient.getGoogleImage(keyword: (books[indexPath.row].book_details.first?.primary_isbn13)!) { (error, data) in
             if let error = error {
@@ -120,9 +135,12 @@ extension BestSellersViewController: UICollectionViewDataSource {
                         print(error.errorMessage())
                     }
                     if let image = image {
+                      DispatchQueue.main.async {
                         cell.image.image = image
+
+                      }
                     } else {
-                        cell.image.image = UIImage(named: "icons8-open_book")
+                        cell.image.image = UIImage(named: "icons8-book")
                     }
                 }
                 

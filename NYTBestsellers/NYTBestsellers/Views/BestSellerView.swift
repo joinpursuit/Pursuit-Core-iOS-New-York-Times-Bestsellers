@@ -14,16 +14,16 @@ class BestSellerView: UIView {
     public lazy var colloectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        layout.itemSize = CGSize.init(width: 200, height: 250)
+        layout.itemSize = CGSize.init(width: 200, height: 300)
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
         layout.scrollDirection = .horizontal
-        collectionView.backgroundColor = #colorLiteral(red: 0.9397123456, green: 0.7953640819, blue: 0.7539283037, alpha: 1)
+        collectionView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         return collectionView
     }()
     
     public lazy var pickerView: UIPickerView = {
         let pickerView = UIPickerView()
-        pickerView.backgroundColor = #colorLiteral(red: 0.9397123456, green: 0.7953640819, blue: 0.7539283037, alpha: 1)
+      pickerView.backgroundColor = .white
         return pickerView
     }()
     
