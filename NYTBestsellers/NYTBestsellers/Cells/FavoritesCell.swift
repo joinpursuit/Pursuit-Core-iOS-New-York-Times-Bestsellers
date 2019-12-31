@@ -34,6 +34,8 @@ class FavoritesCell: UICollectionViewCell {
     button.backgroundColor =  #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     return button
   }()
+ 
+  
   override init(frame: CGRect) {
     super.init(frame: UIScreen.main.bounds)
     self.backgroundColor = .white
@@ -45,6 +47,8 @@ class FavoritesCell: UICollectionViewCell {
     labelConstraint()
     textViewConstraint()
     buttonConstriants()
+  
+    
   }
   
   required init?(coder aDecoder: NSCoder) {

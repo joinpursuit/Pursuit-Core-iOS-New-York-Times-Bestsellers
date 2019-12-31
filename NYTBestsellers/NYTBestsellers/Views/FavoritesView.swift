@@ -20,7 +20,6 @@ class FavoritesView: UIView {
     return collectionView
   }()
   
-  
   override init(frame: CGRect) {
     super .init(frame: UIScreen.main.bounds)
     
@@ -36,6 +35,7 @@ class FavoritesView: UIView {
   private func commonInit(){
     backgroundColor = .white
     setUpView()
+   
   }
 }
 extension FavoritesView {

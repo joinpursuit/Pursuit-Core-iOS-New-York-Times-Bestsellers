@@ -13,7 +13,10 @@ class BestSellerView: UIView {
   
   public lazy var colloectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
+    
     let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+    layout.minimumLineSpacing = 16
+
     layout.itemSize = CGSize.init(width: 200, height: 300)
     layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
     layout.scrollDirection = .horizontal

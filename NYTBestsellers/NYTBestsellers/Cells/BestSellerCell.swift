@@ -12,7 +12,7 @@ class BestSellerCell: UICollectionViewCell {
   let bestSellerView = BestSellerView()
   lazy var image: UIImageView = {
     let image = UIImageView()
-    let myImage = UIImage.init(named: "icons8-book")
+    let myImage = UIImage.init(named: "J5LVHEL")
     image.image = myImage
     return image
   }()
@@ -31,15 +31,32 @@ class BestSellerCell: UICollectionViewCell {
     textView.isSelectable = false
     return textView
   }()
+  private var shadowLayer: CAShapeLayer!
+  private var cornerRadius: CGFloat = 0.0
+  private var fillColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
   override init(frame: CGRect) {
     super.init(frame: frame)
-    self.backgroundColor = .white
+    self.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     addSubview(image)
     addSubview(label)
     addSubview(textView)
     imageConstraints()
     labelConstraint()
     textViewConstraint()
+    if shadowLayer == nil {
+      shadowLayer = CAShapeLayer()
+      
+      shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
+      shadowLayer.fillColor = fillColor.cgColor
+      
+      shadowLayer.shadowColor = UIColor.black.cgColor
+      shadowLayer.shadowPath = shadowLayer.path
+      shadowLayer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+      shadowLayer.shadowOpacity = 0.9
+      shadowLayer.shadowRadius = 3
+      
+      layer.insertSublayer(shadowLayer, at: 0)
+    }
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -60,7 +77,7 @@ class BestSellerCell: UICollectionViewCell {
       case .success(let data):
         DispatchQueue.main.async {
           guard let imageData = data?.imageLinks.smallThumbnail else {
-            return self.image.image = UIImage(named: "icons8-book")
+            return self.image.image = UIImage(named: "J5LVHEL")
           }
           self.image.getImage(with: imageData) { (result) in
             switch result{
