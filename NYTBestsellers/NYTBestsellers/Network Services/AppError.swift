@@ -8,25 +8,31 @@
 
 import Foundation
 
-enum AppError: Error {
+enum AppError: Error, CustomStringConvertible {
   case badURL(String)
-  case jsonDecodingError(Error)
-  case networkError(Error)
-  case badStatusCode(String)
-  case propertyListEncodingError(Error)
+  case noResponse
+  case networkClientError(Error)
+  case noData
+  case decodingError(Error)
+  case encodingError(Error)
+  case badStatusCode(Int)
+  case badMimeType(String) 
   
-  public func errorMessage() -> String {
+ 
+  var description: String {
     switch self {
-    case .badURL(let message):
-      return "bad url: \(message)"
-    case .jsonDecodingError(let error):
-      return "json decoding error: \(error)"
-    case .networkError(let error):
+    case .decodingError(let error):
+      return "\(error)"
+    case .badStatusCode(let code):
+      return "\(code)"
+    case .encodingError(let error):
+      return "encoding error: \(error)"
+    case .networkClientError(let error):
       return "network error: \(error)"
-    case .badStatusCode(let message):
-      return "bad status code: \(message)"
-    case .propertyListEncodingError(let error):
-      return "property list encoding error: \(error)"
+    case .badURL(let url):
+      return "Verify the url \(url)"
+    default:
+      return "other appError \(self)"
     }
   }
 }

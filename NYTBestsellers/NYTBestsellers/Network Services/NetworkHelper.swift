@@ -8,29 +8,45 @@
 
 import Foundation
 
-final class NetworkHelper {
-  private init() {}
+class NetworkHelper {
   static let shared = NetworkHelper()
-  func performDataTask(endpointURLString: String, handler: @escaping (AppError?, Data?) -> Void) {
-    guard let url = URL(string: endpointURLString) else {
-      handler(AppError.badURL(endpointURLString), nil)
-      return
-    }
-    let request = URLRequest(url: url)
-    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+  
+  private var session: URLSession
+
+  private init() {
+    session = URLSession(configuration: .default)
+  }
+  
+  func performDataTask(with request: URLRequest,
+                       completion: @escaping (Result<Data, AppError>) -> ()) {
+   
+    let dataTask = session.dataTask(with: request) { (data, response, error) in
+    
       if let error = error {
-        handler(AppError.networkError(error), nil)
+        completion(.failure(.networkClientError(error)))
+        return
       }
-      guard let httpResponse = response as? HTTPURLResponse,
-        (200...299).contains(httpResponse.statusCode) else {
-          let statusCode = (response as? HTTPURLResponse)?.statusCode ?? -999
-          handler(AppError.badStatusCode(String(statusCode)), nil)
-          return
+     
+      guard let urlResponse = response as? HTTPURLResponse else {
+        completion(.failure(.noResponse))
+        return
       }
-      if let data = data {
-        handler(nil, data)
+      
+     
+      guard let data = data else {
+        completion(.failure(.noData))
+        return
       }
+    
+      switch urlResponse.statusCode {
+      case 200...299: break // everything went well here
+      default:
+        completion(.failure(.badStatusCode(urlResponse.statusCode)))
+        return
+      }
+      
+      completion(.success(data))
     }
-    task.resume()
+    dataTask.resume()
   }
 }

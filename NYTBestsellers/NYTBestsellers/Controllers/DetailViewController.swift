@@ -23,49 +23,33 @@ class DetailViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Favorite", style: .plain, target: self, action: #selector(favorite))
         detailView.label.text = theBooks.book_details.first?.author
         
-        
-        APIClient.getGoogleImage(keyword: (theBooks.book_details.first?.primary_isbn13)!) { (error, data) in
-            if let error = error {
-                print(error.errorMessage())
-            } else if let data = data {
+        APIClient.getGoogleImage(keyword: (theBooks.book_details.first?.primary_isbn13)!) { (result) in
+        switch result{
+        case .failure(let error):
+          DispatchQueue.main.async {
+            print(error)
+          }
+        case .success(let data):
+          DispatchQueue.main.async {
+            self.detailView.textView.text = data?.description
+            self.detailView.image.getImage(with: (data?.imageLinks.smallThumbnail)!) { (result) in
+              switch result{
+              case .failure(let error):
+                print(error)
+              case .success(let image):
                 DispatchQueue.main.async {
-                    self.detailView.textView.text = data.description
-                    
+                self.detailView.image.image = image
                 }
-                ImageHelper.fetchImageFromNetwork(urlString: data.imageLinks.smallThumbnail){ (error, image) in
-                    if let error = error {
-                        print(error.errorMessage())
-                    }
-                    if let image = image {
-                        self.detailView.image.image = image
-                    } else {
-                        self.detailView.image.image = UIImage(named: "icons8-open_book")
-                    }
-                }
-                
+              }
             }
+          }
+          
         }
+      }
+      
         
     }
-    private func showAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default) { alert in }
-        alertController.addAction(okAction)
-        present(alertController, animated: true, completion: nil)
-       
-    }
-    private func alreadyFavorited(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default) { alert in }
-        alertController.addAction(okAction)
-        present(alertController,animated: true, completion: nil)
-        let when = DispatchTime.now() + 5
-        DispatchQueue.main.asyncAfter(deadline: when){
-            // your code with delay
-            alertController.dismiss(animated: true, completion: nil)
-        }
-    }
-    
+      
     @objc private func favorite(){
         let date = Date()
         let isoDateFormatter = ISO8601DateFormatter()

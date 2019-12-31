@@ -23,6 +23,8 @@ class FavoritesCell: UICollectionViewCell {
     lazy var textView: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = .white
+        textView.isEditable = false
+
         return textView
     }()
     lazy var button: UIButton = {

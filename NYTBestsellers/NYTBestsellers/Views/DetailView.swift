@@ -37,7 +37,9 @@ class DetailView: UIView {
     lazy var textView: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        textView.font = UIFont(name:"Helvetica" , size:20.0);
+        textView.font = UIFont(name:"Helvetica" , size:20.0)
+        textView.isEditable = false
+
         return textView
     }()
     override init(frame: CGRect) {

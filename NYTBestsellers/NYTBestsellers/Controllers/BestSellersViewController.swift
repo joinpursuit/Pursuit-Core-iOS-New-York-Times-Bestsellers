@@ -65,29 +65,33 @@ class BestSellersViewController: UIViewController {
       
     }
     getGenres()
-    
-    
-    
   }
+  
   private func getGenres(){
-    APIClient.getGenres { (error, data) in
-      if let error = error {
-        print(error.errorMessage())
-      } else if let data = data {
-        self.genre = data
+    APIClient.getGenres { [weak self] (result) in
+      switch result {
+      case .failure(let appError):
+        DispatchQueue.main.async {
+          self?.showAlert(title: "App Error", message: "\(appError)")
+        }
+      case .success(let result):
+        self?.genre = result!
         
       }
     }
   }
+  
   private func getBooks(keyword: String){
-    APIClient.getBooks(keyword: keyword.replacingOccurrences(of: " ", with: "-") ) { (error, data) in
-      if let error = error {
-        print(error.errorMessage())
-      } else if let data = data {
-        self.books = data
+    APIClient.getBooks(keyword: keyword.replacingOccurrences(of: " ", with: "-") ) { (result) in
+      switch result {
+      case .failure(let appError):
+        DispatchQueue.main.async {
+          self.showAlert(title: "App Error", message: "\(appError)")
+        }
+      case .success(let result):
+        self.books = result!
         
       }
-      
     }
   }
   
@@ -122,33 +126,8 @@ extension BestSellersViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BestSellerCell", for: indexPath) as? BestSellerCell else { return UICollectionViewCell() }
-    cell.label.text = "Best seller for \(books[indexPath.row].weeks_on_list) weeks"
-    
-    APIClient.getGoogleImage(keyword: (books[indexPath.row].book_details.first?.primary_isbn13)!) { (error, data) in
-      if let error = error {
-        print(error.errorMessage())
-      } else if let data = data {
-        
-        
-        ImageHelper.fetchImageFromNetwork(urlString: data.imageLinks.smallThumbnail){ (error, image) in
-          if let error = error {
-            print(error.errorMessage())
-          }
-          if let image = image {
-            DispatchQueue.main.async {
-              cell.image.image = image
-              
-            }
-          }
-        }
-        
-      }
-    }
-    
-    
-    
-    cell.textView.text = books[indexPath.row].book_details.first?.description
-    
+    let book = books[indexPath.row]
+    cell.congifureCell(for: book)
     return cell
   }
   

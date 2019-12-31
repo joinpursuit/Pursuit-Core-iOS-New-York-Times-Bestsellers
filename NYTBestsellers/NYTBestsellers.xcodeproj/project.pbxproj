@@ -16,6 +16,7 @@
 		5718C00221FA772600A8E4B8 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718C00121FA772600A8E4B8 /* AppError.swift */; };
 		5718C00421FA77AA00A8E4B8 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718C00321FA77AA00A8E4B8 /* DataPersistenceManager.swift */; };
 		5718C00621FA78BA00A8E4B8 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5718C00521FA78BA00A8E4B8 /* ImageHelper.swift */; };
+		933CCECA23B9624400FA6CDF /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933CCEC923B9624400FA6CDF /* Alerts.swift */; };
 		935E831621FBA06800B0C9E6 /* BestSellersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935E831521FBA06800B0C9E6 /* BestSellersViewController.swift */; };
 		935E831821FBA07700B0C9E6 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935E831721FBA07700B0C9E6 /* FavoritesViewController.swift */; };
 		935E831A21FBA08200B0C9E6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935E831921FBA08200B0C9E6 /* SettingsViewController.swift */; };
@@ -48,6 +49,7 @@
 		5718C00121FA772600A8E4B8 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		5718C00321FA77AA00A8E4B8 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
 		5718C00521FA78BA00A8E4B8 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		933CCEC923B9624400FA6CDF /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		935E831521FBA06800B0C9E6 /* BestSellersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellersViewController.swift; sourceTree = "<group>"; };
 		935E831721FBA07700B0C9E6 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		935E831921FBA08200B0C9E6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				93EB9C0C21FF97AA00E5A356 /* SecretKeys.swift */,
+				933CCEC923B9624400FA6CDF /* Alerts.swift */,
 				93EB9C0E21FF984A00E5A356 /* APIClient.swift */,
 				5718C00121FA772600A8E4B8 /* AppError.swift */,
 				5718C00521FA78BA00A8E4B8 /* ImageHelper.swift */,
@@ -272,6 +275,7 @@
 				93EB9C0D21FF97AA00E5A356 /* SecretKeys.swift in Sources */,
 				93EB9C1C2201028C00E5A356 /* BookModel.swift in Sources */,
 				93EB9C1621FFBB1800E5A356 /* GoogleModel.swift in Sources */,
+				933CCECA23B9624400FA6CDF /* Alerts.swift in Sources */,
 				93EB9C0F21FF984A00E5A356 /* APIClient.swift in Sources */,
 				93EB9C1A2201019100E5A356 /* Book.swift in Sources */,
 				935E832721FBB1D900B0C9E6 /* BestSellerCell.swift in Sources */,
@@ -429,7 +433,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9528M3AFGV;
 				INFOPLIST_FILE = NYTBestsellers/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -448,7 +452,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9528M3AFGV;
 				INFOPLIST_FILE = NYTBestsellers/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

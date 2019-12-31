@@ -48,6 +48,32 @@ class BestSellerCell: UICollectionViewCell {
         
         
     }
+  func congifureCell(for book: BookResults){
+    label.text = "Best seller for \(book.weeks_on_list) weeks"
+    textView.text = book.book_details.first?.description
+    APIClient.getGoogleImage(keyword: (book.book_details.first?.primary_isbn13)!) { (result) in
+      switch result{
+      case .failure(let error):
+        DispatchQueue.main.async {
+          print(error)
+        }
+      case .success(let data):
+        DispatchQueue.main.async {
+          self.image.getImage(with: (data?.imageLinks.smallThumbnail)!) { (result) in
+            switch result{
+            case .failure(let error):
+              print(error)
+            case .success(let image):
+              DispatchQueue.main.async {
+              self.image.image = image
+              }
+            }
+          }
+        }
+        
+      }
+       }
+  }
     private func imageConstraints(){
         image.translatesAutoresizingMaskIntoConstraints = false
         image.topAnchor.constraint(equalTo: topAnchor, constant: 11).isActive = true

@@ -29,12 +29,15 @@ class SettingsViewController: UIViewController {
     }
     
     private func getGenres(){
-        APIClient.getGenres { (error, data) in
-            if let error = error {
-                print(error.errorMessage())
-            } else if let data = data {
-                self.genre = data
-                
+        APIClient.getGenres { [weak self] (result) in
+             switch result {
+              case .failure(let appError):
+              DispatchQueue.main.async {
+              self?.showAlert(title: "App Error", message: "\(appError)")
+                           }
+              case .success(let result):
+                self?.genre = result!
+                           
             }
         }
     }
