@@ -66,9 +66,9 @@ class BestSellerCell: UICollectionViewCell {
     
   }
   func congifureCell(for book: BookResults){
-    label.text = "Best seller for \(book.weeks_on_list) weeks"
-    textView.text = book.book_details.first?.description
-    APIClient.getGoogleImage(keyword: (book.book_details.first?.primary_isbn13)!) { (result) in
+    label.text = "Best seller for \(book.weeksOnList) weeks"
+    textView.text = book.bookDetails.first?.description
+    APIClient.getGoogleImage(keyword: (book.bookDetails.first?.primaryIsbn13)!) { (result) in
       switch result{
       case .failure(let error):
         DispatchQueue.main.async {

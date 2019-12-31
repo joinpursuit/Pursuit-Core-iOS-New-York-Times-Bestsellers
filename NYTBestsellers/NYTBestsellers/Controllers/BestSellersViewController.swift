@@ -10,7 +10,6 @@ import UIKit
 
 class BestSellersViewController: UIViewController {
   public var row = 0
-  
   public var defaulGenre = ""
   let bestSellerView = BestSellerView()
   var genre = [Results](){
@@ -29,14 +28,7 @@ class BestSellersViewController: UIViewController {
     }
     
   }
-  var images = [VolumeInfo](){
-    didSet{
-      DispatchQueue.main.async {
-        self.bestSellerView.colloectionView.reloadData()
-      }
-    }
-    
-  }
+ 
   
   override func viewWillAppear(_ animated: Bool) {
     if let searchRow = UserDefaults.standard.object(forKey: UserDefaultKeys.pickerviewkey) as? Int {
@@ -139,7 +131,7 @@ extension BestSellersViewController: UICollectionViewDelegate{
     
     
     let detailVC = DetailViewController()
-    detailVC.theBooks = book
+    detailVC.currentBook = book
     navigationController?.pushViewController(detailVC, animated: true)
     
   }

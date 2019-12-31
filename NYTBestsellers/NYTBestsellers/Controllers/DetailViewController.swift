@@ -12,7 +12,7 @@ import SafariServices
 class DetailViewController: UIViewController {
   
   let detailView = DetailView()
-  var theBooks: BookResults!
+  var currentBook: BookResults!
   var book: Book?
   var bookIndex: Int?
   
@@ -25,9 +25,9 @@ class DetailViewController: UIViewController {
   }
   
   private func configureView(){
-    detailView.label.text = theBooks.book_details.first?.author
+    detailView.label.text = currentBook.bookDetails.first?.author
     
-    APIClient.getGoogleImage(keyword: (theBooks.book_details.first?.primary_isbn13)!) { (result) in
+    APIClient.getGoogleImage(keyword: (currentBook.bookDetails.first?.primaryIsbn13)!) { (result) in
       switch result{
       case .failure(let error):
         DispatchQueue.main.async {
@@ -65,7 +65,7 @@ class DetailViewController: UIViewController {
     let timestamp = isoDateFormatter.string(from: date)
     if let image = detailView.image.image, let text = detailView.textView.text{
       if let imageData = image.jpegData(compressionQuality: 0.5){
-        let bookFavorites = Book.init(weeks_on_list: theBooks!.weeks_on_list, author: (theBooks.book_details.first?.author)!, imageData: imageData, description: text, createdAt: timestamp)
+        let bookFavorites = Book.init(weeks_on_list: currentBook!.weeksOnList, author: (currentBook.bookDetails.first?.author)!, imageData: imageData, description: text, createdAt: timestamp)
         if bookFavorites.description == BookModel.getBook().first?.description {
           alreadyFavorited(title: "You already Favorited this item!", message: "Will not duplicate!")
         } else {
@@ -83,7 +83,7 @@ class DetailViewController: UIViewController {
 extension DetailViewController: DetailViewDelegate {
 
   func amazonPressed() {
-    guard let urlString = theBooks.amazon_product_url else {return}
+    guard let urlString = currentBook.amazonProductUrl else {return}
     guard let url = URL(string: urlString) else {return}
     print(url)
     let safariVC = SFSafariViewController(url: url)
