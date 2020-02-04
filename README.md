@@ -56,6 +56,8 @@ Selecting a cell should segue to a Detail View Controller with more information 
 
 ## Best Sellers Detail
 
+This Detailview should have a:
+
 - `UIButton` or `Segmented control`
 There should be 4 buttons or 4 segemented control that would take you to a safari view controller to present the book sellers webpage
 
