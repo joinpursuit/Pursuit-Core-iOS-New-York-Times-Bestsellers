@@ -54,6 +54,18 @@ Selecting a cell should segue to a Detail View Controller with more information 
 - A description
 - Any other relevant information you want to add as well.
 
+## Best Sellers Detail
+
+- `UIButton` or `Segmented control`
+There should be 4 buttons or 4 segemented control that would take you to a safari view controller to present the book sellers webpage
+
+- `Safari ViewController`
+It should show Amazon, apple books, Barnes & Nobles, Local Book Sellers based on one of the 4 buttons selected 
+
+The Detail ViewController should show the Book's image (Large image), a TextView for the description and a label for the book title and a Favorite button.  
+
+- Favorites Button
+When a user favorites a book there should be a show alert or animation (It's up to you) anything that shows the user the book  they favrited was added. 
 
 ## Favorites
 
@@ -61,7 +73,8 @@ This view should have a:
 
 - Collection View
 
-The collection view should display all of the books that the user has favorited. Favorites should be saved to the documents directory.
+The collection view should display all of the books that the user has favorited. Favorites should be saved to the documents directory. If there is no books in the Collection View there should be an empty state that displays a message 
+
 
 
 ## Settings
@@ -81,34 +94,18 @@ The user should use this picker view to set the default category for loading boo
 
 # APIs
 
-There are two APIs for this app:
+There is one API needed for this app:
 
 - NYT API
-- Google Books API
 
 **NYT API:** You will need to create an [API key](https://developer.nytimes.com/accounts/login) in order to make requests.
 
-**Google Books API:** You will need to create an [API Key](https://developers.google.com/books/docs/v1/using#APIKey) in order to not get [rate limited](https://www.keycdn.com/support/rate-limiting). Follow the instructions for getting **API Keys**. You do not need to use OAuth.
-
-
-**Endpoint 1: Categories**
+**Endpoint NYT: Best Sellers for a category**
 
 ```
-https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=\(key)
+https://api.nytimes.com/svc/books/v3/lists/current/business books.json?api-key=\(key)
 ```
 
-**Endpoint 2: Best Sellers for a category**
-
-```
-https://api.nytimes.com/svc/books/v3/lists.json?api-key=\(key)&list=\(hyphen-separated-list-name)
-(e.g Hardcover-Fiction)
-```
-
-**Endpoint 3: Google Books isbn**
-
-```
-https://www.googleapis.com/books/v1/volumes?q=+isbn:0385514239
-```
 
 ## Sample UI
 
