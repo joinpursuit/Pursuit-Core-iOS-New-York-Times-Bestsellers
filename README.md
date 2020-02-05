@@ -96,7 +96,7 @@ The user should use this picker view to set the default category for loading boo
 
 # APIs
 
-There is one API needed for this app:
+There is Two API's needed for this app:
 
 - NYT API
 
@@ -107,7 +107,17 @@ There is one API needed for this app:
 ```
 https://api.nytimes.com/svc/books/v3/lists/current/business books.json?api-key=\(key)
 ```
+- NYT Book List API
 
+**NYT Book List API:** You will need to create an [API key](https://developer.nytimes.com/accounts/login) in order to make requests.
+
+**Endpoint NYT_ListofBooks: Best Sellers for a category**
+
+This will be used to populate your pickerView
+
+```
+https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=\(key)
+```
 
 ## Sample UI
 
