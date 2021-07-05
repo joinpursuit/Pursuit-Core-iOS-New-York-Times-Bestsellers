@@ -12,9 +12,32 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
+    
 
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    
+   
+    
+    let baseViewController = MainViewController()
+    let favoriteVC = FavoritesViewController()
+    let settingVC = SettingsViewController()
+    baseViewController.tabBarItem = UITabBarItem.init(title: "NYT Bestsellers", image: UIImage(named: "icons8-best_seller"), selectedImage: UIImage(named: "icons8-best_seller"))
+    favoriteVC.tabBarItem = UITabBarItem.init(title: "Favorite Books", image: UIImage(named: "icons8-add_to_favorites"), selectedImage: UIImage(named: "icons8-add_to_favorites"))
+settingVC.tabBarItem = UITabBarItem.init(title: "Settings", image: UIImage(named: "icons8-settings_filled"), selectedImage: UIImage(named: "icons8-settings_filled"))
+    let tabBar = UITabBarController()
+    
+     let navigationViewController = UINavigationController.init(rootViewController:baseViewController)
+    
+    
+   tabBar.viewControllers = [navigationViewController,favoriteVC,settingVC]
+    window = UIWindow.init(frame: UIScreen.main.bounds)
+    window?.makeKeyAndVisible()
+    window?.rootViewController = tabBar
+    
+    baseViewController.title = "NYT BestSellers"
+    favoriteVC.title = "Favorites"
+    settingVC.title = "Settings"
     // Override point for customization after application launch.
     return true
   }
