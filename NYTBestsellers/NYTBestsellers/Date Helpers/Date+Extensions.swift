@@ -10,6 +10,7 @@ import Foundation
 
 extension Date {
   // get an ISO timestamp
+  //example let timeStamp = Date().getISOTimestamp() - for my favorite books sorting 
   static func getISOTimestamp() -> String {
     let isoDateFormatter = ISO8601DateFormatter()
     let timestamp = isoDateFormatter.string(from: Date())
