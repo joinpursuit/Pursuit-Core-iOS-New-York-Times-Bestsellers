@@ -12,10 +12,26 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-
-
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
+     let nav = UINavigationController()
+    let mainVC = BestSellerViewController()
+    mainVC.title = "NYT Best Sellers"
+    mainVC.tabBarItem = UITabBarItem.init(title: "Best Sellers", image: UIImage(named: "bestSellers"), selectedImage: UIImage(named: "selectedBestSellers"))
+    let favs = FavoriteViewController()
+    favs.title = "Favorites"
+    favs.tabBarItem =  UITabBarItem.init(title: "Favorites", image: UIImage(named: "ribbon"), selectedImage: UIImage(named: "selectedRibbon"))
+    let settings = SettingsViewController()
+    settings.title = "Settings"
+    settings.tabBarItem = UITabBarItem.init(title: "Settings", image: UIImage(named: "settings"), selectedImage: UIImage(named: "selectedSettings"))
+    let detail = DetailViewController()
+    detail.title = "Detail"
+    let controllers = [mainVC, favs, settings]
+    nav.viewControllers = controllers
+    let tab = UITabBarController()
+    tab.viewControllers = controllers.map{ UINavigationController(rootViewController: $0)}
+ window = UIWindow.init(frame: UIScreen.main.bounds)
+    window?.rootViewController = tab
+    window?.makeKeyAndVisible()
     return true
   }
 

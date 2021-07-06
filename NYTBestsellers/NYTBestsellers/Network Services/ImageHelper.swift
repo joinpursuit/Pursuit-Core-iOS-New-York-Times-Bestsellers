@@ -10,9 +10,7 @@ import UIKit
 
 final class ImageHelper {
   private init() {}
-  
   private static var cache = NSCache<NSString, UIImage>()
-  
   static func fetchImageFromNetwork(urlString: String, completion: @escaping (AppError?, UIImage?) -> Void) {
     NetworkHelper.shared.performDataTask(endpointURLString: urlString) { (appError, data ) in
       if let appError = appError {
