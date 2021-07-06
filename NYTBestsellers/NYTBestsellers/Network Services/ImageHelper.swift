@@ -10,7 +10,7 @@ import UIKit
 
 final class ImageHelper {
   private init() {}
-  
+//    private static var googleData = [BookImage.ItemsWrapper]()
   private static var cache = NSCache<NSString, UIImage>()
   
   static func fetchImageFromNetwork(urlString: String, completion: @escaping (AppError?, UIImage?) -> Void) {
@@ -29,7 +29,18 @@ final class ImageHelper {
       }
     }
   }
-  
+//    static func getImage(isbn: String) -> String{
+//        var imageURL = String()
+//        APIClient.getGoogleData(isbn: isbn) { (appError, data) in
+//            if let appError = appError {
+//                print(appError)
+//            }
+//            if let data = data{
+//
+//            }
+//        }
+//        return imageURL
+//    }
   static func fetchImageFromCache(urlString: String) -> UIImage? {
     return cache.object(forKey: urlString as NSString)
   }
