@@ -9,7 +9,8 @@
 import Foundation
 
 extension Date {
-  // get an ISO timestamp
+  // get an ISO timestamp for favorite books saved times
+    //ex. let timestamp = Date().getISOTimestamp()
   static func getISOTimestamp() -> String {
     let isoDateFormatter = ISO8601DateFormatter()
     let timestamp = isoDateFormatter.string(from: Date())
